@@ -1,0 +1,10 @@
+# Stub entry. Status is 'stub': only id, title, category and lender_objective
+# are populated. Positions, sources and jurisdiction notes are added in a later
+# work package. Nothing here is legal advice or a verified market position.
+id: cross_collateral_set_off
+title: "Cross-collateralisation and set-off"
+category: collateral
+lender_objective: "Let the lender apply collateral and credit balances across the client's other exposures with the same lender."
+status: stub
+reviewed_by: null
+last_reviewed: null

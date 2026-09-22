@@ -1,0 +1,1030 @@
+{
+  "run_id": "9f2c1a7b4e6d8035",
+  "timestamp": "2026-09-21T09:15:00+00:00",
+  "library_hash": "2bb077b8162abbd6094351ca30b7a7b30ecab21209d4a3cdf2a522ca3d893e58",
+  "intake_hash": "c4f1a0d9e8b7365201adfe4c9b8a77d61f0e2c3b5a49687d0e1f2a3b4c5d6e7f",
+  "deal_id": "D90",
+  "description": "Synthetic fixture. Borrower A, a UK individual with declared high net worth, diversified listed portfolio at the lender's own custody.",
+  "governing_law": "england_wales",
+  "status_summary": {
+    "reviewed": 0,
+    "draft": 12,
+    "stub": 12
+  },
+  "jurisdiction": {
+    "id": "england_wales",
+    "name": "England and Wales",
+    "creation": "Security over intermediated securities is created by a pledge or a charge granted in a written security agreement; no statutory form is prescribed. [VERIFY]",
+    "registration_filing": "A charge granted by a company is registrable at the companies registry unless a disapplication applies. [VERIFY] Not confirmed against the primary text.",
+    "perfection_depends_on": "Possession or control of the pledged account in practice, evidenced by the custodian arrangements.",
+    "enforcement_route": "Sale, or appropriation where the agreement expressly permits it and the financial collateral regime applies. [VERIFY]",
+    "financial_collateral_regime": "A financial collateral regime exists; whether it extends to a natural-person collateral provider has not been confirmed. [VERIFY]",
+    "governing_law_of_intermediated_securities": "The proprietary aspects are generally determined by the location of the relevant account rather than by the parties' choice of law. [VERIFY]",
+    "practical_notes": "Local counsel should confirm perfection and enforcement before first utilisation. Nothing in this overlay has been reviewed by a named human.",
+    "status": "stub"
+  },
+  "not_automated": [
+    "The final determination that Borrower A is or is not a consumer under any applicable regime.",
+    "Any concession below a clause's floor, and any counterparty request at the unacceptable tier."
+  ],
+  "exit_code": 0,
+  "intake": {
+    "deal_id": "D90",
+    "description": "Synthetic fixture. Borrower A, a UK individual with declared high net worth, diversified listed portfolio at the lender's own custody.",
+    "borrower": {
+      "type": "individual",
+      "domicile": "GB",
+      "natural_person": true,
+      "declared_high_net_worth": true,
+      "business_purpose_declared": false
+    },
+    "pledgor": {
+      "same_as_borrower": true,
+      "type": null,
+      "domicile": null,
+      "natural_person": null,
+      "is_pdmr_of_pledged_issuer": false
+    },
+    "guarantor_present": false,
+    "facility": {
+      "type": "uncommitted_demand",
+      "purpose": "general",
+      "amount": 3000000.0,
+      "currency": "GBP",
+      "benchmark": "SONIA",
+      "other_facilities_with_lender": false
+    },
+    "collateral": {
+      "governing_law": "england_wales",
+      "custodian_location": "GB",
+      "lender_is_custodian": true,
+      "currencies": [
+        "GBP"
+      ],
+      "composition": [
+        {
+          "asset_class": "listed_equity",
+          "pct": 60.0,
+          "single_name_max_pct": 12.0,
+          "issuer_restricted": false
+        },
+        {
+          "asset_class": "listed_bond",
+          "pct": 30.0,
+          "single_name_max_pct": 8.0,
+          "issuer_restricted": false
+        },
+        {
+          "asset_class": "cash",
+          "pct": 10.0,
+          "single_name_max_pct": null,
+          "issuer_restricted": false
+        }
+      ]
+    },
+    "counterparty_requests": {},
+    "derived": {
+      "max_single_name_pct": 12.0,
+      "has_real_estate": false,
+      "currency_mismatch": false,
+      "third_party_security": false,
+      "any_natural_person_pledgor": true
+    }
+  },
+  "clauses": [
+    {
+      "id": "facility_type",
+      "title": "Facility type: uncommitted demand or committed term",
+      "category": "credit",
+      "document": "facility_letter",
+      "risk_rating": "high",
+      "status": "draft",
+      "opening": "preferred",
+      "floor": "fallback",
+      "opening_text": "The facility is uncommitted and repayable on demand. The lender may decline any utilisation request and may demand repayment in full at any time, without cause and without any event of default having occurred.",
+      "opening_rationale": "An uncommitted demand facility is the lender's primary protection in securities-backed lending. It lets the lender exit before the collateral deteriorates without having to prove a default, which is what makes the rest of the risk framework workable.",
+      "ladder": [
+        {
+          "tier": "preferred",
+          "text": "The facility is uncommitted and repayable on demand. The lender may decline any utilisation request and may demand repayment in full at any time, without cause and without any event of default having occurred.",
+          "rationale": "An uncommitted demand facility is the lender's primary protection in securities-backed lending. It lets the lender exit before the collateral deteriorates without having to prove a default, which is what makes the rest of the risk framework workable.",
+          "conditions": [],
+          "approval": null
+        },
+        {
+          "tier": "acceptable",
+          "text": "The facility is uncommitted and repayable on demand, save that where no event of default is continuing the lender will give X business days' notice before demanding repayment in full.",
+          "rationale": "A short notice period on a no-fault demand costs the lender little, because the margin mechanics continue to operate throughout the notice period, and it answers the borrower's most common objection to an uncommitted line.",
+          "conditions": [
+            "Notice period no longer than X business days",
+            "No notice requirement where an event of default is continuing or a margin call is unmet"
+          ],
+          "approval": null
+        },
+        {
+          "tier": "fallback",
+          "text": "The facility is a committed term facility of X months, terminable by the lender on an event of default or on an unremedied margin shortfall, and not otherwise.",
+          "rationale": "Committing the line converts a discretionary exit into a contractual one. The lender can live with that only where the margin shortfall trigger is preserved intact, because that trigger is what tracks the collateral.",
+          "conditions": [
+            "Unremedied margin shortfall is an express termination event",
+            "Term no longer than X months with no extension right in the borrower"
+          ],
+          "approval": "Senior lawyer, with credit sign-off on the term"
+        },
+        {
+          "tier": "unacceptable",
+          "text": "A committed facility under which the lender cannot terminate for an unremedied margin shortfall, or under which the demand right is subject to a cure period the borrower controls.",
+          "rationale": "That structure leaves the lender contractually locked in while the collateral falls. There is no price at which it is the right trade.",
+          "conditions": [],
+          "approval": null
+        }
+      ],
+      "jurisdiction_note": "Under English law the on-demand characterisation is a matter of drafting rather than a statutory category, so the facility letter must say plainly that the facility is uncommitted and repayable on demand.",
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [
+        "Any request to commit an uncommitted line for longer than X months",
+        "Any request to make demand conditional on borrower agreement"
+      ],
+      "not_automated": []
+    },
+    {
+      "id": "conditions_precedent",
+      "title": "Conditions precedent to first and each utilisation",
+      "category": "credit",
+      "document": "facility_letter",
+      "risk_rating": "high",
+      "status": "draft",
+      "opening": "preferred",
+      "floor": "acceptable",
+      "opening_text": "No utilisation is available until the lender has confirmed in writing that it has received each condition precedent in form and substance satisfactory to it, including completed onboarding checks, constitutional and authority documents, executed security documents and evidence of perfection.",
+      "opening_rationale": "Conditions precedent are the gate through which capacity, authority and perfection are cleared before money moves. Satisfaction in the lender's own judgement is the point: a reasonableness standard invites argument at the moment the lender least wants one.",
+      "ladder": [
+        {
+          "tier": "preferred",
+          "text": "No utilisation is available until the lender has confirmed in writing that it has received each condition precedent in form and substance satisfactory to it, including completed onboarding checks, constitutional and authority documents, executed security documents and evidence of perfection.",
+          "rationale": "Conditions precedent are the gate through which capacity, authority and perfection are cleared before money moves. Satisfaction in the lender's own judgement is the point: a reasonableness standard invites argument at the moment the lender least wants one.",
+          "conditions": [],
+          "approval": null
+        },
+        {
+          "tier": "acceptable",
+          "text": "No utilisation is available until the lender confirms receipt of each condition precedent in form and substance satisfactory to it, acting reasonably, with an agreed list annexed to the facility letter.",
+          "rationale": "An annexed list removes most of the argument without removing the discretion, and a reasonableness qualifier on documentary form is a routine concession that costs no real protection.",
+          "conditions": [
+            "The annexed list is exhaustive only as to documents, not as to the lender's onboarding outcome"
+          ],
+          "approval": null
+        },
+        {
+          "tier": "fallback",
+          "text": "The lender may waive or defer a condition precedent other than onboarding clearance, executed security documents and evidence of perfection, which may not be waived or deferred.",
+          "rationale": "Deferring a document is a commercial accommodation. Deferring perfection or onboarding is not, because both go to whether the lender has a security interest and whether it may lend at all.",
+          "conditions": [
+            "Deferral period no longer than X business days",
+            "No further utilisation while a deferred condition remains outstanding"
+          ],
+          "approval": "Senior lawyer"
+        },
+        {
+          "tier": "unacceptable",
+          "text": "Utilisation permitted before onboarding clearance, before the security documents are executed, or before the perfection steps for the relevant jurisdiction have been taken.",
+          "rationale": "Lending unsecured against a promise to perfect later is an unsecured loan priced as a secured one, and in some cases a regulatory breach as well.",
+          "conditions": [],
+          "approval": null
+        }
+      ],
+      "jurisdiction_note": "For an English law security agreement over intermediated securities, the perfection condition precedent should be tied to the control arrangements actually put in place, not to execution of the document alone.",
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [
+        "Any request to utilise before perfection is evidenced",
+        "Any request to waive onboarding clearance"
+      ],
+      "not_automated": []
+    },
+    {
+      "id": "eligible_collateral_lending_values",
+      "title": "Eligible collateral and lending values",
+      "category": "collateral",
+      "document": "facility_letter",
+      "risk_rating": "high",
+      "status": "draft",
+      "opening": "preferred",
+      "floor": "acceptable",
+      "opening_text": "Only assets the lender has designated as eligible carry a lending value. Lending values are set by the lender by asset class and may be varied, reduced to zero, or an asset class removed from eligibility, at any time.",
+      "opening_rationale": "The lending value schedule is the mechanism by which the lender prices collateral risk in real time. Fixing it in the document converts a risk control into a negotiated term that ages badly.",
+      "ladder": [
+        {
+          "tier": "preferred",
+          "text": "Only assets the lender has designated as eligible carry a lending value. Lending values are set by the lender by asset class and may be varied, reduced to zero, or an asset class removed from eligibility, at any time.",
+          "rationale": "The lending value schedule is the mechanism by which the lender prices collateral risk in real time. Fixing it in the document converts a risk control into a negotiated term that ages badly.",
+          "conditions": [],
+          "approval": null
+        },
+        {
+          "tier": "acceptable",
+          "text": "Lending values are set out in a schedule by asset class. The lender may vary them at any time and will notify the borrower of a variation as soon as reasonably practicable after it takes effect.",
+          "rationale": "Publishing the opening schedule is transparency the borrower is entitled to, and notification after the event preserves the lender's ability to move first in a falling market.",
+          "conditions": [
+            "Notification is after the event, never a precondition to the variation"
+          ],
+          "approval": null
+        },
+        {
+          "tier": "fallback",
+          "text": "The lender may vary lending values at any time; where the variation is not driven by a market, issuer or regulatory event the lender will give X business days' notice before it takes effect.",
+          "rationale": "A notice period tied only to non-market-driven changes preserves the lender's speed where speed matters and concedes it where it does not.",
+          "conditions": [
+            "No notice where the variation follows a market, issuer, liquidity or regulatory event",
+            "Diversified collateral pool with no single name above X per cent of lending value"
+          ],
+          "approval": "Senior lawyer, with credit sign-off on the notice period"
+        },
+        {
+          "tier": "unacceptable",
+          "text": "Lending values fixed for the life of the facility, or variable only with the borrower's consent or only on objectively defined external triggers.",
+          "rationale": "That removes the lender's ability to reprice collateral risk at the moment it crystallises, which is the whole basis on which the facility is advanced.",
+          "conditions": [],
+          "approval": null
+        }
+      ],
+      "jurisdiction_note": "English law does not imply a reasonableness constraint on a contractual discretion of this kind automatically, but a discretion framed as wholly unfettered is more likely to be read down, so the rationale for a variation should be recorded at the time. [VERIFY] Not confirmed against a primary authority the drafting agent opened.",
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [
+        "Any request to fix lending values for a defined period",
+        "Any request to make a variation subject to borrower consent"
+      ],
+      "not_automated": []
+    },
+    {
+      "id": "concentration_limits",
+      "title": "Concentration limits on the collateral pool",
+      "category": "collateral",
+      "document": "facility_letter",
+      "risk_rating": "high",
+      "status": "draft",
+      "opening": "preferred",
+      "floor": "acceptable",
+      "opening_text": "No single issuer may account for more than X per cent of aggregate lending value. Lending value in excess of the limit is disregarded, and the lender may tighten the limit at any time.",
+      "opening_rationale": "Disregarding the excess rather than triggering a default gives the lender an automatic, self-executing control that needs no notice and no decision.",
+      "ladder": [
+        {
+          "tier": "preferred",
+          "text": "No single issuer may account for more than X per cent of aggregate lending value. Lending value in excess of the limit is disregarded, and the lender may tighten the limit at any time.",
+          "rationale": "Disregarding the excess rather than triggering a default gives the lender an automatic, self-executing control that needs no notice and no decision.",
+          "conditions": [],
+          "approval": null
+        },
+        {
+          "tier": "acceptable",
+          "text": "No single issuer may account for more than X per cent of aggregate lending value. Excess lending value is disregarded, and the limit may be tightened on X business days' notice.",
+          "rationale": "Notice on a tightening is a fair accommodation because the disregard mechanism, which is the protection, continues to operate immediately.",
+          "conditions": [
+            "The disregard mechanism itself is never subject to notice"
+          ],
+          "approval": null
+        },
+        {
+          "tier": "fallback",
+          "text": "Single-issuer concentration above X per cent is permitted for a named list of index-constituent issuers at a reduced lending value agreed at the outset.",
+          "rationale": "A named carve-out at a reduced lending value is a priced concession rather than an abandoned control, and it keeps the exposure visible on its face.",
+          "conditions": [
+            "Named issuers are liquid index constituents only",
+            "Reduced lending value of no more than X per cent applies to the excess",
+            "No restricted or lock-up securities in the carve-out"
+          ],
+          "approval": "Credit committee"
+        },
+        {
+          "tier": "unacceptable",
+          "text": "No single-issuer limit at all, or a limit expressed as a target the breach of which has no consequence.",
+          "rationale": "Without a limit the facility is a single-name bet financed at portfolio lending values, which is not the product the lender priced.",
+          "conditions": [],
+          "approval": null
+        }
+      ],
+      "jurisdiction_note": null,
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [
+        "Any request to disapply the single-issuer limit entirely"
+      ],
+      "not_automated": []
+    },
+    {
+      "id": "lender_discretion_valuation",
+      "title": "Lender discretion over valuation and eligibility",
+      "category": "collateral",
+      "document": "facility_letter",
+      "risk_rating": "high",
+      "status": "draft",
+      "opening": "preferred",
+      "floor": "acceptable",
+      "opening_text": "The lender determines the value of each asset in the collateral pool, the source and timing of prices used, and whether an asset remains eligible. Its determination is conclusive save for manifest error.",
+      "opening_rationale": "Valuation is where the margin mechanics start. A contested valuation at the moment of a margin call is a contested margin call, and the facility cannot carry that risk.",
+      "ladder": [
+        {
+          "tier": "preferred",
+          "text": "The lender determines the value of each asset in the collateral pool, the source and timing of prices used, and whether an asset remains eligible. Its determination is conclusive save for manifest error.",
+          "rationale": "Valuation is where the margin mechanics start. A contested valuation at the moment of a margin call is a contested margin call, and the facility cannot carry that risk.",
+          "conditions": [],
+          "approval": null
+        },
+        {
+          "tier": "acceptable",
+          "text": "The lender determines value and eligibility acting in good faith and using pricing sources of a kind customarily used for assets of that type. Its determination is conclusive save for manifest error.",
+          "rationale": "Tying the discretion to a customary pricing source is a discipline the lender applies anyway, so saying so costs nothing and removes the borrower's fear of an arbitrary mark.",
+          "conditions": [
+            "Manifest error remains the only challenge route"
+          ],
+          "approval": null
+        },
+        {
+          "tier": "fallback",
+          "text": "The lender determines value and eligibility acting reasonably. Where the borrower disputes a valuation it may, within X business days, require the lender to obtain a second price from an independent source, at the borrower's cost, without suspending any margin call in the meantime.",
+          "rationale": "A challenge route that does not suspend the margin call is survivable. One that does suspend it is not, which is why the carve-out is the condition rather than the courtesy.",
+          "conditions": [
+            "No suspension of any margin call, cure period or enforcement step during a dispute",
+            "Borrower bears the cost of the second price"
+          ],
+          "approval": "Senior lawyer"
+        },
+        {
+          "tier": "unacceptable",
+          "text": "Any valuation dispute mechanism that suspends a margin call, extends a cure period, or delays enforcement while the dispute is resolved.",
+          "rationale": "A suspension right converts every margin call into an option to delay, exercisable precisely when the collateral is falling.",
+          "conditions": [],
+          "approval": null
+        }
+      ],
+      "jurisdiction_note": "An English law contractual discretion of this kind is likely to be subject to an implied duty to act honestly and not arbitrarily, so the good-faith formulation at the acceptable tier is close to the position a court would reach anyway. [VERIFY] Not confirmed against a primary authority.",
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [
+        "Any request for a valuation dispute right that suspends a margin call",
+        "Any request to name a single external pricing source as binding"
+      ],
+      "not_automated": []
+    },
+    {
+      "id": "margin_maintenance_cure",
+      "title": "Margin maintenance, margin call mechanics and cure period",
+      "category": "collateral",
+      "document": "security_agreement",
+      "risk_rating": "high",
+      "status": "draft",
+      "opening": "preferred",
+      "floor": "acceptable",
+      "opening_text": "If at any time the aggregate lending value falls below the outstanding amount, the borrower must cure the shortfall by the close of business on the next business day, by posting eligible collateral or prepaying. Notice may be given by any agreed channel and is effective on despatch.",
+      "opening_rationale": "A one-day cure keeps the lender's exposure to a falling portfolio to a single trading session. Effectiveness on despatch stops a dispute about receipt becoming a dispute about the call.",
+      "ladder": [
+        {
+          "tier": "preferred",
+          "text": "If at any time the aggregate lending value falls below the outstanding amount, the borrower must cure the shortfall by the close of business on the next business day, by posting eligible collateral or prepaying. Notice may be given by any agreed channel and is effective on despatch.",
+          "rationale": "A one-day cure keeps the lender's exposure to a falling portfolio to a single trading session. Effectiveness on despatch stops a dispute about receipt becoming a dispute about the call.",
+          "conditions": [],
+          "approval": null
+        },
+        {
+          "tier": "acceptable",
+          "text": "The borrower must cure a shortfall within X business days of notice. Notice may be given by any agreed channel and is effective on despatch. The lender may shorten the cure period where the shortfall exceeds X per cent of the outstanding amount.",
+          "rationale": "A slightly longer standard cure is workable where the lender keeps the right to compress it for a large shortfall, which is the case that actually threatens the position.",
+          "conditions": [
+            "Lender retains the right to shorten the cure period for a large shortfall",
+            "Notice remains effective on despatch"
+          ],
+          "approval": null
+        },
+        {
+          "tier": "fallback",
+          "text": "The borrower must cure a shortfall within X business days of notice, with notice effective on receipt, provided that the cure period does not extend past the lender's ability to realise the collateral in an orderly market.",
+          "rationale": "Receipt-based notice and a longer window are real protection given away. They are survivable only for a diversified, daily-priced pool where the lender can still sell into a normal market at the end of the period.",
+          "conditions": [
+            "Diversified collateral only, with no single name above X per cent of lending value",
+            "Daily-priced listed assets only; no gated funds, unlisted holdings or structured products",
+            "No cure period at all once an event of default is continuing"
+          ],
+          "approval": "Credit committee, with the concession recorded on the file"
+        },
+        {
+          "tier": "unacceptable",
+          "text": "A cure period that runs from the borrower's acknowledgement of the call, or that may be extended at the borrower's request, or that continues to run after an event of default.",
+          "rationale": "Each of these hands the borrower control of the clock in the one situation where the lender needs the clock to be its own.",
+          "conditions": [],
+          "approval": null
+        }
+      ],
+      "jurisdiction_note": "Where the security is intended to benefit from the English financial collateral regime, the margin mechanics should be drafted so that top-up collateral falls within the same security and control arrangements as the original pool.",
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [
+        "Any request for a cure period longer than X business days",
+        "Any request to make notice effective on acknowledgement"
+      ],
+      "not_automated": []
+    },
+    {
+      "id": "security_structure_control",
+      "title": "Security structure, perfection and control of the pledged account",
+      "category": "collateral",
+      "document": "security_agreement",
+      "risk_rating": "high",
+      "status": "draft",
+      "opening": "preferred",
+      "floor": "acceptable",
+      "opening_text": "The borrower grants a first-ranking security interest over the pledged account and everything credited to it. Where the lender is not the custodian, an account control agreement in the lender's form is a condition precedent, and the custodian acts on the lender's instructions alone from the date of the facility.",
+      "opening_rationale": "Control is what makes the security enforceable in practice rather than only on paper. A pledge over an account the lender cannot direct is an unsecured claim with extra documents.",
+      "ladder": [
+        {
+          "tier": "preferred",
+          "text": "The borrower grants a first-ranking security interest over the pledged account and everything credited to it. Where the lender is not the custodian, an account control agreement in the lender's form is a condition precedent, and the custodian acts on the lender's instructions alone from the date of the facility.",
+          "rationale": "Control is what makes the security enforceable in practice rather than only on paper. A pledge over an account the lender cannot direct is an unsecured claim with extra documents.",
+          "conditions": [],
+          "approval": null
+        },
+        {
+          "tier": "acceptable",
+          "text": "The borrower grants a first-ranking security interest over the pledged account. Where the lender is not the custodian, an account control agreement is a condition precedent, and the borrower may continue to deal in the account until the lender gives a notice of exclusive control.",
+          "rationale": "Letting the borrower trade the portfolio until a control notice is given is how the product is expected to work, and the lender can switch it off in one step.",
+          "conditions": [
+            "Lender may give a notice of exclusive control at any time without cause",
+            "Custodian must acknowledge the control agreement before first utilisation"
+          ],
+          "approval": null
+        },
+        {
+          "tier": "fallback",
+          "text": "The borrower may continue to deal in the pledged account within agreed parameters until a notice of exclusive control is given, and the lender will notify the borrower at the same time as it notifies the custodian.",
+          "rationale": "Simultaneous notice is a courtesy that does not slow the lender down. Agreed dealing parameters are workable only where the margin mechanics can still catch a breach the same day.",
+          "conditions": [
+            "Dealing parameters are expressed as eligibility and concentration limits already in the facility",
+            "No advance notice to the borrower before the custodian is notified"
+          ],
+          "approval": "Senior lawyer"
+        },
+        {
+          "tier": "unacceptable",
+          "text": "Any structure in which the custodian may act on the borrower's instructions after a control notice, or in which the lender must give the borrower advance notice before taking control.",
+          "rationale": "Advance notice of a control step is an invitation to move the assets, and a custodian that can still act for the borrower is not control at all.",
+          "conditions": [],
+          "approval": null
+        }
+      ],
+      "jurisdiction_note": "For an English law pledge over intermediated securities, possession or control is the practical perfection route; where the chargor is a company, consider whether the financial collateral regime disapplies the usual registration requirement. [VERIFY] Registration disapplication not confirmed against the primary text.",
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [
+        "Any request for advance notice before a control notice",
+        "Any third-party custodian unwilling to sign the control agreement"
+      ],
+      "not_automated": []
+    },
+    {
+      "id": "events_of_default",
+      "title": "Events of default",
+      "category": "default_enforcement",
+      "document": "facility_letter",
+      "risk_rating": "high",
+      "status": "draft",
+      "opening": "preferred",
+      "floor": "fallback",
+      "opening_text": "Events of default include non-payment, breach of any undertaking, an unremedied margin shortfall, insolvency or any analogous step, death or loss of capacity of an individual borrower or pledgor, any event the lender considers materially adverse, and any cross-default.",
+      "opening_rationale": "On a demand facility the list matters less for stopping the lending, which needs no default, and more for unlocking enforcement against the collateral without further notice.",
+      "ladder": [
+        {
+          "tier": "preferred",
+          "text": "Events of default include non-payment, breach of any undertaking, an unremedied margin shortfall, insolvency or any analogous step, death or loss of capacity of an individual borrower or pledgor, any event the lender considers materially adverse, and any cross-default.",
+          "rationale": "On a demand facility the list matters less for stopping the lending, which needs no default, and more for unlocking enforcement against the collateral without further notice.",
+          "conditions": [],
+          "approval": null
+        },
+        {
+          "tier": "acceptable",
+          "text": "Events of default as above, with breaches of undertakings subject to a grace period of X business days where the breach is capable of remedy, and cross-default limited to financial indebtedness above an agreed threshold.",
+          "rationale": "Grace periods on remediable administrative breaches and a cross-default threshold are routine and cost nothing, because the shortfall and insolvency triggers are untouched.",
+          "conditions": [
+            "No grace period for non-payment, unremedied margin shortfall or insolvency"
+          ],
+          "approval": null
+        },
+        {
+          "tier": "fallback",
+          "text": "Events of default as above, with the material adverse change trigger qualified by reference to the borrower's ability to perform its payment and margin obligations.",
+          "rationale": "A qualified material adverse change clause is more likely to be usable in practice than an unqualified one, so narrowing it is not a pure loss.",
+          "conditions": [
+            "Margin shortfall, insolvency and death or incapacity triggers remain unqualified"
+          ],
+          "approval": "Senior lawyer"
+        },
+        {
+          "tier": "unacceptable",
+          "text": "Removal of the unremedied margin shortfall trigger, or of death or loss of capacity for an individual borrower or pledgor.",
+          "rationale": "These two triggers are the ones that actually fire on this product. Without them the default clause is decorative.",
+          "conditions": [],
+          "approval": null
+        }
+      ],
+      "jurisdiction_note": null,
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [
+        "Any request to remove the death or incapacity trigger"
+      ],
+      "not_automated": []
+    },
+    {
+      "id": "enforcement_liquidation",
+      "title": "Enforcement and liquidation of the collateral",
+      "category": "default_enforcement",
+      "document": "security_agreement",
+      "risk_rating": "high",
+      "status": "draft",
+      "opening": "preferred",
+      "floor": "fallback",
+      "opening_text": "On an event of default or an unmet demand the security becomes immediately enforceable and the lender may sell, appropriate or otherwise realise any or all of the collateral, at such time, in such order and on such terms as it thinks fit, without prior notice to the borrower.",
+      "opening_rationale": "The lender's realisation window is measured in hours. A notice requirement or a prescribed order of realisation gives that window away at exactly the wrong moment.",
+      "ladder": [
+        {
+          "tier": "preferred",
+          "text": "On an event of default or an unmet demand the security becomes immediately enforceable and the lender may sell, appropriate or otherwise realise any or all of the collateral, at such time, in such order and on such terms as it thinks fit, without prior notice to the borrower.",
+          "rationale": "The lender's realisation window is measured in hours. A notice requirement or a prescribed order of realisation gives that window away at exactly the wrong moment.",
+          "conditions": [],
+          "approval": null
+        },
+        {
+          "tier": "acceptable",
+          "text": "The lender may realise any or all of the collateral without prior notice, and will notify the borrower promptly after each realisation step. The choice of realisation route is at the lender's election.",
+          "rationale": "Notice after the event is a reporting obligation, not a constraint. It answers most of the borrower's concern without touching the lender's freedom to act first.",
+          "conditions": [
+            "Notification is always after the event, never before"
+          ],
+          "approval": null
+        },
+        {
+          "tier": "fallback",
+          "text": "The lender will use reasonable endeavours to give the borrower X hours' notice before the first realisation step, save where the lender considers that delay would prejudice the realisation, in which case no notice is required.",
+          "rationale": "A reasonable-endeavours notice with a prejudice carve-out preserves the lender's ability to act immediately in the case that matters, while giving the borrower something real in the ordinary case.",
+          "conditions": [
+            "Express carve-out where delay would prejudice the realisation",
+            "No notice obligation at all where the pledgor is subject to a market abuse or insider restriction",
+            "Diversified, daily-priced collateral only"
+          ],
+          "approval": "Credit committee, with the concession recorded on the file"
+        },
+        {
+          "tier": "unacceptable",
+          "text": "Any requirement for the borrower's prior written consent to a sale, or a fixed notice period with no carve-out, or an obligation to realise in a borrower-specified order.",
+          "rationale": "Each of these makes enforcement conditional on the cooperation of the party that has already failed to perform.",
+          "conditions": [],
+          "approval": null
+        }
+      ],
+      "jurisdiction_note": "Under English law, where the arrangement falls within the financial collateral regime, appropriation may be available as an alternative to sale provided the agreement expressly permits it and a commercially reasonable valuation basis is specified. [VERIFY] Scope of the regime as regards a natural-person collateral provider not confirmed against the primary text.",
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [
+        "Any request for prior consent to a sale",
+        "Any request for a fixed notice period without a prejudice carve-out"
+      ],
+      "not_automated": []
+    },
+    {
+      "id": "capacity_authority",
+      "title": "Capacity, authority and constitutional power",
+      "category": "parties_reps",
+      "document": "facility_letter",
+      "risk_rating": "high",
+      "status": "draft",
+      "opening": "preferred",
+      "floor": "acceptable",
+      "opening_text": "Each of the borrower and the pledgor represents, on the date of the facility and on each utilisation, that it has full power to enter into and perform the finance documents and to grant the security, that all necessary authorisations have been obtained, and that no constitutional or fiduciary restriction is breached.",
+      "opening_rationale": "Capacity is the risk that does not show up until enforcement, and by then it is unfixable. A repeated representation keeps the position current rather than frozen at signing.",
+      "ladder": [
+        {
+          "tier": "preferred",
+          "text": "Each of the borrower and the pledgor represents, on the date of the facility and on each utilisation, that it has full power to enter into and perform the finance documents and to grant the security, that all necessary authorisations have been obtained, and that no constitutional or fiduciary restriction is breached.",
+          "rationale": "Capacity is the risk that does not show up until enforcement, and by then it is unfixable. A repeated representation keeps the position current rather than frozen at signing.",
+          "conditions": [],
+          "approval": null
+        },
+        {
+          "tier": "acceptable",
+          "text": "Representations as above, given on the date of the facility and repeated on each utilisation, with the fiduciary restriction representation qualified by the pledgor's knowledge after due enquiry.",
+          "rationale": "A knowledge qualifier on a fiduciary restriction is reasonable where the underlying documents have been reviewed as a condition precedent, because the lender has already seen the constitutional position.",
+          "conditions": [
+            "Trust deed, constitutional documents or partnership agreement reviewed as a condition precedent"
+          ],
+          "approval": null
+        },
+        {
+          "tier": "fallback",
+          "text": "Representations given on the date of the facility only, with a separate undertaking to notify the lender of any change in capacity or authority.",
+          "rationale": "A notification undertaking is weaker than a repeated representation because it depends on the borrower noticing. It is workable only where the lender has independently reviewed the constitutional documents.",
+          "conditions": [
+            "Legal opinion or equivalent review obtained on the pledgor's capacity",
+            "Notification undertaking is an event of default if breached"
+          ],
+          "approval": "Senior lawyer"
+        },
+        {
+          "tier": "unacceptable",
+          "text": "Capacity and authority representations qualified by materiality, or given by the borrower only where a third party grants the security.",
+          "rationale": "A materiality qualifier on capacity is meaningless, and a third-party pledgor that gives no representation about its own power has given the lender nothing.",
+          "conditions": [],
+          "approval": null
+        }
+      ],
+      "jurisdiction_note": "For a trustee pledgor, English law practice is to review the trust instrument for an express power to borrow and to charge trust assets, and to take the representation from the trustee in its personal as well as its representative capacity where the trustee will not accept unlimited recourse.",
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [
+        "Any trustee request for limited recourse against the trust fund only",
+        "Any request to drop the pledgor's own capacity representation"
+      ],
+      "not_automated": []
+    },
+    {
+      "id": "governing_law_jurisdiction",
+      "title": "Governing law and jurisdiction",
+      "category": "boilerplate",
+      "document": "all",
+      "risk_rating": "medium",
+      "status": "draft",
+      "opening": "preferred",
+      "floor": "acceptable",
+      "opening_text": "The finance documents are governed by English law and the English courts have exclusive jurisdiction, save that the lender may bring proceedings in any court of competent jurisdiction.",
+      "opening_rationale": "A one-way jurisdiction clause lets the lender sue where the assets are while denying the borrower a choice of forum. On a secured facility the asset location is the point.",
+      "ladder": [
+        {
+          "tier": "preferred",
+          "text": "The finance documents are governed by English law and the English courts have exclusive jurisdiction, save that the lender may bring proceedings in any court of competent jurisdiction.",
+          "rationale": "A one-way jurisdiction clause lets the lender sue where the assets are while denying the borrower a choice of forum. On a secured facility the asset location is the point.",
+          "conditions": [],
+          "approval": null
+        },
+        {
+          "tier": "acceptable",
+          "text": "The finance documents are governed by English law and the English courts have exclusive jurisdiction, save that the lender may bring enforcement proceedings in the jurisdiction where the collateral or the custodian is located.",
+          "rationale": "Narrowing the lender's carve-out to enforcement in the collateral jurisdiction gives up nothing the lender actually needs, because that is where it would go anyway.",
+          "conditions": [
+            "Security document governed by the law of the place of the collateral where local advice so requires"
+          ],
+          "approval": null
+        },
+        {
+          "tier": "fallback",
+          "text": "English law and exclusive English jurisdiction for both parties, with the security document governed by the law of the jurisdiction in which the pledged account is maintained.",
+          "rationale": "Symmetrical jurisdiction is a real concession, but splitting the security document off to the law of the account's location is often the right answer on the merits in any event.",
+          "conditions": [
+            "Local counsel confirms enforceability and perfection under the security document's governing law"
+          ],
+          "approval": "Senior lawyer"
+        },
+        {
+          "tier": "unacceptable",
+          "text": "Governing law or jurisdiction in a forum where the lender has not obtained advice on the enforceability and perfection of the security.",
+          "rationale": "Choosing a forum blind means the lender does not know whether it has security, which is a different question from whether it has a claim.",
+          "conditions": [],
+          "approval": null
+        }
+      ],
+      "jurisdiction_note": "Where English law governs the facility but the pledged account is held elsewhere, the law applicable to the proprietary aspects of the security is determined by the location of the account rather than by the parties' choice, so local advice remains necessary.",
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [
+        "Any governing law outside the three covered by this playbook"
+      ],
+      "not_automated": []
+    },
+    {
+      "id": "no_advice_non_reliance",
+      "title": "No advice and non-reliance",
+      "category": "parties_reps",
+      "document": "facility_letter",
+      "risk_rating": "medium",
+      "status": "draft",
+      "opening": "preferred",
+      "floor": "acceptable",
+      "opening_text": "The borrower acknowledges that the lender gives no investment, tax, legal or accounting advice in connection with the facility, that no communication is a recommendation, and that the borrower relies on its own judgement and its own advisers in deciding to borrow against its portfolio and in selecting and retaining the pledged assets.",
+      "opening_rationale": "A Lombard facility sits next to an advisory relationship, and the line between financing a portfolio and recommending one is the line the lender must be able to point to later.",
+      "ladder": [
+        {
+          "tier": "preferred",
+          "text": "The borrower acknowledges that the lender gives no investment, tax, legal or accounting advice in connection with the facility, that no communication is a recommendation, and that the borrower relies on its own judgement and its own advisers in deciding to borrow against its portfolio and in selecting and retaining the pledged assets.",
+          "rationale": "A Lombard facility sits next to an advisory relationship, and the line between financing a portfolio and recommending one is the line the lender must be able to point to later.",
+          "conditions": [],
+          "approval": null
+        },
+        {
+          "tier": "acceptable",
+          "text": "Acknowledgement as above, expressed to be without prejudice to any separate written advisory agreement between the parties and to any duty the lender owes under applicable regulation.",
+          "rationale": "Carving out a separate advisory mandate and the regulatory overlay is accurate rather than generous: the clause was never able to displace either.",
+          "conditions": [
+            "Carve-out is limited to a separate written agreement, not to the relationship generally"
+          ],
+          "approval": null
+        },
+        {
+          "tier": "fallback",
+          "text": "Acknowledgement as above, with the borrower confirming that it has had the opportunity to take independent advice, in place of a confirmation that it has taken such advice.",
+          "rationale": "An opportunity-to-advise formulation is weaker evidentially but is often the most that can be obtained where no adviser was in fact instructed.",
+          "conditions": [
+            "Suitability or appropriateness assessment completed and recorded separately where required"
+          ],
+          "approval": "Senior lawyer, with compliance sign-off"
+        },
+        {
+          "tier": "unacceptable",
+          "text": "Any drafting under which the lender accepts that a communication about the facility, the collateral or the pledged assets was a personal recommendation.",
+          "rationale": "That concedes the regulatory characterisation the clause exists to avoid, and no commercial benefit is worth it.",
+          "conditions": [],
+          "approval": null
+        }
+      ],
+      "jurisdiction_note": "A non-reliance acknowledgement may be subject to the reasonableness controls applying to contract terms, and it cannot displace a regulatory duty. [VERIFY] Interaction between the acknowledgement and the applicable conduct regime not confirmed against a primary source.",
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [
+        "Any request for the lender to confirm the facility is suitable for the borrower"
+      ],
+      "not_automated": []
+    },
+    {
+      "id": "interest_benchmark_fallbacks",
+      "title": "Interest rate, benchmark and benchmark fallbacks",
+      "category": "credit",
+      "document": null,
+      "risk_rating": null,
+      "status": "stub",
+      "opening": "preferred",
+      "floor": "fallback",
+      "opening_text": null,
+      "opening_rationale": null,
+      "ladder": [],
+      "jurisdiction_note": null,
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [],
+      "not_automated": []
+    },
+    {
+      "id": "prepayment_breakage",
+      "title": "Prepayment and breakage costs",
+      "category": "credit",
+      "document": null,
+      "risk_rating": null,
+      "status": "stub",
+      "opening": "preferred",
+      "floor": "fallback",
+      "opening_text": null,
+      "opening_rationale": null,
+      "ladder": [],
+      "jurisdiction_note": null,
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [],
+      "not_automated": []
+    },
+    {
+      "id": "collateral_substitution",
+      "title": "Collateral substitution and release",
+      "category": "collateral",
+      "document": null,
+      "risk_rating": null,
+      "status": "stub",
+      "opening": "preferred",
+      "floor": "fallback",
+      "opening_text": null,
+      "opening_rationale": null,
+      "ladder": [],
+      "jurisdiction_note": null,
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [],
+      "not_automated": []
+    },
+    {
+      "id": "cross_collateral_set_off",
+      "title": "Cross-collateralisation and set-off",
+      "category": "collateral",
+      "document": null,
+      "risk_rating": null,
+      "status": "stub",
+      "opening": "preferred",
+      "floor": "fallback",
+      "opening_text": null,
+      "opening_rationale": null,
+      "ladder": [],
+      "jurisdiction_note": null,
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [],
+      "not_automated": []
+    },
+    {
+      "id": "reps_source_of_funds_sanctions_tax",
+      "title": "Representations: source of funds, sanctions and tax",
+      "category": "parties_reps",
+      "document": null,
+      "risk_rating": null,
+      "status": "stub",
+      "opening": "preferred",
+      "floor": "fallback",
+      "opening_text": null,
+      "opening_rationale": null,
+      "ladder": [],
+      "jurisdiction_note": null,
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [],
+      "not_automated": []
+    },
+    {
+      "id": "purpose_restrictions",
+      "title": "Purpose restrictions and permitted use of proceeds",
+      "category": "credit",
+      "document": null,
+      "risk_rating": null,
+      "status": "stub",
+      "opening": "preferred",
+      "floor": "fallback",
+      "opening_text": null,
+      "opening_rationale": null,
+      "ladder": [],
+      "jurisdiction_note": null,
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [],
+      "not_automated": []
+    },
+    {
+      "id": "transfer_assignment",
+      "title": "Transfer and assignment",
+      "category": "boilerplate",
+      "document": null,
+      "risk_rating": null,
+      "status": "stub",
+      "opening": "preferred",
+      "floor": "fallback",
+      "opening_text": null,
+      "opening_rationale": null,
+      "ladder": [],
+      "jurisdiction_note": null,
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [],
+      "not_automated": []
+    },
+    {
+      "id": "confidentiality_bank_secrecy",
+      "title": "Confidentiality and bank secrecy",
+      "category": "boilerplate",
+      "document": null,
+      "risk_rating": null,
+      "status": "stub",
+      "opening": "preferred",
+      "floor": "fallback",
+      "opening_text": null,
+      "opening_rationale": null,
+      "ladder": [],
+      "jurisdiction_note": null,
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [],
+      "not_automated": []
+    },
+    {
+      "id": "tax_gross_up",
+      "title": "Tax gross-up and indemnity",
+      "category": "credit",
+      "document": null,
+      "risk_rating": null,
+      "status": "stub",
+      "opening": "preferred",
+      "floor": "fallback",
+      "opening_text": null,
+      "opening_rationale": null,
+      "ladder": [],
+      "jurisdiction_note": null,
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [],
+      "not_automated": []
+    },
+    {
+      "id": "third_party_security_waivers",
+      "title": "Third-party security: waivers and independent advice",
+      "category": "parties_reps",
+      "document": null,
+      "risk_rating": null,
+      "status": "stub",
+      "opening": "preferred",
+      "floor": "fallback",
+      "opening_text": null,
+      "opening_rationale": null,
+      "ladder": [],
+      "jurisdiction_note": null,
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [],
+      "not_automated": []
+    },
+    {
+      "id": "information_undertakings",
+      "title": "Information undertakings",
+      "category": "credit",
+      "document": null,
+      "risk_rating": null,
+      "status": "stub",
+      "opening": "preferred",
+      "floor": "fallback",
+      "opening_text": null,
+      "opening_rationale": null,
+      "ladder": [],
+      "jurisdiction_note": null,
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [],
+      "not_automated": []
+    },
+    {
+      "id": "currency_mismatch_fx",
+      "title": "Currency mismatch and FX haircuts",
+      "category": "collateral",
+      "document": null,
+      "risk_rating": null,
+      "status": "stub",
+      "opening": "preferred",
+      "floor": "fallback",
+      "opening_text": null,
+      "opening_rationale": null,
+      "ladder": [],
+      "jurisdiction_note": null,
+      "rules_applied": [],
+      "cps": [],
+      "reps": [],
+      "notes": [],
+      "escalation_triggers": [],
+      "not_automated": []
+    }
+  ],
+  "flags": [
+    {
+      "id": "consumer_credit",
+      "severity": "medium",
+      "message": "Borrower is a natural person with a declared high net worth, so an exemption is likely to be available, but the determination is not automated.",
+      "rule_id": "R03_natural_person_borrower",
+      "who_decides": "Compliance, on the deal lawyer's file note"
+    }
+  ],
+  "escalations": [],
+  "counterparty_request_outcomes": []
+}

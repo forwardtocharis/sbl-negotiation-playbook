@@ -1,0 +1,15 @@
+# Stub entry. Status is 'stub': only id, title, category and lender_objective
+# are populated. Positions, sources and jurisdiction notes are added in a later
+# work package. Nothing here is legal advice or a verified market position.
+id: currency_mismatch_fx
+title: "Currency mismatch and foreign exchange haircuts"
+category: collateral
+lender_objective: "Protect the lender against the collateral and the loan moving apart because they are in different currencies."
+# Added in WP5b so the emir_awareness flag definition is referenced somewhere in
+# the library. It is an awareness reference only: this clause holds no position
+# on derivatives, and the intake captures no facts about a derivative overlay.
+regulatory_flags:
+  - emir_awareness
+status: stub
+reviewed_by: null
+last_reviewed: null

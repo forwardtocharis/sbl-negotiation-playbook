@@ -1,0 +1,51 @@
+# Golden deal D03 (build_plan.md §5). Entirely synthetic: Brantwood Holding AG
+# is a fictional name and no real company, custodian or portfolio is described.
+#
+# Shape: the cross-border run. Swiss law, Swiss custody, a committed term
+# facility drawn to acquire securities, and a Swiss franc facility secured on
+# US dollar collateral, so the currency mismatch and purpose rules both fire.
+deal_id: D03
+description: >-
+  Synthetic. Brantwood Holding AG, a Swiss corporate borrower, taking a
+  committed term facility in Swiss francs on SARON to acquire securities, with
+  the lender as custodian in Switzerland and a portfolio denominated in US
+  dollars under Swiss law security. Fictional party; not a real deal.
+borrower:
+  type: corporate
+  domicile: CH
+  natural_person: false
+  declared_high_net_worth: null
+  business_purpose_declared: true
+pledgor:
+  same_as_borrower: true
+  type: null
+  domicile: null
+  natural_person: null
+  is_pdmr_of_pledged_issuer: false
+guarantor_present: false
+facility:
+  type: committed_term
+  purpose: acquire_securities
+  amount: 20000000
+  currency: CHF
+  benchmark: SARON
+  other_facilities_with_lender: false
+collateral:
+  governing_law: switzerland
+  custodian_location: CH
+  lender_is_custodian: true
+  currencies: [USD]
+  composition:
+    - asset_class: listed_equity
+      pct: 55
+      single_name_max_pct: 20
+      issuer_restricted: false
+    - asset_class: listed_bond
+      pct: 35
+      single_name_max_pct: 12
+      issuer_restricted: false
+    - asset_class: cash
+      pct: 10
+      single_name_max_pct: null
+      issuer_restricted: false
+counterparty_requests: {}

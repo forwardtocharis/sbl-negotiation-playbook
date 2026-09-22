@@ -1,0 +1,394 @@
+{
+  "$defs": {
+    "Category": {
+      "description": "Clause category (build_plan.md §2.1).",
+      "enum": [
+        "credit",
+        "collateral",
+        "default_enforcement",
+        "parties_reps",
+        "boilerplate"
+      ],
+      "title": "Category",
+      "type": "string"
+    },
+    "Document": {
+      "description": "Which document of the SBL set the clause lives in.",
+      "enum": [
+        "facility_letter",
+        "security_agreement",
+        "account_control",
+        "all"
+      ],
+      "title": "Document",
+      "type": "string"
+    },
+    "Position": {
+      "additionalProperties": false,
+      "description": "A concedable tier: draft lender-side clause language plus why.",
+      "properties": {
+        "approval": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Who must sign off a concession to this tier",
+          "title": "Approval"
+        },
+        "conditions": {
+          "description": "Conditions that must hold before conceding to this tier",
+          "items": {
+            "type": "string"
+          },
+          "title": "Conditions",
+          "type": "array"
+        },
+        "rationale": {
+          "minLength": 1,
+          "title": "Rationale",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "rationale"
+      ],
+      "title": "Position",
+      "type": "object"
+    },
+    "Positions": {
+      "additionalProperties": false,
+      "description": "The four-tier ladder.",
+      "properties": {
+        "acceptable": {
+          "$ref": "#/$defs/Position"
+        },
+        "fallback": {
+          "$ref": "#/$defs/Position"
+        },
+        "preferred": {
+          "$ref": "#/$defs/Position"
+        },
+        "unacceptable": {
+          "$ref": "#/$defs/UnacceptablePosition"
+        }
+      },
+      "required": [
+        "preferred",
+        "acceptable",
+        "fallback",
+        "unacceptable"
+      ],
+      "title": "Positions",
+      "type": "object"
+    },
+    "Reliability": {
+      "description": "A primary law/regulator; B filed agreement/bank terms; C commentary.",
+      "enum": [
+        "A",
+        "B",
+        "C"
+      ],
+      "title": "Reliability",
+      "type": "string"
+    },
+    "RiskRating": {
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "title": "RiskRating",
+      "type": "string"
+    },
+    "Source": {
+      "additionalProperties": false,
+      "description": "A source reference. No invented law: ``verified`` is honest, not decorative.",
+      "properties": {
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "What this source supports",
+          "title": "Note"
+        },
+        "ref": {
+          "description": "Short label for the source",
+          "minLength": 1,
+          "title": "Ref",
+          "type": "string"
+        },
+        "reliability": {
+          "$ref": "#/$defs/Reliability"
+        },
+        "retrieved": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Date the source was actually opened",
+          "title": "Retrieved"
+        },
+        "type": {
+          "$ref": "#/$defs/SourceType"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "URL if there is one. Never fabricate; leave null instead.",
+          "title": "Url"
+        },
+        "verified": {
+          "default": false,
+          "description": "True only if the writer opened the source and checked the statement",
+          "title": "Verified",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "ref",
+        "type",
+        "reliability"
+      ],
+      "title": "Source",
+      "type": "object"
+    },
+    "SourceType": {
+      "enum": [
+        "primary_law",
+        "regulator",
+        "filed_agreement",
+        "bank_terms",
+        "law_firm_briefing",
+        "textbook"
+      ],
+      "title": "SourceType",
+      "type": "string"
+    },
+    "Status": {
+      "description": "Review status. Agents may write ``stub`` or ``draft`` only.",
+      "enum": [
+        "stub",
+        "draft",
+        "reviewed"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "Tier": {
+      "description": "The four-tier position ladder, lender side.",
+      "enum": [
+        "preferred",
+        "acceptable",
+        "fallback",
+        "unacceptable"
+      ],
+      "title": "Tier",
+      "type": "string"
+    },
+    "UnacceptablePosition": {
+      "additionalProperties": false,
+      "description": "The walk-away line. A description, not drafting: the lender never drafts it.\n\nHas no ``conditions`` and no ``approval`` because nobody may agree it.",
+      "properties": {
+        "rationale": {
+          "minLength": 1,
+          "title": "Rationale",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "rationale"
+      ],
+      "title": "UnacceptablePosition",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "One negotiable clause (``playbook/clauses/NN_<id>.yaml``).\n\nA ``stub`` needs only ``id``, ``title``, ``category`` and ``lender_objective``.\nA ``draft`` or ``reviewed`` entry must also carry ``document``,\n``risk_rating``, ``positions``, ``default_floor`` and at least one source.",
+  "properties": {
+    "category": {
+      "$ref": "#/$defs/Category"
+    },
+    "counterparty_asks": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Counterparty Asks",
+      "type": "array"
+    },
+    "default_floor": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Tier"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "depends_on": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Depends On",
+      "type": "array"
+    },
+    "document": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Document"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "escalation_triggers": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Escalation Triggers",
+      "type": "array"
+    },
+    "id": {
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "title": "Id",
+      "type": "string"
+    },
+    "jurisdiction_notes": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Jurisdiction Notes",
+      "type": "object"
+    },
+    "last_reviewed": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Last Reviewed"
+    },
+    "lender_objective": {
+      "minLength": 1,
+      "title": "Lender Objective",
+      "type": "string"
+    },
+    "not_automated": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Not Automated",
+      "type": "array"
+    },
+    "positions": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Positions"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "regulatory_flags": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Regulatory Flags",
+      "type": "array"
+    },
+    "reviewed_by": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reviewed By"
+    },
+    "risk_rating": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RiskRating"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/Source"
+      },
+      "title": "Sources",
+      "type": "array"
+    },
+    "status": {
+      "$ref": "#/$defs/Status"
+    },
+    "title": {
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "status",
+    "id",
+    "title",
+    "category",
+    "lender_objective"
+  ],
+  "title": "Clause",
+  "type": "object"
+}

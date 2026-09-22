@@ -1,0 +1,77 @@
+# Valid fully-populated DRAFT clause, for schema tests only.
+# Synthetic. Position text is placeholder prose, not drafting, and is marked
+# [DRAFT PLACEHOLDER]. Judgement numbers are written as X per build_plan.md §2.1.
+id: fixture_margin_call_notice
+title: "Fixture: margin call notice and cure period"
+category: collateral
+document: facility_letter
+risk_rating: high
+lender_objective: >-
+  Make sure a collateral shortfall is cured, or the position closed, before the
+  shortfall becomes a loss.
+counterparty_asks:
+  - A longer cure period, measured in business days rather than hours.
+  - Written notice to a named individual as a precondition to any liquidation.
+positions:
+  preferred:
+    text: >-
+      [DRAFT PLACEHOLDER] Lender-side opening text. Shortfall is to be cured
+      within X business days of notice given by any of the agreed channels, and
+      notice is effective on despatch.
+    rationale: >-
+      The opening position keeps the cure window short and the notice mechanics
+      simple, because the lender's exposure grows while the shortfall is open.
+    conditions: []
+    approval: null
+  acceptable:
+    text: >-
+      [DRAFT PLACEHOLDER] Cure within X business days, with notice to a named
+      contact and a second channel as backup.
+    rationale: >-
+      Naming a contact costs the lender little as long as a backup channel keeps
+      the notice effective when the contact is unreachable.
+    conditions: []
+    approval: null
+  fallback:
+    text: >-
+      [DRAFT PLACEHOLDER] Cure within X business days, with notice to a named
+      contact required before any liquidation.
+    rationale: >-
+      This concedes real protection because a failed notice delays enforcement,
+      so it is only available where the collateral is liquid and diversified.
+    conditions:
+      - Diversified collateral only, with no single name above X per cent of lending value.
+      - No restricted or locked-up securities in the pledged portfolio.
+    approval: senior lawyer
+  unacceptable:
+    text: >-
+      [DRAFT PLACEHOLDER] Any position requiring actual receipt of notice by the
+      borrower, or a cure period the lender cannot shorten in a fast market.
+    rationale: >-
+      A receipt-based trigger puts the timing of enforcement in the borrower's
+      hands, which defeats the purpose of the margin mechanism.
+default_floor: fallback
+escalation_triggers:
+  - Any request for a cure period longer than X business days.
+  - Any request to make actual receipt of notice a precondition to liquidation.
+depends_on: [enforcement_liquidation, lender_discretion_valuation]
+jurisdiction_notes:
+  england_wales: "No jurisdiction-specific variation identified [VERIFY]"
+  switzerland: "No jurisdiction-specific variation identified [VERIFY]"
+  luxembourg: "No jurisdiction-specific variation identified [VERIFY]"
+regulatory_flags: [market_abuse]
+not_automated:
+  - Whether to grant forbearance on a live margin call.
+sources:
+  - ref: "Fixture placeholder source"
+    type: textbook
+    url: null
+    retrieved: null
+    reliability: C
+    verified: false
+    note: >-
+      [VERIFY] Placeholder for schema testing only. No legal or market statement
+      is supported by this entry.
+status: draft
+reviewed_by: null
+last_reviewed: null

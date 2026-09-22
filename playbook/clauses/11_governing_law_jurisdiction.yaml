@@ -1,0 +1,361 @@
+# Draft entry (WP3, drafting group D). Lender-side. Synthetic demonstrator.
+# Nothing here is legal advice.
+#
+# THE ONE THING TO GET RIGHT ON THIS CLAUSE. There are two different governing-law
+# questions and they have different answers:
+#   (a) the CONTRACTUAL law of the facility letter and the security agreement -
+#       chosen by the parties, negotiable, and what the clause looks like it is about;
+#   (b) the PROPRIETARY law of the intermediated securities - what the security
+#       interest is, how it is made effective against third parties, priority, and
+#       what has to be done to realise it. In England (FCARs reg 19) and in
+#       Luxembourg (2005 Law art. 23) that is a PRIMA rule: the domestic law of the
+#       country where the relevant ACCOUNT is maintained, renvoi excluded, and NOT
+#       the law chosen in the pledge agreement.
+# Switzerland is the exception and it works in the Bank's favour: it ratified the
+# 2006 Hague Securities Convention, and Swiss private international law routes the
+# question to it, so the law expressly agreed in the ACCOUNT AGREEMENT governs
+# (subject to the qualifying-office test).
+# Practical consequence, and the sentence to say out loud: choosing English law for
+# the facility letter does not choose English law for the security. The booking
+# location of the account does that, and on a Swiss booking the choice has to be made
+# in the account agreement, not here.
+#
+# [VERIFY] SWISS GOVERNING-LAW AND JURISDICTION PRACTICE. The shared source pool
+# records that there is NO Swiss governing-law or jurisdiction clause source in it at
+# all: every filed institutional document opened is New York law, the private-bank
+# documents are New York or booking-location law, and Luxembourg is covered by a
+# published template. The Swiss material in the pool is a product factsheet, the
+# regulator's risk monitor, an industry risk booklet and a practitioner note on
+# margin calls. Everything below about what a Swiss Lombard facility letter actually
+# says is therefore [VERIFY]; the Swiss conflicts rules are sourced to primary text
+# opened in the WP7 research, which is a different question from market practice.
+#
+# [VERIFY] ASYMMETRIC JURISDICTION CLAUSES. That banks use them is observed in four
+# separate documents. Whether they are ENFORCEABLE in any given forum was not
+# sourced for this playbook and is marked [VERIFY] wherever it is relied on.
+id: governing_law_jurisdiction
+title: "Governing law, jurisdiction and service of process"
+category: boilerplate
+document: all
+risk_rating: high
+lender_objective: >
+  Match the law and the forum of the documents to where the collateral actually sits and where the
+  Bank would actually have to enforce, so that the Bank is never holding a well-drafted security
+  interest that the law of the account's booking location does not recognise.
+counterparty_asks:
+  - Mutual exclusive jurisdiction rather than an asymmetric clause letting the Bank sue anywhere.
+  - Governing law of the client's home jurisdiction rather than the Bank's booking location.
+  - Litigation rather than arbitration, or at least a carve-out from arbitration for interim relief.
+  - Delete the waiver of sovereign and other immunity, and the waiver of forum non conveniens.
+  - Drop the process agent requirement, or allow service at the client's own address abroad.
+  - A single governing law for the whole package rather than a separate law for the security document.
+positions:
+  preferred:
+    # observed: governing law of the state where the pledge is booked, with suit permitted at the
+    # bank's election in the courts of either the state where the obligations are booked or the state
+    # where the collateral is booked, held or managed, on a NON-EXCLUSIVE basis, with a process agent
+    # appointed by the pledgor and renewed annually and immunity waived (EDGAR-PB-01-B); grantor
+    # submits to non-exclusive jurisdiction, agrees not to plead forum non conveniens, bank may
+    # nonetheless sue elsewhere, sovereign and other immunity irrevocably waived (EDGAR-PB-01-C);
+    # Luxembourg as sole place of performance, debt collection and jurisdiction BUT with the bank
+    # reserving the right to sue at the client's domicile or before any other competent authority,
+    # Luxembourg law still applying exclusively, subject to mandatory conflicts rules (BANK-LU-01);
+    # uniformity of law across the loan and security package, with local-law questions handled by
+    # opinion rather than by splitting the governing law (EDGAR-ML-03, EDGAR-ML-01, EDGAR-PL-03).
+    # X days (process agent replacement): observed "renewed annually" (EDGAR-PB-01-B); no replacement
+    # period is published in any opened source.
+    text: >
+      The facility letter and any non-contractual obligations arising out of it are governed by the law
+      of the jurisdiction in which the Bank books the facility. The security agreement and any
+      non-contractual obligations arising out of it are governed by the law of the jurisdiction in
+      which the collateral account is maintained, and where that account is maintained in a
+      jurisdiction which permits the applicable law to be chosen in the account agreement, the account
+      agreement expressly designates that same law as governing the proprietary questions relating to
+      the collateral. The Borrower and the Pledgor irrevocably submit to the jurisdiction of the courts
+      of the jurisdiction in which the Bank books the facility, waive any objection on the ground of
+      venue or forum non conveniens, and agree that a judgment of those courts is conclusive and
+      enforceable in any other jurisdiction. That submission is for the benefit of the Bank only:
+      nothing in it limits the Bank's right to bring proceedings, or to seek interim, protective or
+      enforcement relief, in the courts of the jurisdiction in which the collateral account is
+      maintained, in which the Borrower or the Pledgor is domiciled or has assets, or in any other
+      court of competent jurisdiction, and the Bank may bring concurrent proceedings in more than one
+      jurisdiction. Each of the Borrower and the Pledgor which is not resident in the jurisdiction of
+      the Bank's booking location irrevocably appoints a process agent in that jurisdiction to receive
+      service on its behalf, will maintain that appointment for so long as any amount is outstanding,
+      and will appoint a replacement within X days if the appointment ceases to be effective; failure
+      to do so entitles the Bank to appoint a replacement at the Borrower's cost. Each of the Borrower
+      and the Pledgor irrevocably waives, to the fullest extent permitted by law, any immunity from
+      suit, from jurisdiction, from any order for specific performance or recovery of property, and
+      from attachment, execution or other enforcement against its assets, and agrees that it enters
+      into the documents in respect of commercial and not governmental activity.
+    rationale: >
+      The Bank's opening position is the one every private-bank document opened for this playbook
+      takes: the client submits to one forum, and the Bank keeps the right to go wherever the assets
+      are. That is not greed, it is the shape of the product. Enforcement in this business means
+      getting at a securities account, and the account is wherever the custodian keeps it, which is
+      frequently not where the client is and not where the facility is booked. The split governing law
+      is the point a counterparty most often misses and the Bank should explain rather than trade: in
+      England and in Luxembourg the proprietary questions are assigned by statute to the law of the
+      place where the account is maintained, so governing the security document by some other law does
+      not move the analysis, it just creates a mismatch between the document and the law that will
+      decide the case.
+    conditions: []
+  acceptable:
+    # observed: three-layer private-bank structure - 45-day negotiation window, then mandatory
+    # arbitration seated in one city before three banking lawyers with punitive, consequential and
+    # lost-profit claims waived and confidentiality imposed, and if the arbitration clause fails,
+    # exclusive submission to the courts of that state BUT with the bank free to proceed where the
+    # guarantor resides or does business (EDGAR-PB-01-A). Also: mandatory conflicts rules are
+    # expressly preserved in a published retail template (BANK-LU-01).
+    text: >
+      The facility letter is governed by the law of the jurisdiction in which the Bank books the
+      facility and the security agreement is governed by the law of the jurisdiction in which the
+      collateral account is maintained. The courts of the jurisdiction in which the Bank books the
+      facility have exclusive jurisdiction to settle any dispute, and the Borrower and the Pledgor
+      waive any objection on the ground of venue or forum non conveniens. Notwithstanding that
+      exclusivity, the Bank may at any time bring proceedings for interim, protective or enforcement
+      relief, and may enforce any judgment, in the courts of the jurisdiction in which the collateral
+      account is maintained or in which the Borrower or the Pledgor has assets, and the Borrower and
+      the Pledgor irrevocably submit to those courts for that purpose. The process agent appointment
+      and the waiver of immunity apply as set out in the preferred position. This clause does not
+      affect the application of any rule of the forum which the parties may not displace by agreement.
+    rationale: >
+      The concession in this tier is the general right to sue first wherever the Bank likes; what is
+      kept is the right to act where the assets are, which is the part with economic value. A private
+      bank that can seize and sell an account in the jurisdiction where it sits, and enforce its
+      judgment there, has lost very little by agreeing that the merits are heard in one place. Naming
+      the carve-out for interim and protective relief explicitly is also better drafting than relying
+      on a general asymmetry, because it is the limb a counterparty's counsel is least likely to
+      resist and the one most likely to survive a challenge in a forum that dislikes one-sided
+      clauses. The express preservation of mandatory rules of the forum is the Bank's own protection:
+      a clause that overreaches in a consumer or conduct context is the clause most likely to be read
+      down as a whole.
+    conditions: []
+  fallback:
+    # THE TRADE-OFF TIER. observed: every private-bank document opened refuses mutual exclusive
+    # jurisdiction and reserves the lender's right to sue at the client's domicile or elsewhere
+    # (EDGAR-PB-01-A, EDGAR-PB-01-B, EDGAR-PB-01-C, BANK-LU-01) - so conceding mutuality is a
+    # concession beyond what any opened document makes. It is offered here because the security
+    # document and the interim-relief carve-out are the parts that actually matter, and because in
+    # both England and Luxembourg the proprietary law is fixed by statute and is not a negotiable
+    # term at all (FCARs reg 19, LU 2005 Law art. 23).
+    text: >
+      The facility letter is governed by the law of, and the courts of, the jurisdiction agreed
+      between the parties, which may be the jurisdiction in which the Borrower is domiciled or a third
+      jurisdiction, and that jurisdiction is exclusive and mutual. The security agreement remains
+      governed by the law of the jurisdiction in which the collateral account is maintained, and where
+      that jurisdiction permits the applicable law to be chosen in the account agreement, the account
+      agreement continues to designate it. Notwithstanding the mutual and exclusive submission, the
+      Bank may at any time apply to any court of competent jurisdiction for interim, protective or
+      conservatory relief, may take any step required to preserve, perfect or enforce its security or
+      to realise the collateral in the jurisdiction in which the collateral account is maintained, and
+      may enforce any judgment or award in any jurisdiction in which the Borrower or the Pledgor has
+      assets. The process agent appointment and the waiver of immunity are unchanged, and the waiver
+      of immunity is not negotiable where the Borrower or the Pledgor is a trust, a fund, a state or
+      an entity which is or may be entitled to claim immunity. Where the parties agree arbitration
+      instead of litigation, the arbitration clause carves out, and does not require the Bank to
+      exhaust any negotiation period before seeking, interim and protective relief and any step to
+      preserve or realise the collateral.
+    rationale: >
+      This tier gives away the asymmetry and keeps the two things that decide whether the Bank gets
+      paid: the security document follows the account, and the Bank can always act, immediately and
+      anywhere, to preserve or realise the collateral. Said plainly to a counterparty, the Bank is
+      agreeing to argue about the money in one place of their choosing, and reserving the right to
+      stop the assets moving in whatever place they happen to be. The immunity waiver is held back
+      from this trade deliberately: where a trust, a fund or a state-linked vehicle is the borrower or
+      the pledgor, the immunity point is not a boilerplate courtesy but the difference between a
+      judgment and a recovery. Note also that the drafting concession here is smaller than it looks in
+      two of the three jurisdictions, because the proprietary law is assigned by statute and the
+      parties could not have chosen it anyway.
+    conditions:
+      - The agreed forum is one in which the Bank's counsel confirms a money judgment can be obtained and enforced against the Borrower's assets.
+      - The collateral account is maintained in England and Wales, Switzerland or Luxembourg, and the security document is governed by that jurisdiction's law.
+      - Local counsel in the account's jurisdiction has confirmed that the interim-relief and realisation carve-out is effective there.
+      - A process agent is appointed in the agreed forum and the immunity waiver is unchanged.
+      - Where arbitration is agreed, the interim-relief and collateral-realisation carve-out is in the arbitration clause itself, not only in the facility letter.
+      - Credit and the relevant booking centre have confirmed they can operate an enforcement in the agreed forum.
+    approval: senior lawyer
+  unacceptable:
+    text: >
+      The Bank will not agree that the security agreement is governed by a law other than that of the
+      jurisdiction in which the collateral account is maintained, or that the choice of law in the
+      facility letter determines the proprietary questions which the law of the account's location
+      assigns to itself; will not accept an exclusive forum in which the Bank cannot obtain interim or
+      protective relief, or from which it cannot realise or enforce against the collateral account;
+      will not give up the right to apply for interim, protective or conservatory relief, or to take
+      steps to preserve or realise the collateral, in any jurisdiction; will not accept an arbitration
+      clause without that carve-out, or one which requires a negotiation or cooling-off period to
+      expire before the Bank may act against the collateral; will not delete the waiver of immunity
+      where the Borrower or the Pledgor is a trust, a fund, a state, a state agency or any entity
+      which is or may become entitled to claim immunity from suit or execution; and will not proceed
+      without a process agent, or with service permitted only at an address outside the agreed forum,
+      where the Borrower or the Pledgor is not resident in that forum.
+    rationale: >
+      Each of these is a way of separating the Bank's rights from the place where the assets are, and
+      the whole design of a securities-backed facility is that those two things stay together. A forum
+      that cannot give interim relief is a forum in which the client can move or dissipate the
+      collateral faster than the Bank can be heard. An arbitration clause with a negotiation window
+      and no carve-out is worse: it converts a falling market into a waiting period. The immunity
+      point is the one most often treated as boilerplate and most expensive when it is wrong, because
+      a trust or fund vehicle that can claim immunity from execution turns a judgment into a piece of
+      paper. And a missing process agent does not lose the case, it just adds months to it, which on
+      this product is the same thing.
+default_floor: fallback
+escalation_triggers:
+  # observed: every private-bank document opened keeps the lender's right to sue elsewhere
+  # (EDGAR-PB-01-A, -B, -C, BANK-LU-01); one imposes arbitration after a 45-day negotiation window
+  # (EDGAR-PB-01-A); a process agent is renewed annually (EDGAR-PB-01-B). X is institutional choice.
+  - Any request that the security agreement be governed by a law other than that of the jurisdiction in which the collateral account is maintained.
+  - Any request to remove the Bank's right to seek interim, protective or conservatory relief, or to realise the collateral, outside the agreed forum.
+  - Any request to delete or qualify the waiver of immunity where the Borrower or the Pledgor is a trust, a fund, a state or a state-linked entity.
+  - Any request for arbitration, or for a mandatory negotiation or mediation period, without an unqualified carve-out for interim relief and for steps against the collateral.
+  - Any request to drop the process agent, or for a replacement period longer than X days, where the Borrower or the Pledgor is not resident in the agreed forum.
+  - Any deal in which the collateral account is maintained outside England and Wales, Switzerland or Luxembourg, since the jurisdiction overlay in this playbook does not cover it.
+  - Any request to select the proprietary law of the collateral in the facility letter rather than in the account agreement on a Swiss-booked account.
+depends_on:
+  - security_structure_control
+  - enforcement_liquidation
+  - capacity_authority
+  - conditions_precedent
+regulatory_flags:
+  - bank_secrecy_data
+  - fcar_safe_harbour_uncertain
+not_automated:
+  - Every cross-border perfection and enforceability conclusion. The playbook cites the rule; local counsel in the account's jurisdiction confirms it, and that confirmation is a condition precedent, not a drafting note.
+  - Whether an asymmetric jurisdiction clause will be given effect in the forum where the Bank would actually use it. [VERIFY] not sourced for this playbook.
+  - Choosing the booking centre for a new relationship, which is a commercial, tax and regulatory decision as well as a legal one.
+  - Whether to commence proceedings in a second jurisdiction, and the disclosure of client information that doing so entails in a bank-secrecy jurisdiction.
+  - Whether the Borrower or the Pledgor is capable of claiming immunity at all, which turns on its constitution and on the law of the place of enforcement.
+jurisdiction_notes:
+  england_wales: >
+    England applies a PRIMA rule to book entry securities collateral: the legal nature and proprietary
+    effects of the collateral, the requirements for its provision and for third-party effectiveness,
+    whether title is extinguished or subordinated by a competing interest or a good-faith acquisition,
+    priority, and the steps required to realise the collateral after an enforcement event are all
+    governed by the domestic law of the country in which the relevant account is maintained, with
+    renvoi excluded (UK-FCAR-2003 reg 19). The United Kingdom is not a contracting party to the 2006
+    Hague Securities Convention (HCCH-SEC-CONV-2006 status table), so the proprietary law cannot be
+    selected in the account agreement the way a Swiss-booked structure allows. Two consequences for
+    this clause. First, an English governing-law clause in the facility letter settles the contract and
+    not the security: if the account sits in Zurich or Luxembourg, the creation, third-party
+    effectiveness and realisation questions are for that law and for local counsel. Second, the
+    advantages of the English financial collateral regime turn on the status of the parties - both must
+    be non-natural persons - and on possession or control, not on the choice of law, so choosing
+    English law does not deliver the regime to a facility with an individual pledgor (LAW-EW-01). The
+    one English-law security document opened in the source pool governs the deed, the amendment notice
+    and any non-contractual obligations by English law, which is the drafting convention to follow
+    (EDGAR-EN-01).
+  switzerland: >
+    Switzerland is the outlier of the three and it works in the Bank's favour. It ratified the 2006
+    Hague Securities Convention on 14 September 2009 and the Convention entered into force on 1 April
+    2017 (HCCH-SEC-CONV-2006 status table); Swiss private international law routes the question
+    straight to it, defining intermediated securities by reference to the Convention and providing that
+    the law applicable to them is governed by it (CH-PILA-291 arts. 108a and 108c). Under the
+    Convention the primary rule is the law expressly agreed in the account agreement as governing the
+    Convention issues, or another law expressly designated there, provided the relevant intermediary
+    has a qualifying office in that State, with sequential fall-backs to the office through which the
+    account agreement was entered into, then incorporation, then principal place of business; the
+    issues governed include the proprietary nature and effects of the interest, perfection, priority,
+    the intermediary's duties to competing claimants and the requirements for realisation
+    (HCCH-SEC-CONV-2006 arts. 2, 4 and 5). For assets that are not intermediated securities, such as
+    cash claims, a choice of law is possible but cannot be asserted against third parties, and failing
+    a choice the pledge of a claim is governed by the law of the pledgee's habitual residence
+    (CH-PILA-291 art. 105). The drafting instruction that follows is specific: on a Swiss-booked
+    account, make the proprietary choice in the account agreement, not in the facility letter, and
+    check that the custodian has a qualifying office in the chosen State. [VERIFY] what a Swiss
+    Lombard facility letter actually says about governing law and jurisdiction is unsourced: the shared
+    source pool contains no Swiss governing-law or jurisdiction clause at all, and nothing in this
+    entry should be presented as observed Swiss market practice.
+  luxembourg: >
+    Luxembourg mirrors England on the conflicts rule and differs from it on everything else. Article 23
+    of the 2005 Law is a PRIMA rule covering the legal nature and proprietary effects, the requirements
+    for provision and third-party effectiveness, extinction or subordination by a competing interest or
+    good-faith acquisition, the custodian's obligations to a competing claimant, the conditions for
+    realisation after an enforcement event, and the extent of the arrangement over income and proceeds,
+    all governed by the domestic law of the country where the relevant account is maintained with
+    renvoi excluded; and the relevant account may be one maintained by the collateral taker itself
+    (LAW-LU-01, arts. 1(3) and 23). Luxembourg is not a party to the 2006 Hague Convention
+    (HCCH-SEC-CONV-2006 status table), so there is no account-agreement route around that. What makes
+    Luxembourg law worth choosing for the security is arts. 18-20: the netting, the agreed enforcement
+    events and the agreed valuation and enforcement measures are effective against third parties,
+    commissioners, receivers and liquidators notwithstanding domestic or foreign reorganisation or
+    winding-up proceedings (LAW-LU-01). The observed market drafting matches the preferred position
+    here: a published Luxembourg template chooses Luxembourg law and names the 2005 Law as the statute
+    it relies on, makes Luxembourg the sole place of performance, of debt collection for clients
+    domiciled abroad and of jurisdiction, and then reserves the bank's right to sue at the client's
+    domicile or before any other competent authority with Luxembourg law still applying exclusively,
+    all expressly subject to mandatory conflicts rules (BANK-LU-01).
+sources:
+  - ref: "EDGAR-PB-01"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1293153/000095012308001840/y49893exv99w7w05.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Composite exhibit, EDGAR accession 0000950123-08-001840, of three private-bank securities-lending documents given by individual and trust pledgors. The single richest source for this clause. Sub-part B supports the preferred tier: governing law of the state where the pledge is booked, suit permitted at the bank's election in the courts of either the state where the obligations are booked or the state where the collateral is booked, held or managed, on a non-exclusive basis, with a process agent appointed by the pledgor and renewed annually and immunity waived. Sub-part C supports the same asymmetry more briefly, with a waiver of forum non conveniens and an irrevocable waiver of sovereign and other immunity. Sub-part A supports the acceptable tier's arbitration variant: a 45-day negotiation period, then mandatory arbitration before three banking lawyers with punitive, consequential and lost-profit claims waived, and, if the arbitration clause fails, exclusive submission to the courts of that state but with the bank free to proceed where the guarantor resides or does business."
+  - ref: "BANK-LU-01"
+    type: bank_terms
+    url: "https://links.imagerelay.com/cdn/2958/ql/lombard-loan-contract-sqbe-en-01072023"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published Lombard loan agreement template of a Luxembourg bank (CSSF-supervised). Supports the preferred and acceptable tiers and the Luxembourg note: the governing-law clause chooses Luxembourg law and names the Law of 5 August 2005 as the statute relied on; Luxembourg is the sole place of performance, the place of debt collection for clients domiciled abroad and the sole place of jurisdiction; the bank nonetheless reserves the right to sue at the client's domicile or before any other competent authority, in which case Luxembourg law still applies exclusively; and the whole clause is expressly subject to mandatory conflicts rules."
+  - ref: "EDGAR-ML-03"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1333493/000119312521187800/d467983dex3.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Margin loan agreement over listed shares, EDGAR accession 0001193125-21-187800. Supports the preferred tier's uniformity point rather than the choice itself: this and the other filed institutional margin loans and pledges opened for the playbook all choose a single law and forum for the loan and security package regardless of where the borrower, the issuer or the collateral sits, and handle local-law questions by legal opinion rather than by splitting the governing law."
+  - ref: "EDGAR-EN-01"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1530238/000110465919067794/tv533539_sc13da.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Schedule 13D/A, EDGAR accession 0001104659-19-067794, annexing an English-law amendment notice under a security deed over listed shares held by an SPV. Supports the England and Wales note on drafting convention only: the security deed, the amendment notice and any non-contractual obligations arising out of them are governed by English law. It is an amendment notice rather than the underlying deed, and it is the only English-law security document in the source pool."
+  - ref: "LAW-LU-01"
+    type: primary_law
+    url: "https://www.cssf.lu/wp-content/uploads/L_050805_fin_coll_upd_15072024.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Luxembourg Law of 5 August 2005 on financial collateral arrangements, consolidated text published by the regulator (updated 15 July 2024). Supports the Luxembourg note: art. 1(3) defines the relevant account as the register or account in which the entries providing the collateral are made, which may be maintained by the collateral taker itself; art. 23 is the account-location rule with renvoi excluded and lists the matters governed; arts. 18-20 make the netting, the agreed enforcement events and the agreed valuation and enforcement measures effective against third parties, commissioners, receivers and liquidators notwithstanding domestic or foreign reorganisation or winding-up proceedings. Arts. 1(3) and 23 were read by the WP7 research agent; arts. 18-20 by the WP3 sourcing agent."
+  - ref: "LAW-EW-01"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/uksi/2003/3226/regulation/3"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Financial Collateral Arrangements (No. 2) Regulations 2003, reg. 3 (definitions). Supports the England and Wales note's second consequence: the regime's advantages turn on possession or control and on both parties being non-natural persons, so a choice of English law does not by itself deliver the regime."
+  - ref: "UK-FCAR-2003 reg 19 (as made)"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/uksi/2003/3226/regulation/19/made"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Financial Collateral Arrangements (No. 2) Regulations 2003, reg. 19. Supports the England and Wales note and the header comment: the applicable law for book entry securities collateral is the domestic law of the country in which the relevant account is maintained, renvoi excluded, and the regulation lists the matters so governed. Opened and read by the WP7 research agent (docs/research/jurisdictions_research.md, england_wales, governing_law_of_intermediated_securities); not opened by this drafting agent, and carried across with that provenance."
+  - ref: "HCCH-SEC-CONV-2006 status table (Convention #36)"
+    type: primary_law
+    url: "https://www.hcch.net/en/instruments/conventions/status-table/?cid=72"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Status table for the 2006 Hague Securities Convention. Supports all three jurisdiction notes: three contracting parties - Mauritius, Switzerland (ratified 14 September 2009) and the United States - with entry into force on 1 April 2017; the United Kingdom, Luxembourg and the European Union are not parties. Opened and read by the WP7 research agent; not opened by this drafting agent."
+  - ref: "HCCH-SEC-CONV-2006 full text (Arts 2, 4, 5)"
+    type: primary_law
+    url: "https://www.hcch.net/en/instruments/conventions/full-text/?cid=72"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "2006 Hague Securities Convention. Supports the Switzerland note: art. 2 lists the issues governed, art. 4(1) gives the primary rule of the law expressly agreed in the account agreement subject to the qualifying-office test, and art. 5 supplies the sequential fall-backs. Opened and read by the WP7 research agent; not opened by this drafting agent."
+  - ref: "CH-PILA-291 Arts 105, 108a, 108c (official English translation)"
+    type: primary_law
+    url: "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/1988/1776_1776_1776/20260101/en/pdf-a/fedlex-data-admin-ch-eli-cc-1988-1776_1776_1776-20260101-en-pdf-a.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Swiss Federal Act on Private International Law, official English translation. Supports the Switzerland note: art. 105 allows a choice of law for the pledging of claims, securities and other rights but that choice is not assertable against third parties, with the pledgee's habitual residence as the default; arts. 108a and 108c define intermediated securities by reference to the 2006 Hague Convention and provide that the law applicable to them is governed by it. Opened and read by the WP7 research agent; not opened by this drafting agent. It supports the Swiss conflicts rules only and says nothing about Swiss governing-law or jurisdiction clause practice, which remains [VERIFY]."
+status: draft
+reviewed_by: null
+last_reviewed: null

@@ -1,0 +1,15 @@
+# INVALID (2): action names a clause id that is not in the library.
+- id: RX02_unknown_clause
+  title: Action naming an unknown clause id
+  priority: 10
+  when:
+    all:
+      - { field: guarantor_present, op: eq, value: true }
+  then:
+    - action: set_floor
+      clause: margin_call_cure_period
+      tier: acceptable
+  rationale: Deliberately invalid fixture for the schema tests.
+  status: draft
+  reviewed_by: null
+  last_reviewed: null

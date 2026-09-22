@@ -1,0 +1,55 @@
+# Golden deal D05 (build_plan.md §5). Entirely synthetic: Borrower A is the
+# same fictional individual as D01 and no real person or property is described.
+#
+# Shape: D01 with one change. Thirty per cent of the collateral is residential
+# real estate, which this playbook does not cover. The listed lines are
+# rebalanced pro rata so the composition still sums to 100.
+deal_id: D05
+description: >-
+  Synthetic. Borrower A as in D01, a UK-resident individual with a high-net-worth
+  declaration on file, but with thirty per cent of the collateral pool taken as
+  residential real estate alongside the listed portfolio. Everything else is
+  identical to D01. Fictional party; not a real deal.
+borrower:
+  type: individual
+  domicile: GB
+  natural_person: true
+  declared_high_net_worth: true
+  business_purpose_declared: null
+pledgor:
+  same_as_borrower: true
+  type: null
+  domicile: null
+  natural_person: null
+  is_pdmr_of_pledged_issuer: false
+guarantor_present: false
+facility:
+  type: uncommitted_demand
+  purpose: general
+  amount: 5000000
+  currency: GBP
+  benchmark: SONIA
+  other_facilities_with_lender: false
+collateral:
+  governing_law: england_wales
+  custodian_location: GB
+  lender_is_custodian: true
+  currencies: [GBP]
+  composition:
+    - asset_class: listed_equity
+      pct: 42
+      single_name_max_pct: 15
+      issuer_restricted: false
+    - asset_class: listed_bond
+      pct: 18
+      single_name_max_pct: 10
+      issuer_restricted: false
+    - asset_class: cash
+      pct: 10
+      single_name_max_pct: null
+      issuer_restricted: false
+    - asset_class: real_estate
+      pct: 30
+      single_name_max_pct: null
+      issuer_restricted: false
+counterparty_requests: {}

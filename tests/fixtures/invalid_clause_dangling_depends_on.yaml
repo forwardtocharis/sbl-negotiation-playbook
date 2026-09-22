@@ -1,0 +1,9 @@
+# INVALID (9): depends_on names a clause id that is not in the library.
+id: fixture_dangling_depends_on
+title: "Fixture: clause depending on a clause that does not exist"
+category: collateral
+lender_objective: Deliberately invalid fixture for the schema tests.
+depends_on: [collateral_haircut_schedule]
+status: stub
+reviewed_by: null
+last_reviewed: null

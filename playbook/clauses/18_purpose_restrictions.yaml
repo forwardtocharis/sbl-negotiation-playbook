@@ -1,0 +1,10 @@
+# Stub entry. Status is 'stub': only id, title, category and lender_objective
+# are populated. Positions, sources and jurisdiction notes are added in a later
+# work package. Nothing here is legal advice or a verified market position.
+id: purpose_restrictions
+title: "Purpose restrictions and permitted use of proceeds"
+category: credit
+lender_objective: "Control what the loan is used for, because purpose drives both regulatory treatment and credit risk."
+status: stub
+reviewed_by: null
+last_reviewed: null

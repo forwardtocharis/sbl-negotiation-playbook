@@ -1,0 +1,57 @@
+# Golden deal D06 (build_plan.md §5). Entirely synthetic: Borrower A is the
+# same fictional individual as D01 and no real person or portfolio is described.
+#
+# Shape: D01 with two counterparty requests bolted on, so the built-in R16 is
+# the only thing that differs from D01. The first request sits at the clause's
+# default floor and is accepted; the second is at the walk-away tier and is a
+# hard escalation.
+deal_id: D06
+description: >-
+  Synthetic. Borrower A as in D01, a UK-resident individual with a high-net-worth
+  declaration on file, where the counterparty has asked for the fallback cure
+  period on margin maintenance and for the unacceptable position on enforcement
+  and liquidation. Everything else is identical to D01. Fictional party; not a
+  real deal.
+borrower:
+  type: individual
+  domicile: GB
+  natural_person: true
+  declared_high_net_worth: true
+  business_purpose_declared: null
+pledgor:
+  same_as_borrower: true
+  type: null
+  domicile: null
+  natural_person: null
+  is_pdmr_of_pledged_issuer: false
+guarantor_present: false
+facility:
+  type: uncommitted_demand
+  purpose: general
+  amount: 5000000
+  currency: GBP
+  benchmark: SONIA
+  other_facilities_with_lender: false
+collateral:
+  governing_law: england_wales
+  custodian_location: GB
+  lender_is_custodian: true
+  currencies: [GBP]
+  composition:
+    - asset_class: listed_equity
+      pct: 60
+      single_name_max_pct: 15
+      issuer_restricted: false
+    - asset_class: listed_bond
+      pct: 25
+      single_name_max_pct: 10
+      issuer_restricted: false
+    - asset_class: cash
+      pct: 15
+      single_name_max_pct: null
+      issuer_restricted: false
+counterparty_requests:
+  margin_maintenance_cure:
+    tier: fallback
+  enforcement_liquidation:
+    tier: unacceptable

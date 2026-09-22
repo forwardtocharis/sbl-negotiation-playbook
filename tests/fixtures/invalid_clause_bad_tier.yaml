@@ -1,0 +1,32 @@
+# INVALID (7): default_floor uses a tier name outside the closed list.
+id: fixture_bad_tier
+title: "Fixture: clause with an invalid tier name"
+category: collateral
+document: facility_letter
+risk_rating: low
+lender_objective: Deliberately invalid fixture for the schema tests.
+positions:
+  preferred:
+    text: "[DRAFT PLACEHOLDER] Opening position placeholder."
+    rationale: Placeholder rationale for the schema tests.
+  acceptable:
+    text: "[DRAFT PLACEHOLDER] Routine concession placeholder."
+    rationale: Placeholder rationale for the schema tests.
+  fallback:
+    text: "[DRAFT PLACEHOLDER] Conditional concession placeholder."
+    rationale: Placeholder rationale for the schema tests.
+  unacceptable:
+    text: "[DRAFT PLACEHOLDER] Walk-away line placeholder."
+    rationale: Placeholder rationale for the schema tests.
+default_floor: last_resort
+sources:
+  - ref: "Fixture placeholder source"
+    type: textbook
+    url: null
+    retrieved: null
+    reliability: C
+    verified: false
+    note: "[VERIFY] Placeholder for schema testing only."
+status: draft
+reviewed_by: null
+last_reviewed: null

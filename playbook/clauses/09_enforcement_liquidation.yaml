@@ -1,0 +1,394 @@
+# Draft entry (WP3, drafting group C). Lender-side. Synthetic demonstrator.
+# Nothing here is legal advice.
+#
+# Three separate things are negotiated here and the ladder moves them one at a time.
+#
+#   1. NOTICE
+#        preferred    - none where the collateral is of a type customarily sold on a
+#                       recognised market, or threatens to decline speedily in value;
+#                       otherwise only such notice as the law requires and the
+#                       Pledgor cannot waive.
+#        acceptable   - X business days, but only where notice is required by law,
+#                       with both carve-outs retained.
+#        fallback     - X business days before ANY sale, with both carve-outs retained.
+#        unacceptable - notice without the carve-outs, or a standstill.
+#   2. STANDARD OF CONDUCT
+#        preferred    - the Bank's discretion, plus pre-agreed acknowledgements of
+#                       what is and is not required of it.
+#        acceptable   - commercially reasonable manner, acknowledgements retained.
+#        fallback     - commercially reasonable manner, acknowledgements narrowed.
+#   3. APPROPRIATION vs SALE - keep both routes open in every tier. Which one is
+#      actually available is a question of the booking jurisdiction, not of drafting.
+#
+# RULE INTERACTION (build_plan.md §4, and rules.yaml as built): R07 (insider or
+# PDMR of a pledged issuer), R08 (issuer-restricted line) and R15 (illiquid
+# collateral) each set_floor enforcement_liquidation = acceptable. The floor is
+# TIGHTENED, not loosened, on exactly the deals where a sale is hardest - see the
+# acceptable tier rationale for why that is the right way round.
+id: enforcement_liquidation
+title: "Enforcement and liquidation: notice, standard of conduct and self-help sale"
+category: default_enforcement
+document: security_agreement
+risk_rating: high
+lender_objective: >
+  Be able to turn the portfolio into cash on the day the Bank decides to, without a court, without the
+  Pledgor's cooperation, and on a standard of conduct the Bank can evidence afterwards.
+counterparty_asks:
+  - Prior notice before any sale, with the recognised-market and rapid-decline carve-outs deleted.
+  - An obligation to sell in an orderly way - a dribble-out or scheduled programme - or to seek strategic buyers or a control premium.
+  - Deletion of the pre-agreed acknowledgements that a bookbuild counts as a public sale and that a restricted private placement is commercially reasonable.
+  - A standstill after an event of default before any remedy may be exercised, or a right to cure after the enforcement notice.
+  - Non-recourse for any deficiency remaining after realisation.
+  - An independent valuation, or the Pledgor's consent to the price, before the Bank may appropriate.
+positions:
+  preferred:
+    # observed: sale publicly or privately without demand or notice of intention except where
+    # applicable law forbids waiver, with the pledgor acknowledging IN ADVANCE that the pledged block
+    # is larger than can be sold quickly on the exchange, that timing and manner may produce materially
+    # less than another timing would, that there is no obligation to dribble the stock out over time,
+    # that the secured party may sell immediately on default without seeking strategic buyers or a
+    # control premium notwithstanding a significant discount, that a sale following a customary
+    # bookbuild counts as a public sale, and that a good-faith private placement made because a public
+    # sale would raise securities-law issues is commercially reasonable and not unreasonable merely for
+    # being restricted; deficiency liability survives and the duty of care is reduced to reasonable
+    # safekeeping or reasonable care in selecting a bailee (EDGAR-PL-02). Also: no notice at all where
+    # the collateral threatens to decline speedily in value or is of a type customarily sold on a
+    # recognised market, no obligation to sell after giving notice, and adjournment by announcement
+    # without further notice (EDGAR-PB-01-B); unilateral liquidation on the appropriate exchange or the
+    # open market without prior notice on a long list of triggers, with no failure or delay a waiver
+    # (BANK-LU-01); realisation of part or all of the pledge straight away and without notice below the
+    # lower cover level (BANK-LU-02).
+    text: >
+      On an Event of Default the Bank may, without demand, advertisement or notice of intention, all of
+      which the Pledgor waives to the fullest extent permitted by law, take control of the Collateral
+      Account and of all proceeds, transfer the collateral into its own name or that of a nominee, sell
+      or otherwise dispose of all or any part of the collateral publicly or privately, at such time,
+      place, price, in such order and on such terms as the Bank determines, and apply the proceeds
+      against the secured obligations in such order as the Bank determines. Where notice is required by
+      law and may not be waived, the Bank will give such notice as the law requires; no notice is
+      required where the collateral is of a type customarily sold on a recognised market or where the
+      Bank determines that it threatens to decline speedily in value. The Bank may instead appropriate
+      all or any part of the collateral where the applicable law permits, at a value determined in
+      accordance with this agreement. The Pledgor acknowledges that the Bank is not obliged to sell in
+      tranches or over any period, to seek any strategic buyer or any control premium, to delay a sale
+      in order to obtain a better price, or to sell at all after giving any notice, and that a sale may
+      be at a material discount. The Pledgor remains liable for any shortfall after application of the
+      proceeds, together with the Bank's costs of enforcement.
+    rationale: >
+      The value of this clause is measured in hours. A portfolio that can be sold on the day of default
+      is worth its market price; a portfolio that can be sold in a week is worth whatever the market does
+      in that week, and the Bank did not price that risk. The pre-agreed acknowledgements are the most
+      useful drafting in the whole pool and they are worth explaining rather than just inserting: the
+      dispute after an enforcement is almost never about whether the Bank could sell, it is about whether
+      it should have sold differently, and these acknowledgements answer that question in advance in the
+      Pledgor's own words. The recognised-market carve-out is not a trick either - for a listed portfolio
+      it is simply accurate, which is why every private-bank document opened for this playbook concedes a
+      notice period and then removes it in the same breath for the collateral this product is secured on.
+    conditions: []
+  acceptable:
+    # observed: at least 3 business days' prior notice where notice is required by law, with the same
+    # recognised-market and speedily-declining carve-outs (EDGAR-PB-01-A); 3 days on the same basis,
+    # plus a deeming provision that on certain seizure or regulatory-process events the bank is treated
+    # as having appropriated collateral equal to the obligations before it received notice of the event
+    # (EDGAR-PB-01-C). Standard of conduct: assignment by private sale in a commercially reasonable
+    # manner, on a trading venue where the collateral is admitted to trading, or by public auction
+    # (LAW-LU-01 art. 11(1)(b)); valuation in a commercially reasonable manner judged objectively, the
+    # result need not be reasonable (FIRM-02); realisation organised and documented to obtain the best
+    # price obtainable in the circumstances (FIRM-05). X is a judgement number in a 3-5 business day
+    # band; the carve-outs are not the number.
+    text: >
+      On an Event of Default the Bank may sell or otherwise dispose of all or any part of the collateral
+      publicly or privately, or appropriate it where the applicable law permits, in each case acting in a
+      commercially reasonable manner and applying the proceeds against the secured obligations. Where
+      notice of a sale is required by law, the Bank will give the Pledgor not less than X business days'
+      notice of the time and place of a public sale, or of the time after which a private sale may be
+      made, which the Pledgor agrees is reasonable notice; no such notice is required where the
+      collateral is of a type customarily sold on a recognised market, where the Bank determines that it
+      threatens to decline speedily in value, or where giving notice would breach any law, regulation or
+      order applying to the Bank or to the collateral. The Pledgor acknowledges that selling promptly
+      rather than over an extended period, selling without seeking any strategic buyer or control
+      premium, selling at a discount reflecting the size of the holding, effecting a sale by a customary
+      bookbuild, and making a private placement in good faith where a public sale would raise securities
+      law or transfer-restriction issues are each commercially reasonable. The Bank is not obliged to
+      sell after giving notice, may adjourn a sale by announcement without further notice, and the
+      Pledgor remains liable for any shortfall.
+    rationale: >
+      The move from the Bank's discretion to a commercially reasonable manner costs the Bank very little
+      and buys a lot of goodwill, because what has to be reasonable is the manner of the sale judged
+      objectively and not the result - the English authority on appropriation says so in terms, and the
+      Luxembourg statute writes the same standard into the private-sale route. Keeping the
+      acknowledgements is what makes the concession safe: without them, "commercially reasonable" is an
+      open invitation to argue after the event that the Bank should have waited. This is also the tier the
+      rules drive the floor up to when the deal gets harder, and that is the right way round. Where the
+      Pledgor is an insider of a pledged issuer, or a line is locked up or otherwise restricted, or the
+      portfolio is illiquid, the sale is already going to be slowed by closed periods, issuer or
+      underwriter consents, volume limits or the absence of a daily price - so a universal notice period
+      on top of those delays is precisely the concession the Bank cannot afford, and an enforcement on
+      those facts is also the one most likely to be challenged, which is when the pre-agreed
+      acknowledgements earn their place.
+    conditions: []
+  fallback:
+    # THE TRADE-OFF TIER. observed: at least 5 business days' prior notice of the time and place of any
+    # public sale, or of the time after which a private sale is to be made, agreed in advance to be
+    # reasonable - but with NO notice required where the collateral threatens to decline speedily in
+    # value or is of a type customarily sold on a recognised market (EDGAR-PB-01-B). This is the only
+    # observed concession of a notice period for sales generally rather than only where law requires
+    # one. Against it: BANK-LU-01, BANK-LU-02 and EDGAR-PL-02 concede no notice at all. The observed
+    # ladder across the three private-bank sub-documents is 3 days - 3 business days - 5 business days,
+    # carve-outs retained in every one of them. X is a judgement number anchored on that ladder.
+    text: >
+      On an Event of Default the Bank will give the Pledgor not less than X business days' notice of the
+      time and place of any public sale of the collateral, or of the time after which any private sale
+      may be made, which the Pledgor agrees is commercially reasonable notice. No such notice is
+      required, and the Bank may sell or appropriate immediately, where the collateral is of a type
+      customarily sold on a recognised market; where the Bank determines that the market value or the
+      traded liquidity of the collateral is declining rapidly; where giving notice would breach any law,
+      regulation or order, or would prejudice the Bank's ability to realise the collateral; or where any
+      insolvency, seizure, freezing or similar process has been commenced or threatened in respect of
+      the Pledgor or the collateral. The Bank will act in a commercially reasonable manner, and the
+      Pledgor acknowledges that the Bank is under no obligation to sell in tranches or over any period,
+      and that a private placement made in good faith where a public sale would raise securities law or
+      transfer-restriction issues is commercially reasonable. The Bank is not obliged to sell after
+      giving notice and may adjourn a sale by announcement. A notice period under this clause runs from
+      the expiry of any cure period under the margin maintenance clause and is not additional to it, and
+      the Pledgor remains liable for any shortfall.
+    rationale: >
+      This is the concession the counterparty actually wants, and it is survivable only in the shape the
+      private-banking documents give it: a real period for the ordinary case, and immediate realisation
+      for the cases where a period would cause the loss it is meant to prevent. Said plainly across the
+      table, the Bank is agreeing to tell the client before it sells, and not agreeing to stand still
+      while the position gets worse. Note what has and has not moved. The notice period has become
+      universal rather than law-driven, and the list of pre-agreed acknowledgements has been cut back to
+      the two that carry the most weight. What has not moved is the carve-out list, the absence of any
+      obligation to sell, and the deficiency. The sentence tying this period to the margin cure period is
+      not housekeeping - without it a counterparty reads the two clauses together as a single, much
+      longer standstill, which is not what is being agreed.
+    conditions:
+      - The portfolio is exchange-listed or daily-dealt, and no line is issuer-restricted, locked up or subject to a transfer restriction.
+      - No pledgor, borrower or connected person is an insider or a person discharging managerial responsibilities of a pledged issuer.
+      - Collateral is within the concentration limit and the currency of the collateral matches the facility, or an FX haircut has been applied.
+      - The Bank or a member of its group is the Custodian, or an executed account control agreement is in place.
+      - The margin maintenance cure period is at or tighter than its default floor for this deal.
+      - Credit has confirmed the notice period is priced into the lending values applied.
+    approval: credit committee
+  unacceptable:
+    text: >
+      The Bank will not accept a notice period that applies where the collateral is of a type customarily
+      sold on a recognised market, where value or liquidity is falling rapidly, where an insolvency,
+      seizure or freezing process has begun or is threatened, or where giving notice would breach a law
+      or prejudice realisation; will not accept a standstill after an Event of Default, a right to cure
+      after an enforcement notice has been given, or a requirement to act jointly with or wait for
+      another creditor; will not accept an obligation to sell in tranches, to follow a scheduled or
+      volume-weighted programme, to seek strategic buyers or a control premium, or otherwise to maximise
+      rather than realise; will not accept a requirement for a court order, an independent valuation or
+      the Pledgor's consent before appropriating or selling; will not accept non-recourse for any
+      deficiency; and will not agree that a failure to give a notice, or any delay in exercising a
+      remedy, is a waiver of the remedy or of the Event of Default.
+    rationale: >
+      Each of these converts a self-help remedy into a process the Pledgor or a third party can slow
+      down, and the only time anyone wants to slow an enforcement down is when the collateral is falling.
+      A notice period that survives a rapid decline is not a notice period, it is a free option written by
+      the Bank; an obligation to sell in an orderly programme is the same option with a schedule attached.
+      Non-recourse is refused in every document opened for this playbook, and the reason is worth saying
+      out loud: a deficiency waiver converts a secured loan into a put on the portfolio struck at the loan
+      amount, which is not the product and is not the price.
+default_floor: fallback
+escalation_triggers:
+  # observed: the only notice concessions in the pool are 3 days, 3 business days and 5 business days,
+  # each with the recognised-market and speedily-declining carve-outs retained (EDGAR-PB-01-A, -C, -B);
+  # 8 working days' press notice is the Luxembourg PUBLIC AUCTION formality, not a negotiated period
+  # (LAW-LU-01 art. 11(2)). X is the institution's own tolerance.
+  - Any request for a notice period longer than X business days before a sale or an appropriation.
+  - Any request to remove or narrow the recognised-market, rapid-decline, unlawful-notice or insolvency-process carve-outs.
+  - Any request for a standstill after an Event of Default, or for a right to cure once an enforcement notice has been given.
+  - Any request for an obligation to sell in an orderly or scheduled manner, or to seek a strategic buyer or a control premium.
+  - Any request for a court order, an independent valuation or the Pledgor's consent as a precondition to appropriation or sale.
+  - Any request for non-recourse, or for a cap on the Pledgor's liability for a deficiency.
+  - Any request to delete the pre-agreed acknowledgements of what is commercially reasonable.
+depends_on:
+  - events_of_default
+  - margin_maintenance_cure
+  - security_structure_control
+  - lender_discretion_valuation
+  - governing_law_jurisdiction
+regulatory_flags:
+  - market_abuse
+  - restricted_securities
+  - fcar_safe_harbour_uncertain
+not_automated:
+  - The decision to enforce at all, as against forbearing while the relationship is discussed. The tool never makes that call.
+  - Whether a particular market move is a "rapid decline" that removes the notice period.
+  - Whether a proposed sale method is commercially reasonable on the facts of the day, including the choice between a bookbuild, a programme and a private placement.
+  - Whether a closed period, an issuer or underwriter consent or a volume limit blocks or delays a sale, and whether compliance has cleared it.
+  - Whether notice is required by law and unwaivable in the booking jurisdiction, and on whom it must be served where the Pledgor is not the Borrower.
+  - Setting the notice period. Three observations exist across one composite filing, and the number is risk appetite.
+jurisdiction_notes:
+  england_wales: >
+    England gives the Bank a statutory self-help remedy and then takes it away from most private-wealth
+    deals. Under the financial collateral regulations a collateral-taker whose arrangement contains an
+    express appropriation power may appropriate without any court order for foreclosure (LAW-EW-04), and
+    must value the collateral in accordance with the arrangement and in any event in a commercially
+    reasonable manner, accounting for any excess (LAW-EW-05); the English authority on that provision
+    holds that it is the MANNER of the valuation that must be commercially reasonable, judged objectively,
+    that the result need not be reasonable, that responsibility stays with the collateral-taker even where
+    a third-party valuer is used, and that a non-compliant valuation does not unwind the appropriation but
+    lets the court substitute a compliant one (FIRM-02). But the regulations require both parties to be
+    non-natural persons, so where the collateral provider is an individual the arrangement is not a
+    financial collateral arrangement at all (LAW-EW-01). [VERIFY] The consequence usually drawn from that
+    - that there is no self-help appropriation in English law outside the regulations, so the Bank is left
+    enforcing under an express contractual power of sale subject to the equitable duty to take reasonable
+    care to obtain a proper price - comes from the WP7 research file
+    (docs/research/jurisdictions_research.md) and was not confirmed against the primary text by this
+    agent; the WP3 brief lists it as a known gap, and it is the single most important thing to check
+    before this clause is promoted beyond draft. Draft both powers, contract out of the Law of Property
+    Act 1925 s.103 pre-conditions so the statutory power is not cut down by a three-month notice
+    requirement (LAW-EW-02), and specify the valuation method so the commercially reasonable standard is
+    evidenced by a process rather than argued about afterwards.
+  switzerland: >
+    Switzerland supplies the self-help power by statute and then makes the notice non-negotiable for the
+    typical private client. Under the Federal Intermediated Securities Act the secured party may realise
+    the securities in accordance with the security agreement either by selling them and setting off the
+    proceeds, or by appropriating securities whose value can be determined objectively; that power is not
+    affected by the commencement of debt enforcement, reorganisation or protective proceedings against the
+    provider, and the custodian is neither bound nor entitled to check whether the conditions for
+    realisation are met (LAW-CH-01, art. 31). Two consequences for this clause. First, appropriation is
+    available only where value is determined objectively (art. 31(1)(b)); [VERIFY] the working conclusion
+    that this means listed liquid lines qualify while gated funds, structured products and unlisted
+    holdings do not, and must be enforced by a documented sale, is drawn in the WP7 research file
+    (docs/research/jurisdictions_research.md) as a practice inference rather than taken from the statute.
+    Second, art. 32(1) requires notice to the collateral provider before realisation and permits
+    waiver only by a custodian or a qualified investor; a natural person is not a qualified investor under
+    the closed definition in art. 5(d), so on a Swiss booking to a private client the preferred tier's
+    no-notice position is simply not available and the notice must be built into the timetable. Practice
+    adds that the Bank owes duties of care and loyalty in liquidating and must be able to produce
+    accounting documentation for the liquidation (FIRM-03), and that private realisation should be
+    organised and documented to obtain the best price obtainable in the circumstances (FIRM-05).
+  luxembourg: >
+    Luxembourg is the strongest of the three and the enforcement clause should be drafted to use it
+    rather than to restate it. Article 11(1) of the Law of 5 August 2005 lets the pledgee, unless
+    otherwise provided for and WITHOUT PRIOR NOTICE, appropriate the collateral at a price set by the
+    agreed valuation method, assign it by private sale in a commercially reasonable manner or on a trading
+    venue where it is admitted to trading or by public auction, obtain a judicial attribution against an
+    expert valuation, net, appropriate listed instruments at market price or fund units at the last
+    published net asset value provided it is under a year old, or request redemption of fund units.
+    Article 11(3) obliges an agreed third-party custodian to transfer the instruments on notice of an
+    enforcement event without the provider's consent and without informing it in advance, and article 20
+    makes the arrangement, the agreed enforcement events and the agreed valuation and enforcement measures
+    effective against insolvency officials notwithstanding reorganisation or winding-up proceedings
+    (LAW-LU-01). Two drafting warnings. Avoid the public auction route unless it is needed: article 11(2)
+    imposes at least eight working days' press notice and minutes within three working days, which is the
+    slowest option on the menu. And because article 11(1) applies only "unless otherwise provided for", a
+    negotiated notice period written into the security agreement narrows the statutory power itself - if a
+    client insists on notice, put it in the facility letter as an undertaking rather than as a condition
+    of the enforcement right. Published Luxembourg bank documents take exactly this position, realising on
+    the exchange or the open market without prior notice (BANK-LU-01, BANK-LU-03) and permitting immediate
+    realisation below the lower cover level (BANK-LU-02).
+sources:
+  - ref: "EDGAR-PL-02"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1658566/000110465916164555/a16-23883_1ex99d7.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Pledge and security agreement supporting a margin loan, EDGAR accession 0001104659-16-164555; the most detailed pre-agreed commercial-reasonableness build in the pool. Supports the preferred tier throughout: sale publicly or privately without demand or notice of intention except where applicable law forbids waiver; advance acknowledgements that the block exceeds what can be sold quickly on the exchange, that timing and manner may produce materially less, that there is no obligation to sell over time, that the secured party may sell immediately without seeking strategic buyers or a control premium notwithstanding a significant discount, that a customary bookbuild counts as a public sale, and that a good-faith private placement made because a public sale would raise securities-law issues is commercially reasonable; survival of deficiency liability; and a reduced duty of care."
+  - ref: "EDGAR-PB-01"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1293153/000095012308001840/y49893exv99w7w05.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Composite exhibit, EDGAR accession 0000950123-08-001840, of three private-bank securities-lending documents given by individual and trust pledgors. Supplies the entire observed notice ladder used in the acceptable and fallback tiers: at least 5 business days' notice of a public sale or of the time after which a private sale is to be made, agreed in advance to be reasonable, but with no notice at all where the collateral threatens to decline speedily in value or is of a type customarily sold on a recognised market; 3 business days on the same basis in a second sub-document; 3 days in a third, together with a deeming provision treating the bank as having appropriated collateral equal to the obligations before it received notice of a seizure or regulatory-process event. Also: no obligation to sell after giving notice, and adjournment by announcement without further notice."
+  - ref: "BANK-LU-01"
+    type: bank_terms
+    url: "https://links.imagerelay.com/cdn/2958/ql/lombard-loan-contract-sqbe-en-01072023"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published Lombard loan agreement template of a Luxembourg bank (CSSF-supervised). Supports the preferred tier and the Luxembourg note: unilateral liquidation on the appropriate exchange or the open market, without prior notice, on any of a long list of triggers; the client is expressly informed of that right; and no failure or delay in exercising it operates as a waiver."
+  - ref: "BANK-LU-02"
+    type: bank_terms
+    url: "https://www.delen.bank/hubfs/dot-bank/assets/general_banking_conditions_2025.pdf?hsLang=en-lu"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published 2025 general banking conditions of a Luxembourg private bank. Supports the two-speed enforcement described in the Luxembourg note: at the higher cover level the bank liquidates only such positions as it deems necessary and only after the client has failed to take suitable steps within the period the bank set; at the lower level it may realise part or all of the pledge straight away and without any notice."
+  - ref: "BANK-LU-03"
+    type: bank_terms
+    url: "https://assetsgarantibbva.com/assets/pdf/en/other/Luxembourg_Branch.pdf"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published general terms and conditions of a bank's Luxembourg branch. Supports the Luxembourg note: the bank's terms enumerate the realisation routes available under the Law of 5 August 2005, including private transaction at arm's-length conditions, sale on a stock exchange, public sale, and set-off against the client's claims on the bank after formal notice."
+  - ref: "EDGAR-ML-03"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1333493/000119312521187800/d467983dex3.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Margin loan agreement over listed shares, EDGAR accession 0001193125-21-187800. Supports the unacceptable tier's refusal of a joint-action or standstill requirement: in the multi-lender structure each lender may exercise or refrain from exercising remedies under its own control agreement in its sole discretion, owes no fiduciary duty to the others, and agrees not to interfere with or support a challenge to the commercial reasonableness of another lender's disposal."
+  - ref: "LAW-LU-01"
+    type: primary_law
+    url: "https://www.cssf.lu/wp-content/uploads/L_050805_fin_coll_upd_15072024.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Luxembourg Law of 5 August 2005 on financial collateral arrangements, consolidated text published by the regulator (updated 15 July 2024); arts. 3-5, 11, 12, 13, 13-1, 18-20 and 22 were read by the sourcing agent. Supports the Luxembourg note and the appropriation-versus-sale structure: art. 11(1) the enforcement menu available without prior notice unless otherwise provided for, including appropriation at the agreed valuation method, private sale in a commercially reasonable manner, sale on a trading venue or by public auction, and the pricing routes for listed instruments and fund units; art. 11(2) the public-auction formalities including at least eight working days' press notice and minutes within three working days; art. 11(3) the third-party custodian's duty to transfer on notice without the provider's consent or prior information; art. 20 effectiveness against insolvency officials."
+  - ref: "LAW-EW-01"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/uksi/2003/3226/regulation/3"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Financial Collateral Arrangements (No. 2) Regulations 2003, reg. 3 (definitions), read by the WP7 research agent. Supports one point only: both parties to a security financial collateral arrangement must be non-natural persons, a non-natural person excluding an individual. It does NOT support the statement of what enforcement route is left when the regime does not apply, which is marked [VERIFY] in the England and Wales note."
+  - ref: "LAW-EW-04"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/uksi/2003/3226/regulation/17/made"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Financial Collateral Arrangements (No. 2) Regulations 2003, reg. 17 (as made), read by the WP7 research agent. Supports the England and Wales note: where the arrangement contains an express appropriation power, the collateral-taker may appropriate in accordance with its terms without any order for foreclosure from the court."
+  - ref: "LAW-EW-05"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/uksi/2003/3226/regulation/18/made"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Financial Collateral Arrangements (No. 2) Regulations 2003, reg. 18 (as made), read by the WP7 research agent. Supports the England and Wales note: the collateral-taker must value the collateral in accordance with the terms of the arrangement and in any event in a commercially reasonable manner, and account to the provider for any excess."
+  - ref: "LAW-EW-02"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/ukpga/Geo5/15-16/20/section/103"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Law of Property Act 1925 s.103, read by the WP7 research agent. Supports the England and Wales note: the statutory power of sale may not be exercised until notice requiring payment has been served and three months' default has run, or two months' interest is in arrear, or another provision of the mortgage deed has been breached - which is why lenders contract out of s.103 and rely on express enforcement drafting."
+  - ref: "LAW-CH-01"
+    type: primary_law
+    url: "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2009/450/20230101/en/pdf-a/fedlex-data-admin-ch-eli-cc-2009-450-20230101-en-pdf-a.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Swiss Federal Intermediated Securities Act (SR 957.1), official English translation, read by the WP7 research agent. Supports the Switzerland note: art. 31(1) realisation by sale with set-off, or by appropriation where the value can be determined objectively; art. 31(2) the power is unaffected by debt enforcement, reorganisation or protective proceedings; art. 31(3) the custodian is neither bound nor entitled to verify the realisation conditions; art. 32(1) notice to the provider before realisation, waivable only by a custodian or a qualified investor; art. 5(d) the closed definition of qualified investor, which does not include a natural person."
+  - ref: "FIRM-02"
+    type: law_firm_briefing
+    url: "https://www.mayerbrown.com/en/insights/publications/2022/12/security-enforcement-english-high-court-guidance-on-the-appropriation-of-collateral-under-the-financial-collateral-regulations"
+    retrieved: 2026-09-21
+    reliability: C
+    verified: true
+    note: "Law-firm note on the 2022 English High Court decision on appropriation of collateral under the financial collateral regulations. Supports the acceptable tier's rationale and the England and Wales note: the valuation must follow the terms of the arrangement and in any event be conducted in a commercially reasonable manner judged objectively; the outcome need not be reasonable, only the manner; responsibility remains with the collateral-taker even where a third-party valuer is used; and a non-compliant valuation does not void the appropriation but permits the court to substitute a compliant one."
+  - ref: "FIRM-03"
+    type: law_firm_briefing
+    url: "https://www.mondaq.com/commoditiesderivativesstock-exchanges/985220/margin-calls-how-can-investors-protect-their-position"
+    retrieved: 2026-09-21
+    reliability: C
+    verified: true
+    note: "Swiss practitioner note on margin calls under Swiss law and standard Lombard pledge terms. Supports the Switzerland note: standard clauses do permit liquidation without prior warning, but the bank owes duties of care and loyalty in liquidating, must be able to produce accounting documentation for the liquidation, and where it acts as discretionary manager or adviser may owe a duty to notify the client of a margin deficiency first."
+  - ref: "FIRM-05"
+    type: law_firm_briefing
+    url: "https://www.baerkarrer.ch/userdata/lending-and-taking-security-in-switzerland-overview.pdf"
+    retrieved: 2026-09-21
+    reliability: C
+    verified: true
+    note: "Practitioner overview of lending and taking security in Switzerland (law stated 1 May 2025), read by the WP7 research agent. Supports the Switzerland note's process point: private enforcement must be organised and documented to obtain the best price obtainable in the circumstances; assets with an objectively determinable market value may be bought in by the secured party at market value with set-off and the surplus returned; once bankruptcy is declared, private enforcement of pledges generally stops, while assets transferred by title transfer before opening stay outside the estate."
+status: draft
+reviewed_by: null
+last_reviewed: null

@@ -1,0 +1,279 @@
+# Jurisdiction overlay: Switzerland. WP7 (YAML half).
+# Drafted from the lender's side, for a facility secured on intermediated
+# securities and cash held with a custodian. Everything is `draft`: no entry has
+# been promoted by a named human reviewer. Nothing here is legal advice, and no
+# cross-border perfection or enforceability conclusion should be taken from it
+# without local counsel (see docs/not_automated_register.md).
+# Content lifted from docs/research/jurisdictions_research.md; `[VERIFY]` marks a
+# statement whose primary text was not opened in that research.
+id: switzerland
+name: Switzerland
+
+creation: >
+  Security over intermediated securities, meaning book-entry securities credited to a
+  securities account with a custodian such as a bank, a securities firm, a fund
+  management company for unit accounts, a central securities depository or the central
+  bank, is governed exclusively by the Federal Intermediated Securities Act (FISA, also
+  known as BEG, SR 957.1); the Civil Code says so expressly in Art. 901(3). FISA gives
+  three ways to make the disposal effective against third parties: credit of the
+  securities to the collateral taker's own securities account on the account holder's
+  instruction under Art. 24, which transfers full legal rights where the disposition is
+  framed that way; an irrevocable control agreement between the account holder and the
+  custodian under Art. 25, by which the custodian must carry out the acquirer's
+  instructions without any further consent or cooperation from the account holder, and
+  which may cover specific securities, the whole account, or a proportion of the account
+  up to a stated value; and, where the collateral taker is itself the custodian, a simple
+  agreement with the custodian under Art. 26, effective against third parties on
+  conclusion. Cash balances are claims against the bank and sit outside FISA: they are
+  pledged under Civil Code Arts 899 and 900, which require a written pledge agreement,
+  with the bank's own general terms lien and set-off usually doing the heavy lifting.
+  Lender-side, if the bank is the custodian the Art. 26 route is the cleanest and
+  fastest; if it is not, an Art. 25 control agreement is a condition precedent and not a
+  post-closing item.
+
+registration_filing: >
+  There is no registration, filing or public register for a pledge or a security
+  transfer over intermediated securities or over cash claims in Switzerland. Third-party
+  effectiveness comes from the FISA act of disposal itself, whether that is the credit
+  under Art. 24, the control agreement under Art. 25 or the Art. 26 agreement with the
+  custodian. Priority is determined by the time of the disposition under Art. 30(1),
+  with a specific rule in Art. 30(2) subordinating a custodian's own earlier rights where
+  it enters into an Art. 25 control agreement without expressly notifying the acquirer of
+  them. That makes Swiss collateral quick to take, but it also means there is nothing to
+  search, so the diligence is documentary rather than register-based. Obtain a custodian
+  confirmation of the account holdings, an express waiver or subordination of the
+  custodian's statutory right of retention and foreclosure under Art. 21 and of any
+  general terms lien and set-off, and a confirmation that no earlier control agreement
+  exists.
+
+perfection_depends_on: >
+  Control, exercised through the custodian, is what does the work. There is nothing to
+  file and nothing to notify beyond the custodian: either the securities are credited to
+  the lender's account under Art. 24, or the custodian is irrevocably bound to follow the
+  lender's instructions without the client's further consent under Art. 25, or the lender
+  is itself the custodian and the agreement alone suffices under Art. 26. Two traps have
+  to be closed in the documents. First, the custodian has its own statutory right of
+  retention and foreclosure over securities credited to the account for debts arising
+  from the custody or the financing of their acquisition under Art. 21, so where a
+  third-party custodian holds, its ranking must be dealt with expressly. Second, a right
+  of use in favour of the custodian requires the account holder's authorisation and,
+  unless the account holder is a qualified investor, that authorisation must be in
+  writing and may not be included in general terms and conditions under Art. 22, which
+  matters directly for a private individual client.
+
+enforcement_route: >
+  FISA Art. 31 gives the secured party a statutory private realisation power: it may
+  realise the intermediated securities in accordance with the terms of the security
+  agreement either by selling them and offsetting the proceeds against the secured debt,
+  or by appropriating securities whose value can be determined objectively and offsetting
+  that value. Critically, Art. 31(2) provides that the power is not affected by the
+  commencement of debt enforcement, reorganisation or protective proceedings against the
+  collateral provider, and Art. 31(3) provides that the custodian is neither bound nor
+  entitled to check whether the realisation conditions are met, with Art. 31(4)
+  preserving the secured party's liability where they were not. Art. 32(1) requires the
+  secured party to give notice to the provider before realisation, and that notice may be
+  waived only by a provider that is a custodian or a qualified investor; Art. 32(2)
+  requires an account and remittance of surplus proceeds. This is a real departure from
+  the ordinary Swiss default, under which a pledge-secured claim is enforced through debt
+  enforcement proceedings to realise the pledge (DEBA Art. 41 and Arts 151-158), private
+  enforcement generally stops once bankruptcy is declared because pledged assets fall into
+  the estate (DEBA Art. 198, with pledge-secured claims paid in advance from the proceeds
+  under Art. 219(1)), and the Civil Code invalidates any agreement that a pledged chattel
+  becomes the pledgee's property on default (Art. 894, the forfeiture prohibition). Note
+  also the extraterritorial reach: FISA Art. 2(1bis) applies Art. 31(2) to intermediated
+  securities held with a custodian in Switzerland or abroad, even where that custody is
+  subject to foreign law.
+
+financial_collateral_regime: >
+  Switzerland has no equivalent of Directive 2002/47/EC and no instrument called a
+  financial collateral regime; FISA Chapters 5 and 6 do the same work for intermediated
+  securities. The scope difference that matters most in private wealth is that natural
+  persons ARE covered: FISA contains no requirement that either party be a non-natural
+  person, so a private individual can be the collateral provider and the Art. 31
+  realisation power, including the insolvency override in Art. 31(2), still applies. The
+  trade-off runs the other way on process, because an individual is not a qualified
+  investor: Art. 5(d) limits that status to a custodian, a prudentially supervised
+  insurance company, a public-law entity, a pension fund, or a company with professional
+  treasury management. The consequence is that the pre-realisation notice in Art. 32(1)
+  cannot be waived for a private client, and the Art. 22 right-of-use authorisation
+  cannot be buried in general terms and conditions. Stated in lender terms, the benefits
+  of the regime are self-help sale or appropriation without court involvement, survival of
+  that power through the provider's insolvency or moratorium, and no obligation on the
+  custodian to second-guess the enforcement.
+
+governing_law_of_intermediated_securities: >
+  Switzerland is the outlier of the three jurisdictions and the difference works in the
+  lender's favour. It ratified the 2006 Hague Securities Convention on 14 September 2009
+  and the Convention entered into force on 1 April 2017, and Swiss private international
+  law channels the question straight to it: PILA Art. 108a defines intermediated
+  securities by reference to the Convention and Art. 108c states that the law applicable
+  to intermediated securities is governed by the Convention. Under the Convention the
+  primary rule in Art. 4(1) is the law expressly agreed in the account agreement as
+  governing the Convention issues, or another law expressly designated there, provided the
+  relevant intermediary has a qualifying office in that State; Art. 5 supplies sequential
+  fall-backs, being the office through which the account agreement was entered into, then
+  incorporation or organisation, then principal place of business; and Art. 2 lists the
+  issues governed, being the proprietary nature and effects, perfection, priority, the
+  intermediary's duties to competing claimants, realisation requirements, and extension to
+  distributions and proceeds. For claims and rights that are not intermediated securities,
+  cash claims for example, PILA Art. 105 applies: the parties may choose the law governing
+  the pledge but that choice cannot be asserted against third parties, and failing a choice
+  the pledge of claims is governed by the law of the pledgee's habitual residence, with a
+  law other than the one governing the pledged right not assertable against the debtor. So
+  for a Swiss-booked account the proprietary law can in principle be fixed by agreement,
+  which neither the English nor the Luxembourg account-location rule allows; the
+  qualifying-office condition in Art. 4(1) is a real constraint and the point has not been
+  seen applied to a facility of this kind, so treat the operational use of it as a matter
+  for local counsel.
+
+practical_notes: >
+  (1) If the bank is the Swiss custodian, use the Art. 26 route and make sure the security
+  agreement and the custody terms agree with each other; if a third-party custodian holds,
+  an executed Art. 25 control agreement plus a waiver or subordination of the custodian's
+  Art. 21 rights is a condition precedent. (2) Build the Art. 32(1) notice into the
+  enforcement clause and into the operational runbook, because for a private individual
+  pledgor it cannot be waived, so a facility that assumes instant liquidation without
+  notice is wrong for that client type; define the notice period, the delivery method and
+  the trigger, and keep evidence. (3) Rely on Art. 31(2) as the answer to the debt
+  enforcement problem and say so in the enforcement clause, because without FISA a pledge
+  would otherwise be dragged into pledge-realisation proceedings and, on bankruptcy, the
+  pledged assets fall into the estate under DEBA Art. 198 with the pledgee taking priority
+  in the proceeds under Art. 219(1). (4) Appropriation is available only where the value
+  can be determined objectively under Art. 31(1)(b), so listed liquid securities yes, and
+  gated funds, structured products and unlisted positions probably not, with those enforced
+  by sale under a documented process; the translation of that statutory phrase into an
+  asset-class test is judgement rather than law. (5) For a third-party pledgor, the Art. 32
+  notice goes to the provider of the security interest and not to the borrower, so identify
+  the notice recipient correctly. (6) Bank secrecy under Banking Act Art. 47 and the
+  cross-border data transfer restrictions in FADP Arts 16-17 are live on every Swiss
+  booking; see the bank secrecy and data protection flag. (7) FinSA Art. 3(c)(5) makes the
+  granting of loans to finance transactions with financial instruments a financial service
+  in its own right, which pulls a purpose-to-invest facility into the FinSA conduct
+  perimeter.
+
+sources:
+  - ref: "CH-FISA-957.1 (official English translation), Arts 2, 4, 5(d), 21-26, 30, 31, 32"
+    type: primary_law
+    url: "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2009/450/20230101/en/pdf-a/fedlex-data-admin-ch-eli-cc-2009-450-20230101-en-pdf-a.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Art. 2(1) scope and Art. 2(1bis) reach to intermediated securities held abroad;
+      Art. 4 who is a custodian; Art. 5(d) the closed definition of qualified investor,
+      which does not include a natural person; Art. 21 the custodian's right of retention
+      and foreclosure; Art. 22(2) right-of-use authorisation in writing and not in general
+      terms unless the holder is a qualified investor; Art. 23 return of collateral;
+      Arts 24, 25 and 26 the three routes to third-party effectiveness; Art. 30(1)
+      first-in-time priority and Art. 30(2) subordination of an undisclosed custodian
+      right; Art. 31 sale or appropriation where value is objectively determinable, with
+      31(2) unaffected by debt enforcement, reorganisation or protective proceedings and
+      31(3) no custodian verification duty; Art. 32(1) pre-realisation notice waivable only
+      by a custodian or qualified investor and 32(2) account and surplus.
+  - ref: "CH-ZGB-210 (Civil Code, official English translation), Arts 884, 891, 894, 899, 900, 901"
+    type: primary_law
+    url: "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/24/233_245_233/20260101/en/pdf-a/fedlex-data-admin-ch-eli-cc-24-233_245_233-20260101-en-pdf-a.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Art. 884 pledge of chattels by transfer of possession; Art. 891 satisfaction from the
+      proceeds of the pledge on default; Art. 894 invalidity of any agreement that the
+      pledged chattel becomes the pledgee's property on default; Arts 899 and 900 pledge of
+      assignable debts and rights, in writing; Art. 901(3) pledging of intermediated
+      securities is governed exclusively by FISA.
+  - ref: "CH-PILA-291 (official English translation), Arts 105, 108a-108d"
+    type: primary_law
+    url: "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/1988/1776_1776_1776/20260101/en/pdf-a/fedlex-data-admin-ch-eli-cc-1988-1776_1776_1776-20260101-en-pdf-a.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Art. 105 choice of law for the pledging of claims, securities and other rights, not
+      assertable against third parties, with the pledgee's habitual residence as the
+      default; Arts 108a and 108c route intermediated securities to the 2006 Hague
+      Convention.
+  - ref: "CH-DEBA-281.1 (official English translation), Arts 41, 198, 219"
+    type: primary_law
+    url: "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/11/529_488_529/20260101/en/pdf-a/fedlex-data-admin-ch-eli-cc-11-529_488_529-20260101-en-pdf-a.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Art. 41 pledge-secured claims are continued by proceedings to realise a pledge
+      (Arts 151-158), with the debtor able to demand the pledge be realised first; Art. 198
+      pledged assets fall into the bankruptcy estate subject to the pledgee's preferential
+      rights; Art. 219(1) pledge-secured claims are paid in advance from the proceeds of
+      sale of the pledges.
+  - ref: "CH-FINSA-950.1 (official English translation), Arts 3(c), 10-14"
+    type: primary_law
+    url: "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2019/758/20240301/en/pdf-a/fedlex-data-admin-ch-eli-cc-2019-758-20240301-en-pdf-a.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Art. 3(c)(5) granting of loans to finance transactions with financial instruments is a
+      financial service; Arts 10-14 the appropriateness and suitability duties, the
+      execution-only exemption and the duty to advise a client against an unsuitable
+      instrument.
+  - ref: "CH-BANKG-952.0 Art. 47 (German official text)"
+    type: primary_law
+    url: "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/51/117_121_129/20240101/de/pdf-a/fedlex-data-admin-ch-eli-cc-51-117_121_129-20240101-de-pdf-a.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Banking secrecy: intentional disclosure, inducement and onward disclosure or
+      exploitation are criminal, punishable by up to three years, rising to five where a
+      pecuniary advantage is obtained; negligent breach carries a fine of up to CHF 250,000;
+      the duty survives the end of the relationship; duties to testify or inform an
+      authority are reserved. No English PDF was located at this identifier.
+  - ref: "CH-FADP-235.1 (official English translation), Arts 16, 17"
+    type: primary_law
+    url: "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2022/491/20230901/en/pdf-a/fedlex-data-admin-ch-eli-cc-2022-491-20230901-en-pdf-a.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Art. 16 adequacy decision or listed safeguards for cross-border disclosure of personal
+      data; Art. 17 exceptions including explicit consent, disclosure directly connected
+      with a contract with the data subject, and disclosure necessary to establish, exercise
+      or enforce legal rights before a foreign court or authority.
+  - ref: "HCCH-36 Convention full text, Arts 2, 4, 5"
+    type: primary_law
+    url: "https://www.hcch.net/en/instruments/conventions/full-text/?cid=72"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Art. 2 the issues governed; Art. 4(1) the primary rule of the law expressly agreed in
+      the account agreement, subject to the qualifying office test; Art. 5 the three
+      sequential fall-backs.
+  - ref: "HCCH-36 status table (2006 Securities Convention)"
+    type: primary_law
+    url: "https://www.hcch.net/en/instruments/conventions/status-table/?cid=72"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Switzerland ratified on 14 September 2009 and the Convention entered into force on
+      1 April 2017; the United Kingdom, Luxembourg and the EU are not parties.
+  - ref: "CH-PRACT-01: practitioner overview, lending and taking security in Switzerland (law stated 1 May 2025)"
+    type: law_firm_briefing
+    url: "https://www.baerkarrer.ch/userdata/lending-and-taking-security-in-switzerland-overview.pdf"
+    retrieved: 2026-09-21
+    reliability: C
+    verified: true
+    note: >
+      Confirms the two practical routes, being a pledge with an account control agreement
+      under which the intermediary irrevocably agrees to follow the secured party's
+      instructions, or a security transfer of legal title by crediting the secured party's
+      account; private enforcement must be organised and documented to obtain the best price
+      obtainable in the circumstances; assets with an objectively determinable market value
+      may be bought in by the secured party at market value with set-off and surplus
+      returned; once bankruptcy is declared private enforcement of pledges generally stops,
+      while assets transferred by title transfer before opening stay outside the estate.
+
+status: draft
+reviewed_by: null
+last_reviewed: null

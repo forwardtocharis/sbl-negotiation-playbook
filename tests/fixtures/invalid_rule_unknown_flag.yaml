@@ -1,0 +1,16 @@
+# INVALID (3): flag action raises a flag id that is not defined.
+- id: RX03_unknown_flag
+  title: Flag action raising an undefined flag id
+  priority: 10
+  when:
+    all:
+      - { field: guarantor_present, op: eq, value: true }
+  then:
+    - action: flag
+      flag: basel_iv_awareness
+      severity: low
+      message: "Should never be reached: the rule must fail to load."
+  rationale: Deliberately invalid fixture for the schema tests.
+  status: draft
+  reviewed_by: null
+  last_reviewed: null

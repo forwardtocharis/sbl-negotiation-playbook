@@ -1,0 +1,10 @@
+# Stub entry. Status is 'stub': only id, title, category and lender_objective
+# are populated. Positions, sources and jurisdiction notes are added in a later
+# work package. Nothing here is legal advice or a verified market position.
+id: prepayment_breakage
+title: "Prepayment and breakage costs"
+category: credit
+lender_objective: "Recover the funding cost the lender incurs when the borrower repays outside an interest period."
+status: stub
+reviewed_by: null
+last_reviewed: null

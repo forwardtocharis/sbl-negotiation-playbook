@@ -1,0 +1,333 @@
+# Draft entry (WP3, drafting group A). Lender-side. Synthetic demonstrator.
+# Nothing here is legal advice.
+#
+# READ THIS BEFORE EDITING THE TIER TEXT.
+# This clause is deliberately drafted as a BASE LIST that the rules engine
+# extends. The `preferred` text sets out the conditions the Bank asks for on
+# every deal; the engine then appends deal-specific conditions precedent to this
+# clause's output through `require_cp` actions, and the markup prints them
+# underneath the tier text. Nothing in the tier text should be written as though
+# the list were closed, and nothing here should duplicate a rule's CP: if the
+# same item appears twice the markup prints it twice.
+#
+# As at the date of this draft, the rules appending to this clause were:
+#   R01  trust borrower          - trust deed and deeds of appointment/retirement,
+#                                  read for the power to borrow and to charge
+#   R02  corporate/partnership/
+#        fund borrower           - constitutional documents, resolutions, incumbency
+#   R03 / R03b natural person    - (notes, not CPs) obtain and file the high-net-worth
+#                                  or business-purpose declaration BEFORE drawdown
+#   R05  third-party security    - (note) record how independent advice was given
+#   R05b third-party corporate
+#        pledgor                 - corporate benefit analysis and local counsel
+#   R07  PDMR / insider          - compliance sign-off on insider status; issuer consent
+#   R08  restricted securities   - lock-up / control-stock review; issuer or
+#                                  underwriter consent to pledge and to enforcement
+#   R12  third-party custodian   - executed account control agreement
+# WP5 owns that list and may change it; this comment is a drafting aid, not a
+# contract. What the drafting must keep true is that the list is extensible and
+# that the hard core in the fallback tier is never waived by a rule or a deal.
+id: conditions_precedent
+title: "Conditions precedent to first and each utilisation"
+category: credit
+document: facility_letter
+risk_rating: high
+lender_objective: >
+  Gate every advance until identity, capacity, authority, security perfection and the required
+  compliance sign-offs have been evidenced, so that nothing has to be fixed after the money has gone.
+counterparty_asks:
+  - Replace the open-ended "such other documents as the Bank may require" sweeper with a closed list agreed at signing.
+  - Satisfy the collateral-quality conditions by representation rather than by the Bank being satisfied, or at least qualify the Bank's satisfaction by reasonableness.
+  - Move perfection steps, and in particular the account control agreement with a third-party custodian, from conditions precedent into post-closing undertakings with a grace period.
+  - Deem the conditions satisfied if the Bank has not objected within a stated number of business days.
+  - For an individual borrower, defer the high-net-worth or business-purpose declaration and the statement of income or assets until after signing.
+  - Accept the borrower's own counsel's opinion, or a certificate from a director, in place of an opinion addressed to the Bank.
+positions:
+  preferred:
+    # observed: the institutional model splits CPs in two - "state of the world" conditions (reps
+    # true at signing, closing and each funding date; no default or mandatory prepayment event
+    # continuing; shares actually credited to the collateral accounts; LTV not above the initial
+    # level immediately after drawing) and "paper" conditions (legal opinion, constitutional
+    # documents, good standing, board resolutions, incumbency, officer's certificate as to ownership
+    # and borrowing limits), with acceptance of the proceeds deemed to re-make the first set as
+    # representations (EDGAR-ML-03). Collateral quality is itself a CP: the lenders must be
+    # satisfied the shares carry no undisclosed transfer restrictions and settle through the
+    # ordinary book-entry system (EDGAR-ML-03). Perfection is built as a CP chain, not an
+    # undertaking: acceptable custody agreement, sub-accounts opened, control agreement, counsel
+    # opinion, lien search, filed financing statements, and only then re-registration (EDGAR-PL-02);
+    # with a third-party custodian, a securities account control agreement and a deposit account
+    # control agreement both executed before perfection is asserted (EDGAR-PL-03). The retail
+    # analogue compresses the whole schedule into one condition: nothing comes into force until the
+    # bank's credit assessment has been completed to its satisfaction (BANK-LU-01).
+    text: >
+      The Bank is not obliged to make the first advance until it has received, in form and substance
+      satisfactory to it, each of the following: (a) identification, know-your-client, sanctions
+      screening and source-of-funds and source-of-wealth evidence for the Borrower, each Pledgor and
+      each beneficial owner, controller, settlor, protector and authorised signatory of either;
+      (b) the constitutional, trust or partnership documents establishing that the Borrower and each
+      Pledgor exists, and the resolutions, consents and authorities establishing that it has power to
+      enter into the finance documents and to grant the security and that the signatories are
+      authorised; (c) the facility letter, the security agreement and, where the Custodian is not the
+      Bank or a member of its group, the account control agreement, each executed; (d) evidence that
+      every step required to make the security effective and to give the Bank possession or control
+      under the law governing the security has been completed, including the opening of the pledged
+      accounts and the booking, earmarking or notification required by that law; (e) a confirmation
+      from the Custodian of the holdings in the pledged accounts and of the waiver or subordination
+      of the Custodian's own liens, rights of retention and rights of set-off over those accounts;
+      (f) a legal opinion satisfactory to the Bank where any obligor, pledgor or asset is outside the
+      jurisdiction whose law governs the security; (g) evidence satisfactory to the Bank that the
+      pledged assets are eligible collateral, are free of transfer restrictions other than those
+      disclosed, and settle through the ordinary book-entry system; (h) each compliance, tax and
+      regulatory sign-off that the Bank requires in connection with the facility, the Borrower, any
+      Pledgor or the pledged assets; and (i) such other documents, evidence, authorisations and
+      assurances as the Bank may require. Each condition in this clause must also be satisfied on the
+      date of, and immediately after, each further utilisation, and by accepting the proceeds of any
+      advance the Borrower is deemed to repeat, on that date, the representations to which those
+      conditions relate. Nothing in this clause obliges the Bank to make any advance, whether or not
+      every condition has been satisfied.
+    rationale: >
+      Conditions precedent are the only point in the life of a facility where the Bank has complete
+      leverage, because nothing has left the building yet, and everything on this list is materially
+      harder to obtain the day after drawdown than the day before. The list is also where the whole
+      library plugs in: capacity, insider status, perfection and the regulatory perimeter are all
+      cleared here rather than being blocked at the term sheet, which is why the playbook rules add
+      to this clause rather than stopping the deal. Re-testing on each utilisation is not
+      belt-and-braces on an uncommitted facility; it is what stops a clean day-one file being used to
+      draw into a portfolio that has since changed. Saying yes to the list costs the Borrower a week
+      of administration; saying no to it costs the Bank its security.
+    conditions: []
+  acceptable:
+    # observed: the filed compromise keeps the sweeper and qualifies it by reasonableness, and moves
+    # collateral-quality satisfaction to "reasonably satisfied" (EDGAR-ML-03) - both of these are the
+    # visible negotiated outcome in a filed institutional agreement rather than a theory.
+    # observed: no source opened concedes a deadline for the Bank to confirm satisfaction. X business
+    # days is a judgement number and exists here only to make the concession administrable.
+    text: >
+      The Bank is not obliged to make the first advance until it has received each of the documents
+      and items listed in the conditions precedent schedule, in form and substance reasonably
+      satisfactory to it, together with such other documents, evidence, authorisations and assurances
+      as the Bank may reasonably require. The Bank will confirm to the Borrower within X business
+      days of receipt of the last outstanding item that the conditions precedent have been satisfied.
+      Where the condition relates to the eligibility of the pledged assets or to the absence of
+      transfer restrictions, it is satisfied where the Bank is reasonably satisfied. The conditions
+      must also be satisfied on the date of, and immediately after, each further utilisation, and by
+      accepting the proceeds of any advance the Borrower is deemed to repeat, on that date, the
+      representations to which those conditions relate. Nothing in this clause obliges the Bank to
+      make any advance.
+    rationale: >
+      A reasonableness qualifier on the Bank's satisfaction changes the standard, not the list, and
+      the standard was never the protection: the protection is that the money does not move until the
+      file is complete. It is also the observed outcome in a filed institutional margin loan, so the
+      Bank is conceding to the market rather than below it, and it removes the counterparty's best
+      argument, which is that the Bank could refuse to fund by simply declaring itself unsatisfied
+      with a document that is plainly fine. Committing to confirm satisfaction within a short window
+      costs nothing and buys the Borrower the thing it actually wants here, which is certainty of
+      timing for a purchase or a repayment it has already scheduled.
+    conditions:
+      - The sweeper survives in qualified form; it is not deleted.
+      - Reasonableness attaches to the Bank's satisfaction, not to the question whether an item is required at all.
+  fallback:
+    # THE TRADE-OFF TIER. What is conceded is the closed list plus a short longstop for administrative
+    # items. What is never conceded is the hard core, because each item in it is either unfixable
+    # after drawdown (a declaration that had to precede the agreement, per LAW-UK-02) or fatal to the
+    # security if it turns out to be missing (perfection; the control agreement where a third party
+    # holds the account, per EDGAR-PL-02 and EDGAR-PL-03).
+    # observed: no source opened concedes a post-closing longstop for CPs at all. The nearest
+    # observation in the pool is a 15-day notice concession on an unrelated clause (EDGAR-PB-01-B).
+    # X business days is therefore an invented shape, not a market position - see the hand-off note.
+    text: >
+      The conditions precedent are those set out in the conditions precedent schedule, together with
+      any condition the Bank notifies to the Borrower before the facility letter is signed. The Bank
+      may make the first advance before it has received the items identified in Part 2 of that
+      schedule, being documents of an administrative character which do not affect the existence,
+      validity, priority or enforceability of the security, against the Borrower's undertaking to
+      deliver them within X business days of the date of first utilisation; failure to deliver within
+      that period is an Event of Default. The Bank will not make any advance until it has received
+      each item in Part 1 of that schedule, being: identification, know-your-client, sanctions and
+      source-of-funds evidence; the documents evidencing the capacity and authority of the Borrower
+      and each Pledgor and the authority of the signatories; the executed finance documents and
+      security documents; every step required to make the security effective and to give the Bank
+      possession or control under the law governing it, including an executed account control
+      agreement where the Custodian is not the Bank or a member of its group; every compliance sign-off
+      that the Bank requires; and any declaration, statement or other document which, under any law or
+      regulation applicable to the facility, must be made or delivered before the facility letter is
+      entered into. A condition may be waived only by the Bank in writing, a waiver is effective only
+      for the utilisation to which it relates, and no waiver or delay affects the Bank's right to
+      require the condition on any later utilisation.
+    rationale: >
+      This tier gives the Borrower what it is actually asking for, which is to know at signing what it
+      has to produce and by when, and it gives it up in the only place where it is safe to give up:
+      documents that are awkward to chase but that do not decide whether the Bank has security. The
+      line between Part 1 and Part 2 is the whole clause, and it is not drawn by convenience but by a
+      test anyone can apply in the room, which is whether the item can still be fixed the day after
+      the money moves. Perfection cannot, because the priority date has gone. A pre-agreement
+      regulatory declaration cannot, because the sequence is what the exemption depends on. Insider
+      clearance cannot, because by then the Bank has taken the pledge. The undertaking plus an event
+      of default is the enforcement mechanism for everything else, and it is enough for a file of
+      certificates.
+    conditions:
+      - Part 2 contains no item that affects the existence, validity, priority or enforceability of the security.
+      - Part 2 contains no item required by law or regulation to exist before the facility letter is entered into.
+      - Part 2 contains no compliance, sanctions or source-of-funds item.
+      - The Bank or a member of its group is the Custodian, or the account control agreement is already executed.
+      - The Borrower is not an individual to whom a consumer or regulated-credit regime may apply, or the position has been cleared by compliance.
+    approval: senior lawyer
+  unacceptable:
+    text: >
+      The Bank will not accept know-your-client, sanctions, source-of-funds, capacity or authority
+      evidence, security perfection steps (including an account control agreement where a third party
+      is the Custodian), or a compliance sign-off, being given as a post-closing undertaking or a
+      representation instead of as a condition to advance; will not accept a condition being deemed
+      satisfied by the passage of time or by the Bank's failure to respond; will not accept the
+      deletion of the sweeper, so that the Bank is confined at signing to a list it has to complete
+      before it has seen the structure; will not accept an opinion addressed to the Borrower rather
+      than to the Bank, or a director's certificate in place of an opinion, where an opinion is
+      required; will not accept a declaration or statement on which the regulatory treatment of the
+      facility depends being made after the facility letter is entered into; and will not accept a
+      term that requires the Bank to advance once the conditions are satisfied.
+    rationale: >
+      Each of these moves an item from the one moment when it can be obtained to a moment when it
+      cannot. A post-closing perfection undertaking is worth exactly what the Borrower is worth on the
+      day the security turns out to be defective, which is the same day the Bank needed the security.
+      Deemed satisfaction is worse than it sounds, because the Bank's silence usually means the file
+      is being reviewed, not that it is clean. And a declaration signed after the agreement does not
+      make an exempt agreement exempt: the statute requires it before, so the sequence is the whole
+      protection and it cannot be regularised afterwards. On an uncommitted facility the final limb
+      matters too, because an obligation to advance once conditions are met would quietly convert the
+      facility into a committed one.
+default_floor: fallback
+escalation_triggers:
+  - Any request to satisfy know-your-client, sanctions or source-of-funds conditions after first drawdown.
+  - Any request that perfection, or an account control agreement where the Custodian is a third party, be an undertaking rather than a condition to advance.
+  - Any request to delete the "such other documents" sweeper entirely rather than qualify it.
+  - Any request that conditions be deemed satisfied by lapse of time or by the Bank not responding within a period.
+  - Any request to defer a declaration, statement or consent that must precede the facility letter under any applicable law or regulation.
+  - Any request that the Bank's satisfaction be judged objectively or be determined by a third party or an expert.
+  - Any request to waive a condition precedent added to this clause by a playbook rule.
+depends_on:
+  - capacity_authority
+  - security_structure_control
+  - eligible_collateral_lending_values
+  - facility_type
+  - reps_source_of_funds_sanctions_tax
+regulatory_flags:
+  - consumer_credit
+  - market_abuse
+  - restricted_securities
+  - financial_assistance_corporate_benefit
+not_automated:
+  - Whether a condition has in fact been satisfied. This library lists the items and the rules add to the list; a named person signs each one off.
+  - Whether to waive a condition and advance anyway, against what undertaking and for how long.
+  - Know-your-client, sanctions and source-of-funds outcomes, including any decision to decline or to exit.
+  - Whether the Borrower is a consumer, and therefore whether a declaration and statement had to precede signing.
+  - Whether a legal opinion is required, from whom, and what it must cover on a cross-border structure.
+  - Which items belong in Part 1 and which in Part 2 of the fallback schedule on the particular facts. The test is in the rationale; applying it is a judgement.
+jurisdiction_notes:
+  england_wales: >
+    Perfection here is not a filing question and the conditions precedent should not be written as
+    though it were. What matters is whether the Bank has possession or control for the purposes of the
+    financial collateral regime: crediting collateral to an account in the collateral-taker's name
+    counts as possession where the provider's rights are limited to substituting collateral of equal
+    or greater value or withdrawing excess (LAW-EW-01, reg. 3). Where the arrangement qualifies as a
+    security financial collateral arrangement, the company charge registration provisions of the
+    Companies Act 2006 (s.859A, charges created by a company, and s.859H, the consequence of failing
+    to register) are disapplied (LAW-EW-03, reg. 4(4)). The trap for this clause is that the
+    disapplication is only as good as the qualification, and the regime does not reach an arrangement
+    where the collateral provider is a natural person (LAW-EW-01, reg. 3), so where there is any doubt
+    the CP list should carry a protective registration step: a registration that turns out to have been
+    unnecessary costs a fee, and one that turns out to have been necessary cannot be made late.
+  switzerland: >
+    There is nothing to file and nothing to search, so the conditions precedent are the whole of the
+    diligence and they are documentary. Take a custodian confirmation of the holdings in the pledged
+    account, an express waiver or subordination of the custodian's own rights over the account, and a
+    confirmation that no earlier control arrangement exists. [VERIFY] The statutory routes to a
+    security interest over intermediated securities, the custodian's own statutory right of retention
+    and foreclosure, and the requirement that any authorisation of a right of use be in writing and not
+    in general terms and conditions unless the account holder is a qualified investor, are recorded in
+    the WP7 research file (docs/research/jurisdictions_research.md) from the Federal Intermediated
+    Securities Act; that primary text was not opened by this drafting agent and none of those points is
+    supported by a source in the shared pool.
+  luxembourg: >
+    The conditions precedent should name which of the statutory possession routes the deal is using,
+    because they are alternatives and the security agreement has to match the one chosen. For
+    book-entry financial instruments the routes are: concluding the pledge agreement where the pledgee
+    is itself the custodian; a three-party agreement with the custodian, or a two-party agreement
+    notified to it, under which the custodian will act on the pledgee's instructions without any
+    further agreement of the provider; booking the instruments to an account of the pledgee; or
+    earmarking them in the custodian's books (LAW-LU-01, art. 5(2)(a)). Where the deal uses any route
+    other than the first, the custodian is treated as having waived its own pledge ranking unless
+    otherwise agreed or notified, so the CP should capture that in writing. A right of substitution, a
+    right to withdraw excess collateral, a right to collect proceeds and a reserved right of the
+    provider to give instructions do not prejudice the collateral having been provided (LAW-LU-01,
+    art. 2(3)), which is a materially easier position than the English one and means the CP list does
+    not have to strip the client's ordinary account rights. [VERIFY] The WP7 research file additionally
+    records that instruments evidencing a financial collateral arrangement are not subject to
+    registration formalities under art. 26 of the same law; that article was not among those read by
+    the sourcing agent or by this drafting agent.
+sources:
+  - ref: "EDGAR-ML-03"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1333493/000119312521187800/d467983dex3.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Margin loan agreement over listed shares, EDGAR accession 0001193125-21-187800. Supports the preferred tier's two-part structure (state-of-the-world conditions plus paper conditions, with acceptance of proceeds deemed to re-make the first set as representations, and collateral quality as a condition in its own right) and the acceptable tier: this is the filed document in which the sweeper survives qualified by reasonableness and the collateral-quality test is 'reasonably satisfied'."
+  - ref: "EDGAR-PL-02"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1658566/000110465916164555/a16-23883_1ex99d7.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Pledge and security agreement supporting a margin loan, EDGAR accession 0001104659-16-164555. Supports the preferred and fallback tiers on perfection: perfection is built as a chain of conditions rather than as an undertaking - custody agreement acceptable to the secured party, sub-accounts opened, control agreement with the custodian, counsel opinion, lien search and filed financing statements, and only then re-registration."
+  - ref: "EDGAR-PL-03"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1120193/000114036124012544/ef20022496_ex7-15.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Pledge and security agreement with a secured custodian securities account control agreement and a deposit account control agreement, EDGAR accession 0001140361-24-012544. Supports the third-party-custodian limb: both control agreements are executed with the depositary agent before perfection is asserted, which is why the control agreement sits in Part 1 of the fallback schedule and never in Part 2."
+  - ref: "BANK-LU-01"
+    type: bank_terms
+    url: "https://links.imagerelay.com/cdn/2958/ql/lombard-loan-contract-sqbe-en-01072023"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published Lombard loan agreement template of a Luxembourg bank (CSSF-supervised). Supports the proposition that the retail analogue of a CP schedule is a single open condition: the agreement does not come into force and no obligation arises until the bank's credit risk assessment of the client has been completed to the bank's satisfaction, and the bank may withhold or terminate if it is not."
+  - ref: "LAW-UK-02"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/uksi/2001/544/article/60H"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Regulated Activities Order 2001, art. 60H. Supports the sequencing point in the fallback and unacceptable tiers: the high-net-worth exemption depends on a prescribed borrower declaration and a compliant statement of high net worth given to the lender before the agreement is made, so a declaration signed after the facility letter cannot regularise it."
+  - ref: "LAW-EW-01"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/uksi/2003/3226/regulation/3"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Financial Collateral Arrangements (No. 2) Regulations 2003, reg. 3 (definitions). Supports the England and Wales note: possession includes crediting collateral to an account in the collateral-taker's name where the provider's rights are limited to substituting collateral of equal or greater value or withdrawing excess, and the regime requires both parties to be non-natural persons."
+  - ref: "LAW-EW-03"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/uksi/2003/3226/regulation/4"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Financial Collateral Arrangements (No. 2) Regulations 2003, reg. 4, opened and read by this drafting agent. Reg. 4(4) provides that Companies Act 2006 s.859A (charges created by a company) and s.859H (consequence of failure to register charges created by a company) do not apply in relation to a security financial collateral arrangement or any charge created or otherwise arising under one. Supports the England and Wales note, including the point that the disapplication depends on the arrangement qualifying."
+  - ref: "LAW-LU-01"
+    type: primary_law
+    url: "https://www.cssf.lu/wp-content/uploads/L_050805_fin_coll_upd_15072024.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Luxembourg Law of 5 August 2005 on financial collateral arrangements, consolidated text published by the regulator (updated 15 July 2024); arts. 3-5, 11, 12, 13, 13-1, 18-20 and 22 were read by the sourcing agent. Supports the Luxembourg note: art. 5(2)(a) gives four alternative possession routes for book-entry financial instruments, routes other than the first being treated as a waiver by the custodian of its own pledge ranking unless otherwise agreed or notified, and art. 2(3) preserves substitution, withdrawal of excess, collection of proceeds and instruction rights without prejudicing provision of the collateral. The art. 26 registration point in that note is marked [VERIFY] and is not supported by this entry."
+  - ref: "FIRM-01"
+    type: law_firm_briefing
+    url: "https://www.stblaw.com/docs/default-source/related-link-pdfs/global-legal-insights-fund-finance-2022_backleverage-financings--insights-into-the-margin-loan.pdf?sfvrsn=b1f56e21_2"
+    retrieved: 2026-09-21
+    reliability: C
+    verified: true
+    note: "Law-firm chapter on margin loan and backleverage financings in a practitioner guide. Used here only for the general architecture of a margin-loan condition set and the point that collateral value moves between signing and funding, which is why the conditions are re-tested on each utilisation."
+status: draft
+reviewed_by: null
+last_reviewed: null

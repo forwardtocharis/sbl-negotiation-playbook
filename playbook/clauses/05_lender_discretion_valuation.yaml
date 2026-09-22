@@ -1,0 +1,256 @@
+# Draft entry (WP3, drafting group B). Lender-side. Synthetic demonstrator.
+# Nothing here is legal advice.
+#
+# This is the most contested clause in practice (build_plan.md §3, brief B4). The
+# ladder below is built around one trade-off, and it is the thing to point at when
+# asked how the playbook handles a negotiation rather than a checklist:
+#   preferred / acceptable  - change takes effect IMMEDIATELY, no prior notice
+#   fallback                - X business days' prior notice for ROUTINE changes,
+#                             immediate effect preserved for four carve-outs
+#                             (required by law; rapid decline; asset ceases to be
+#                             eligible; a margin call is outstanding)
+#   unacceptable            - notice that bites in a falling market, or borrower
+#                             consent to any change
+# The concession is the notice period; what is never conceded is the carve-out.
+# Only one source opened for this playbook concedes a notice period at all
+# (EDGAR-PB-01-B: 15 days, collapsing to immediate effect where required by law or
+# where collateral value is rapidly diminishing); every other published document
+# reserves the right to change without notice.
+id: lender_discretion_valuation
+title: "Lender discretion over valuation, lending values and eligibility"
+category: collateral
+document: facility_letter
+risk_rating: high
+lender_objective: >
+  Keep the Bank able to reprice collateral risk in real time, and make the cost of any notice period
+  the Bank concedes explicit and bounded rather than open-ended.
+counterparty_asks:
+  - Replace "sole and absolute discretion" with "good faith and in a commercially reasonable manner".
+  - Require prior notice of a change in lending values or eligibility, and no change while a margin call is open.
+  - Require the Bank to show its working, meaning the calculation details and parameters behind a valuation or a call.
+  - Cap the frequency of revaluation, or allow revaluation only at stated intervals or on defined market events.
+  - Make any change conditional on an objective external trigger rather than the Bank's own view of the market.
+positions:
+  preferred:
+    # observed: change or eliminate the lending value percentage for any class at any time without
+    # prior notice (EDGAR-PB-01-A); amend haircuts and reduce or withdraw the limit at any time,
+    # without notice, with immediate effect, informing the client afterwards (BANK-LU-01); increase
+    # margin requirements at any time with no advance written notice (BANK-US-01); daily
+    # mark-to-market (BANK-US-01). No judgement number in this tier: the position is "no notice".
+    text: >
+      The Bank may at any time, in its discretion and with immediate effect, determine and re-determine
+      the market value of any pledged asset, change the lending value percentage applying to any asset
+      class or to any individual holding, add an asset class to or remove one from the Eligible Collateral
+      Schedule, and determine that a pledged asset has ceased to be eligible. The Bank values the
+      collateral at least daily using pricing sources it selects. A change takes effect when the Bank
+      makes it, whether or not the Bank has notified the Borrower and whether or not a margin call is
+      then outstanding; the Bank will inform the Borrower of the change by any means it considers
+      appropriate. No change requires the consent of the Borrower or of the Pledgor.
+    rationale: >
+      The ability to reprice risk the same day is the core protection behind an uncommitted facility, and
+      it is what the Bank has instead of covenants. If the Bank has to wait, it is holding a fixed-rate
+      view of a moving portfolio, and the loss it takes in the waiting period is exactly the loss the
+      haircut was set to avoid. Every published bank document opened for this playbook takes this
+      position, so it is the market opening rather than an aggressive one. It is also honest about what
+      the facility is: the Borrower is buying liquidity against a portfolio, not buying a fixed advance
+      rate for a term.
+    conditions: []
+  acceptable:
+    # observed: "reasonably determined", and "acting in good faith and in a commercially reasonable
+    # manner" in the market-disruption definition of a filed institutional margin loan (EDGAR-ML-03);
+    # the same standard in an English-law security deed for determining excess financial collateral
+    # (EDGAR-EN-01); good-faith calculation of lending value in a published Luxembourg template
+    # (BANK-LU-01); a Swiss-law duty to be able to produce the calculation details and parameters
+    # (FIRM-03). Immediate effect is retained in this tier; only the standard moves.
+    text: >
+      The Bank may at any time determine and re-determine the market value of any pledged asset, change
+      the lending value percentage applying to any asset class or holding, and change the composition of
+      the Eligible Collateral Schedule, in each case acting in good faith and in a commercially reasonable
+      manner and with immediate effect. The Bank will notify the Borrower of a change as soon as
+      reasonably practicable after it takes effect, and will on request provide the calculation and the
+      principal parameters used to determine a lending value or a collateral shortfall. No change requires
+      the consent of the Borrower or of the Pledgor.
+    rationale: >
+      This is a standard, not a delay, and that distinction is the whole of the concession. A good-faith
+      and commercially reasonable standard binds the Bank to a process it already follows, and the English
+      authority on appropriation confirms that what has to be reasonable is the manner of valuation judged
+      objectively, not the result, so the Bank is not underwriting the outcome. Agreeing to show the
+      calculation is also good defensive practice: under Swiss law a bank that cannot produce the
+      parameters behind a call exposes itself to liability, so the Bank should be able to do this anyway.
+      The Bank gives up the word "absolute" and keeps the timing, which is the part that has economic value.
+    conditions: []
+  fallback:
+    # THE TRADE-OFF TIER. observed: 15 days' prior written notice to modify the margin requirement,
+    # collapsing to immediate effect if the change is required by applicable law or if the value of
+    # the collateral is rapidly diminishing (EDGAR-PB-01-B) - the only notice-period concession in
+    # any source opened, and the most drafter-useful formulation in the pool because it concedes a
+    # period and then carves it out. Against it: BANK-LU-01, BANK-US-01 and EDGAR-PB-01-A all refuse
+    # any notice period. X business days is therefore a [VERIFY] judgement number anchored on a single
+    # observation of 15 days; the carve-outs are not negotiable, the number is.
+    text: >
+      Where the Bank changes the lending value percentage applying to an asset class or removes an asset
+      class from the Eligible Collateral Schedule, the change takes effect X business days after the Bank
+      has notified the Borrower. That notice period does not apply, and the change takes effect
+      immediately, where: the change is required by or results from any law, regulation, or requirement of
+      a regulator, exchange or clearing system; the Bank determines that the market value or the traded
+      liquidity of the relevant asset class or holding is declining rapidly or that a market disruption
+      has occurred; the relevant asset has ceased to be eligible under the eligible collateral clause,
+      including because it has become subject to a transfer restriction, a trading suspension or a
+      redemption gate; or a margin call is outstanding and uncured. The Bank may in all cases determine
+      and re-determine market value at any time and with immediate effect, acting in good faith and in a
+      commercially reasonable manner, and nothing in this clause requires the Bank to make an advance.
+    rationale: >
+      The notice period is the single most-asked-for concession on this clause, and it is conceded here
+      in the only shape that survives contact with a falling market: a period for routine repricing, and
+      immediate effect for the four situations in which a period would cause the loss it is meant to
+      prevent. Put plainly to the counterparty, the Bank is saying it will not change the rules on you in
+      a quiet market without warning, but it will not stand still in a loud one. The carve-out for an open
+      margin call matters more than it looks: without it the Borrower could hold the Bank to a stale
+      lending value for the length of the notice period precisely when the collateral is deteriorating.
+      Note also that the Bank keeps the right to re-mark value at any time even in this tier, because
+      valuation and lending value are different levers and only one of them is being slowed down.
+    conditions:
+      - Collateral is diversified within the concentration limit and is exchange-listed or daily-dealt.
+      - The facility is the Bank's only exposure to the Borrower, or other exposures have been considered by credit.
+      - The Bank or a member of its group is the Custodian, or an executed account control agreement is in place.
+      - The margin maintenance cure period is at or tighter than its default floor for this deal.
+      - Credit has confirmed the notice period is priced into the lending values applied.
+    approval: head of credit
+  unacceptable:
+    text: >
+      The Bank will not make a change to lending values, haircuts or eligibility conditional on the
+      Borrower's or the Pledgor's consent; will not accept a notice period that applies where the change
+      is required by law or regulation, where collateral value or liquidity is falling rapidly, where the
+      asset has ceased to be eligible, or while a margin call is outstanding; will not agree that it may
+      revalue or reprice only on the occurrence of a defined external event or only at fixed intervals;
+      will not agree to suspend revaluation, or to freeze lending values, while a call or a dispute is
+      open; and will not accept a third-party determination of value that binds the Bank or that suspends
+      a change until the determination is made.
+    rationale: >
+      Each of these converts the Bank's risk lever into something the Borrower or a third party can hold
+      down, and always at the worst moment, because the only time a borrower wants to freeze the lending
+      value is when it is about to fall. A notice period that runs through a rapid decline is not a notice
+      period, it is an unfunded put written by the Bank. Objective-trigger-only drafting fails for the
+      same reason: the events that damage a Lombard book are usually visible in liquidity and price
+      behaviour well before anything anyone has defined as a market event has occurred.
+default_floor: fallback
+escalation_triggers:
+  # observed: 15 days is the only notice period conceded in any opened source (EDGAR-PB-01-B) and it
+  # collapses on rapid decline; BANK-LU-01, BANK-US-01 and EDGAR-PB-01-A concede none. X is the
+  # institution's own tolerance.
+  - Any request for a notice period longer than X business days before a change in lending values takes effect.
+  - Any request to remove or narrow one of the four immediate-effect carve-outs, and in particular the rapid-decline or open-margin-call carve-out.
+  - Any request that the Bank may not change lending values while a margin call is outstanding.
+  - Any request for a binding third-party valuation, or for a dispute mechanism that suspends a change pending determination.
+  - Any request to limit revaluation to fixed intervals or to defined external market events.
+  - Any request that a change requires the Borrower's or the Pledgor's consent.
+depends_on:
+  - eligible_collateral_lending_values
+  - concentration_limits
+  - margin_maintenance_cure
+  - facility_type
+regulatory_flags:
+  - consumer_credit
+  - prudential_awareness
+  - restricted_securities
+not_automated:
+  - Whether a particular market move is a "rapid decline" that collapses the notice period. The clause defines who decides, not what the answer is.
+  - Whether to exercise the discretion at all on a live position, as against forbearing while the relationship is discussed.
+  - Setting the notice period itself. Only one opened source concedes one (15 days) and the number here is the institution's risk appetite.
+  - Whether to disclose the full haircut matrix to a counterparty who asks for it during negotiation.
+jurisdiction_notes:
+  england_wales: >
+    Where the Bank ends up exercising this discretion on enforcement, the English standard is that the
+    manner of valuation must be commercially reasonable judged objectively; the result itself need not be
+    reasonable, the collateral-taker stays responsible even where it uses a third-party valuer, and a
+    failure to comply does not unwind an appropriation but allows the court to substitute a compliant
+    valuation (FIRM-02, on the 2022 English High Court decision on appropriation under the financial
+    collateral regulations). An English-law security deed in the source pool applies the same
+    good-faith-and-commercially-reasonable standard to determining excess financial collateral
+    (EDGAR-EN-01). That is the argument for why conceding the acceptable tier is survivable in England:
+    the standard governs process, not outcome.
+  switzerland: >
+    Swiss practice limits the discretion from the outside rather than by negotiation: it must be exercised
+    in good faith and must not be abusive, a valid margin call must state the amount called and the
+    deadline to post it, and the Bank must be able to produce the calculation details, the parameters used
+    and accounting documentation for any liquidation, with a Geneva appellate decision cited for the
+    proposition that a bank failing those prerequisites exposes itself to liability (FIRM-03). On a Swiss
+    booking, therefore, the "show your working" ask is close to a legal duty and should be conceded early
+    rather than traded.
+  luxembourg: >
+    The Bank's valuation discretion is bounded at the exit by the statutory pricing routes: on
+    appropriation, listed instruments are taken at market price and fund units at the last published net
+    asset value provided it is less than a year old, or at the fund's redemption price (LAW-LU-01,
+    art. 11(1)(e)-(f)). [VERIFY] Luxembourg practice is also said to be to specify the agreed valuation
+    method in the security agreement, because appropriation under art. 11(1)(a) is priced by that agreed
+    method; that point comes from the WP7 research file (docs/research/jurisdictions_research.md) and was
+    not confirmed against the primary text by this agent. Note separately that a published Luxembourg
+    template is the high-water mark of lender discretion in the whole source pool (BANK-LU-01), so a
+    Luxembourg counterparty is unlikely to be able to say the preferred position is off-market.
+sources:
+  - ref: "BANK-LU-01"
+    type: bank_terms
+    url: "https://links.imagerelay.com/cdn/2958/ql/lombard-loan-contract-sqbe-en-01072023"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published Lombard loan agreement template of a Luxembourg bank (CSSF-supervised). Supports the preferred tier: the bank may reduce the Limit at any time with no obligation to give notice, may amend haircuts at any time without notice (which may reduce or withdraw the Limit), and may reduce or withdraw with immediate effect where it considers the conditions on which the Limit was granted have changed, informing the client afterwards. Its single counterweight is that lending value is calculated acting in good faith."
+  - ref: "BANK-US-01"
+    type: bank_terms
+    url: "https://www.privatebank.citibank.com/we-offer/margin-lending"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published securities-backed / margin lending disclosures of a global private bank. Supports the preferred tier: collateral marked to market daily, margin requirements may be increased at any time, and no advance written notice is required."
+  - ref: "EDGAR-PB-01"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1293153/000095012308001840/y49893exv99w7w05.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Composite exhibit, EDGAR accession 0000950123-08-001840, of three private-bank securities-lending documents given by individual and trust pledgors. Supports both ends of this ladder: sub-part A allows the bank to change or eliminate the lending value percentage for any class at any time without prior notice; sub-part B is the only document in the pool conceding a notice period, at 15 days' prior written notice, collapsing to immediate effect where the change is required by applicable law or where the value of the collateral is rapidly diminishing."
+  - ref: "EDGAR-ML-03"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1333493/000119312521187800/d467983dex3.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Margin loan agreement over listed shares, EDGAR accession 0001193125-21-187800. Supports the acceptable tier: the calculation agent's determinations are qualified as reasonably determined and, in the market-disruption definition, as made acting in good faith and in a commercially reasonable manner, so discretion is preserved but standard-bound."
+  - ref: "EDGAR-EN-01"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1530238/000110465919067794/tv533539_sc13da.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Schedule 13D/A, EDGAR accession 0001104659-19-067794, annexing an English-law amendment notice under a security deed over listed shares held by an SPV. Supports the England and Wales note: the secured party's determination that shares are excess financial collateral must be made in good faith and in a commercially reasonable manner."
+  - ref: "FIRM-03"
+    type: law_firm_briefing
+    url: "https://www.mondaq.com/commoditiesderivativesstock-exchanges/985220/margin-calls-how-can-investors-protect-their-position"
+    retrieved: 2026-09-21
+    reliability: C
+    verified: true
+    note: "Swiss practitioner note on margin calls under Swiss law and standard Lombard pledge terms. Supports the Switzerland note: discretion must be exercised in good faith and not abusively; a valid call must state the amount called and the deadline; the bank must be able to produce the calculation details and parameters and accounting documentation for a liquidation; a Geneva appellate decision is cited for liability where those prerequisites fail."
+  - ref: "FIRM-02"
+    type: law_firm_briefing
+    url: "https://www.mayerbrown.com/en/insights/publications/2022/12/security-enforcement-english-high-court-guidance-on-the-appropriation-of-collateral-under-the-financial-collateral-regulations"
+    retrieved: 2026-09-21
+    reliability: C
+    verified: true
+    note: "Law-firm note on the 2022 English High Court decision on appropriation of collateral under the financial collateral regulations. Supports the England and Wales note: the manner of valuation must be commercially reasonable judged objectively, the result need not be reasonable, the collateral-taker remains responsible where it uses a third-party valuer, and non-compliance lets the court substitute a compliant valuation rather than unwinding the appropriation."
+  - ref: "LAW-LU-01"
+    type: primary_law
+    url: "https://www.cssf.lu/wp-content/uploads/L_050805_fin_coll_upd_15072024.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Luxembourg Law of 5 August 2005 on financial collateral arrangements, consolidated text published by the regulator (updated 15 July 2024); arts. 3-5, 11, 12, 13, 13-1, 18-20 and 22 were read by the sourcing agent. Supports the art. 11(1)(e)-(f) pricing routes relied on in the Luxembourg note. The art. 11(1)(a) agreed-valuation-method point in that note is marked [VERIFY] and was not confirmed by this agent."
+  - ref: "REG-CH-01"
+    type: regulator
+    url: "https://www.finma.ch/en/~/media/finma/dokumente/dokumentencenter/myfinma/finma-publikationen/risikomonitor/20241118-finma-risikomonitor-2024.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Swiss regulator risk monitor 2024. Supports the rationale for keeping repricing immediate: supervisory concern that applied haircuts may be set too low, with focus on concentrated and more illiquid collateral."
+status: draft
+reviewed_by: null
+last_reviewed: null

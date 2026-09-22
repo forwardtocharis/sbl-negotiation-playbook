@@ -1,0 +1,10 @@
+# Stub entry. Status is 'stub': only id, title, category and lender_objective
+# are populated. Positions, sources and jurisdiction notes are added in a later
+# work package. Nothing here is legal advice or a verified market position.
+id: third_party_security_waivers
+title: "Third-party security: suretyship-type defences and waivers"
+category: parties_reps
+lender_objective: "Stop a pledgor who is not the borrower from defeating the security with defences derived from the underlying debt."
+status: stub
+reviewed_by: null
+last_reviewed: null

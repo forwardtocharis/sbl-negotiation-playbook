@@ -1,0 +1,295 @@
+# Jurisdiction overlay: England & Wales. WP7 (YAML half).
+# Drafted from the lender's side, for a facility secured on intermediated
+# securities and cash held with a custodian. Everything is `draft`: no entry has
+# been promoted by a named human reviewer. Nothing here is legal advice, and no
+# cross-border perfection or enforceability conclusion should be taken from it
+# without local counsel (see docs/not_automated_register.md).
+# Content lifted from docs/research/jurisdictions_research.md; `[VERIFY]` marks a
+# statement whose primary text was not opened in that research.
+id: england_wales
+name: England and Wales
+
+creation: >
+  For a portfolio of intermediated securities and cash held with a custodian,
+  English practice takes a security interest, normally an equitable mortgage or a
+  fixed charge over the securities account, the securities credited to it, the cash
+  balances and all proceeds, with a floating charge fallback; less commonly in this
+  product the parties use a title transfer arrangement under which legal and
+  beneficial ownership passes and the taker owes an obligation to deliver equivalent
+  assets back. A true common-law pledge sits awkwardly here because it depends on
+  delivery of possession of a tangible thing, which is why English custody security is
+  drafted in mortgage and charge language rather than as a pledge. The financial
+  collateral regulations treat pledge, mortgage, fixed charge, floating charge and lien
+  alike as security interests, so the statutory benefits can attach to a charge where
+  the other conditions are met. Lender-side, take a fixed charge or mortgage plus an
+  express contractual power of sale and an express power of appropriation, and do not
+  rely on the label the document uses. In a 2012 administration decision the court
+  analysed a clause drafted as a general lien over intangible custody assets as a
+  charge, so the substance of the dealing rights, not the heading, decides the
+  characterisation.
+
+registration_filing: >
+  For a corporate chargor, Companies Act 2006 s.859A would normally require a
+  statement of particulars to reach the registrar within 21 days beginning with the day
+  after creation, and s.859H makes an unregistered registrable charge void against a
+  liquidator, administrator or creditor. Regulation 4(4) of the financial collateral
+  regulations, as amended with effect from 6 April 2013, disapplies both s.859A and
+  s.859H in relation to a security financial collateral arrangement and any charge
+  created or arising under one, so a qualifying arrangement over a securities account
+  needs no Companies House filing. The weak link is that the exemption is only as good
+  as the qualification: if the arrangement turns out not to be a security financial
+  collateral arrangement, because a party is an individual or because possession or
+  control is not made out, the registration duty was live all along and the 21 days
+  have gone. The lender-side line is therefore to register protectively wherever there
+  is any doubt, because a needless registration costs almost nothing and a missed one
+  is fatal. There is no public filing regime for security granted by an individual over
+  intangible investments in England, so registration is simply not a live question for
+  a natural-person pledgor.
+
+perfection_depends_on: >
+  England has no filing-based perfection for this collateral, so two questions do the
+  commercial work. The first is whether the charge is fixed rather than floating, which
+  turns on how far the client is free to deal with the collateral without the lender's
+  consent. The second is whether the collateral-taker has possession or control for the
+  purposes of the financial collateral regulations: regulation 3 treats collateral as in
+  the taker's possession where it is credited to an account in the taker's name and the
+  provider's rights are limited to substituting collateral of the same or greater value
+  or withdrawing excess. The reported case law requires real dispossession of the
+  provider, so a lender holding assets as a pure nominee with no more dominion than a
+  custodian does not have control. Where the lender is also the custodian, control is
+  straightforward and should be documented in the security agreement and reflected in
+  the account terms. Where a third-party custodian holds, take an account control
+  agreement that switches off the client's dealing and withdrawal rights on a default
+  notice and obliges the custodian to act on the lender's instructions alone.
+
+enforcement_route: >
+  There are two routes and a well-drafted facility keeps both open. Sale runs either
+  under an express contractual power or under the Law of Property Act 1925 s.101 power
+  where the security is made by deed; s.101 is cut down by s.103, which stops the power
+  being exercised until notice requiring payment has been served and three months'
+  default has run, or two months' interest is in arrear, or another provision of the
+  mortgage deed has been breached, so lenders routinely contract out of s.103 and rely
+  on express drafting while remaining subject to the equitable duty to take reasonable
+  care to obtain a proper price. Appropriation runs under regulation 17, which lets a
+  collateral-taker whose security financial collateral arrangement contains an
+  appropriation power appropriate the collateral in accordance with its terms without
+  any order for foreclosure from the court, and regulation 18 requires the taker to
+  value the collateral in accordance with the arrangement and in any event in a
+  commercially reasonable manner, accounting for any excess and leaving the provider
+  liable for any shortfall. Outside those regulations there is no self-help
+  appropriation in English law, because foreclosure needs the court, which is why the
+  qualification question matters so much commercially. Regulation 8 disapplies the
+  administration moratorium and the related Insolvency Act 1986 restrictions on
+  enforcing security for financial collateral arrangements. For an individual chargor
+  there is no equivalent need, because Insolvency Act 1986 s.285(4) already preserves
+  the secured creditor's right to enforce notwithstanding the restrictions on
+  creditors' remedies after a bankruptcy order.
+
+financial_collateral_regime: >
+  The instrument is the Financial Collateral Arrangements (No. 2) Regulations 2003
+  (SI 2003/3226), implementing Directive 2002/47/EC and retained after EU exit. It
+  recognises two arrangement types, the security financial collateral arrangement and
+  the title transfer financial collateral arrangement. Both require written evidence,
+  collateral consisting of cash, financial instruments or credit claims, and delivery or
+  transfer so that the collateral is in the possession or under the control of the
+  taker. Decisively for private wealth, natural-person collateral providers are NOT
+  covered: regulation 3 requires both parties to the arrangement to be non-natural
+  persons, a non-natural person being any corporate body, unincorporated firm,
+  partnership or body with legal personality except an individual, including bodies
+  formed under foreign or international law. The benefits that turn on that scope test
+  are no Companies Act registration (regulation 4), disapplication of insolvency
+  restrictions on enforcement and of certain avoidance provisions (regulations 8 and
+  10), close-out netting effective in accordance with its terms (regulation 12),
+  protection where the taker was unaware of a winding-up or reorganisation (regulation
+  13), right of use (regulation 16), and appropriation without a court order
+  (regulation 17) subject to commercially reasonable valuation (regulation 18). So
+  where the collateral provider is an individual client or an individual third-party
+  pledgor the whole package is off the table, and the enforcement clause must be built
+  on a contractual power of sale instead; see the financial collateral safe-harbour
+  flag in playbook/flags/regulatory_flags.yaml.
+
+governing_law_of_intermediated_securities: >
+  Regulation 19 applies a PRIMA-style rule to book entry securities collateral: the
+  listed questions are governed by the domestic law of the country in which the relevant
+  account is maintained, with renvoi excluded. The questions covered are the legal
+  nature and proprietary effects of the collateral, the requirements for provision and
+  for third-party effectiveness, whether title is extinguished or subordinated by a
+  competing interest or a good-faith acquisition, priority, and the steps required to
+  realise the collateral after an enforcement event. The United Kingdom is not a
+  contracting party to the 2006 Hague Securities Convention, whose contracting parties
+  are Mauritius, Switzerland and the United States and which entered into force on
+  1 April 2017, so the proprietary law cannot be selected by agreement in the account
+  agreement the way a Swiss-booked structure allows. The practical consequence for a
+  deal lawyer is that the governing law clause in the facility and security documents
+  does not settle the proprietary analysis; the booking location of the account does.
+  If the facility is English law but the account is maintained in Zurich or Luxembourg,
+  take local counsel on creation, third-party effectiveness and realisation.
+
+practical_notes: >
+  (1) Establish at intake whether every party to the
+  collateral arrangement is a non-natural person; if not, delete or condition any
+  reliance on appropriation and on the insolvency disapplications, and say so in the
+  enforcement clause rather than leaving boilerplate that does not work. (2) Establish
+  where the account is maintained, because regulation 19 makes that the proprietary law,
+  and take local counsel if it is not England. (3) If the lender is not the custodian,
+  make an executed account control agreement a condition precedent, and make sure it
+  delivers dispossession in substance and not just a notice of charge. (4) For a
+  corporate chargor, decide the registration question deliberately and record the
+  decision, because relying on regulation 4 means betting the security on the
+  qualification. (5) Draft both a sale power and an appropriation power, contract out of
+  s.103, and specify the valuation method so that the commercially reasonable standard
+  is evidenced by a process rather than argued about after the event. (6) For a
+  third-party pledgor, take separate independent legal advice confirmations and consider
+  undue influence and misrepresentation risk where the pledgor is a spouse or family
+  member of the borrower, and corporate benefit and financial assistance questions where
+  the pledgor is a company; [VERIFY] that independent-advice practice point is stated
+  from general practice and has not been sourced to authority. (7) For a natural-person
+  pledgor, bankruptcy leaves the right to enforce intact under s.285(4) but gives none of
+  the statutory self-help, so plan for a sale under a contractual power, not
+  appropriation.
+
+sources:
+  - ref: "UK-FCAR-2003 reg 3 (current)"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/uksi/2003/3226/regulation/3"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Definitions of security interest (pledge, mortgage, fixed charge, floating charge,
+      lien), financial collateral and the two arrangement types; both parties must be
+      non-natural persons, which excludes an individual; possession includes crediting to
+      an account in the taker's name where the provider's rights are limited to
+      substitution of equal-or-greater value or withdrawal of excess.
+  - ref: "UK-FCAR-2003 reg 4 (current)"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/uksi/2003/3226/regulation/4"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Reg 4(4) disapplies Companies Act 2006 ss.859A and 859H for a security financial
+      collateral arrangement and any charge under one; the section references were
+      substituted with effect from 6 April 2013.
+  - ref: "UK-FCAR-2003 reg 8 (as made)"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/uksi/2003/3226/regulation/8/made"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Disapplies the Insolvency Act 1986 provisions restricting enforcement of security,
+      including the administration and standalone moratorium provisions, for financial
+      collateral arrangements.
+  - ref: "UK-FCAR-2003 reg 17 (as made)"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/uksi/2003/3226/regulation/17/made"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Appropriation under an express power in a security financial collateral
+      arrangement, without any court order for foreclosure.
+  - ref: "UK-FCAR-2003 reg 18 (as made)"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/uksi/2003/3226/regulation/18/made"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Duty to value the appropriated collateral in accordance with the arrangement and in
+      any event in a commercially reasonable manner, and to account for the difference.
+  - ref: "UK-FCAR-2003 reg 19 (as made)"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/uksi/2003/3226/regulation/19/made"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Applicable law for book entry securities collateral is the domestic law of the
+      country where the relevant account is maintained, renvoi excluded; lists the five
+      matters governed.
+  - ref: "UK-FCAR-2003 table of contents (as made)"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/uksi/2003/3226/contents/made"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Structure of the Regulations: Part 2 formalities, Part 3 modification of insolvency
+      law (regs 8-15), Part 4 right of use and appropriation (regs 16-18), Part 5 conflict
+      of laws (reg 19).
+  - ref: "UK-CA-2006 s.859A"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/ukpga/2006/46/section/859A"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Registrable charges created by a company; 21-day period beginning with the day after
+      creation; delivery by the company or any person interested; limited exceptions in
+      subsection (6).
+  - ref: "UK-LPA-1925 s.101"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/ukpga/Geo5/15-16/20/section/101"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Mortgagee's powers where the mortgage is by deed: sale by auction or private
+      contract, insurance and appointment of a receiver; the sale and receiver powers
+      arise once the mortgage money is due.
+  - ref: "UK-LPA-1925 s.103"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/ukpga/Geo5/15-16/20/section/103"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Three alternative pre-conditions to exercising the s.101 power of sale: notice plus
+      three months' default, two months' interest in arrear, or breach of another
+      provision of the deed.
+  - ref: "UK-IA-1986 s.285"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/ukpga/1986/45/section/285"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Restrictions on creditors' remedies after a bankruptcy order; subsection (4)
+      preserves the right of a secured creditor to enforce its security.
+  - ref: "UK-FCL-BRIEF-01: law-firm briefing on financial collateral possession and control (Nov 2012)"
+    type: law_firm_briefing
+    url: "https://www.cliffordchance.com/content/dam/cliffordchance/briefings/2012/11/financial-collateral-remains-a-gray-area.pdf"
+    retrieved: 2026-09-21
+    reliability: C
+    verified: true
+    note: >
+      Possession and control both require more than mere custody, and dispossession of the
+      collateral-provider is the key; the 2011 amendment added an inclusive possession
+      definition; reports the two English decisions relied on above, [2010] EWHC 1772 (Ch)
+      and [2012] EWHC 2997 (Ch), the latter analysing a general lien clause over intangible
+      custody assets as a charge.
+  - ref: "HCCH-36 status table (2006 Securities Convention)"
+    type: primary_law
+    url: "https://www.hcch.net/en/instruments/conventions/status-table/?cid=72"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Contracting parties are Mauritius, Switzerland and the United States; entry into
+      force 1 April 2017; the United Kingdom, Luxembourg and the EU are not parties.
+  - ref: "[VERIFY] UK-ILA-01: independent legal advice and undue influence for third-party non-commercial security"
+    type: textbook
+    url: null
+    retrieved: null
+    reliability: C
+    verified: false
+    note: >
+      Not researched. The practice point in practical_notes (6) is stated from general
+      practice and must be sourced to authority before promotion beyond draft. No URL is
+      given because none was opened.
+
+status: draft
+reviewed_by: null
+last_reviewed: null

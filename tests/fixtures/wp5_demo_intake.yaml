@@ -1,0 +1,57 @@
+# Throwaway WP5 test intake. Entirely synthetic: no real person, entity,
+# institution or portfolio. It lives in tests/fixtures/ and not in deals/,
+# because deals/ belongs to WP9.
+#
+# Shaped to exercise the engine rather than to be a realistic deal: a trust
+# borrower with a concentrated, partly restricted and partly illiquid portfolio
+# at a third-party Swiss custodian, plus one counterparty request of each kind.
+deal_id: T99
+description: >-
+  Synthetic WP5 test deal. Fictional discretionary trust borrower, concentrated
+  and partly restricted portfolio at a third-party custodian in Switzerland,
+  committed term facility. Not a real deal.
+borrower:
+  type: trust
+  domicile: JE
+  natural_person: false
+  declared_high_net_worth: null
+  business_purpose_declared: null
+pledgor:
+  same_as_borrower: true
+  type: null
+  domicile: null
+  natural_person: null
+  is_pdmr_of_pledged_issuer: true
+guarantor_present: false
+facility:
+  type: committed_term
+  purpose: acquire_securities
+  amount: 5000000
+  currency: CHF
+  benchmark: SARON
+  other_facilities_with_lender: false
+collateral:
+  governing_law: switzerland
+  custodian_location: CH
+  lender_is_custodian: false
+  currencies: [CHF, USD]
+  composition:
+    - asset_class: listed_equity
+      pct: 60
+      single_name_max_pct: 55
+      issuer_restricted: true
+    - asset_class: fund_gated
+      pct: 20
+      single_name_max_pct: null
+      issuer_restricted: false
+    - asset_class: cash
+      pct: 20
+      single_name_max_pct: null
+      issuer_restricted: false
+counterparty_requests:
+  margin_maintenance_cure:
+    tier: acceptable
+  enforcement_liquidation:
+    tier: unacceptable
+  governing_law_jurisdiction:
+    text: "Counterparty wants the courts of its own domicile to have exclusive jurisdiction."

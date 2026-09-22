@@ -1,0 +1,233 @@
+# Draft entry (WP3, drafting group B). Lender-side. Synthetic demonstrator.
+# Nothing here is legal advice.
+#
+# [VERIFY] KNOWN GAP, read before filling any number in this file:
+# no numeric single-name concentration cap appears in ANY source opened for this
+# playbook. See docs/research/clause_sources.md, "Single-name concentration caps":
+# the regulator names single-stock lending and undiversified collateral as a risk
+# (REG-CH-01, REG-CH-02) but publishes no cap; the two published bank documents use
+# diversification as an input to the limit, as a fee lever and as a liquidation
+# trigger, with no cap (BANK-LU-01, BANK-CH-01); the institutional answer to a
+# concentrated position is a lower lending value plus a same-class negative pledge
+# rather than a cap (FIRM-01, EDGAR-ML-03). The 25% and 50% thresholds assumed in
+# build_plan.md rules R06 and R06b are therefore uncorroborated by any opened source.
+# Every X in this file is the institution's own risk appetite, to be set by credit,
+# and must not be presented as a market observation.
+id: concentration_limits
+title: "Concentration limits by issuer, asset class and currency"
+category: collateral
+document: facility_letter
+risk_rating: high
+lender_objective: >
+  Stop the collateral pool becoming a bet on one name, one sector or one currency, so that the
+  Bank's recovery does not depend on a single price it cannot influence and cannot exit.
+counterparty_asks:
+  - No single-name cap at all where the facility is deliberately a single-stock loan, on the basis that the concentration is the deal.
+  - Carve the Borrower's other vehicles and connected persons out of the same-class negative pledge.
+  - Make insufficient diversification a repricing event only, and remove it as a stand-alone liquidation trigger.
+  - Grandfather an existing concentrated holding for the life of the facility, so that later rebalancing is not forced.
+  - Test concentration against market value rather than lending value, which flatters a volatile single name.
+positions:
+  preferred:
+    # [VERIFY] X% single-name cap and X% group/sector cap are judgement numbers set by credit.
+    # observed: no opened source publishes a numeric single-name cap (see the header comment).
+    # Nearest observed analogues, none of them a borrower-side cap: 10% beneficial-ownership and
+    # 50% change-of-control thresholds used as structural triggers (EDGAR-ML-04); a lender-side
+    # deemed-ownership cap conditioning enforcement disposals (EDGAR-PL-01, EDGAR-PL-02).
+    text: >
+      Collateral is eligible only to the extent it is diversified in accordance with this clause. So much
+      of the lending value attributable to securities of any one issuer as exceeds X per cent. of the
+      total lending value of the collateral is disregarded, and so much as is attributable to issuers
+      within the same group, the same industry sector or the same currency as exceeds X per cent. of the
+      total lending value is likewise disregarded. The Bank determines whether issuers form a group,
+      sector or correlated set. Neither the Borrower nor any of its affiliates or connected persons will
+      grant security over, or agree to pledge, securities of the same class as any pledged security to
+      any other financier without the Bank's consent. If the Bank considers that the collateral is not
+      sufficiently diversified it may, at its option and without prejudice to its other rights, reduce the
+      lending value of the affected securities, require the Borrower to post further eligible collateral
+      or repay, charge a differentiated fee, or treat the position as an event entitling the Bank to
+      realise the collateral in accordance with this facility letter.
+    rationale: >
+      Concentration is the risk this product actually fails on: the Bank can be perfectly secured on paper
+      and still not get out, because selling a large stake in one name moves the price against it. That is
+      why the clause bites on lending value rather than market value, and why correlated names are grouped
+      rather than counted separately. The Swiss regulator names single-stock lending and undiversified
+      collateral as a supervisory focus, so the Bank is not inventing a concern here. The same-class
+      negative pledge matters as much as the cap: several margin loans stacked on one stock create an
+      overhang that turns three lenders' exits into one queue.
+    conditions: []
+  acceptable:
+    # [VERIFY] X% single-name cap and X% excess lending value are judgement numbers set by credit.
+    # observed: no numeric cap in any opened source; diversification appears as an input to the limit
+    # and as a fee lever (BANK-LU-01, BANK-CH-01).
+    text: >
+      The single-name limit is X per cent. of the total lending value of the collateral and is set out in
+      the Eligible Collateral Schedule. Lending value attributable to an issuer above that limit is taken
+      at a reduced lending value percentage determined by the Bank rather than disregarded entirely, and
+      the Bank will tell the Borrower the limit and the reduced percentage then applying on request. The
+      Bank may change the limit in accordance with the lender discretion clause of this facility letter. A
+      breach of the limit is not of itself an event of default, but requires the Borrower to post further
+      eligible collateral, repay or substitute collateral within the cure period in the margin maintenance
+      clause, and while a breach continues the Bank need not make further advances.
+    rationale: >
+      Taking the excess at a reduced lending value rather than at nil gives the Borrower a portfolio that
+      behaves sensibly as prices move, and it keeps the Bank's protection intact because the reduction is
+      still the Bank's number. Routing a breach through the margin mechanics rather than straight to
+      default is also the right sequencing: a concentration breach usually arises from a price move, not
+      misconduct, and the Bank's remedy is more collateral, not enforcement. Stopping further advances
+      while the breach continues is what keeps the position from being made worse while it is being cured.
+    conditions: []
+  fallback:
+    # [VERIFY] X% cap, the fixing period (X months) and the notice period (X business days) are all
+    # judgement numbers. observed: no opened source concedes a fixed cap; the closest analogue to a
+    # notice-period concession anywhere in the pool is 15 days' notice of a change to the margin
+    # requirement, with immediate effect where value is rapidly diminishing (EDGAR-PB-01-B).
+    text: >
+      The single-name limit is X per cent. of the total lending value of the collateral and the Bank will
+      not reduce it for X months from the date of this facility letter except on X business days' prior
+      written notice, and may reduce it with immediate effect only where the change is required by law or
+      regulation, where the relevant security ceases to be eligible, or where the Bank determines that the
+      market value or traded liquidity of the relevant security is declining rapidly. The holdings
+      identified in Part 2 of the Eligible Collateral Schedule are treated as within the limit at the date
+      of this facility letter notwithstanding that they exceed it, provided that the Borrower does not
+      increase them and that the excess is taken at the reduced lending value percentage stated in the
+      Schedule. The same-class undertaking applies to the Borrower and to any entity it controls, rather
+      than to all of its affiliates and connected persons. Insufficient diversification is a repricing and
+      collateral top-up event and is not of itself a ground for realisation.
+    rationale: >
+      Every element of this is a genuine loss of protection, which is why it needs credit approval and
+      conditions rather than a deal lawyer's signature. Grandfathering a concentrated holding is defensible
+      only if it cannot grow and only if it is already carried at a lending value that assumes a difficult
+      exit. Narrowing the same-class undertaking to controlled entities is the concession most often asked
+      for and the least damaging, because it still stops the Borrower stacking financings on the same
+      stock through vehicles it directs. Giving up the stand-alone realisation right is survivable only
+      because the margin mechanics still deliver an enforcement route once the position is not cured.
+    conditions:
+      - The grandfathered holding is exchange-listed, liquid and not restricted, locked-up or control stock.
+      - The excess is carried at a reduced lending value percentage priced by credit.
+      - The Borrower undertakes not to increase the grandfathered holding.
+      - Neither the Borrower nor the Pledgor is a PDMR or insider of the concentrated issuer.
+      - The margin maintenance cure period for this facility is at or tighter than its default floor.
+    approval: credit committee
+  unacceptable:
+    text: >
+      The Bank will not lend against a concentrated portfolio with no concentration discipline at all,
+      meaning no single-name limit, no reduction in lending value for the concentrated position and no
+      same-class undertaking. It will not agree that concentration is tested against market value rather
+      than lending value, that a limit once set can never be changed, or that a breach discovered after
+      drawdown has no consequence until maturity. It will not accept a term preventing it from treating
+      issuers in the same group, sector or currency as a single exposure, or from re-testing concentration
+      during the life of the facility.
+    rationale: >
+      A single-stock facility can be a perfectly good transaction, but only when it is priced as one: the
+      lender's answer to concentration is a lower lending value and a negative pledge, not indifference. If
+      the Bank can neither cap the exposure, nor discount it, nor stop the same stock being pledged
+      elsewhere, it has written an unsecured loan with extra paperwork. Testing against market value rather
+      than lending value would also hide exactly the exposure the clause exists to measure, because the
+      concentrated name is usually the one carrying the largest haircut.
+default_floor: fallback
+escalation_triggers:
+  # [VERIFY] thresholds below are the institution's own risk appetite. build_plan.md R06 (>25%) and
+  # R06b (>50%) use these figures and they are not corroborated by any opened source.
+  - Any single-name exposure above X per cent. of total lending value at drawdown.
+  - Any request to grandfather an existing holding above the single-name limit.
+  - Any request to remove or narrow the same-class negative pledge beyond entities the Borrower controls.
+  - Any request to fix the single-name limit for the life of the facility or to require the Borrower's consent to change it.
+  - Any request to test concentration against market value rather than lending value.
+depends_on:
+  - eligible_collateral_lending_values
+  - lender_discretion_valuation
+  - margin_maintenance_cure
+  - enforcement_liquidation
+regulatory_flags:
+  - restricted_securities
+  - market_abuse
+  - prudential_awareness
+not_automated:
+  - Setting the single-name and sector limits themselves. No opened source supports a number; this is the institution's risk appetite and credit owns it.
+  - Whether two issuers are correlated enough to be treated as one exposure.
+  - Whether to grandfather an existing concentrated holding, and at what reduced lending value.
+  - Whether a concentrated position that is also restricted or PDMR-connected should be taken at all, rather than discounted.
+jurisdiction_notes:
+  england_wales: "No jurisdiction-specific variation identified [VERIFY]"
+  switzerland: >
+    The Swiss regulator's risk monitors name concentration risk in Lombard books directly: loans secured
+    on single securities or on undiversified collateral, and the correlated version of the same problem
+    where several banks have lent against the same collateral (REG-CH-02), with supervision focused on
+    concentrated and more illiquid collateral (REG-CH-01). A concentrated Swiss-booked facility should
+    therefore expect supervisory attention and the file should record why the lending value applied is
+    adequate for the exit, not merely for the price.
+  luxembourg: >
+    A published Luxembourg bank template treats insufficient diversification as an input to the limit, as
+    a ground for differentiated fees, and as a stand-alone ground for unilateral realisation without prior
+    notice (BANK-LU-01), which is consistent with enforcement without prior notice being the statutory
+    default under the financial collateral law unless the parties provide otherwise (LAW-LU-01, art. 11).
+    The practical point for drafting is that the stand-alone diversification trigger is worth more in
+    Luxembourg than elsewhere, so give it up knowingly rather than as a tidy-up.
+sources:
+  - ref: "REG-CH-02"
+    type: regulator
+    url: "https://www.finma.ch/en/~/media/finma/dokumente/dokumentencenter/myfinma/finma-publikationen/risikomonitor/20251117-finma-risikomonitor-2025.pdf?sc_lang=en"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Swiss regulator risk monitor 2025. Supports: concentration risk named as single-stock lending and undiversified collateral, plus correlated exposure across banks lending against the same collateral. Cleanest regulator-level authority for the clause existing at all. States no numeric cap."
+  - ref: "REG-CH-01"
+    type: regulator
+    url: "https://www.finma.ch/en/~/media/finma/dokumente/dokumentencenter/myfinma/finma-publikationen/risikomonitor/20241118-finma-risikomonitor-2024.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Swiss regulator risk monitor 2024. Supports: supervision of the Lombard book focused on risks emerging from concentrated or more illiquid collateral. States no numeric cap."
+  - ref: "BANK-LU-01"
+    type: bank_terms
+    url: "https://links.imagerelay.com/cdn/2958/ql/lombard-loan-contract-sqbe-en-01072023"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published Lombard loan agreement template of a Luxembourg bank (CSSF-supervised). Supports: concentration handled without a numeric cap, through diversification as an input to the Limit, differentiated fees where the portfolio is not sufficiently diversified, and insufficient diversification as a free-standing ground for unilateral liquidation without prior notice."
+  - ref: "BANK-CH-01"
+    type: bank_terms
+    url: "https://www.ubs.com/content/dam/assets/microsites/credit-suisse/static/doc/lombardkredit-factsheet-en.pdf"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published Lombard loan product factsheet of a Swiss bank. Supports: diversification of the portfolio as one of the stated inputs into the loan-to-value ratio applied. States no numeric cap."
+  - ref: "FIRM-01"
+    type: law_firm_briefing
+    url: "https://www.stblaw.com/docs/default-source/related-link-pdfs/global-legal-insights-fund-finance-2022_backleverage-financings--insights-into-the-margin-loan.pdf?sfvrsn=b1f56e21_2"
+    retrieved: 2026-09-21
+    reliability: C
+    verified: true
+    note: "Practitioner-guide chapter on margin loan financings. Supports: the same-class negative pledge (a 'Future Financing' or 'Restricted Transactions' covenant) stopping borrower affiliates pledging securities of the same class to secure other financings, to prevent stacked margin loans and an exit overhang; and that the lender's answer to a single-stock deal is a lower LTV plus that covenant rather than a cap."
+  - ref: "EDGAR-ML-03"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1333493/000119312521187800/d467983dex3.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Margin loan agreement over listed shares, EDGAR accession 0001193125-21-187800. Supports: the same-class restriction carried as a representation that no loan party or affiliate is party to a restricted transaction."
+  - ref: "EDGAR-ML-04"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/2068577/000149315225028763/ex7.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Margin loan agreement over listed shares, EDGAR accession 0001493152-25-028763 (filed Dec 2025). Supports: 10% beneficial-ownership and 50% change-of-control thresholds used as structural triggers, with an underwriter lock-up attached to the pledged stock. These are structural triggers, not borrower-side concentration caps."
+  - ref: "EDGAR-PL-01"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1723128/000089843224000401/exh99-5.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Pledge and security agreement supporting a margin loan, EDGAR accession 0000898432-24-000401. Supports: concentration as a two-sided constraint, with an 'Ownership and Bust-Up' cap on the lender's own deemed beneficial ownership of the issuer conditioning enforcement sales."
+  - ref: "LAW-LU-01"
+    type: primary_law
+    url: "https://www.cssf.lu/wp-content/uploads/L_050805_fin_coll_upd_15072024.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Luxembourg Law of 5 August 2005 on financial collateral arrangements, consolidated text published by the regulator (updated 15 July 2024); arts. 3-5, 11, 12, 13, 13-1, 18-20 and 22 were read by the sourcing agent. Supports the Luxembourg jurisdiction note: enforcement under art. 11 operates 'unless otherwise provided for', so a contractual realisation trigger is effective without prior notice unless the parties agree otherwise."
+status: draft
+reviewed_by: null
+last_reviewed: null

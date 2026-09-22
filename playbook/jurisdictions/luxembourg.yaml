@@ -1,0 +1,215 @@
+# Jurisdiction overlay: Luxembourg. WP7 (YAML half).
+# Drafted from the lender's side, for a facility secured on intermediated
+# securities and cash held with a custodian. Everything is `draft`: no entry has
+# been promoted by a named human reviewer. Nothing here is legal advice, and no
+# cross-border perfection or enforceability conclusion should be taken from it
+# without local counsel (see docs/not_automated_register.md).
+# Content lifted from docs/research/jurisdictions_research.md; `[VERIFY]` marks a
+# statement whose primary text was not opened in that research.
+id: luxembourg
+name: Luxembourg
+
+creation: >
+  The Law of 5 August 2005 on financial collateral arrangements, as amended, most
+  recently by the laws of 20 July 2022 and 15 July 2024, governs the whole field.
+  Collateral means financial instruments and claims, and financial instruments is given
+  the broadest possible meaning, expressly including shares, units in collective
+  investment undertakings, bonds and certificates of deposit. A pledge is created by
+  agreement; the provision of collateral must be capable of being evidenced in writing,
+  in electronic or other durable form, and must allow the collateral to be identified,
+  and for book-entry financial instruments and cash claims it is enough to show that they
+  have been credited to, or form a credit in, a designated account. Article 4 allows the
+  parties to agree an all-present-and-future pledge without needing to designate the
+  collateral specifically, which is exactly what a revolving portfolio needs. Article
+  2(4) allows collateral to be provided to a person acting for the account of
+  beneficiaries, a fiduciary or a trustee for determined or determinable third-party
+  beneficiaries, who then enjoy the same rights as direct beneficiaries. The Law also
+  covers title transfer for security purposes and fiduciary transfer under Article 13,
+  where a fiduciary must be a financial sector professional, and repurchase agreements
+  under Articles 15 to 17.
+
+registration_filing: >
+  There is none. Article 26 provides that instruments evidencing a financial collateral
+  arrangement are not subject to registration formalities, and are registered at the fixed
+  rate if voluntarily submitted to the registration formality. There is no equivalent of
+  the English companies charge register for a financial collateral arrangement and no
+  notice filing, which is one of the reasons Luxembourg collateral is quick to take. As in
+  Switzerland, the corollary is that there is nothing to search: priority is determined by
+  the date on which each pledge became enforceable against third parties under Article
+  5(6). The diligence is therefore documentary, meaning custodian confirmations and
+  express treatment of the custodian's own ranking, rather than a register search.
+
+perfection_depends_on: >
+  Possession, defined functionally through the custodian, is what does the work. Article
+  5(1) provides that the privilege only remains on the pledged collateral if it has been
+  and remains, or is deemed to have remained, in the possession of the pledgee or an
+  agreed third party. For book-entry financial instruments, Article 5(2)(a) gives four
+  alternatives: simply concluding the pledge agreement, where the pledgee is the
+  custodian; a three-party agreement between provider, pledgee and custodian, or a
+  two-party agreement notified to the custodian, under which the custodian will act on the
+  pledgee's instructions without any further agreement of the provider; booking the
+  instruments to an account of the pledgee; or earmarking them, without number
+  specification, in the custodian's books on an account in the provider's or an agreed
+  third-party custodian's name. The second, third and fourth routes are treated as a
+  waiver by the custodian of its own pledge ranking unless otherwise agreed or notified.
+  For other financial instruments, Article 5(3) requires notification to or acknowledgement
+  by the issuer or the third-party custodian, and for a pledge over claims including cash
+  balances, Article 5(4) makes it effective against the debtor and third parties on the
+  mere conclusion of the pledge contract, although the account debtor can still validly pay
+  the provider until it learns of the pledge. Article 2(3) confirms that a right of
+  substitution, a right to withdraw excess collateral, a right to collect proceeds until
+  further notice, and a reserved right of the provider to give instructions do not
+  prejudice the collateral having been provided, which is a materially more
+  collateral-taker-friendly position than the English dispossession case law.
+
+enforcement_route: >
+  Article 11(1) is the centrepiece: on an enforcement event the pledgee may, unless
+  otherwise provided for and without prior notice, appropriate the pledged collateral or
+  have a third party appropriate it at a price determined before or after appropriation by
+  the agreed valuation method; assign it or cause it to be assigned by private sale in a
+  commercially reasonable manner, on a trading venue on which it is admitted to trading, or
+  by public auction; obtain a judgment attributing the collateral in payment on an expert
+  valuation; net under Part V; appropriate listed financial instruments at the market price,
+  or units in a collective investment undertaking at that price or at the last published net
+  asset value provided it is not more than a year old; request redemption of pledged fund
+  units at the redemption price; or exercise the rights under a pledged insurance contract,
+  including surrender. Article 11(3) obliges a third-party custodian to transfer the
+  instruments to the pledgee on notice of an enforcement event without the provider's consent
+  and without informing it in advance, and allows the pledgee to demand payment directly from
+  the debtor of a pledged monetary claim. Article 11(2) sets out the public-auction machinery
+  in detail, with a Luxembourg bailiff or notary as auctioneer, at least eight working days'
+  press notice with prescribed content, sale to the highest bidder with payment permitted by
+  set-off against the secured obligations, and minutes within three working days. The
+  enforcement event is whatever the parties agree under Article 1(6). Lender-side, choose and
+  specify the route and the valuation method in the security agreement, because Article 11 is
+  a menu and the opening words "unless otherwise provided for" mean the drafting can narrow
+  it as well as widen it.
+
+financial_collateral_regime: >
+  The instrument is the Law of 5 August 2005 on financial collateral arrangements,
+  transposing Directive 2002/47/EC and repealing the earlier repurchase and
+  transfer-of-ownership-for-security laws. On the scope of persons, natural-person
+  collateral providers ARE covered, in contrast to England: the Law contains no requirement
+  that both parties be non-natural persons, Article 2(1) expressly contemplates financial
+  collateral arrangements and netting agreements entered into either by a merchant or a
+  non-merchant, and Article 20(4) carves the Law of 8 December 2000 on over-indebtedness out
+  of the general disapplication of insolvency law, a carve-out that only makes sense if
+  private individuals are within scope. [VERIFY] that last step is an inference from the
+  primary text rather than an express scope provision, the Law having no scope article naming
+  eligible persons, and it must be confirmed by Luxembourg counsel before it leaves draft.
+  The core benefits sit in Articles 20 and 21: financial collateral arrangements, the agreed
+  enforcement events, netting agreements and the agreed valuation and enforcement measures are
+  valid and enforceable against third parties, commissioners, receivers and liquidators
+  notwithstanding reorganisation measures, winding-up proceedings or any other similar
+  national or foreign proceedings under Article 20(1); termination, valuation, enforcement and
+  netting triggered by an enforcement procedure or protective measure are deemed to have
+  occurred before it under Article 20(2); the listed civil, commercial and national or foreign
+  insolvency, attachment and similar provisions do not apply, with the over-indebtedness law
+  the sole carve-out under Article 20(4); the same rules apply on the death or incapacity of
+  the collateral provider or the debtor under the final paragraph of Article 20(4);
+  arrangements made on the day of opening but before the court decision are valid, and
+  arrangements made after it are valid if the taker proves it neither knew nor should have
+  known, under Article 21. Article 24 confirms that the disapplied national provisions remain
+  disapplied where the collateral provider is established or resident in Luxembourg.
+
+governing_law_of_intermediated_securities: >
+  Article 23 is Luxembourg's PRIMA rule and it mirrors the English account-location rule
+  almost exactly: any question on the listed matters arising in relation to financial
+  collateral over financial instruments transferable by book entry is governed by the law of
+  the country in which the relevant account is maintained, meaning its domestic law with
+  renvoi excluded. The matters covered are the legal nature and proprietary effects, the
+  requirements for provision and for third-party effectiveness, extinction or subordination by
+  a competing interest or a good-faith acquisition, the custodian's obligations to a competing
+  claimant, the conditions for realisation after an enforcement event, and the extent of the
+  arrangement over dividends, income, distributions, reimbursements and proceeds. Relevant
+  account is defined in Article 1(3) as the register or account in which the entries providing
+  the collateral are made, which may be maintained by the collateral taker itself. Luxembourg
+  is not a contracting party to the 2006 Hague Securities Convention, so there is no
+  choice-of-law route to displace the account-location rule. The practical consequence is the
+  same as England's: the account booking location, not the governing law of the pledge
+  agreement, drives the proprietary analysis.
+
+practical_notes: >
+  (1) If the bank is the Luxembourg custodian, Article 5(2)(a)(i) means the pledge agreement
+  alone perfects, which is the cheapest structure of the three jurisdictions; if a third-party
+  custodian holds, use the Article 5(2)(a)(ii) route and take the custodian's acknowledgement
+  in writing, remembering that this route is treated as the custodian waiving its own ranking
+  unless it says otherwise. (2) Use the Article 4 all-present-and-future formulation so that
+  substitutions in a revolving portfolio do not need new security, and rely on Article 2(3) so
+  that the client's right to trade the portfolio until a default notice does not undermine the
+  pledge, which is a genuine structural advantage over English law. (3) Specify the valuation
+  method in the security agreement, because Article 11(1)(a) appropriation is priced by the
+  agreed valuation method, and without one the lender is pushed toward private sale in a
+  commercially reasonable manner or auction. (4) Enforcement without prior notice is the
+  statutory default, but Article 11(1) opens with "unless otherwise provided for", so do not
+  let a negotiated notice period creep into the security agreement unless it is meant, and if
+  the client insists put it in the facility letter as a courtesy undertaking rather than as a
+  condition of the enforcement power. (5) For a natural-person pledgor the Law applies, but the
+  over-indebtedness carve-out in Article 20(4) means full insolvency remoteness cannot be
+  assumed against a Luxembourg-resident individual, so have Luxembourg counsel scope the
+  over-indebtedness procedure for the specific client. (6) For a third-party pledgor the Law is
+  comfortable with security for a third party's obligations and with fiduciary or agent
+  structures under Article 2(4), and Article 2(6) even allows the provider to waive its recourse
+  claims against the principal debtor, valid against third parties, but corporate benefit and,
+  for an individual, independent advice remain ordinary diligence items. (7) The death or
+  incapacity rule in Article 20(4) is directly useful for a private-client pledgor and is worth
+  citing in the events-of-default rationale.
+
+sources:
+  - ref: "LU-FCL-2005 (CSSF consolidated text updated 15 July 2024), Arts 1-5, 10-13, 20, 21, 23, 24, 26"
+    type: primary_law
+    url: "https://www.cssf.lu/wp-content/uploads/L_050805_fin_coll_upd_15072024.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Consolidation published for information only, with the official journal texts
+      authoritative. Art. 1(1), 1(3) and 1(6) definitions including relevant account and
+      enforcement event; Art. 2(1) merchant or non-merchant; Art. 2(2) written evidence and
+      identification, account credit sufficient for book-entry instruments and cash claims;
+      Art. 2(3) substitution, withdrawal of excess, collection of proceeds and instruction
+      rights do not prejudice provision; Art. 2(4) collateral to a fiduciary, trustee or
+      person acting for beneficiaries; Art. 2(6) waiver of recourse against the debtor;
+      Art. 4 all-assets pledge without specific designation; Art. 5 the possession routes for
+      book-entry instruments, other instruments and claims, the custodian ranking waiver and
+      the Art. 5(6) priority rule; Art. 10 right of use; Art. 11 enforcement without prior
+      notice, the seven routes, the auction machinery and the third-party custodian's transfer
+      duty; Art. 13 title transfer and fiduciary transfer; Arts 20, 21 and 24 insolvency
+      remoteness with the over-indebtedness carve-out and the death-or-incapacity rule;
+      Art. 23 the account-location rule; Art. 26 no registration formalities.
+  - ref: "LU-FCL-BRIEF-01: law-firm briefing on the Luxembourg financial collateral law (2022)"
+    type: law_firm_briefing
+    url: "https://www.addleshawgoddard.com/en/insights/insights-briefings/2022/finance/luxembourg-financial-collateral-law/"
+    retrieved: 2026-09-21
+    reliability: C
+    verified: true
+    note: >
+      Confirms that the 2022 amendments broadened enforcement to sale on a trading venue,
+      whether a regulated market, an MTF or an OTF, and added enforcement of pledged insurance
+      contracts. It is silent on natural persons, on prior notice and on insolvency
+      remoteness, so it does not corroborate those points.
+  - ref: "HCCH-36 status table (2006 Securities Convention)"
+    type: primary_law
+    url: "https://www.hcch.net/en/instruments/conventions/status-table/?cid=72"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: >
+      Luxembourg and the EU are not contracting parties, so there is no choice-of-law route
+      out of the account-location rule.
+  - ref: "[VERIFY] LU-NATPERS-01: promotional-body article on the Luxembourg collateral law and its beneficiaries"
+    type: law_firm_briefing
+    url: "https://www.luxembourgforfinance.com/portfolio/luxembourgs-collateral-law-particularly-favourable-to-beneficiaries/"
+    retrieved: null
+    reliability: C
+    verified: false
+    note: >
+      URL seen in search results but NOT opened. A search snippet indicated that, except for
+      over-indebtedness proceedings concerning private individuals, financial collateral
+      arrangements are safe-harboured. It would corroborate the natural-person scope point in
+      financial_collateral_regime and must be opened, or replaced with a Luxembourg counsel
+      confirmation, before that point moves past draft.
+
+status: draft
+reviewed_by: null
+last_reviewed: null

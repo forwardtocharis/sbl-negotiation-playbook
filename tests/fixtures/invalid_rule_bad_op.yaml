@@ -1,0 +1,15 @@
+# INVALID (8): condition uses an operator outside the closed list.
+- id: RX08_bad_op
+  title: Condition using an operator that is not in the grammar
+  priority: 10
+  when:
+    all:
+      - { field: facility.amount, op: greater_than, value: 1000000 }
+  then:
+    - action: note
+      clause: facility_type
+      text: "Should never be reached: the rule must fail to load."
+  rationale: Deliberately invalid fixture for the schema tests.
+  status: draft
+  reviewed_by: null
+  last_reviewed: null

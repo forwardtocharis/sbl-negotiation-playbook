@@ -1,0 +1,379 @@
+# Draft entry (WP3, drafting group D). Lender-side. Synthetic demonstrator.
+# Nothing here is legal advice.
+#
+# The ladder on this clause is built around three separate fights, and it helps to
+# keep them apart when negotiating:
+#   1. WHO is caught. The private-bank drafting in the pool defines the trigger
+#      population very widely - borrower, pledgor, any other guarantor or collateral
+#      provider, AND any beneficial owner or settlor of any of them (EDGAR-PB-01-C).
+#      The counterparty ask is always to narrow that population.
+#   2. WHAT counts. "Threatened" insolvency, litigation and change of law are
+#      observed in two separate documents (EDGAR-PB-01-C, BANK-LU-03). The
+#      institutional counter-model deletes the general MAC entirely and replaces it
+#      with a closed list of mandatory prepayment events (FIRM-01, EDGAR-ML-04).
+#   3. HOW LONG. Graduated grace periods are the institutional concession
+#      (EDGAR-ML-03); the private-bank and retail documents concede almost none.
+# What is never conceded is the margin-call limb: failure to meet a call is a
+# default with no grace and no materiality qualifier, because it is the only event
+# in the list that is already the output of a cure period.
+#
+# [VERIFY] INCAPACITY SHORT OF DEATH. Death is well sourced from three angles.
+# Incapacity is covered only by the word "incompetent" in one filed private-bank
+# document (EDGAR-PB-01-C) and by the Luxembourg statute treating death and
+# incapacity of the collateral provider alike (LAW-LU-01 art. 20(4)). No mental-
+# capacity law, no power-of-attorney analysis and no market practice on incapacity
+# was opened for this playbook. Every statement about incapacity below is [VERIFY].
+#
+# R11 INTERACTION. build_plan.md R11 tightens this clause's floor to `acceptable`
+# on a committed term facility. That is why `default_floor` is `fallback` and not
+# `acceptable`: a default floor of `acceptable` would make R11 a no-op on every
+# deal. The reason for the rule is set out in the fallback rationale.
+id: events_of_default
+title: "Events of default, including insolvency, death or incapacity and material adverse change"
+category: default_enforcement
+document: facility_letter
+risk_rating: high
+lender_objective: >
+  Fix in advance every event on which the Bank may accelerate and move to enforcement, so that the
+  decision to stop lending is a contractual right the Bank already holds rather than an argument it
+  has to win under the general law at the worst possible moment.
+counterparty_asks:
+  - Delete the general material adverse change limb and replace it with a closed, enumerated list of events.
+  - Add materiality qualifiers and grace periods to the payment and covenant defaults.
+  - Narrow the definition of the persons whose death, incapacity, insolvency or misstatement triggers a default, so that it does not reach beneficial owners or settlors.
+  - Remove "threatened" from the insolvency, litigation and change-of-law limbs.
+  - Remove death of an individual borrower or pledgor as a stand-alone trigger, replacing it with a standstill while the estate is administered.
+  - Limit cross-default to a threshold amount, and exclude other facilities with the Bank and its group from it.
+positions:
+  preferred:
+    # observed: payment default with no grace for principal and none for a margin call amount
+    # (EDGAR-ML-03); "threatened" insolvency, business failure, material litigation and the
+    # actual or threatened effect of any law, regulation, order or decree (EDGAR-PB-01-C); the
+    # same "occurs or threatens to occur" deterioration limb (BANK-LU-03); death or incompetence
+    # of any person in a defined class reaching beneficial owners and settlors (EDGAR-PB-01-C);
+    # death of the client as a stand-alone realisation trigger (BANK-LU-01); the bank deeming the
+    # collateral inadequate, impaired or insecure (EDGAR-PB-01-C); attachment, seizure, forfeiture,
+    # subpoena, court order or regulatory proceedings as determined in the bank's sole discretion
+    # (EDGAR-PB-01-C); security ceasing to be a valid first-priority perfected interest and
+    # illegality (EDGAR-ML-03). No judgement number in this tier: the position is "no grace".
+    text: >
+      Each of the following is an Event of Default. The Borrower fails to pay any amount when due.
+      The Borrower or the Pledgor fails to meet a margin call, to deliver additional collateral by the
+      deadline set under the margin maintenance and cure clause, or to respond to a call. Any
+      representation, warranty or information given by or on behalf of a Relevant Person is incorrect,
+      incomplete or misleading when given or when repeated. A Relevant Person is subject to, or is
+      threatened with, insolvency, bankruptcy, moratorium, composition, business failure, material
+      litigation or the appointment of an insolvency officer, or takes any step towards any of them.
+      A Relevant Person who is an individual dies or loses legal capacity, or a Relevant Person which
+      is not an individual is dissolved, ceases to exist, loses a constitutive status on which the
+      facility was granted, or has its constitutive documents amended, restated, revoked or
+      invalidated. Any attachment, seizure, forfeiture, freezing or restraint order, subpoena, court
+      order or regulatory proceeding affects a Relevant Person or a substantial part of its assets.
+      The Bank considers that the collateral has become inadequate, impaired or insecure, or that the
+      conditions on which the Bank granted the facility have changed. An event of default, termination
+      event or acceleration occurs under any other facility, guarantee, hedging or derivative
+      arrangement between a Relevant Person and the Bank or any member of the Bank's group, or under
+      any financial indebtedness of a Relevant Person owed to any other person. Performance becomes
+      unlawful, or a change in law, regulation or regulatory requirement increases the Bank's cost or
+      reduces its return. The security ceases to be a valid, first-ranking and perfected interest in
+      the collateral. "Relevant Person" means the Borrower, the Pledgor, any guarantor, any other
+      provider of collateral, and any beneficial owner or settlor of any of them. On an Event of
+      Default all amounts owing become immediately due and payable without notice or demand, the
+      Bank's commitment (if any) is cancelled, and the Bank may enforce under the security documents
+      without further notice.
+    rationale: >
+      This list is the Bank's exit, and on this product the exit has to be available before the loss
+      has crystallised rather than after. That is why the insolvency and deterioration limbs reach
+      threatened events: by the time a private client's insolvency is a matter of record, the
+      collateral has usually already moved. The width of "Relevant Person" is deliberate and is the
+      single most contested definition in the clause; a facility to a trust or a personal holding
+      vehicle is in practice a facility to the individual behind it, and the events that damage the
+      credit are events in that individual's life, not in the vehicle's. Every limb here is observed
+      in a published or filed document from this side of the market, so it is an opening position and
+      not an aggressive one.
+    conditions: []
+  acceptable:
+    # observed: 1 business day grace for interest and fees, 2 business days where the failure was
+    # purely administrative or operational error, no grace for principal or for a margin call amount
+    # (EDGAR-ML-03); involuntary insolvency proceedings undismissed for 30 days, voluntary insolvency
+    # accelerating automatically (EDGAR-ML-03); good faith and commercially reasonable determinations
+    # (EDGAR-ML-03, EDGAR-EN-01); cross-default above a threshold amount after any applicable grace
+    # (EDGAR-ML-03), the threshold itself not stated in any opened document.
+    # X business days (payment grace on interest and fees): observed 1-2 business days (EDGAR-ML-03).
+    # X days (involuntary insolvency dismissal window): observed 30 days (EDGAR-ML-03).
+    # X (cross-default threshold amount): no opened source states a number; institution's own appetite.
+    text: >
+      Each of the following is an Event of Default. The Borrower fails to pay principal when due, with
+      no grace period, or fails to pay interest, fees or expenses within X business days of the due
+      date. The Borrower or the Pledgor fails to meet a margin call or to deliver additional collateral
+      by the deadline set under the margin maintenance and cure clause, with no grace period and
+      subject to no materiality qualifier. A representation, warranty or information given by or on
+      behalf of a Relevant Person is incorrect or misleading in any material respect when given or
+      repeated. A Relevant Person commences or consents to insolvency, bankruptcy, moratorium or
+      composition proceedings, or has such proceedings commenced against it which are not dismissed or
+      stayed within X days, or is threatened with insolvency in a manner the Bank determines, acting in
+      good faith and in a commercially reasonable manner, to be material. A Relevant Person who is an
+      individual dies or loses legal capacity, or a Relevant Person which is not an individual is
+      dissolved or has its constitutive documents revoked or invalidated. The Bank determines, acting
+      in good faith and in a commercially reasonable manner, that the collateral has become inadequate
+      or impaired, that the realisable value or the traded liquidity of the collateral has materially
+      deteriorated, or that there has been a substantial deterioration in the financial condition of a
+      Relevant Person. An event of default, termination event or acceleration occurs under any other
+      facility, guarantee, hedging or derivative arrangement between a Relevant Person and the Bank or
+      any member of the Bank's group, or under financial indebtedness of a Relevant Person owed to any
+      other person in an aggregate amount of at least X. Performance becomes unlawful, or the security
+      ceases to be a valid, first-ranking and perfected interest in the collateral. "Relevant Person"
+      means the Borrower, the Pledgor, any guarantor, any other provider of collateral, and any
+      individual whose death or incapacity would, in the Bank's reasonable opinion, affect the ability
+      of the Borrower or the Pledgor to perform or the Bank's ability to deal with the collateral,
+      including a settlor with reserved powers, a sole trustee or a joint account holder. On an Event
+      of Default all amounts owing become immediately due and payable and the Bank may enforce under
+      the security documents; acceleration is automatic and requires no notice where a Relevant Person
+      has itself commenced insolvency proceedings.
+    rationale: >
+      What moves in this tier is the standard and the calendar, not the list of events. Grace on
+      interest and fees is an operational concession about payment plumbing and it costs the Bank
+      nothing; grace on principal or on a margin call amount would be a different thing entirely,
+      because the margin call has already had its cure period and a second grace period is simply a
+      longer cure. Binding the deterioration and collateral limbs to good faith and commercial
+      reasonableness gives the counterparty an objective standard without giving it a veto, and the
+      filed institutional documents show that standard is where this market actually settles. The
+      narrowed "Relevant Person" definition is drawn by function rather than by status: the question
+      the Bank cares about is whose death or incapacity would stop the collateral being dealt with,
+      and that is a question with a factual answer at intake.
+    conditions: []
+  fallback:
+    # THE TRADE-OFF TIER. observed: no general MAC at all, replaced by a closed list of mandatory
+    # prepayment events - issuer insolvency, change of control, delisting, trading suspension beyond
+    # a set number of trading days, nationalisation - plus an independent share price trigger
+    # (FIRM-01, EDGAR-ML-01, EDGAR-ML-04); change of control defined off a 50% beneficial-ownership
+    # threshold (EDGAR-ML-04); 30 days to cure a general covenant breach running from the earlier of
+    # notice and a responsible officer's knowledge, except where the breach by its nature cannot be
+    # cured (EDGAR-ML-03); 10 calendar days' notice before realisation where the acceleration arises
+    # from a change of law or increased cost event (EDGAR-PB-01-B).
+    # X days (general covenant cure): observed 30 days (EDGAR-ML-03).
+    # X per cent (change of control): observed 50% (EDGAR-ML-04).
+    # X trading days (trading suspension): observed "beyond a set number of trading days", no
+    #   published number (FIRM-01).
+    # X calendar days (change-of-law notice before realisation): observed 10 calendar days
+    #   (EDGAR-PB-01-B).
+    # X business days (death standstill): NOT OBSERVED IN ANY SOURCE. BANK-LU-01 keeps death as a
+    #   stand-alone realisation trigger with no standstill; EDGAR-PB-01-C accelerates without notice
+    #   on death or incompetence. The period and the standstill itself are an invention of structure;
+    #   see the group D hand-off note.
+    text: >
+      The word "threatened" is deleted from every limb. A breach of any undertaking other than a
+      payment obligation, a margin obligation or a security undertaking is an Event of Default only if
+      it is not remedied within X days of the earlier of notice from the Bank and the date a
+      responsible officer of the Borrower became aware of it, except where the breach by its nature
+      cannot be remedied. The Bank's general determination that the collateral has become inadequate
+      or impaired is replaced by the following events, each of which is an Event of Default: the
+      insolvency of an issuer of a pledged security; a change of control of the Borrower or the
+      Pledgor, meaning the acquisition of more than X per cent of its voting rights or economic
+      interest; the delisting of a pledged security; a suspension of trading in a pledged security
+      continuing for more than X consecutive trading days; the nationalisation or expropriation of an
+      issuer of a pledged security; and any determination by the Bank, acting in good faith and in a
+      commercially reasonable manner, that the realisable value or the traded liquidity of the
+      collateral has materially deteriorated. Where an Event of Default arises only from a change in
+      law, regulation or regulatory requirement that increases the Bank's cost or reduces its return,
+      the Bank will give X calendar days' notice before realising collateral. Where a Relevant Person
+      who is an individual dies, the Bank will not realise collateral for X business days from the
+      date it is notified of the death, provided throughout that period that no margin call is
+      outstanding, that the lending value of the collateral is not less than the amounts outstanding,
+      and that the personal representatives or attorneys of the deceased engage with the Bank.
+      Nothing in this tier limits the Bank's right to accelerate on non-payment, on a failure to meet
+      a margin call, on insolvency, on death or loss of capacity, or on the security ceasing to be
+      valid, first-ranking and perfected; and on an uncommitted facility nothing in this clause
+      affects the Bank's right to demand repayment at any time without an Event of Default having
+      occurred.
+    rationale: >
+      This tier trades the open-ended material adverse change limb for a list, which is the trade the
+      institutional market has already made, and the Bank can point at that when it is accused of
+      being unreasonable. The list is only safe because the Bank keeps a residual limb tied to
+      realisable value and liquidity: the events that actually damage a Lombard book show up in price
+      and liquidity behaviour well before anything anyone has enumerated has happened. The death
+      standstill is the concession that reads worst on paper and is the easiest to live with in
+      practice, because it is conditioned on the position being inside its limits throughout; the
+      moment a call is open, the standstill stops. Note the asymmetry the Bank is relying on here: on
+      an uncommitted facility none of this matters very much, because the Bank can demand repayment
+      without needing a default at all. That is exactly why this tier is not available once the
+      facility is committed, and why the rules close the floor to acceptable on a committed term deal.
+    conditions:
+      - The facility is uncommitted and repayable on demand, so the events of default are not the Bank's only exit.
+      - Collateral is exchange-listed or daily-dealt, diversified within the concentration limit, and priced at least daily.
+      - The Bank or a member of its group is the Custodian, or an executed account control agreement is in place.
+      - There is no third-party pledgor who is an individual, or the death standstill has been excluded for that pledgor.
+      - The Borrower has no other facilities with the Bank or its group that would be prejudiced by the longer cure and standstill periods.
+      - Credit has confirmed the standstill and cure periods are acceptable on this collateral pool.
+    approval: head of credit
+  unacceptable:
+    text: >
+      The Bank will not accept a grace period, a cure period or a materiality qualifier on the failure
+      to meet a margin call or to deliver additional collateral, because that failure is already the
+      output of a cure period; will not accept a grace period on principal; will not delete the
+      general deterioration limb without an enumerated substitute that includes a residual limb tied
+      to the realisable value and liquidity of the collateral; will not remove death of an individual
+      Borrower, Pledgor or guarantor as an Event of Default, nor accept a standstill that continues
+      while a margin call is outstanding or while the lending value is below the amounts outstanding;
+      will not remove loss of legal capacity as an Event of Default where the Borrower or the Pledgor
+      is an individual; will not make the occurrence of an Event of Default, or the exercise of any
+      right following one, conditional on the consent of the Borrower or the Pledgor, on agreement
+      with an estate or its representatives, or on a determination by a third party or a court; will
+      not accept that acceleration requires the Bank to prove loss or to show that the event has had a
+      quantified adverse effect; and will not exclude other facilities, guarantees or hedging
+      arrangements between a Relevant Person and the Bank or its group from the cross-default limb.
+    rationale: >
+      Each of these turns the list from a right the Bank already holds into an argument the Bank has
+      to win, and the argument always falls due on the day the collateral is falling. A grace period
+      on a margin call is the clearest example: the cure period is the grace period, and adding a
+      second one simply moves the liquidation to a worse price. Removing death or incapacity is the
+      private-wealth version of the same problem, because the person who can give instructions and the
+      person whose assets secure the facility are usually the same person, and when that person is
+      gone the Bank is holding collateral that nobody can lawfully tell it what to do with.
+      Cross-default inside the Bank's own group is non-negotiable for a different reason: the Bank
+      cannot run a relationship in which it is accelerating under one document and forbearing under
+      another.
+default_floor: fallback
+escalation_triggers:
+  # observed: 1-2 business days' payment grace and 30 days' covenant cure (EDGAR-ML-03); no opened
+  # source concedes any standstill on death. Every X below is the institution's own tolerance.
+  - Any request for a grace period, cure period or materiality qualifier on the margin call limb or on principal.
+  - Any request to delete the material adverse change limb without an enumerated substitute, or to delete the residual value-and-liquidity limb from that substitute.
+  - Any request for a payment grace period longer than X business days, or a general covenant cure longer than X days.
+  - Any request to remove death or loss of capacity of an individual Borrower, Pledgor or guarantor, or for a standstill on death longer than X business days or one that survives an open margin call.
+  - Any request to narrow "Relevant Person" so that it no longer reaches an individual whose death or incapacity would affect the ability to deal with the collateral.
+  - Any request to exclude other facilities with the Bank or its group from the cross-default limb.
+  - Any counterparty request on this clause where the facility is committed rather than repayable on demand.
+depends_on:
+  - facility_type
+  - margin_maintenance_cure
+  - enforcement_liquidation
+  - capacity_authority
+  - cross_collateral_set_off
+regulatory_flags:
+  - consumer_credit
+  - prudential_awareness
+  - fcar_safe_harbour_uncertain
+not_automated:
+  - Whether a material adverse change or a substantial deterioration has actually occurred on a live position. The clause fixes who decides and on what standard; it does not decide.
+  - Whether to call a default at all, as against forbearing while the relationship is discussed. Forbearance on a live margin call and waiver of an event of default are both human decisions.
+  - Whether an individual has lost legal capacity, and whether an attorney, deputy or other representative can give instructions that bind the Borrower or the Pledgor. [VERIFY] no mental-capacity source was opened for this playbook.
+  - Whether to enforce against a deceased individual's collateral before the estate is administered, which is a reputational and conduct decision as much as a legal one.
+  - Setting the payment grace, covenant cure and death standstill periods. Only the institutional grace periods are observed in a source; the standstill is not observed at all.
+jurisdiction_notes:
+  england_wales: >
+    The death or personal insolvency of an individual Borrower or Pledgor is where the English
+    structural problem in this playbook bites hardest. A security financial collateral arrangement
+    requires both the collateral provider and the collateral taker to be non-natural persons
+    (LAW-EW-01), so where the Pledgor is an individual the Bank has none of the regime's self-help on
+    a default: no appropriation under an express power, and none of the insolvency disapplications.
+    On personal bankruptcy the secured creditor's right to enforce its security is preserved
+    (UK-IA-1986 s.285), but what is preserved is a contractual power of sale, not the statutory
+    conveniences. The drafting consequence is that the death and capacity limbs of this clause carry
+    more weight in England than elsewhere, and that enforcement should be planned around a documented
+    sale under a contractual power rather than around appropriation. [VERIFY] the wider consequences
+    of the natural-person exclusion - bills of sale legislation, charge registration and what the
+    market actually does for individual pledgors in England - were not sourced for this playbook and
+    are the subject of the fcar_safe_harbour_uncertain flag.
+  switzerland: >
+    Swiss law constrains what happens after the Event of Default rather than what counts as one. The
+    Bank's discretion must be exercised in good faith and must not be abusive, a valid margin call
+    must state the amount called and the deadline to post it, and the Bank must be able to produce the
+    calculation details, the parameters used and accounting documentation for any liquidation, with a
+    Geneva appellate decision cited for the proposition that a bank failing those prerequisites
+    exposes itself to liability (FIRM-03). The practical consequence for this clause is that the
+    evidential trail behind a default - the call, the deadline, the notification, the valuation -
+    matters as much as the drafting does. [VERIFY] no source opened for this playbook addresses how
+    Swiss law treats the death or incapacity of an individual pledgor, or whether the wide "Relevant
+    Person" formulation reaching settlors and beneficial owners is used or is enforceable in Swiss
+    practice; the Swiss material in the pool is a product factsheet, the regulator's risk monitor, an
+    industry risk booklet and a practitioner note on margin calls.
+  luxembourg: >
+    Luxembourg is the most favourable of the three on exactly the point that worries a private bank.
+    The financial collateral law applies whether the arrangement is entered into by a merchant or a
+    non-merchant, so an individual pledgor is inside the regime rather than outside it; the
+    arrangements, the agreed enforcement events and the agreed valuation and enforcement measures are
+    effective against third parties, commissioners, receivers and liquidators notwithstanding domestic
+    or foreign reorganisation or winding-up proceedings; and the same rules are stated to apply on the
+    death or incapacity of the collateral provider or the debtor (LAW-LU-01, arts. 2(1) and 20(4)).
+    The one carve-out is the over-indebtedness procedure for private individuals, which is excepted
+    from the general disapplication of insolvency law, so full insolvency remoteness cannot be assumed
+    against a Luxembourg-resident individual. At the commercial end, a published Luxembourg template
+    treats the death of the client as a free-standing ground for unilateral realisation without prior
+    notice and carries a deterioration limb reaching loss of market confidence (BANK-LU-01), so a
+    Luxembourg counterparty is not well placed to argue that the preferred position on death is
+    off-market.
+sources:
+  - ref: "EDGAR-PB-01"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1293153/000095012308001840/y49893exv99w7w05.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Composite exhibit, EDGAR accession 0000950123-08-001840, of three private-bank securities-lending documents given by individual and trust pledgors. Supports the preferred tier throughout: sub-part C carries a default population defined to reach the borrower, the pledgor, any other guarantor or collateral provider and any beneficial owner or settlor of any of them; death or incompetence of any of them; actual or threatened insolvency, business failure or material litigation; the actual or threatened effect of any law, regulation, order or decree; attachment, seizure, forfeiture, subpoena, court order or regulatory proceedings; and the bank deeming the collateral inadequate, impaired or insecure. Sub-part B supports the fallback tier's notice period before realisation on a change-of-law acceleration (10 calendar days) and records that the pledge is not terminated by the death or dissolution of the pledgor."
+  - ref: "EDGAR-ML-03"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1333493/000119312521187800/d467983dex3.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Margin loan agreement over listed shares, EDGAR accession 0001193125-21-187800. Supports the acceptable and fallback tiers: non-payment of principal with no grace, of interest and fees with 1 business day grace (2 business days where the failure was purely administrative or operational), and of a margin call amount with no grace; cross-default above a threshold amount after any applicable grace; 30 days to cure a general covenant breach from the earlier of notice and a responsible officer's knowledge, except where the breach by its nature cannot be cured; involuntary insolvency proceedings undismissed for 30 days, with automatic acceleration on voluntary insolvency; the security ceasing to be a valid first-priority perfected interest; and illegality."
+  - ref: "BANK-LU-01"
+    type: bank_terms
+    url: "https://links.imagerelay.com/cdn/2958/ql/lombard-loan-contract-sqbe-en-01072023"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published Lombard loan agreement template of a Luxembourg bank (CSSF-supervised). Supports the preferred tier and the Luxembourg note: the same list operates as both a termination trigger and a liquidation trigger, and includes failure to post additional collateral by the stipulated deadline, failure to respond to a request for additional collateral, collateral not sufficiently diversified in the bank's opinion, substantial deterioration in economic, regulatory or financial conditions or loss of market confidence, inaccurate or incomplete information given in the application, the client's solvency being in doubt, the death of the client, and a change of law increasing the bank's cost or reducing its income."
+  - ref: "BANK-LU-03"
+    type: bank_terms
+    url: "https://assetsgarantibbva.com/assets/pdf/en/other/Luxembourg_Branch.pdf"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published general terms and conditions of a bank's Luxembourg branch. Supports the preferred tier's threatened-event limbs: immediate termination where the customer gave incorrect or incomplete information on identity or financial condition, where a substantial deterioration in financial condition occurs or threatens to occur, or where the collateral obtained is or becomes insufficient, with everything falling immediately due."
+  - ref: "EDGAR-ML-04"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/2068577/000149315225028763/ex7.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Margin loan agreement over listed shares, EDGAR accession 0001493152-25-028763. Supports the fallback tier's enumerated substitute for a general material adverse change limb: mandatory prepayment events limited to change of control, a defined issuer event, a regulatory event and a specified prepayment event, with change of control defined off a 50 per cent beneficial-ownership threshold."
+  - ref: "FIRM-01"
+    type: law_firm_briefing
+    url: "https://www.stblaw.com/docs/default-source/related-link-pdfs/global-legal-insights-fund-finance-2022_backleverage-financings--insights-into-the-margin-loan.pdf?sfvrsn=b1f56e21_2"
+    retrieved: 2026-09-21
+    reliability: C
+    verified: true
+    note: "Law-firm chapter on margin loan and backleverage financings in a practitioner guide. Supports the fallback tier: explains the institutional substitute for a general material adverse change limb as a closed list of mandatory prepayment events - issuer insolvency, change of control of the borrower, delisting of the pledged securities, a trading suspension continuing beyond a set number of trading days, nationalisation of the issuer - and treats the share price trigger as a separate lever from the margin call mechanics. No number is published for the trading-suspension period, which is why that X carries no observed range."
+  - ref: "FIRM-03"
+    type: law_firm_briefing
+    url: "https://www.mondaq.com/commoditiesderivativesstock-exchanges/985220/margin-calls-how-can-investors-protect-their-position"
+    retrieved: 2026-09-21
+    reliability: C
+    verified: true
+    note: "Swiss practitioner note on margin calls under Swiss law and standard Lombard pledge terms. Supports the Switzerland note only: discretion must be exercised in good faith and not abusively, a valid call must state the amount called and the deadline, and the bank must be able to produce calculation details, parameters and accounting documentation for a liquidation. It says nothing about death or incapacity, which is why that part of the Switzerland note is marked [VERIFY]."
+  - ref: "LAW-LU-01"
+    type: primary_law
+    url: "https://www.cssf.lu/wp-content/uploads/L_050805_fin_coll_upd_15072024.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Luxembourg Law of 5 August 2005 on financial collateral arrangements, consolidated text published by the regulator (updated 15 July 2024); arts. 3-5, 11, 12, 13, 13-1, 18-20 and 22 were read by the sourcing agent. Supports the Luxembourg note: art. 2(1) contemplates arrangements entered into by a merchant or a non-merchant; art. 20(1) makes the arrangements, the agreed enforcement events and the agreed valuation and enforcement measures effective against third parties, commissioners, receivers and liquidators notwithstanding domestic or foreign proceedings; art. 20(4) carves out the over-indebtedness law for private individuals and states that the same rules apply on the death or incapacity of the collateral provider or the debtor."
+  - ref: "LAW-EW-01"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/uksi/2003/3226/regulation/3"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Financial Collateral Arrangements (No. 2) Regulations 2003, reg. 3 (definitions). Supports the England and Wales note: a security financial collateral arrangement requires the collateral to be in the possession or under the control of the collateral taker and requires both the collateral provider and the collateral taker to be non-natural persons, so an individual pledgor falls outside the regime."
+  - ref: "UK-IA-1986 s.285"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/ukpga/1986/45/section/285"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Insolvency Act 1986 s.285. Supports the England and Wales note: s.285(4) preserves a secured creditor's right to enforce its security on the personal bankruptcy of an individual. Opened and read by the WP7 research agent and recorded in docs/research/jurisdictions_research.md (england_wales, practical_notes); not opened by this drafting agent, and carried across with that provenance."
+status: draft
+reviewed_by: null
+last_reviewed: null

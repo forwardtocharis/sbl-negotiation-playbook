@@ -1,0 +1,388 @@
+# Draft entry (WP3, drafting group A). Lender-side. Synthetic demonstrator.
+# Nothing here is legal advice.
+#
+# SOURCE POSITION FOR THIS CLAUSE - read before relying on anything below.
+# The shared source pool (docs/research/clause_sources.md) contained NO source on
+# trustee power to borrow or charge and NO source on limited-recourse doctrine;
+# the WP3 brief names both as known gaps. This drafting agent therefore opened
+# seven primary-law sources and one law-firm briefing itself, recorded in
+# docs/research/source_register_A.md, and the statements below are written
+# against them:
+#   - trustee statutory power to raise money      -> LAW-EW-TA1925-S16 (Trustee Act 1925 s.16)
+#   - trustee indemnity out of the trust fund     -> LAW-EW-TA2000-S31 (Trustee Act 2000 s.31)
+#   - partner's authority to bind the firm        -> LAW-EW-PA1890-S5 (Partnership Act 1890 s.5)
+#   - corporate capacity and directors' authority -> LAW-EW-07 / LAW-EW-06 (CA 2006 ss.39, 40)
+#   - corporate benefit / financial assistance    -> LAW-EW-09 / LAW-EW-08 (CA 2006 ss.172, 678)
+#   - power in the instrument, loss of indemnity,
+#     limited recourse in practice                -> FIRM-TR-01 (law-firm briefing)
+# What remains UNSOURCED and is marked [VERIFY] in the text: trust law outside
+# England and Wales except the Jersey and Guernsey limited-recourse point that
+# FIRM-TR-01 records; limited partnerships and limited liability partnerships;
+# Swiss and Luxembourg corporate benefit, financial assistance and upstream
+# security restrictions; undue influence and independent legal advice doctrine;
+# and incapacity short of death. Do not read a sourced sentence and an unsourced
+# one as carrying the same weight.
+#
+# Rules that add to this clause (as at drafting; WP5 owns the list): R01 adds a
+# trustee capacity representation and raises the floor to acceptable; R02 adds a
+# corporate powers and corporate benefit representation; R05 raises the floor to
+# acceptable on any third-party security and puts the independent-advice
+# representation on the third_party_security_waivers clause; R07 adds an insider
+# status representation.
+id: capacity_authority
+title: "Capacity, authority and due execution for trusts, corporates and partnerships"
+category: parties_reps
+document: all
+risk_rating: high
+lender_objective: >
+  Establish that the person granting the security actually had the power to grant it and that the
+  Bank can still reach the assets if that power is later questioned, so the security is not voidable.
+counterparty_asks:
+  - "Trustee limited recourse: liability confined to the trust fund, with no personal liability for the trustee."
+  - Drop the solvency representation, or qualify it to the obligor's knowledge.
+  - Limit the authority certificate to constitutional documents and applicable law, excluding "or agreements".
+  - Drop the requirement to notify the Bank and to re-run know-your-client on any change of beneficial owner, trustee or controller.
+  - Delete the surety-defence waivers given by a third-party pledgor, or at least the waiver of the right to be released on a variation of the facility.
+  - Accept a certificate from a director or trustee in place of producing the trust instrument or the constitutional documents.
+positions:
+  preferred:
+    # observed: each non-individual grantor certifies it is duly organised and in good standing and
+    # that all actions and consents required by its statutes, charter documents, applicable law OR
+    # AGREEMENTS - shareholder consents expressly included - have been taken; the individual grantors
+    # give no equivalent certificate, individual capacity being assumed and tested only through the
+    # death or incompetence event of default (EDGAR-PB-01-C). For third-party security, the pledgor's
+    # obligations are absolute and unconditional irrespective of the validity or enforceability of
+    # the documents evidencing the obligations, any change in terms, any release of other collateral
+    # or guarantees, or any other circumstance that would be a surety defence, all such defences
+    # being waived (EDGAR-PB-01-B). A flat three-limb solvency representation is taken from the
+    # guarantor, with a savings clause reducing the guaranteed amount to whatever a court would
+    # uphold (EDGAR-PB-01-A). The corporate authority package is a CP set: certified constitutional
+    # documents, good standing, certified resolutions confirming they have not been amended or
+    # rescinded, incumbency and specimen signatures, and an officer's certificate that no borrowing
+    # limit binding the borrower would be exceeded (EDGAR-ML-03). The retail analogue does the whole
+    # thing by representation, including that the client acts for its own account and not for third
+    # parties, with immediate notification on any change of beneficial owner and that change being
+    # subject to fresh know-your-client and formal bank approval (BANK-LU-01).
+    text: >
+      Each of the Borrower and each Pledgor represents and warrants that it is duly constituted and
+      validly existing; that it has the power and authority to enter into and perform the finance
+      documents and to create the security; that every action, consent and authorisation required by
+      its constitutional or trust documents, by any applicable law or by any agreement binding on it,
+      including any shareholder, beneficiary, partner or protector consent, has been taken or
+      obtained and is in full force; that the finance documents have been executed by persons
+      authorised to do so; that its obligations are legal, valid, binding and enforceable; that entry
+      into and performance of them does not conflict with its constitutional or trust documents, any
+      law or any agreement binding on it; and that it is solvent and will not be rendered insolvent
+      by the transaction. Where a party contracts as trustee, it further represents that it is duly
+      appointed and is the sole trustee or is acting with all of its co-trustees; that the trust
+      instrument and every deed of appointment, retirement or variation empower it to borrow, to
+      charge the trust assets and to delegate as contemplated by the finance documents; that it is
+      not acting in breach of trust and has no notice of any claim that it is; and that its right of
+      indemnity out of the trust fund is not excluded, limited or impaired, and it undertakes not to
+      exclude, limit or impair it, not to retire without a replacement trustee acceding to the
+      finance documents, not to distribute or appoint trust property, and not to incur any liability
+      ranking in priority to the Bank's claim on that indemnity, in each case without the Bank's
+      prior written consent. The trustee contracts in both its personal and its trustee capacity and
+      its liability is not limited to the trust fund. Where a party is a partnership, it represents
+      that the borrowing and the security are within the ordinary course of the partnership business
+      or have been authorised by all of the partners, that the partnership agreement permits them,
+      and that each partner is jointly and, where its constitution permits, severally liable, and it
+      undertakes to notify any change in the partners and to procure that any incoming partner
+      accedes. Where a Pledgor is not the Borrower, its obligations are absolute and unconditional
+      irrespective of the validity or enforceability of the Borrower's obligations, any variation of
+      the facility, any release of other collateral or guarantees, or any other circumstance which
+      would otherwise operate as a defence available to a surety, all of which are waived. Each
+      Pledgor which is a company further represents that granting the security is for its corporate
+      benefit as determined by its board and does not constitute unlawful financial assistance. Each
+      representation is repeated on each utilisation date and on each day on which any amount is
+      outstanding, and each of the Borrower and each Pledgor undertakes to notify the Bank
+      immediately of any change in its beneficial owners, trustees, general partner or controllers,
+      any such change being subject to fresh know-your-client review and to the Bank's approval.
+    rationale: >
+      This clause is the one that decides whether the Bank has security at all, because a pledge
+      granted by someone who lacked the power to grant it is not a weak pledge, it is no pledge. The
+      cost of getting it right is a week of reading documents the client already has; the cost of
+      getting it wrong surfaces on the day the Bank tries to sell, which is the day the beneficiaries
+      or the minority shareholder appear. Full personal recourse against a trustee is the opening
+      position rather than the answer, but it has to be the opening position, because the moment the
+      Bank concedes limited recourse it is relying entirely on the trustee's indemnity and it needs
+      to have asked about that indemnity first. The notification undertaking is the cheapest thing on
+      the list and the most useful: capacity is not a fact about signing day, it is a fact about
+      every day the loan is outstanding.
+    conditions: []
+  acceptable:
+    # This tier is where R01 (trust borrower) and R05 (third-party security) put the floor.
+    # Sourced: the trustee's entitlement to be reimbursed from trust funds for expenses properly
+    # incurred when acting on behalf of the trust (LAW-EW-TA2000-S31, Trustee Act 2000 s.31); the loss of
+    # that indemnity where the trustee acted outside its powers or incurred the liability through a
+    # breach of its duties, and the difficulty for a lender of finding that out (FIRM-TR-01). The
+    # conditionality below follows directly from those two points.
+    text: >
+      The trustee's liability under the finance documents is limited to the assets of the trust from
+      time to time and to the trustee's right of indemnity out of them, provided that: the trustee
+      represents that its right of indemnity is not excluded, limited or impaired and that it is not
+      acting in breach of trust; the undertakings not to impair the indemnity, not to retire without a
+      replacement trustee acceding, and not to distribute trust property without the Bank's consent
+      remain in force; the Bank is subrogated to the trustee's right of indemnity and to the
+      trustee's lien over the trust assets; and the limitation does not apply to any liability
+      arising from the trustee's own fraud, wilful default or negligence or from a breach of the
+      representations in this clause, for which the trustee remains personally liable. A
+      representation as to solvency, and a representation that no consent required by an agreement
+      binding on the obligor has been omitted, may be given so far as the obligor is aware having
+      made due enquiry. A Pledgor which is a company may give its corporate benefit representation by
+      reference to the determination recorded in the resolution authorising the security.
+    rationale: >
+      Limited recourse is a reasonable ask from a professional trustee and it can be agreed, because
+      the trustee is not the credit: the trust fund is, and the Bank has security over it. What the
+      Bank cannot agree to is limited recourse in the abstract, because recourse to the trust fund
+      runs through the trustee's indemnity, and the indemnity is lost precisely when the trustee acted
+      outside its powers or in breach of its duties, which is the same event that would have made the
+      security defective. So the concession and the protection are the same sentence: the Bank will
+      take the trust fund instead of the trustee, provided the route to the trust fund is intact and
+      the trustee stays personally on the hook for telling the truth about it. A knowledge qualifier
+      on solvency is a different kind of concession and a cheap one, because a solvency representation
+      is an opinion in any event and the Bank is not going to run a solvency analysis of a trustee.
+    conditions:
+      - The trustee is a professional or institutional trustee, or a corporate trustee of substance.
+      - The trust instrument has been read and confirms the power to borrow and to charge.
+      - The indemnity representation and the anti-impairment undertakings are given and are not qualified by knowledge.
+      - Personal liability survives for fraud, wilful default, negligence and breach of the capacity representations.
+  fallback:
+    # What is given up here is the personal liability of the trustee for breach of the capacity
+    # representations, leaving only fraud and wilful default. That is a real loss, because the
+    # capacity representations are the Bank's only practical window into whether the indemnity
+    # survives: FIRM-TR-01 records that whether the trustee acted within its powers, and whether the
+    # liability was incurred through a breach of its duties, is difficult for a lender to access.
+    # The conditions below replace that window with an opinion and with consent rights.
+    # observed: FIRM-TR-01 also records Jersey and Guernsey statutory provisions limiting a trustee's
+    # liability to the trust fund where the counterparty is aware it is contracting with a trustee,
+    # and records that those protections fail where the contract is governed by another law or the
+    # trust property is elsewhere - which is why the governing law of the finance documents is one of
+    # the conditions.
+    text: >
+      The trustee's liability under the finance documents is limited to the assets of the trust from
+      time to time, and no claim may be made against the trustee personally or against its other
+      assets, except in the case of the trustee's own fraud or wilful default. A Pledgor's authority
+      certificate may be confined to its constitutional documents and to applicable law, excluding
+      any agreement binding on it, where the Bank receives a legal opinion covering the absence of
+      conflict with any such agreement. Where a Pledgor which is an individual is not the Borrower,
+      the confirmation that independent legal advice was given may be delivered as a certificate from
+      that Pledgor's own solicitor, naming the adviser and the date, rather than as a representation
+      in the security document.
+    rationale: >
+      This is conceded on relationship grounds and it is not free: the Bank is giving up the one
+      lever that makes a trustee careful about what it represents. It only works where something else
+      does the same job, which is why the conditions replace the representation with an opinion from
+      counsel in the trust's own jurisdiction, with consent rights over the things that destroy an
+      indemnity, and with a lower lending value to carry the residual risk. The line to take in the
+      room is that the Bank is not asking the trustee to underwrite the trust, it is asking to be told
+      the truth about the trust, and if the trustee will not stand behind what it says about its own
+      powers then the Bank has to buy that comfort somewhere else and the price is in the advance
+      rate. Note that a limited recourse clause with no carve-out at all for fraud sits in the
+      unacceptable tier, not here.
+    conditions:
+      - An institutional trustee of substance, regulated in its jurisdiction.
+      - A legal opinion from counsel qualified in the law governing the trust, confirming the power to borrow and to charge, due authorisation, and that the trustee's right of indemnity is unimpaired.
+      - The Bank has first-ranking security over the trust assets and is subrogated to the trustee's indemnity and lien.
+      - Consent rights over further borrowing by the trust, over distributions and appointments, and over any change of trustee; notification of any mandatory distribution.
+      - The governing law of the finance documents and the location of the trust assets have been checked against any statutory limited-recourse protection being relied on.
+      - Lending values have been reduced by credit to reflect the loss of personal recourse.
+    approval: senior lawyer + head of credit
+  unacceptable:
+    text: >
+      The Bank will not accept recourse limited to the trust fund where the trustee's right of
+      indemnity is excluded, limited or impaired, or where the trustee will not represent that it is
+      unimpaired and that the trustee is not acting in breach of trust; will not accept a limited
+      recourse clause with no carve-out for the trustee's own fraud; will not accept a certificate
+      from a director, trustee or partner in place of the trust instrument, constitutional documents
+      or partnership agreement themselves; will not take security from a company for another
+      person's debt on a director's certificate alone where the pledgor is incorporated in a
+      jurisdiction that restricts financial assistance, upstream or cross-stream security or requires
+      a corporate benefit analysis, without local counsel confirmation; will not accept a signature
+      on behalf of a partnership without evidence that the signing partner is authorised; will not
+      delete the surety-defence waivers given by a third-party pledgor; will not proceed where a
+      third-party pledgor who is an individual has declined independent legal advice; and will not
+      accept the deletion of the undertaking to notify a change of trustee, general partner,
+      controller or beneficial owner.
+    rationale: >
+      Everything in this list has the same shape: it asks the Bank to take the granting party's word
+      for the one thing that decides whether the security exists. Limited recourse without an
+      indemnity is not security over a trust fund, it is an unsecured claim against a trustee who has
+      already told you it will not pay. A certificate instead of the deed is the same trade, and it
+      fails in the same place, because the person certifying is the person whose authority is in
+      question. The independent advice point is not a formality either: it is the answer the Bank
+      gives years later when a pledgor says they did not understand what they were signing, and there
+      is no substitute for it once the argument has started.
+default_floor: fallback
+escalation_triggers:
+  - Any request for recourse limited to the trust fund where the trustee's indemnity is excluded, limited or cannot be confirmed.
+  - Any request to remove the fraud or wilful default carve-out from a limited recourse clause.
+  - Any request to delete the representation that the trustee is not acting in breach of trust, or the anti-impairment undertakings.
+  - Any request that the Bank accept a certificate in place of the trust instrument, constitutional documents or partnership agreement.
+  - Any corporate pledgor securing another person's debt where local counsel has not confirmed the corporate benefit, financial assistance and upstream security position.
+  - Any request to delete the surety-defence waivers, and any third-party individual pledgor declining independent legal advice.
+  - Any request to remove the undertaking to notify a change of trustee, general partner, controller or beneficial owner.
+depends_on:
+  - conditions_precedent
+  - security_structure_control
+  - events_of_default
+  - enforcement_liquidation
+  - third_party_security_waivers
+regulatory_flags:
+  - financial_assistance_corporate_benefit
+  - consumer_credit
+  - market_abuse
+not_automated:
+  - Reading the trust instrument. No rule in this library can tell anyone whether a power to borrow or to charge exists; a lawyer reads the deed and every deed of appointment, retirement and variation behind it.
+  - Whether a limited recourse request is safe on the facts. It turns on the state of the indemnity, the standing of the trustee and the assets actually in the fund, none of which is an intake field.
+  - Whether a corporate pledgor has corporate benefit, and whether the law of its incorporation restricts financial assistance, upstream or cross-stream security. This is a local counsel question on every deal where the pledgor is not the borrower.
+  - Whether independent legal advice was genuinely given, genuinely independent and genuinely understood.
+  - Whether an individual had capacity at signing, and what the Bank does on incapacity short of death. The intake records no fact that answers either, and the treatment of incapacity is an identified gap in this library.
+  - Whether to accept a foreign-law legal opinion in the form offered, and what it must cover.
+jurisdiction_notes:
+  england_wales: >
+    For an English company, capacity is largely not the risk and authority is: the validity of an act
+    done by a company cannot be called into question on the ground of lack of capacity by reason of
+    anything in the company's constitution (LAW-EW-07, Companies Act 2006 s.39), and in favour of a
+    person dealing with a company in good faith the power of the directors to bind it is deemed free
+    of any limitation under the constitution, with no duty to enquire, good faith presumed, and
+    knowledge that an act is beyond the directors' powers not by itself bad faith (LAW-EW-06, s.40).
+    What is left is the overlay: the directors' duty to act in the way they consider in good faith
+    would be most likely to promote the success of the company for the benefit of its members as a
+    whole (LAW-EW-09, s.172), which is why a third-party pledge needs a resolution that articulates
+    the benefit to the pledgor rather than to the group; and the prohibition on a public company, or a
+    subsidiary of one, giving financial assistance directly or indirectly for the purpose of an
+    acquisition of its shares or to reduce or discharge a liability incurred for such an acquisition,
+    subject to the principal-purpose and larger-purpose exceptions and to the requirement of good
+    faith in the company's interests (LAW-EW-08, s.678). For trusts, there is a statutory power to
+    raise money by sale, conversion, calling in or mortgage of trust property where the trustees are
+    authorised by the trust instrument or by law to pay or apply capital money for any purpose, which
+    applies notwithstanding anything to the contrary in the instrument but does not apply to trustees
+    of charitable property or to settlement trustees who are not also statutory owners (LAW-EW-TA1925-S16,
+    Trustee Act 1925 s.16); that power is conditional on there being an authorised purpose, so it does
+    not remove the need to read the deed. The indemnity that the whole limited-recourse ladder depends
+    on has its statutory anchor in the trustee's entitlement to be reimbursed from, or to pay out of,
+    the trust funds expenses properly incurred when acting on behalf of the trust (LAW-EW-TA2000-S31, Trustee
+    Act 2000 s.31) - note the word "properly", which is where an improper transaction loses the
+    indemnity. For partnerships, every partner is an agent of the firm and of the other partners for
+    the purpose of the partnership business, and acts in the ordinary course bind the firm unless the
+    partner in fact had no authority and the counterparty either knew that or did not know or believe
+    him to be a partner (LAW-EW-PA1890-S5, Partnership Act 1890 s.5) - which cuts both ways for a lender who
+    has read the partnership agreement and therefore knows what it says. [VERIFY] Limited partnerships
+    and limited liability partnerships are governed by different statutes which were not opened for
+    this entry, and nothing here should be applied to them. [VERIFY] The undue influence and
+    independent legal advice case law relied on in the unacceptable tier was not opened either; the
+    drafting position is standard practice, not a sourced proposition.
+  switzerland: >
+    [VERIFY] Swiss restrictions on upstream and cross-stream security by a company for the debts of a
+    shareholder or affiliate, and the related capital-maintenance and corporate-benefit analysis, are
+    routinely the reason a third-party corporate pledge is restructured rather than merely repapered,
+    but no Swiss primary text was opened for this entry or recorded in the shared source pool, and the
+    regulatory flags file records the same gap for the financial assistance and corporate benefit
+    flag. Treat a Swiss corporate pledgor securing another person's debt as a local counsel question
+    before the term sheet, not as a drafting question. [VERIFY] The Swiss statutory form requirement
+    that an authorisation of a right of use over intermediated securities be in writing and not
+    contained in general terms and conditions, unless the account holder is a qualified investor, is
+    recorded in the WP7 research file and is an authority-adjacent trap for an individual client; that
+    primary text was not opened by this drafting agent.
+  luxembourg: >
+    One authority obstacle is removed by statute at the point it would otherwise bite hardest:
+    shareholder approval is not required to realise a pledge over all the shares of a Luxembourg
+    private limited company granted in a single transaction, and in other cases the approval may be
+    given irrevocably in advance (LAW-LU-01, art. 12). That is worth knowing at signing rather than at
+    enforcement, because it tells the deal team which consents actually have to be collected as
+    conditions precedent. Separately, the published Luxembourg template shows how a booking centre
+    handles authority for a private client largely by representation rather than by document,
+    including a representation that the client acts for its own account and not for third parties with
+    an undertaking to notify immediately on any change of beneficial owner, that change being subject
+    to fresh know-your-client review and formal approval (BANK-LU-01) - which is the model for the
+    notification undertaking in the preferred tier. [VERIFY] Luxembourg corporate benefit and
+    financial assistance restrictions on a corporate pledgor were not researched for this entry.
+sources:
+  - ref: "LAW-EW-TA1925-S16"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/ukpga/Geo5/15-16/19/section/16"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Trustee Act 1925 s.16 (power to raise money by sale, mortgage etc.), opened and read by this drafting agent. Where trustees are authorised by the trust instrument or by law to pay or apply capital money for any purpose, they may raise the money required by sale, conversion, calling in or mortgage of all or any part of the trust property for the time being in possession; the power applies notwithstanding anything to the contrary in the instrument but does not apply to trustees of property held for charitable purposes or to trustees of a Settled Land Act settlement who are not also statutory owners. Supports the England and Wales note and the preferred tier's trustee representation: the statutory power is conditional, so the instrument still has to be read."
+  - ref: "LAW-EW-TA2000-S31"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/ukpga/2000/29/section/31"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Trustee Act 2000 s.31 (trustees' expenses), opened and read by this drafting agent. A trustee is entitled to be reimbursed from the trust funds, or may pay out of the trust funds, expenses properly incurred by him when acting on behalf of the trust; subsection (2) extends the section to a trustee authorised to act as agent, nominee or custodian. Supports the acceptable and fallback tiers: the indemnity is the route from a limited recourse claim to the trust assets, and the qualifier 'properly incurred' is why the Bank conditions limited recourse on the indemnity being unimpaired."
+  - ref: "LAW-EW-PA1890-S5"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/ukpga/Vict/53-54/39/section/5"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Partnership Act 1890 s.5 (power of partner to bind the firm), opened and read by this drafting agent. Every partner is an agent of the firm and of the other partners for the purpose of the business of the partnership, and acts done in the ordinary course bind the firm and the other partners, unless the partner so acting in fact has no authority in the particular matter and the person dealing with him either knows that he has no authority or does not know or believe him to be a partner. Supports the partnership limb of the preferred tier and the England and Wales note."
+  - ref: "LAW-EW-06"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/ukpga/2006/46/section/40"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Companies Act 2006 s.40 (power of directors to bind the company), opened and read by this drafting agent. In favour of a person dealing with a company in good faith, the power of the directors to bind the company, or to authorise others to do so, is deemed free of any limitation under the company's constitution; such a person is not bound to enquire as to any limitation, is presumed to have acted in good faith unless the contrary is proved, and is not to be regarded as acting in bad faith by reason only of knowing that an act is beyond the directors' powers. Supports the England and Wales note."
+  - ref: "LAW-EW-07"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/ukpga/2006/46/section/39"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Companies Act 2006 s.39 (a company's capacity), opened and read by this drafting agent. The validity of an act done by a company shall not be called into question on the ground of lack of capacity by reason of anything in the company's constitution, with a carve-out for charitable companies under s.42. Supports the England and Wales note: for an English company the exposure is authority and corporate benefit, not capacity."
+  - ref: "LAW-EW-08"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/ukpga/2006/46/section/678"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Companies Act 2006 s.678 (assistance for acquisition of shares in a public company), opened and read by this drafting agent. Subsection (1) prohibits a public company, or a subsidiary of it, giving financial assistance directly or indirectly for the purpose of an acquisition of its shares before or at the same time as the acquisition; subsection (3) covers assistance to reduce or discharge a liability so incurred while the company is still public; subsections (2) and (4) contain the principal-purpose and incidental-part-of-a-larger-purpose exceptions, both requiring the assistance to be given in good faith in the interests of the company; subsection (5) refers on to the further exceptions in ss.681 and 682. Supports the corporate limb of the preferred tier and the link to the financial_assistance_corporate_benefit flag."
+  - ref: "LAW-EW-09"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/ukpga/2006/46/section/172"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Companies Act 2006 s.172 (duty to promote the success of the company), opened and read by this drafting agent. A director must act in the way he considers, in good faith, would be most likely to promote the success of the company for the benefit of its members as a whole, having regard to the listed matters including long-term consequences and fairness between members; subsection (2) redirects the duty where the company has other purposes; subsection (3) makes it subject to any rule requiring directors to consider creditors' interests. Supports the corporate benefit representation and why the resolution has to articulate benefit to the pledgor itself."
+  - ref: "FIRM-TR-01"
+    type: law_firm_briefing
+    url: "https://www.mondaq.com/offshore-financial-centres/449106/lending-to-trustees-and-managers-of-unit-trustswhat-could-go-wrong"
+    retrieved: 2026-09-21
+    reliability: C
+    verified: true
+    note: "Offshore law-firm briefing on lending to trustees and to managers of unit trusts, opened and read by this drafting agent; this is the only source in this library that addresses limited recourse from a lender's point of view. Supports: the power to borrow and to charge must come from the trust instrument, and a power exercisable by a manager can only be implemented by the trustee because only the trustee holds legal title; the lender should take a corporate opinion and a separate trust opinion confirming the trustee and manager are acting within their powers and are not breaching the trust; the trustee's indemnity is forfeited where it did not act within its powers when incurring the liability or where the liability was otherwise incurred through a breach of its duties, and that information is difficult for a lender to access; Jersey and Guernsey statutory provisions limit a trustee's liability to the trust fund where the counterparty is aware it is contracting with a trustee, but fail where the contract is governed by a different law or the trust property is elsewhere; and the lender-side protections of contracting with institutional trustees of substance, taking security over the trust assets, seeking personal liability that is not limited to the trust fund, and taking consent rights over further borrowing and distributions with notification of mandatory distributions."
+  - ref: "EDGAR-PB-01"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1293153/000095012308001840/y49893exv99w7w05.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Composite exhibit, EDGAR accession 0000950123-08-001840, of three private-bank securities-lending documents given by individual and trust pledgors. Supports the preferred tier: sub-part C has each non-individual grantor certify that all actions and consents required by its statutes, charter documents, applicable law or agreements, shareholder consents expressly included, have been taken, while the individual grantors give no equivalent certificate; sub-part B makes a third-party pledgor's obligations absolute and unconditional irrespective of validity, variation or release, with all surety defences waived; sub-part A takes a flat three-limb solvency representation with a savings clause."
+  - ref: "EDGAR-ML-03"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1333493/000119312521187800/d467983dex3.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Margin loan agreement over listed shares, EDGAR accession 0001193125-21-187800. Supports the corporate authority package that this clause evidences through conditions precedent: certified constitutional documents, a good-standing certificate, certified resolutions authorising execution, delivery and performance and confirming they have not been amended or rescinded, incumbency and specimen signatures, a second officer's certificate as to the certifying officer, and a financial officer's certificate that no borrowing limit binding the borrower would be exceeded."
+  - ref: "BANK-LU-01"
+    type: bank_terms
+    url: "https://links.imagerelay.com/cdn/2958/ql/lombard-loan-contract-sqbe-en-01072023"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published Lombard loan agreement template of a Luxembourg bank (CSSF-supervised). Supports the notification undertaking in the preferred tier and the Luxembourg note: the retail authority set is done by representation rather than by document, including that the client acts for its own account and not for third parties, with an undertaking to notify immediately on any change of beneficial owner, that change being subject to fresh know-your-client review and formal bank approval."
+  - ref: "LAW-LU-01"
+    type: primary_law
+    url: "https://www.cssf.lu/wp-content/uploads/L_050805_fin_coll_upd_15072024.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Luxembourg Law of 5 August 2005 on financial collateral arrangements, consolidated text published by the regulator (updated 15 July 2024); arts. 3-5, 11, 12, 13, 13-1, 18-20 and 22 were read by the sourcing agent. Supports the Luxembourg note: art. 12 removes the need for shareholder approval to realise a pledge over all the shares of a Luxembourg private limited company granted in a single transaction, and permits approval to be given irrevocably in advance in other cases."
+status: draft
+reviewed_by: null
+last_reviewed: null

@@ -1,0 +1,38 @@
+# INVALID (4): collateral composition percentages sum to 110.
+deal_id: D98
+description: "Synthetic. Deliberately invalid fixture: composition sums to more than 100."
+borrower:
+  type: individual
+  domicile: GB
+  natural_person: true
+  declared_high_net_worth: true
+  business_purpose_declared: false
+pledgor:
+  same_as_borrower: true
+  type: null
+  domicile: null
+  natural_person: null
+  is_pdmr_of_pledged_issuer: false
+guarantor_present: false
+facility:
+  type: uncommitted_demand
+  purpose: general
+  amount: 1000000
+  currency: GBP
+  benchmark: SONIA
+  other_facilities_with_lender: false
+collateral:
+  governing_law: england_wales
+  custodian_location: GB
+  lender_is_custodian: true
+  currencies: [GBP]
+  composition:
+    - asset_class: listed_equity
+      pct: 60
+      single_name_max_pct: 20
+      issuer_restricted: false
+    - asset_class: listed_bond
+      pct: 50
+      single_name_max_pct: 10
+      issuer_restricted: false
+counterparty_requests: {}

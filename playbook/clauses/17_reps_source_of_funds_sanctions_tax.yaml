@@ -1,0 +1,10 @@
+# Stub entry. Status is 'stub': only id, title, category and lender_objective
+# are populated. Positions, sources and jurisdiction notes are added in a later
+# work package. Nothing here is legal advice or a verified market position.
+id: reps_source_of_funds_sanctions_tax
+title: "Representations on source of funds, sanctions and tax status"
+category: parties_reps
+lender_objective: "Put the borrower on the hook contractually for the facts the lender's financial-crime and tax controls depend on."
+status: stub
+reviewed_by: null
+last_reviewed: null

@@ -1,0 +1,34 @@
+# Denylist for tests/test_denylist.py (build_plan.md §0 rule 2 and §9).
+#
+# One term per line. Blank lines and lines beginning with '#' are ignored.
+# Matching is case-insensitive and on word boundaries, over playbook/, deals/,
+# docs/, README.md and tests/expected/, after URLs and 'url:' lines have been
+# stripped out — a citation URL may name its publisher; the prose may not.
+#
+# Stuart extends this list. Adding a line is all it takes; no test change.
+societe
+generale
+ubs
+credit suisse
+julius baer
+pictet
+lombard odier
+barclays
+hsbc
+coutts
+goldman
+morgan stanley
+jpmorgan
+citibank
+citigroup
+edmond de rothschild
+vontobel
+efg
+bnp
+deutsche bank
+clifford chance
+allen & overy
+linklaters
+freshfields
+addleshaw
+lehman

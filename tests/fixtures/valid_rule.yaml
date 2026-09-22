@@ -1,0 +1,47 @@
+# Valid rules.yaml content: a list with one rule. Mirrors build_plan.md §2.4.
+# Synthetic. Statements of law are marked [VERIFY] and the source is unverified.
+- id: R07_pdmr_pledged_issuer
+  title: Pledgor or borrower is a PDMR or insider of a pledged issuer
+  priority: 10
+  when:
+    all:
+      - { field: pledgor.is_pdmr_of_pledged_issuer, op: eq, value: true }
+  then:
+    - action: flag
+      flag: market_abuse
+      severity: high
+      message: >-
+        [VERIFY] Pledge and any enforcement sale may constitute dealing; closed
+        periods and disclosure obligations may apply.
+    - action: escalate
+      to: "senior lawyer + compliance"
+      reason: "Insider status of pledgor must be cleared before term sheet."
+    - action: set_floor
+      clause: enforcement_liquidation
+      tier: acceptable
+    - action: require_rep
+      clause: capacity_authority
+      text: >-
+        Pledgor represents it is not in possession of inside information and will
+        notify the lender on becoming subject to a closed period.
+    - action: require_cp
+      clause: conditions_precedent
+      text: "Compliance sign-off on insider status and any issuer consent requirements."
+    - action: note
+      clause: enforcement_liquidation
+      text: "Check whether a sale window is available before relying on self-help."
+  rationale: >-
+    Where the collateral provider is an insider of the issuer whose shares are
+    pledged, both the grant of security and any enforcement sale sit inside the
+    market abuse perimeter. The lender needs that cleared before it commits.
+  sources:
+    - ref: "Fixture placeholder source"
+      type: textbook
+      url: null
+      retrieved: null
+      reliability: C
+      verified: false
+      note: "[VERIFY] Placeholder for schema testing only. No legal statement is supported."
+  status: draft
+  reviewed_by: null
+  last_reviewed: null

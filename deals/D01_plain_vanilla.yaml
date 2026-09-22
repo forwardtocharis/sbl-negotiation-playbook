@@ -1,0 +1,53 @@
+# Golden deal D01 (build_plan.md §5). Entirely synthetic: no real person,
+# entity, institution or portfolio. Party names are obviously fictional.
+#
+# Shape: the clean baseline. Nothing here is meant to fire a rule that moves a
+# floor, so the run should land on every clause's default floor with no
+# escalation. D05 and D06 are this deal plus one change each, which is what
+# makes the difference between the three outputs readable.
+deal_id: D01
+description: >-
+  Synthetic. Borrower A, a UK-resident individual with a high-net-worth
+  declaration on file, borrowing on an uncommitted demand basis in sterling
+  against a diversified listed portfolio held in custody with the lender.
+  General purpose. No third-party security, no insider position, no real
+  estate. Fictional party; not a real deal.
+borrower:
+  type: individual
+  domicile: GB
+  natural_person: true
+  declared_high_net_worth: true
+  business_purpose_declared: null
+pledgor:
+  same_as_borrower: true
+  type: null
+  domicile: null
+  natural_person: null
+  is_pdmr_of_pledged_issuer: false
+guarantor_present: false
+facility:
+  type: uncommitted_demand
+  purpose: general
+  amount: 5000000
+  currency: GBP
+  benchmark: SONIA
+  other_facilities_with_lender: false
+collateral:
+  governing_law: england_wales
+  custodian_location: GB
+  lender_is_custodian: true
+  currencies: [GBP]
+  composition:
+    - asset_class: listed_equity
+      pct: 60
+      single_name_max_pct: 15
+      issuer_restricted: false
+    - asset_class: listed_bond
+      pct: 25
+      single_name_max_pct: 10
+      issuer_restricted: false
+    - asset_class: cash
+      pct: 15
+      single_name_max_pct: null
+      issuer_restricted: false
+counterparty_requests: {}

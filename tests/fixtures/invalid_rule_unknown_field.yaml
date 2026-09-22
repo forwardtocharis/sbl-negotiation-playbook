@@ -1,0 +1,15 @@
+# INVALID (1): condition references a field path that does not exist on Intake.
+- id: RX01_unknown_field
+  title: Condition on a field that does not exist
+  priority: 10
+  when:
+    all:
+      - { field: borrower.is_consumer, op: eq, value: true }
+  then:
+    - action: note
+      clause: facility_type
+      text: "Should never be reached: the rule must fail to load."
+  rationale: Deliberately invalid fixture for the schema tests.
+  status: draft
+  reviewed_by: null
+  last_reviewed: null

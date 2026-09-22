@@ -1,0 +1,1514 @@
+# Ordered list of rules (build_plan.md §4). Written in WP5; sourced in WP5b.
+#
+# Every rule is `status: draft`. Sources were reconciled against
+# `docs/research/jurisdictions_research.md` and `docs/research/clause_sources.md`
+# in WP5b: a source is `verified: true` only where the research records that the
+# document at that URL was opened and the passage read. Where no opened source
+# exists the entry keeps `verified: false` and a `[VERIFY]` ref, and any legal
+# statement resting on it keeps a `[VERIFY]` prefix in the text.
+#
+# Source labels are neutral (build_plan.md §0 rule 2 and the labelling
+# convention at the foot of docs/source_register.md): a publisher's name appears
+# only inside a URL, never in a label or a note.
+#
+# Conventions:
+#   * priority is lower-runs-first and affects log ordering only. The engine
+#     sorts by (priority, id), so the result never depends on file order.
+#   * Rules only tighten. set_floor and set_opening can raise a tier, never
+#     lower one.
+#   * R03 is split into R03a (no declaration on file, high, escalates) and
+#     R03b (declaration on file, medium, no escalation) rather than being one
+#     rule with a conditional severity, because a rule action has no way to
+#     vary its own severity and two rules read more honestly in the log.
+#   * R05b is split out of R05 for the same reason: the corporate-benefit flag
+#     depends on the pledgor being a company, which is a narrower condition
+#     than third-party security generally.
+#   * R16 is built into the engine (sbl/engine.py) and is deliberately not
+#     here: it fires on the presence of a counterparty request, not on a fact
+#     about the deal.
+
+- id: R01_trust_borrower
+  title: Borrower is a trust
+  priority: 20
+  when:
+    all:
+      - { field: borrower.type, op: eq, value: trust }
+  then:
+    - action: require_cp
+      clause: conditions_precedent
+      text: >-
+        Certified copy of the trust deed and of every deed of appointment,
+        retirement or variation, reviewed for the trustee's power to borrow, to
+        charge trust assets and to delegate; plus evidence of the identity and
+        authority of the acting trustees.
+    - action: require_rep
+      clause: capacity_authority
+      text: >-
+        The trustee represents that it is validly appointed, that the trust
+        instrument permits it to borrow and to grant this security for the
+        stated purpose, and that its right of indemnity out of the trust fund is
+        not excluded, limited or impaired.
+    - action: set_floor
+      clause: capacity_authority
+      tier: acceptable
+    - action: note
+      clause: capacity_authority
+      text: >-
+        Expect the trustee to ask for recourse limited to the trust fund. That
+        is usually agreeable, but only where the trustee's indemnity is intact,
+        because the indemnity is what connects the trust assets to the debt. If
+        the indemnity is cut down, limited recourse leaves the lender with the
+        pledged portfolio and nothing else, so the lending value has to carry
+        the whole risk.
+    - action: note
+      clause: events_of_default
+      text: >-
+        Private-bank security documents treat loss of a pledgor's constitutive
+        status, or its constitutive documents being amended, restated, revoked
+        or invalidated, as a stand-alone liquidation trigger. That is the entity
+        analogue of incapacity and it is the right place to catch a change of
+        trustee or a revocation of the trust.
+  rationale: >-
+    A trustee only has the powers the trust instrument gives it, and security
+    granted outside those powers can be challenged by beneficiaries. Reading the
+    deed before drawdown is cheap; unwinding a defective pledge after a margin
+    call is not. The capacity clause is where this gets fixed, so the floor is
+    raised there.
+  sources:
+    - ref: "EDGAR-PB-01: composite private-bank securities lending exhibit (individual and trust pledgors), EDGAR accession 0000950123-08-001840"
+      type: filed_agreement
+      url: "https://www.sec.gov/Archives/edgar/data/1293153/000095012308001840/y49893exv99w7w05.htm"
+      retrieved: 2026-09-21
+      reliability: B
+      verified: true
+      note: "Supports the constitutive-document CP and the events-of-default note for this rule: each non-individual grantor certifies that every action and consent required by its statutes, charter documents, applicable law or agreements has been taken, and loss or amendment of a pledgor's constitutive status is a separate liquidation trigger."
+    - ref: "[VERIFY] General trust law on trustee powers, the trustee's right of indemnity and limited recourse drafting"
+      type: textbook
+      url: null
+      retrieved: null
+      reliability: C
+      verified: false
+      note: "[VERIFY] No source on trustee powers, the indemnity or limited-recourse drafting was opened in any work package. The indemnity point in the representation and in the capacity note rests on general practice only and must be confirmed for the relevant trust jurisdiction."
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: R02_corporate_or_partnership
+  title: Borrower is a company, partnership or fund
+  priority: 20
+  when:
+    all:
+      - { field: borrower.type, op: in, value: [corporate, partnership, fund] }
+  then:
+    - action: require_cp
+      clause: conditions_precedent
+      text: >-
+        Constitutional documents and certified board, member or partner
+        resolutions authorising this borrowing and this security, together with
+        an incumbency certificate or equivalent evidence of the signatories'
+        authority, and a certificate that no borrowing or similar limit binding
+        on the borrower would be exceeded by this facility.
+    - action: require_rep
+      clause: capacity_authority
+      text: >-
+        The borrower represents that entering into the facility and granting the
+        security is within its objects and powers, has been duly authorised, and
+        is for its own commercial benefit.
+  rationale: >-
+    An entity can only bind itself through the people its constitution
+    authorises, and a facility signed by the wrong person is a facility the
+    lender may not be able to enforce. Corporate benefit matters as well:
+    borrowing for someone else's purpose is where the authorisation argument
+    usually starts. Both points are cured by documents the borrower already has.
+  sources:
+    - ref: "EDGAR-ML-03: margin loan agreement over listed shares, EDGAR accession 0001193125-21-187800"
+      type: filed_agreement
+      url: "https://www.sec.gov/Archives/edgar/data/1333493/000119312521187800/d467983dex3.htm"
+      retrieved: 2026-09-21
+      reliability: B
+      verified: true
+      note: "Supports the CP list in this rule: certified constitutional documents, good-standing certificate, certified resolutions authorising execution, delivery and performance, incumbency and specimen signatures, and a financial officer's certificate that no borrowing limit binding on the borrower would be exceeded."
+    - ref: "UK-CA-2006 s.172"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/ukpga/2006/46/section/172"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the corporate-benefit limb of the representation for an English company: the directors' duty to promote the success of the company for the benefit of its members as a whole is the statutory hook behind a corporate benefit analysis."
+    - ref: "[VERIFY] Capacity, authority and corporate benefit for partnerships, funds and non-English entities"
+      type: textbook
+      url: null
+      retrieved: null
+      reliability: C
+      verified: false
+      note: "[VERIFY] The sources above are an English company duty and a filed corporate CP package. Nothing was opened on partnership or fund authority, or on the corporate benefit analysis outside England, so the rule's reach to those borrower types is unsourced."
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: R03a_natural_person_borrower_no_declaration
+  title: Borrower is an individual with no high-net-worth or business declaration
+  priority: 15
+  when:
+    all:
+      - { field: borrower.natural_person, op: eq, value: true }
+      - not:
+          any:
+            - { field: borrower.declared_high_net_worth, op: eq, value: true }
+            - { field: borrower.business_purpose_declared, op: eq, value: true }
+  then:
+    - action: flag
+      flag: consumer_credit
+      severity: high
+      message: >-
+        The borrower is an individual and no high-net-worth or business-purpose
+        declaration is recorded, so no exemption is made out on the facts the
+        tool holds. In the United Kingdom the exemption logic has sat in the
+        Regulated Activities Order since 1 April 2014 rather than in the
+        Consumer Credit Act 1974: the business-purpose route (art. 60C) needs
+        credit exceeding GBP 25,000 and a wholly or predominantly business
+        purpose, and the high-net-worth route (art. 60H) needs credit exceeding
+        GBP 60,260 or security on land, a prescribed borrower declaration
+        giving up the protections of a regulated agreement, and a compliant
+        statement of net income of at least GBP 150,000 or net assets of at
+        least GBP 500,000 given to the lender before the agreement is made. A
+        Swiss-booked facility usually falls outside the Consumer Credit Act
+        twice over, because Art. 7(1)(b) excludes credit covered by deposited
+        customary bank collateral or by sufficient assets held with the lender
+        and Art. 7(1)(e) excludes credit above CHF 80,000; a Luxembourg-booked
+        facility is outside the consumer credit chapter above EUR 75,000 and
+        again where the credit lets an investor transact in financial
+        instruments. [VERIFY] whether any of those figures has been amended
+        since 21 September 2026, and whether the 1974 Act's unfair-relationship
+        powers continue to reach an exempt agreement. Whether this borrower is a
+        consumer is not a determination this tool makes.
+    - action: escalate
+      to: "senior lawyer + compliance"
+      reason: >-
+        Individual borrower with no high-net-worth or business-purpose
+        declaration on file. Whether this facility is consumer credit is not a
+        determination this tool makes.
+    - action: note
+      clause: events_of_default
+      text: >-
+        Where the borrower is an individual, death and incapacity need to be
+        handled expressly rather than left to the insolvency wording. Say what
+        happens to the facility, who the lender may deal with, and whether the
+        portfolio is frozen or may be liquidated in the meantime.
+    - action: note
+      clause: conditions_precedent
+      text: >-
+        Obtain and file any high-net-worth or business-purpose declaration
+        before drawdown if the facility is to be documented on that basis. The
+        high-net-worth route requires the statement of net income or assets to
+        be given to the lender before the agreement is made, so the sequence is
+        part of the exemption and a declaration signed after the event cannot be
+        regularised later.
+  rationale: >-
+    Lending to an individual can fall inside a consumer regime, and consumer
+    regimes change what the lender may charge, how it must communicate and how
+    quickly it can enforce. The tool cannot decide whether this borrower is a
+    consumer, so it stops the deal at the point where a human must decide. If a
+    declaration is what takes the facility outside the regime, it has to exist
+    before drawdown, not afterwards.
+  sources:
+    - ref: "UK-RAO-2001 art. 60C"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/uksi/2001/544/article/60C"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the business-purpose limb of this rule's message: credit exceeding GBP 25,000 entered into wholly or predominantly for the purposes of a business, the prescribed declaration, and the presumption destroyed where the lender or anyone acting for it knows or has reasonable cause to suspect otherwise."
+    - ref: "UK-RAO-2001 art. 60H"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/uksi/2001/544/article/60H"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the high-net-worth limb and the conditions-precedent note: individual borrower, security on land or credit exceeding GBP 60,260, borrower declaration, and a compliant statement of high net worth given to the lender before the agreement is made."
+    - ref: "UK-CONC-APP-1.4 (regulator handbook)"
+      type: regulator
+      url: "https://www.handbook.fca.org.uk/handbook/CONC/App/1/4.html"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the two figures in this rule's message: net income of at least GBP 150,000 in the previous financial year, or net assets of at least GBP 500,000 throughout it, excluding the primary residence, insurance contract rights and pension benefits."
+    - ref: "UK-CCA-1974 s.16B (omitted)"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/ukpga/1974/39/section/16B"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the statement that the exemption logic moved: the business-purpose exemption in the 1974 Act was omitted with effect from 1 April 2014, which is why this rule points at the Regulated Activities Order."
+    - ref: "CH-KKG-221.214.1 (German official text)"
+      type: primary_law
+      url: "https://www.fedlex.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2002/593/20230901/de/pdf-a/fedlex-data-admin-ch-eli-cc-2002-593-20230901-de-pdf-a.pdf"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the Swiss limb: Art. 3 defines a consumer as a natural person acting outside a professional or commercial activity; Art. 7(1)(b) excludes credit covered by deposited customary bank collateral or sufficient assets held with the lender, and Art. 7(1)(e) excludes credit below CHF 500 or above CHF 80,000."
+    - ref: "LU-CONSO-CODE Art. L.224-3 (consolidated version 31 December 2024)"
+      type: primary_law
+      url: "https://legilux.public.lu/eli/etat/leg/code/consommation/20241231"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the Luxembourg limb: the consumer credit chapter does not apply below EUR 200 or above EUR 75,000, nor to credit from an investment firm or credit institution allowing an investor to carry out a transaction in the listed financial instruments."
+    - ref: "[VERIFY] Continuing reach of the unfair-relationship powers to an exempt agreement, and the transposition of the 2023 EU consumer credit directive in Luxembourg"
+      type: primary_law
+      url: null
+      retrieved: null
+      reliability: A
+      verified: false
+      note: "[VERIFY] Neither point was researched. The unfair-relationship sections of the 1974 Act were not read, and the effect of Directive (EU) 2023/2225 on the Luxembourg thresholds once transposed is unknown. Both bear on whether an exemption actually ends the analysis."
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: R03b_natural_person_borrower_declared
+  title: Borrower is an individual with a high-net-worth or business declaration
+  priority: 15
+  when:
+    all:
+      - { field: borrower.natural_person, op: eq, value: true }
+      - any:
+          - { field: borrower.declared_high_net_worth, op: eq, value: true }
+          - { field: borrower.business_purpose_declared, op: eq, value: true }
+  then:
+    - action: flag
+      flag: consumer_credit
+      severity: medium
+      message: >-
+        The borrower is an individual but a high-net-worth or business-purpose
+        declaration is recorded, which is what the United Kingdom exemptions
+        turn on. The risk drops rather than disappearing, because both routes
+        have conditions beyond the declaration itself: on the business-purpose
+        route the presumption created by the declaration is destroyed where the
+        lender, or anyone acting for it, knows or has reasonable cause to
+        suspect that the purpose is not wholly or predominantly a business one,
+        so a file note describing a personal purpose defeats it. On the
+        high-net-worth route the declaration has to sit in the agreement, be no
+        less prominent than the other information, be signed, confirm receipt of
+        the statement of high net worth and record that consumer credit
+        protections are being given up, and the statement itself has to meet the
+        regulator's thresholds and reach the lender before the agreement is
+        made. Check the form, the sequence and whether the declaration is still
+        true. [VERIFY] whether the monetary figures behind either route have
+        been amended since 21 September 2026.
+    - action: note
+      clause: events_of_default
+      text: >-
+        Where the borrower is an individual, death and incapacity need to be
+        handled expressly rather than left to the insolvency wording. Say what
+        happens to the facility, who the lender may deal with, and whether the
+        portfolio is frozen or may be liquidated in the meantime.
+    - action: note
+      clause: conditions_precedent
+      text: >-
+        Keep the signed declaration and the statement of high net worth on file
+        with the facility letter, and make the declaration a representation that
+        repeats, so that a change in the borrower's circumstances is a matter
+        the lender hears about rather than discovers.
+  rationale: >-
+    A declaration is what the exemption usually turns on, so the risk drops but
+    does not disappear: the declaration has to be in the right form, made before
+    the facility, and still true. Flagging at medium keeps it visible to the
+    reviewer without stopping the deal. The death and incapacity point applies to
+    any individual borrower regardless of the declaration.
+  sources:
+    - ref: "UK-RAO-2001 art. 60C"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/uksi/2001/544/article/60C"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the statement in this rule that a business-purpose declaration only creates a presumption, and that the presumption falls away where the lender or anyone acting for it knows or has reasonable cause to suspect the purpose is otherwise."
+    - ref: "UK-RAO-2001 art. 60H"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/uksi/2001/544/article/60H"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the sequencing point in this rule: the statement of high net worth must be made in compliance with the regulator's rules, be connected to the agreement, and be given to the lender before the agreement is made."
+    - ref: "UK-CONC-APP-1.4 (regulator handbook)"
+      type: regulator
+      url: "https://www.handbook.fca.org.uk/handbook/CONC/App/1/4.html"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the form requirements listed in this rule's message: who may sign the statement of high net worth, and that the borrower's declaration must be in the agreement, no less prominent than the other information, signed, and must confirm receipt of the statement and the giving up of protections."
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: R04_natural_person_pledgor_england
+  title: Natural-person collateral provider under English law
+  priority: 30
+  when:
+    all:
+      - { field: derived.any_natural_person_pledgor, op: eq, value: true }
+      - { field: collateral.governing_law, op: eq, value: england_wales }
+  then:
+    - action: flag
+      flag: fcar_safe_harbour_uncertain
+      severity: medium
+      message: >-
+        [VERIFY] Whether the financial collateral safe harbour is available on
+        these particular facts has not been settled, and it is fact-dependent.
+        What is settled is the rule: the collateral provider here is a natural
+        person and the security is governed by English law, and regulation 3 of
+        the Financial Collateral Arrangements (No. 2) Regulations 2003 requires
+        both parties to a security or title transfer financial collateral
+        arrangement to be non-natural persons, an individual being excluded. On
+        those facts the arrangement is not a financial collateral arrangement
+        and the statutory machinery is not available: no appropriation under an
+        express power without a court order (reg 17), no
+        commercially-reasonable-valuation framework for appropriation (reg 18),
+        and no disapplication of the insolvency restrictions on enforcing
+        security (regs 8 and 10). Two things keep this uncertain rather than
+        closed: the test looks at the parties to the collateral arrangement, so
+        an individual borrower with a corporate or trustee-company pledgor can
+        still be inside the regime; and even with two non-natural persons the
+        arrangement must still satisfy possession or control, which the English
+        courts read as requiring real dispossession of the provider. Do not rely
+        on appropriation in the enforcement clause; rely on an express power of
+        sale with Law of Property Act 1925 s.103 disapplied, and confirm the
+        analysis with counsel.
+    - action: note
+      clause: security_structure_control
+      text: >-
+        Draft the security so that it stands up without the financial collateral
+        regime: an express contractual power of sale with s.103 of the Law of
+        Property Act 1925 disapplied, a clear statement of the lender's control
+        over the account, and no reliance on appropriation as the only
+        enforcement route. Keep the equitable duty to take reasonable care to
+        obtain a proper price and evidence it with a documented valuation and
+        sale process. If the safe harbour turns out to be available, nothing is
+        lost by having drafted around it.
+    - action: note
+      clause: enforcement_liquidation
+      text: >-
+        What is lost where the provider is an individual is the self-help
+        package, not the security itself: on personal bankruptcy s.285(4) of the
+        Insolvency Act 1986 preserves a secured creditor's right to enforce. Plan
+        for enforcement that takes longer and is more visible than an
+        appropriation would have been.
+  rationale: >-
+    The financial collateral regime is what makes securities collateral quick to
+    enforce in England: appropriation, and relief from registration and sale
+    formalities. Where the collateral provider is an individual the regulations
+    do not reach the arrangement at all, which is the classic private-wealth
+    case and the classic family pledgor. Drafting so the security works either
+    way costs nothing and removes the argument.
+  sources:
+    - ref: "UK-FCAR-2003 reg 3 (current)"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/uksi/2003/3226/regulation/3"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "The rule this whole entry rests on: both parties to a security financial collateral arrangement and to a title transfer financial collateral arrangement must be non-natural persons, a non-natural person being any body corporate, unincorporated firm, partnership or body with legal personality except an individual."
+    - ref: "UK-FCAR-2003 regs 4, 8, 17 and 18 (table of contents, as made)"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/uksi/2003/3226/contents/made"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the list of benefits this rule says are unavailable: the registration exemption, the disapplication of the insolvency restrictions on enforcement, appropriation under an express power without a court order, and the commercially reasonable valuation duty on appropriation."
+    - ref: "UK-FCL-BRIEF-01: law-firm briefing on financial collateral possession and control (Nov 2012)"
+      type: law_firm_briefing
+      url: "https://www.cliffordchance.com/content/dam/cliffordchance/briefings/2012/11/financial-collateral-remains-a-gray-area.pdf"
+      retrieved: 2026-09-21
+      reliability: C
+      verified: true
+      note: "Supports the second reason this rule stays 'uncertain' rather than 'unavailable': possession or control requires more than custody and turns on real dispossession of the collateral provider, per the English decisions reported at [2010] EWHC 1772 (Ch) and [2012] EWHC 2997 (Ch)."
+    - ref: "UK-LPA-1925 s.103"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/ukpga/Geo5/15-16/20/section/103"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the drafting answer in the security-structure note: s.103 imposes three alternative pre-conditions on exercising the statutory power of sale, and is routinely contracted out of so the lender is not waiting on a notice period."
+    - ref: "UK-IA-1986 s.285"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/ukpga/1986/45/section/285"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the enforcement note: s.285(4) preserves a secured creditor's right to enforce its security on the borrower's personal bankruptcy, so the loss from falling outside the regulations is the self-help package rather than the security."
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: R05_third_party_security
+  title: Security is granted by someone other than the borrower
+  priority: 25
+  when:
+    all:
+      - { field: derived.third_party_security, op: eq, value: true }
+  then:
+    - action: require_rep
+      clause: third_party_security_waivers
+      text: >-
+        The pledgor confirms that it understands it is securing another person's
+        debt, that it has been advised to take independent legal advice and has
+        had a genuine opportunity to do so, and that it is not relying on the
+        lender for advice about the transaction.
+    - action: set_floor
+      clause: capacity_authority
+      tier: acceptable
+    - action: note
+      clause: third_party_security_waivers
+      text: >-
+        Take the standard third-party waivers: no subrogation or contribution
+        until the secured debt is paid in full, no marshalling, no right to
+        require the lender to enforce elsewhere first, and consent to variations
+        of the facility without further notice. Filed private-bank security makes
+        the pledgor's obligations absolute and unconditional irrespective of the
+        validity of the underlying documents, any change in terms or any release
+        of other collateral, with the surety defences waived. Without that the
+        pledgor can interfere with enforcement at exactly the wrong moment.
+    - action: note
+      clause: conditions_precedent
+      text: >-
+        Record how independent advice was given and by whom. The point of the
+        certificate is to answer an undue-influence argument years later, so it
+        has to name the adviser and the date.
+  rationale: >-
+    Someone who pledges their assets for another person's debt has a set of
+    arguments the borrower does not: undue influence, misrepresentation, and a
+    claim that they did not understand what they were signing. Independent advice
+    and the standard waivers are what close those arguments off. They also cost
+    the lender nothing commercially, which is why this is a routine ask.
+  sources:
+    - ref: "EDGAR-PB-01: composite private-bank securities lending exhibit (individual and trust pledgors), EDGAR accession 0000950123-08-001840"
+      type: filed_agreement
+      url: "https://www.sec.gov/Archives/edgar/data/1293153/000095012308001840/y49893exv99w7w05.htm"
+      retrieved: 2026-09-21
+      reliability: B
+      verified: true
+      note: "Supports the waiver package described in this rule's note: the third-party pledgor's obligations are absolute and unconditional irrespective of the validity or enforceability of the documents evidencing the secured obligations, any change in terms or any release of other collateral or guarantees, with the surety defences expressly waived."
+    - ref: "[VERIFY] English law on undue influence and independent legal advice for third-party non-commercial security"
+      type: textbook
+      url: null
+      retrieved: null
+      reliability: C
+      verified: false
+      note: "[VERIFY] Recorded as unresearched in docs/source_register.md. No case or textbook was opened, so the representation about independent advice and the conditions-precedent note rest on general practice and must be sourced to authority before promotion beyond draft."
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: R05b_third_party_corporate_pledgor
+  title: Third-party security granted by a company
+  priority: 25
+  when:
+    all:
+      - { field: derived.third_party_security, op: eq, value: true }
+      - { field: pledgor.type, op: eq, value: corporate }
+  then:
+    - action: flag
+      flag: financial_assistance_corporate_benefit
+      severity: medium
+      message: >-
+        A company is securing another person's debt, so its directors have to be
+        able to explain what the company gets out of it: the duty to promote the
+        success of the company for the benefit of its members as a whole is what
+        a corporate benefit analysis answers. Where the borrowing is connected
+        with an acquisition of shares in the pledgor or its holding company, a
+        further prohibition can apply: a public company or its subsidiary may not
+        give financial assistance for the acquisition of the public company's
+        shares, or to discharge a liability so incurred, subject to the
+        principal-purpose and incidental-part exceptions. [VERIFY] Equivalent
+        restrictions on upstream and cross-stream security in Switzerland and
+        Luxembourg are real in practice but no primary text on either was opened,
+        so a non-English pledgor needs local counsel rather than this flag.
+    - action: require_cp
+      clause: conditions_precedent
+      text: >-
+        A corporate benefit analysis for the pledgor and, where its jurisdiction
+        restricts financial assistance or upstream security, local counsel
+        confirmation that the security is valid and enforceable.
+  rationale: >-
+    A company that secures somebody else's borrowing has to be able to explain
+    what it gets out of it, and some jurisdictions go further and cap or prohibit
+    the arrangement outright. That is a validity question, not a pricing
+    question, so it belongs in the conditions precedent. Local counsel is the
+    only sensible answer where the pledgor is offshore.
+  sources:
+    - ref: "UK-CA-2006 s.172"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/ukpga/2006/46/section/172"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the corporate-benefit limb of this rule: the duty to promote the success of the company for the benefit of its members as a whole, with the listed matters the directors must have regard to, is what the corporate benefit analysis in the condition precedent is addressed to."
+    - ref: "UK-CA-2006 s.678"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/ukpga/2006/46/section/678"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the financial-assistance limb of this rule: the prohibition on a public company or its subsidiary giving financial assistance for an acquisition of the public company's shares or to discharge a liability so incurred, with the principal-purpose and incidental-part exception."
+    - ref: "[VERIFY] Swiss and Luxembourg restrictions on upstream and cross-stream security and their corporate benefit equivalents"
+      type: primary_law
+      url: null
+      retrieved: null
+      reliability: A
+      verified: false
+      note: "[VERIFY] Recorded as unresearched in docs/source_register.md. The statement that equivalent restrictions exist outside England is a practitioner generalisation with no primary text behind it, which is why the condition precedent asks for local counsel rather than stating the local rule."
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: R06_concentration
+  title: Single-issuer concentration above 25 per cent of lending value
+  priority: 10
+  when:
+    all:
+      - { field: derived.max_single_name_pct, op: gt, value: 25 }
+  then:
+    - action: set_floor
+      clause: concentration_limits
+      tier: acceptable
+    - action: set_floor
+      clause: margin_maintenance_cure
+      tier: acceptable
+    - action: note
+      clause: eligible_collateral_lending_values
+      text: >-
+        Single-issuer exposure is above 25 per cent of lending value. Apply the
+        concentration haircut to the concentrated line itself rather than
+        softening the overall advance rate, so the pricing of the risk stays
+        where the risk is.
+    - action: note
+      clause: concentration_limits
+      text: >-
+        Published bank terms handle concentration without a numeric cap and use
+        three levers instead: diversification as an input to the limit,
+        differentiated fees where the portfolio is not sufficiently diversified,
+        and insufficient diversification as a free-standing ground to liquidate.
+        Institutional margin loans add a covenant stopping the borrower's
+        affiliates pledging securities of the same class to secure other
+        financings. Any of those is a fair fallback if the counterparty resists a
+        hard percentage.
+  rationale: >-
+    A concentrated portfolio does not behave like a diversified one: it gaps
+    instead of drifting, and the day the lender needs to sell is the day the
+    price is worst. That is why the concession room on concentration limits and
+    on the cure period shrinks together. The lender is not refusing the trade,
+    it is refusing to price it as if it were diversified.
+  sources:
+    - ref: "REG-CH-02: national regulator risk monitor 2025"
+      type: regulator
+      url: "https://www.finma.ch/en/~/media/finma/dokumente/dokumentencenter/myfinma/finma-publikationen/risikomonitor/20251117-finma-risikomonitor-2025.pdf?sc_lang=en"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the existence of this rule at all: the supervisor names concentration risk where loans are secured on single securities or on undiversified collateral, and the correlated version where several banks lend against the same collateral."
+    - ref: "REG-CH-01: national regulator risk monitor 2024"
+      type: regulator
+      url: "https://www.finma.ch/en/~/media/finma/dokumente/dokumentencenter/myfinma/finma-publikationen/risikomonitor/20241118-finma-risikomonitor-2024.pdf"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the lending-value note: supervision of the Lombard book is focused on concentrated and more illiquid collateral, and the stated concern is that applied haircuts may be too low."
+    - ref: "BANK-LU-01: published Lombard loan agreement template of a Luxembourg bank"
+      type: bank_terms
+      url: "https://links.imagerelay.com/cdn/2958/ql/lombard-loan-contract-sqbe-en-01072023"
+      retrieved: 2026-09-21
+      reliability: B
+      verified: true
+      note: "Supports the three fallback levers in the concentration note: diversification as an input to the limit, differentiated fees where the portfolio is not sufficiently diversified, and insufficient diversification as a stand-alone ground for unilateral liquidation."
+    - ref: "BANK-CH-01: published Lombard loan product factsheet of a Swiss bank"
+      type: bank_terms
+      url: "https://www.ubs.com/content/dam/assets/microsites/credit-suisse/static/doc/lombardkredit-factsheet-en.pdf"
+      retrieved: 2026-09-21
+      reliability: B
+      verified: true
+      note: "Supports the softer version of the same approach: portfolio diversification is one of the stated inputs into the loan-to-value ratio applied to the collateral."
+    - ref: "FIRM-01: practitioner guide chapter on margin loan and backleverage financings"
+      type: law_firm_briefing
+      url: "https://www.stblaw.com/docs/default-source/related-link-pdfs/global-legal-insights-fund-finance-2022_backleverage-financings--insights-into-the-margin-loan.pdf?sfvrsn=b1f56e21_2"
+      retrieved: 2026-09-21
+      reliability: C
+      verified: true
+      note: "Supports the same-class negative pledge named in the concentration note: a future-financing or restricted-transactions covenant that stops borrower affiliates pledging same-class securities to secure other financings, to prevent stacked margin loans and exit overhang."
+    - ref: "[VERIFY] The 25 per cent single-name threshold itself"
+      type: bank_terms
+      url: null
+      retrieved: null
+      reliability: B
+      verified: false
+      note: "[VERIFY] No source in the pool states a numeric single-name concentration cap: published bank terms deliberately avoid one. The 25 per cent figure is a placeholder taken from build_plan.md §4 and must be set against the institution's own credit policy."
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: R06b_concentration_severe
+  title: Single-issuer concentration above 50 per cent of lending value
+  priority: 9
+  when:
+    all:
+      - { field: derived.max_single_name_pct, op: gt, value: 50 }
+  then:
+    - action: set_opening
+      clause: margin_maintenance_cure
+      tier: preferred
+    - action: set_floor
+      clause: eligible_collateral_lending_values
+      tier: acceptable
+    - action: escalate
+      to: "credit"
+      reason: >-
+        Single-issuer exposure exceeds 50 per cent of lending value. Credit must
+        set the lending value and the concentration haircut before any terms are
+        issued.
+      clause: eligible_collateral_lending_values
+  rationale: >-
+    Above half the portfolio in one name, the facility is really a loan against
+    that one stock, and the legal wording stops being the main control. This is
+    a credit decision about the advance rate, not a drafting decision, so the
+    tool hands it over rather than pretending a tighter clause solves it. The
+    opening on margin maintenance stays at the lender's own position throughout.
+  sources:
+    - ref: "REG-CH-02: national regulator risk monitor 2025"
+      type: regulator
+      url: "https://www.finma.ch/en/~/media/finma/dokumente/dokumentencenter/myfinma/finma-publikationen/risikomonitor/20251117-finma-risikomonitor-2025.pdf?sc_lang=en"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports handing this to credit rather than to drafting: the supervisor names single-stock lending and undiversified collateral as the concentration risk, and records the concern that applied haircuts may be too low."
+    - ref: "EDGAR-ML-04: margin loan agreement over listed shares, EDGAR accession 0001493152-25-028763"
+      type: filed_agreement
+      url: "https://www.sec.gov/Archives/edgar/data/2068577/000149315225028763/ex7.htm"
+      retrieved: 2026-09-21
+      reliability: B
+      verified: true
+      note: "Supports the practice of using percentage thresholds as structural triggers rather than as clause language: this agreement uses a 10 per cent beneficial-ownership threshold and a 50 per cent change-of-control threshold, with the named loan-to-value levels moved into a confidential side letter."
+    - ref: "FIRM-01: practitioner guide chapter on margin loan and backleverage financings"
+      type: law_firm_briefing
+      url: "https://www.stblaw.com/docs/default-source/related-link-pdfs/global-legal-insights-fund-finance-2022_backleverage-financings--insights-into-the-margin-loan.pdf?sfvrsn=b1f56e21_2"
+      retrieved: 2026-09-21
+      reliability: C
+      verified: true
+      note: "Supports the point that at this level the advance rate carries the risk: the trigger and reset loan-to-value architecture, with a separate lower level gating releases, is described as the basic tenet of single-stock margin lending."
+    - ref: "[VERIFY] The 50 per cent single-name threshold itself"
+      type: bank_terms
+      url: null
+      retrieved: null
+      reliability: B
+      verified: false
+      note: "[VERIFY] The figure is a placeholder taken from build_plan.md §4, not a level observed in any published source. Where the escalation point sits is a credit-policy decision."
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: R07_pdmr_pledged_issuer
+  title: Pledgor or borrower is a PDMR or insider of a pledged issuer
+  priority: 10
+  when:
+    all:
+      - { field: pledgor.is_pdmr_of_pledged_issuer, op: eq, value: true }
+  then:
+    - action: flag
+      flag: market_abuse
+      severity: high
+      message: >-
+        The collateral provider is a person discharging managerial
+        responsibilities, or otherwise an insider, of an issuer whose securities
+        are pledged. Article 19 of the Market Abuse Regulation as retained in UK
+        law makes the pledging or lending of financial instruments by or on
+        behalf of such a person a notifiable transaction, with one carve-out that
+        matters here: a pledge or similar security interest given in connection
+        with depositing instruments in a custody account need not be notified
+        until it is designated to secure a specific credit facility. Executing
+        these security documents is therefore the event that starts the client's
+        clock, which runs promptly and in any case within three working days once
+        the year's transactions reach the EUR 5,000 aggregate threshold that the
+        competent authority may raise to EUR 20,000. Article 19(11) separately
+        bars that person from dealing in the issuer's shares, debt instruments or
+        linked derivatives during the 30-calendar-day closed period before an
+        interim or year-end report, which is what makes the timing of an
+        enforcement sale a live problem for both sides. [VERIFY] the onshored
+        threshold figure and whether the regulator has exercised the uplift; no
+        market abuse regime outside the United Kingdom was researched.
+    - action: escalate
+      to: "senior lawyer + compliance"
+      reason: >-
+        Insider status of the collateral provider must be cleared by compliance
+        before a term sheet is issued.
+    - action: set_floor
+      clause: enforcement_liquidation
+      tier: acceptable
+    - action: require_rep
+      clause: capacity_authority
+      text: >-
+        The pledgor represents that it is not in possession of inside information
+        in relation to the pledged issuer, that the grant of security does not
+        breach any dealing restriction applicable to it, and that it will notify
+        the lender before it becomes subject to a closed period.
+    - action: require_cp
+      clause: conditions_precedent
+      text: >-
+        Compliance sign-off on the pledgor's insider status, together with any
+        issuer consent, notification or disclosure required in connection with
+        the pledge.
+    - action: note
+      clause: conditions_precedent
+      text: >-
+        Timing is the point. Because the notification obligation is triggered by
+        designating the pledge to secure a named facility rather than by the
+        original custody arrangement, the date the security documents are signed
+        drives the client's three-working-day clock. Agree with compliance who
+        tells the client, and when, before execution rather than after.
+  rationale: >-
+    When an insider pledges their own company's stock, the lender inherits their
+    dealing problem: a forced sale can land in a closed period or on top of
+    information the insider had. The clause cannot fix that, so the rule stops
+    the deal and sends it to compliance. What the drafting can do is keep the
+    enforcement route flexible enough to sell at a lawful moment.
+  sources:
+    - ref: "UK-MAR-596/2014 Art. 19 (retained UK law)"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/eur/2014/596/article/19"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports every limb of this rule's message: notification by persons discharging managerial responsibilities and persons closely associated with them promptly and within three working days; the EUR 5,000 annual aggregate threshold with a permitted uplift to EUR 20,000; Art. 19(7) bringing pledging and lending within notifiable transactions with the custody-account carve-out falling away once the pledge is designated to secure a specific credit facility; and the Art. 19(11) 30-calendar-day closed period before interim and year-end reports."
+    - ref: "[VERIFY] Market abuse and insider dealing regimes outside the United Kingdom"
+      type: primary_law
+      url: null
+      retrieved: null
+      reliability: A
+      verified: false
+      note: "[VERIFY] The rule fires on the deal fact, not on a governing law, but only the retained UK regime was read. The Swiss and EU positions on pledges by insiders, and any issuer-level lock-up or dealing code, were not researched."
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: R08_restricted_securities
+  title: Pledged portfolio contains restricted or locked-up securities
+  priority: 20
+  when:
+    all:
+      - { field: derived.any_issuer_restricted, op: eq, value: true }
+  then:
+    - action: flag
+      flag: restricted_securities
+      severity: high
+      message: >-
+        At least one collateral line is marked as issuer-restricted (lock-up,
+        control stock, orderly-marketing or similar). Where the restriction is a
+        US resale one, the familiar shape is a holding period before resale, plus
+        current public information, volume, manner-of-sale and notice-filing
+        conditions on a sale by an affiliate of the issuer — conditions that bear
+        directly on how much the lender can sell and how fast. Where it is
+        contractual, a recent filed margin loan shows the pattern of an
+        underwriter lock-up attaching to the very stock being pledged.
+        Restrictions of either kind can limit or delay a sale on enforcement.
+        [VERIFY] the English, Swiss and Luxembourg equivalents were not
+        researched, so read the actual restriction rather than assuming this
+        shape.
+    - action: set_floor
+      clause: enforcement_liquidation
+      tier: acceptable
+    - action: require_cp
+      clause: conditions_precedent
+      text: >-
+        Review of the lock-up, orderly-marketing, affiliate or control
+        restrictions attaching to the pledged securities and, where required,
+        written issuer or underwriter consent to the pledge and to enforcement.
+        Filed institutional practice makes collateral quality a condition in its
+        own right: the lender must be satisfied that the pledged securities carry
+        no transfer restrictions beyond those disclosed and settle through the
+        ordinary book-entry system, with separate representations that the pledge
+        is bona fide and that any holding period has run.
+    - action: note
+      clause: enforcement_liquidation
+      text: >-
+        If the securities cannot be sold freely, the enforcement wording has to
+        allow for the method and the timing the restriction forces: sale in
+        tranches, sale through a nominated broker, or a delay for a mandatory
+        notice period. Say so expressly rather than relying on a general
+        commercially-reasonable-manner standard.
+    - action: note
+      clause: eligible_collateral_lending_values
+      text: >-
+        Restricted lines should carry a lending value that assumes the
+        restriction, not one that assumes a liquid market. A line the lender
+        cannot sell next week is not collateral against a demand facility.
+  rationale: >-
+    Collateral is only worth what it can be sold for, and a lock-up or a control
+    restriction means it cannot be sold when the lender wants. That is a
+    liquidity problem dressed as a legal one, so it shows up in both the lending
+    value and the enforcement clause. The consents cost nothing to ask for at the
+    start and are impossible to obtain in a default.
+  sources:
+    - ref: "US-RULE-144 (17 CFR 230.144), unofficial reproduction"
+      type: primary_law
+      url: "https://www.law.cornell.edu/cfr/text/17/230.144"
+      retrieved: 2026-09-21
+      reliability: C
+      verified: true
+      note: "Supports the resale-restriction shape described in this rule's message: the affiliate and restricted-securities definitions, the six-month holding period for reporting issuers and one year otherwise, and the current public information, volume, manner-of-sale and notice-filing conditions on affiliate sales. Graded C because the text read was a university reproduction of the regulation, not the official publisher."
+    - ref: "EDGAR-ML-04: margin loan agreement over listed shares, EDGAR accession 0001493152-25-028763"
+      type: filed_agreement
+      url: "https://www.sec.gov/Archives/edgar/data/2068577/000149315225028763/ex7.htm"
+      retrieved: 2026-09-21
+      reliability: B
+      verified: true
+      note: "Supports the contractual limb: a worked example of a recent transaction where the pledged stock is subject to an underwriter lock-up agreement alongside beneficial-ownership and change-of-control triggers."
+    - ref: "EDGAR-ML-03: margin loan agreement over listed shares, EDGAR accession 0001193125-21-187800"
+      type: filed_agreement
+      url: "https://www.sec.gov/Archives/edgar/data/1333493/000119312521187800/d467983dex3.htm"
+      retrieved: 2026-09-21
+      reliability: B
+      verified: true
+      note: "Supports the condition precedent in this rule: collateral quality is made a condition in its own right, with the lender to be satisfied that the pledged shares carry no undisclosed transfer restrictions and settle through the ordinary book-entry system, plus bona fide pledge and holding-period representations."
+    - ref: "[VERIFY] English, Swiss and Luxembourg restrictions on resale of control and affiliate securities"
+      type: primary_law
+      url: null
+      retrieved: null
+      reliability: A
+      verified: false
+      note: "[VERIFY] Recorded as a known gap in handoff/WP8.md: the restricted-securities material in this library is built on a US resale rule, and the three playbook jurisdictions were not researched for their equivalents."
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: R09_real_estate
+  title: Real estate offered as collateral
+  priority: 5
+  when:
+    all:
+      - { field: derived.has_real_estate, op: eq, value: true }
+  then:
+    - action: flag
+      flag: mortgage_regulation
+      severity: high
+      message: >-
+        Real estate has been offered as collateral, and lending secured on land
+        is treated separately from securities-backed lending in all three
+        playbook jurisdictions. In the United Kingdom entering into and
+        administering a regulated mortgage contract are each specified regulated
+        activities, and a contract is regulated where credit is given to an
+        individual or to trustees on the security of a mortgage over land at
+        least 40 per cent of which is used, or intended to be used, as or in
+        connection with a dwelling. Switzerland takes credit secured by a real
+        estate charge outside the Consumer Credit Act altogether, and Luxembourg
+        likewise excludes credit secured on immovable property from the consumer
+        credit chapter — in both cases because it is dealt with elsewhere, not
+        because it is unregulated. [VERIFY] None of the substantive real estate
+        finance regimes — creation, registration, priority or enforcement against
+        land — has been researched for this playbook.
+    - action: escalate
+      to: "senior lawyer"
+      reason: >-
+        Real estate collateral is outside the scope of this playbook. The deal
+        needs a real estate finance template and, where the property is
+        residential, a regulatory assessment before terms are issued.
+      clause: eligible_collateral_lending_values
+    - action: note
+      clause: eligible_collateral_lending_values
+      text: >-
+        Real estate is out of scope for this playbook. This tool holds no
+        positions, no lending values, no perfection steps and no enforcement
+        route for land, and nothing in this output should be used for the real
+        estate element of the deal.
+    - action: note
+      clause: enforcement_liquidation
+      text: >-
+        Real estate is out of scope for this playbook. Enforcement against land
+        is slower and more formal than enforcement against a securities account,
+        and the positions in this clause were not written with it in mind.
+  rationale: >-
+    Securities-backed lending works because the collateral can be valued daily
+    and sold in a morning. Land is neither, and the regulatory overlay on
+    residential property is a different discipline again. Rather than produce a
+    plausible-looking markup for a deal it was not built for, the tool stops and
+    says so.
+  sources:
+    - ref: "UK-RAO-2001 art. 61"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/uksi/2001/544/article/61"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the United Kingdom limb of this rule's message: entering into and administering a regulated mortgage contract are specified regulated activities, and art. 61(3)(a) defines a regulated mortgage contract by reference to credit to an individual or trustees secured on land at least 40 per cent of which is used as or in connection with a dwelling."
+    - ref: "CH-KKG-221.214.1 (German official text)"
+      type: primary_law
+      url: "https://www.fedlex.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2002/593/20230901/de/pdf-a/fedlex-data-admin-ch-eli-cc-2002-593-20230901-de-pdf-a.pdf"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the Swiss limb: Art. 7(1)(a) excludes credit secured directly or indirectly by a real estate charge from the Consumer Credit Act, which is why real-estate-secured lending is a different analysis from the Lombard one this playbook covers."
+    - ref: "LU-CONSO-CODE Art. L.224-3 (consolidated version 31 December 2024)"
+      type: primary_law
+      url: "https://legilux.public.lu/eli/etat/leg/code/consommation/20241231"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the Luxembourg limb: Art. L.224-3(1)(a) excludes credit secured by a mortgage or comparable security over immovable property, or by a right relating to immovable property, from the consumer credit chapter."
+    - ref: "[VERIFY] Substantive real estate finance law in the playbook jurisdictions"
+      type: primary_law
+      url: null
+      retrieved: null
+      reliability: A
+      verified: false
+      note: "[VERIFY] The sources above establish only that land lending is regulated separately. Nothing was opened on creation, registration, priority or enforcement of security over land, which is why this rule is a scope boundary rather than a legal statement."
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: R10_purpose_acquire_securities
+  title: Facility purpose is to acquire securities
+  priority: 20
+  when:
+    all:
+      - { field: facility.purpose, op: eq, value: acquire_securities }
+  then:
+    - action: flag
+      flag: mifid_suitability
+      severity: medium
+      message: >-
+        The facility is being used to buy securities, which is the fact pattern
+        where a lender is most often said to have advised on, or arranged, an
+        investment. In Switzerland that is explicit: granting loans to finance
+        transactions with financial instruments is itself a financial service,
+        and where investment advice or portfolio management is provided the firm
+        must run an appropriateness or suitability review, enquire into the
+        client's financial situation and objectives, and advise the client
+        against an instrument it thinks unsuitable. In the United Kingdom the
+        conduct rules require a personal recommendation to be suitable and in
+        line with the client's risk tolerance and ability to bear losses, and the
+        regulator's guidance tells a firm to consider the suitability of the
+        overall transaction where an instrument is linked directly or indirectly
+        to a loan — so the leverage and the investment are assessed together, not
+        separately. [VERIFY] The EU-side characterisation of this lending as an
+        ancillary service, and the EU suitability wording, were not confirmed
+        against the directive text.
+    - action: require_rep
+      clause: purpose_restrictions
+      text: >-
+        The borrower represents that the facility will be applied only to the
+        permitted purpose stated in the facility letter, and undertakes to notify
+        the lender before applying any part of it to a different purpose.
+    - action: set_floor
+      clause: no_advice_non_reliance
+      tier: acceptable
+    - action: note
+      clause: purpose_restrictions
+      text: >-
+        Borrowing to buy securities that are then pledged back gears the same
+        risk twice: a fall in the market cuts the collateral and the borrower's
+        ability to repay at the same time. Keep the purpose restriction tight
+        enough that the lender knows what it is funding. Where the collateral
+        includes US margin stock, purpose credit also carries its own
+        collateralisation requirement, so the purpose statement has a regulatory
+        consequence as well as a credit one.
+    - action: note
+      clause: no_advice_non_reliance
+      text: >-
+        Keep the non-reliance wording and the conduct consistent. A
+        non-reliance clause will not help much if the relationship manager has
+        been discussing which stocks to buy, so the clause is the floor, not the
+        whole answer.
+  rationale: >-
+    Leverage used to buy the very assets that secure it doubles the lender's
+    exposure to one market move. It also puts the lender close to the investment
+    decision, which is where suitability arguments come from. The non-advice
+    clause and a tight purpose restriction are the two cheapest protections and
+    both belong in the opening draft.
+  sources:
+    - ref: "CH-FINSA-950.1 (official English translation)"
+      type: primary_law
+      url: "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2019/758/20240301/en/pdf-a/fedlex-data-admin-ch-eli-cc-2019-758-20240301-en-pdf-a.pdf"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the Swiss limb of this rule's message: Art. 3(c)(5) makes the granting of loans to finance transactions with financial instruments a financial service in its own right, and Arts 10 to 14 set the appropriateness and suitability duties, the execution-only exemption and the duty to advise a client against an unsuitable instrument."
+    - ref: "UK-COBS-9A.2 (regulator handbook)"
+      type: regulator
+      url: "https://www.handbook.fca.org.uk/handbook/COBS/9A/2.html"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the United Kingdom limb and the no-advice floor: suitability by reference to the client's risk tolerance and ability to bear losses, the financial situation and investment objectives information required, and the guidance to consider the suitability of the overall transaction where an instrument is linked directly or indirectly to a loan."
+    - ref: "IND-CH-01: banking industry association risk disclosure booklet, 2023 English edition"
+      type: bank_terms
+      url: "https://www.swissbanking.ch/_Resources/Persistent/e/1/8/d/e18dc86d8033b556db0c7db772e9b025042db1d5/SBA_Risks_Involved_in_Trading_Financial_Instruments_2023_EN.pdf"
+      retrieved: 2026-09-21
+      reliability: B
+      verified: true
+      note: "Supports the industry-side reading of the same point: where a client takes a loan in order to invest in financial instruments the investor-protection provisions apply in full, and the booklet sets out the credit-financed-investment risks the purpose restriction is aimed at."
+    - ref: "LU-CONSO-CODE Art. L.224-3 (consolidated version 31 December 2024)"
+      type: primary_law
+      url: "https://legilux.public.lu/eli/etat/leg/code/consommation/20241231"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the interaction with the consumer credit analysis: Art. L.224-3(1)(h) takes credit from an investment firm or credit institution that lets an investor carry out a transaction in the listed financial instruments outside the consumer credit chapter, so the acquire-securities purpose cuts one way on conduct and the other way on consumer credit."
+    - ref: "FIRM-01: practitioner guide chapter on margin loan and backleverage financings"
+      type: law_firm_briefing
+      url: "https://www.stblaw.com/docs/default-source/related-link-pdfs/global-legal-insights-fund-finance-2022_backleverage-financings--insights-into-the-margin-loan.pdf?sfvrsn=b1f56e21_2"
+      retrieved: 2026-09-21
+      reliability: C
+      verified: true
+      note: "Supports the purpose-restrictions note: purpose credit secured by US margin stock must be fully collateralised with a 50 per cent haircut on the margin stock, which is why what the facility is for changes the collateral arithmetic and not just the conduct analysis."
+    - ref: "[VERIFY] EU-MIFID2-2014/65 Art. 25(2) and Annex I Section B(2)"
+      type: primary_law
+      url: "https://eur-lex.europa.eu/eli/dir/2014/65/oj/eng"
+      retrieved: null
+      reliability: A
+      verified: false
+      note: "[VERIFY] The fetch did not return usable article text, so the directive was not treated as read. Needed for the ancillary-service characterisation of lending for financial instrument transactions and the EU-side suitability wording; the United Kingdom points above are sourced to the regulator's handbook instead."
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: R11_committed_term
+  title: Facility is committed rather than repayable on demand
+  priority: 30
+  when:
+    all:
+      - { field: facility.type, op: eq, value: committed_term }
+  then:
+    - action: set_floor
+      clause: events_of_default
+      tier: acceptable
+    - action: note
+      clause: events_of_default
+      text: >-
+        On a committed facility the lender cannot simply demand repayment, so
+        the events of default are the only exit. The institutional answer is an
+        exhaustive negotiated list of mandatory prepayment events — issuer
+        insolvency, change of control, delisting, trading suspension, a share
+        price trigger — in place of a general material adverse change clause, so
+        expect the borrower to push in that direction. If a material adverse
+        change clause stays in, be clear about what it is for: a backstop for
+        something the specific events did not anticipate, not a substitute for a
+        demand right. Check that the margin shortfall event stands on its own and
+        is not qualified by a materiality test.
+    - action: note
+      clause: prepayment_breakage
+      text: >-
+        A committed facility usually carries a fixed funding cost, so breakage
+        and prepayment interact with the events of default: an acceleration
+        triggers the same breakage a voluntary prepayment would. Make sure the
+        two clauses use the same definition and do not double count.
+    - action: note
+      clause: facility_type
+      text: >-
+        Commitment also shifts the risk of the gap between signing and funding:
+        collateral values move in between, so a facility committed on day one can
+        be in margin call on the funding date. That is why a drawdown condition
+        tying the advance to the loan-to-value level on the funding date matters
+        more on a committed deal than on a demand line.
+  rationale: >-
+    Commitment is the single most expensive concession in this product, because
+    it takes away the demand right that makes a Lombard facility safe. Once it is
+    given, everything depends on the default wording being complete and not
+    watered down by materiality qualifiers. That is why the concession room on
+    events of default closes as soon as the facility is committed.
+  sources:
+    - ref: "BANK-US-01: published securities-backed and margin lending disclosures of a global private bank"
+      type: bank_terms
+      url: "https://www.privatebank.citibank.com/we-offer/margin-lending"
+      retrieved: 2026-09-21
+      reliability: B
+      verified: true
+      note: "Supports what commitment gives away, which is what this rule prices: the published demand position is that the bank may demand repayment at any time, for any reason or none, with no entitlement to an extension on a margin call."
+    - ref: "EDGAR-ML-03: margin loan agreement over listed shares, EDGAR accession 0001193125-21-187800"
+      type: filed_agreement
+      url: "https://www.sec.gov/Archives/edgar/data/1333493/000119312521187800/d467983dex3.htm"
+      retrieved: 2026-09-21
+      reliability: B
+      verified: true
+      note: "Supports the events-of-default note: a term facility with committed advances and no demand feature, where the whole exit is carried by a negotiated default list with graduated cure periods and a drawdown condition on the loan-to-value ratio immediately after funding."
+    - ref: "FIRM-01: practitioner guide chapter on margin loan and backleverage financings"
+      type: law_firm_briefing
+      url: "https://www.stblaw.com/docs/default-source/related-link-pdfs/global-legal-insights-fund-finance-2022_backleverage-financings--insights-into-the-margin-loan.pdf?sfvrsn=b1f56e21_2"
+      retrieved: 2026-09-21
+      reliability: C
+      verified: true
+      note: "Supports both notes: committed margin financings typically replace a general material adverse change clause with a closed list of mandatory prepayment events, and the collateral can move between signing and funding so that a committed facility is in margin call on the funding date."
+    - ref: "EDGAR-PB-01: composite private-bank securities lending exhibit (individual and trust pledgors), EDGAR accession 0000950123-08-001840"
+      type: filed_agreement
+      url: "https://www.sec.gov/Archives/edgar/data/1293153/000095012308001840/y49893exv99w7w05.htm"
+      retrieved: 2026-09-21
+      reliability: B
+      verified: true
+      note: "Supports the contrast the note draws: the private-bank documents keep a subjective-satisfaction material adverse change over the collateral, which is the kind of wording a committed facility will be asked to give up."
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: R12_third_party_custodian
+  title: Collateral is held by a custodian other than the lender
+  priority: 20
+  when:
+    all:
+      - { field: collateral.lender_is_custodian, op: eq, value: false }
+  then:
+    - action: require_cp
+      clause: conditions_precedent
+      text: >-
+        Account control agreement executed by the third-party custodian,
+        acknowledging the lender's security, agreeing to act on the lender's
+        instructions without further consent from the account holder, and
+        subordinating or waiving the custodian's own liens and rights of set-off
+        over the account.
+    - action: set_floor
+      clause: security_structure_control
+      tier: acceptable
+    - action: note
+      clause: security_structure_control
+      text: >-
+        Where the lender does not hold the account, control is whatever the
+        custodian agrees to plus whatever the law governing the securities
+        account requires, and the three playbook jurisdictions answer that
+        differently. English law asks whether the collateral is in the taker's
+        possession or under its control, which turns on real dispossession of the
+        provider. Swiss law on intermediated securities gives three routes to
+        third-party effectiveness, including a control agreement with the
+        custodian and an agreement with the custodian itself. The Luxembourg
+        collateral law lets possession be constituted through an agreed
+        third-party holder, who must then transfer on notice of an enforcement
+        event without the provider's consent. Read the jurisdiction overlay
+        printed with this markup before settling the structure, and confirm with
+        local counsel.
+    - action: note
+      clause: information_undertakings
+      text: >-
+        Require statements and valuations direct from the custodian rather than
+        through the borrower. If the lender is valuing a portfolio it cannot see,
+        the margin mechanics do not work.
+  rationale: >-
+    Holding the account is what makes this product quick: the lender can see the
+    portfolio and block a withdrawal on the same day. With a third-party
+    custodian, both of those become contractual promises from someone who is not
+    a party to the loan. The control agreement is the substitute, and it has to
+    be signed before drawdown because nobody signs one during a default.
+  sources:
+    - ref: "EDGAR-PL-03: pledge and security agreement with a secured custodian securities account control agreement and a deposit account control agreement, EDGAR accession 0001140361-24-012544"
+      type: filed_agreement
+      url: "https://www.sec.gov/Archives/edgar/data/1120193/000114036124012544/ef20022496_ex7-15.htm"
+      retrieved: 2026-09-21
+      reliability: B
+      verified: true
+      note: "The closest filed analogue to this rule's fact pattern: a third-party depositary agent that is not the lender, with a securities account control agreement and a deposit account control agreement both executed before perfection is asserted over the accounts, the financial assets credited to them and the cash."
+    - ref: "EDGAR-PL-02: pledge and security agreement supporting a margin loan, EDGAR accession 0001104659-16-164555"
+      type: filed_agreement
+      url: "https://www.sec.gov/Archives/edgar/data/1658566/000110465916164555/a16-23883_1ex99d7.htm"
+      retrieved: 2026-09-21
+      reliability: B
+      verified: true
+      note: "Supports building perfection as a condition-precedent chain rather than an undertaking: custodian acceptable to the secured party, collateral sub-accounts opened, control agreement with the custodian, counsel opinion and lien search, all before the shares are re-registered."
+    - ref: "UK-FCAR-2003 reg 3 (current)"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/uksi/2003/3226/regulation/3"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the English limb of the structure note: the possession or control requirement, including the inclusive definition where collateral is credited to an account in the taker's name and the provider's rights are limited to substituting equal value or withdrawing excess."
+    - ref: "CH-FISA-957.1 (official English translation)"
+      type: primary_law
+      url: "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2009/450/20230101/en/pdf-a/fedlex-data-admin-ch-eli-cc-2009-450-20230101-en-pdf-a.pdf"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the Swiss limb: the routes to third-party effectiveness for a security interest in intermediated securities, including a control agreement and an agreement with the custodian, together with the custodian's own retention and foreclosure rights that a control agreement has to deal with."
+    - ref: "LU-FCL-2005 (CSSF consolidated text updated 15 July 2024)"
+      type: primary_law
+      url: "https://www.cssf.lu/wp-content/uploads/L_050805_fin_coll_upd_15072024.pdf"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the Luxembourg limb: possession may be constituted through an agreed third-party holder, and on notice of an enforcement event that holder must transfer the collateral without the provider's consent and without informing it in advance."
+    - ref: "[VERIFY] Perfection against a custodian outside England, Switzerland and Luxembourg"
+      type: primary_law
+      url: null
+      retrieved: null
+      reliability: A
+      verified: false
+      note: "[VERIFY] This rule fires on a deal fact, not on a governing law, so it can fire where the account is held somewhere the playbook does not cover. Nothing was opened for any other jurisdiction, which is why the note ends with local counsel."
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: R13_currency_mismatch
+  title: Collateral currency differs from the facility currency
+  priority: 30
+  when:
+    all:
+      - { field: derived.currency_mismatch, op: eq, value: true }
+  then:
+    - action: note
+      clause: eligible_collateral_lending_values
+      text: >-
+        At least one collateral currency differs from the facility currency, so
+        the lending value moves with the exchange rate as well as with the
+        market. Currency is one of the stated drivers of lending value in
+        published bank terms, alongside type, quality, volatility and
+        marketability. Apply an FX haircut to the mismatched lines and state in
+        the clause which rate and which source the lender uses, so the borrower
+        cannot argue about the number during a margin call.
+    - action: set_floor
+      clause: lender_discretion_valuation
+      tier: acceptable
+    - action: note
+      clause: currency_mismatch_fx
+      text: >-
+        Decide whether the borrower or the lender carries the conversion risk on
+        enforcement, and say so. [VERIFY] No opened source allocates that risk
+        either way, so the lender-side position that the shortfall on conversion
+        is the borrower's is a drafting preference rather than a market standard.
+    - action: note
+      clause: lender_discretion_valuation
+      text: >-
+        Discretion over the rate is not unlimited. Practitioner commentary on the
+        Swiss position is that the bank must exercise its valuation discretion in
+        good faith and not abusively, and must be able to produce the parameters
+        behind its calculation. Naming the rate source in the clause is the
+        cheapest way to satisfy that.
+  rationale: >-
+    An unhedged currency mismatch means the portfolio can cover the loan on
+    Monday and not on Tuesday without any share price moving. The lender needs
+    room to reflect that in the lending value and to pick the rate it uses, which
+    is why the discretion clause matters here. Saying which rate, from which
+    source, removes the argument before it starts.
+  sources:
+    - ref: "BANK-CH-01: published Lombard loan product factsheet of a Swiss bank"
+      type: bank_terms
+      url: "https://www.ubs.com/content/dam/assets/microsites/credit-suisse/static/doc/lombardkredit-factsheet-en.pdf"
+      retrieved: 2026-09-21
+      reliability: B
+      verified: true
+      note: "Supports the lending-value note in this rule: currency is named alongside type, quality, volatility and marketability as a driver of the lending value, and the ratio is reviewed at intervals rather than fixed at drawdown."
+    - ref: "EDGAR-PB-01: composite private-bank securities lending exhibit (individual and trust pledgors), EDGAR accession 0000950123-08-001840"
+      type: filed_agreement
+      url: "https://www.sec.gov/Archives/edgar/data/1293153/000095012308001840/y49893exv99w7w05.htm"
+      retrieved: 2026-09-21
+      reliability: B
+      verified: true
+      note: "Supports treating currency as a discretion input rather than a separate clause: the bank releases only such excess as it decides, expressly taking loanable values, currency risk, tax liabilities and other risks into account."
+    - ref: "IND-CH-01: banking industry association risk disclosure booklet, 2023 English edition"
+      type: bank_terms
+      url: "https://www.swissbanking.ch/_Resources/Persistent/e/1/8/d/e18dc86d8033b556db0c7db772e9b025042db1d5/SBA_Risks_Involved_in_Trading_Financial_Instruments_2023_EN.pdf"
+      retrieved: 2026-09-21
+      reliability: B
+      verified: true
+      note: "Supports the risk this rule exists for: the credit-financed-investment block names currency risk where the loan is taken in a foreign currency for the lower rate, alongside the leverage effect and margin requirements."
+    - ref: "FIRM-03: practitioner note on margin calls under Swiss law and standard Lombard pledge terms"
+      type: law_firm_briefing
+      url: "https://www.mondaq.com/commoditiesderivativesstock-exchanges/985220/margin-calls-how-can-investors-protect-their-position"
+      retrieved: 2026-09-21
+      reliability: C
+      verified: true
+      note: "Supports the discretion note: the bank's valuation discretion must be exercised in good faith and not abusively, the call must state the amount and the deadline, and the bank must be able to produce the parameters behind its calculation."
+    - ref: "[VERIFY] Allocation of conversion risk on enforcement in a multi-currency Lombard facility"
+      type: bank_terms
+      url: null
+      retrieved: null
+      reliability: B
+      verified: false
+      note: "[VERIFY] No opened source in the pool states which party bears the shortfall where collateral is sold in one currency to repay a loan in another. The note in this rule flags the choice rather than asserting a market position."
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: R14_swiss_booking
+  title: Swiss governing law or Swiss custody
+  priority: 30
+  when:
+    any:
+      - { field: collateral.governing_law, op: eq, value: switzerland }
+      - { field: collateral.custodian_location, op: eq, value: CH }
+  then:
+    - action: flag
+      flag: bank_secrecy_data
+      severity: low
+      message: >-
+        The deal has a Swiss element (governing law or custody), so two
+        overlapping duties apply to client information. Article 47 of the Banking
+        Act makes it a criminal offence, punishable by up to three years'
+        imprisonment or a monetary penalty, intentionally to disclose a secret
+        entrusted to a person in their capacity as a body member, employee, agent
+        or liquidator of a bank, to induce such a breach, or for a recipient to
+        pass on or exploit a secret disclosed that way; the penalty rises to five
+        years where the offender obtains a pecuniary advantage, negligent breach
+        carries a fine of up to CHF 250,000, and the duty survives the end of the
+        relationship. Separately, the Federal Act on Data Protection allows
+        personal data to be disclosed abroad only on an adequacy finding or one
+        of the listed safeguards, subject to exceptions including explicit
+        consent, disclosure directly connected with performing a contract with
+        the data subject, and disclosure necessary to establish, exercise or
+        enforce legal rights before a court or competent foreign authority.
+        Confirm the disclosure route before client information reaches any
+        non-Swiss custodian, adviser, credit committee, court or purchaser, and
+        take an express consent and waiver in the facility and security
+        documents. A data protection consent alone does not answer the criminal
+        duty.
+    - action: note
+      clause: confidentiality_bank_secrecy
+      text: >-
+        Settle what the carve-outs need to cover before they are agreed:
+        disclosure to group entities, to a custodian, to professional advisers,
+        on enforcement, and in response to a regulator or a court outside
+        Switzerland. The data protection exceptions do cover disclosure needed to
+        perform the contract and to enforce legal rights abroad, but they do not
+        displace the criminal duty, so take the client's express consent and
+        waiver as well. A carve-out that is too narrow stops the lender doing
+        ordinary things; one that is too wide may not be effective.
+    - action: note
+      clause: governing_law_jurisdiction
+      text: >-
+        There is a Swiss element to this deal. Read the Switzerland entry in the
+        jurisdiction overlay printed with this markup before settling the
+        security structure or the enforcement route, and confirm with Swiss
+        counsel; the overlay is a research summary, not advice.
+    - action: note
+      clause: security_structure_control
+      text: >-
+        Where the securities are held in Switzerland the structure follows the
+        intermediated securities regime rather than the English analysis: the
+        Civil Code routes intermediated securities to that regime, third-party
+        effectiveness comes from the statutory routes including a control
+        agreement or an agreement with the custodian, and private realisation by
+        sale or appropriation is available but has to be documented well enough
+        to show the best price obtainable in the circumstances. Do not port an
+        English pledge structure across without local confirmation.
+  rationale: >-
+    A Swiss booking centre changes two things at once: what the lender may say
+    about the client, and how the security over the account actually works. Both
+    are cheap to get right at the drafting stage and expensive to discover during
+    an enforcement. Flagging at low severity keeps it visible without implying
+    the deal is in difficulty.
+  sources:
+    - ref: "CH-BANKG-952.0 Art. 47 (German official text)"
+      type: primary_law
+      url: "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/51/117_121_129/20240101/de/pdf-a/fedlex-data-admin-ch-eli-cc-51-117_121_129-20240101-de-pdf-a.pdf"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the banking confidentiality limb of this rule's message: intentional disclosure, inducement and onward disclosure or exploitation; up to three years, five where a pecuniary advantage is obtained; a fine of up to CHF 250,000 for negligence; the duty surviving the end of the relationship; and duties to testify or inform an authority reserved. No English text was located at this identifier."
+    - ref: "CH-FADP-235.1 (official English translation)"
+      type: primary_law
+      url: "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2022/491/20230901/en/pdf-a/fedlex-data-admin-ch-eli-cc-2022-491-20230901-en-pdf-a.pdf"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the data protection limb and the carve-out note: Art. 16 requires an adequacy finding or one of the listed safeguards before personal data goes abroad, and Art. 17 sets the exceptions including explicit consent, performance of a contract with the data subject, and establishing or enforcing legal rights before a foreign court or authority."
+    - ref: "CH-FISA-957.1 (official English translation)"
+      type: primary_law
+      url: "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2009/450/20230101/en/pdf-a/fedlex-data-admin-ch-eli-cc-2009-450-20230101-en-pdf-a.pdf"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the security-structure note: the routes by which a security interest in intermediated securities becomes effective against third parties, and private realisation by sale or appropriation unaffected by debt enforcement, reorganisation or protective proceedings."
+    - ref: "CH-ZGB-210 (Civil Code, official English translation)"
+      type: primary_law
+      url: "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/24/233_245_233/20260101/en/pdf-a/fedlex-data-admin-ch-eli-cc-24-233_245_233-20260101-en-pdf-a.pdf"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the statement that the general pledge rules are not the answer here: Art. 901(3) routes intermediated securities to the intermediated securities regime, and Art. 894 invalidates forfeiture agreements, which is why appropriation has to be built on the statutory route."
+    - ref: "CH-PRACT-01: practitioner overview, lending and taking security in Switzerland (law stated 1 May 2025)"
+      type: law_firm_briefing
+      url: "https://www.baerkarrer.ch/userdata/lending-and-taking-security-in-switzerland-overview.pdf"
+      retrieved: 2026-09-21
+      reliability: C
+      verified: true
+      note: "Supports the documentation point in the security-structure note: pledge with an account control agreement against security transfer of title, and the requirement that private enforcement be documented to show the best price obtainable in the circumstances."
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: R15_illiquid_collateral
+  title: Portfolio contains gated funds, unlisted holdings or structured products
+  priority: 20
+  when:
+    all:
+      - { field: derived.has_illiquid_collateral, op: eq, value: true }
+  then:
+    - action: set_floor
+      clause: eligible_collateral_lending_values
+      tier: acceptable
+    - action: set_floor
+      clause: enforcement_liquidation
+      tier: acceptable
+    - action: note
+      clause: lender_discretion_valuation
+      text: >-
+        Gated funds, unlisted holdings and structured products have no reliable
+        daily price. Filed practice values unlisted holdings off the value the
+        sponsor vehicle reports to its own investors, with negotiated appraisal
+        and sometimes dispute rights, which is a slower and more contestable
+        number than a screen price. State how often each line is valued, what
+        source the valuation comes from, and what the lender may do when the
+        price is stale or the fund suspends redemptions. Without that, the margin
+        mechanics run on a number nobody can produce on the day it is needed.
+    - action: note
+      clause: enforcement_liquidation
+      text: >-
+        Enforcement against illiquid lines takes time the demand mechanic
+        assumes the lender does not need. Keep the power to sell over a period,
+        to sell to a single buyer, and to accept a price that reflects the lack
+        of a market, and say so expressly. Note that the statutory shortcuts
+        assume a priceable asset: the Luxembourg route appropriates listed
+        instruments at market price and fund units at the last published net
+        asset value if it is under a year old, or redeems them at the fund's
+        redemption price, so collateral that fits none of those has no fast exit.
+    - action: note
+      clause: eligible_collateral_lending_values
+      text: >-
+        Lending value on these lines should reflect exit risk rather than the
+        last reported net asset value. A gated fund's stated price is not a price
+        the lender can achieve, and the supervisor's stated concern is that
+        haircuts on pledged securities are set too low rather than too high.
+  rationale: >-
+    The whole product depends on being able to value the portfolio today and sell
+    it tomorrow. Gated funds, unlisted stock and structured notes break both
+    halves of that at once. The clauses cannot make them liquid, so the answer is
+    a conservative lending value, a clear valuation source, and enforcement
+    wording that admits the sale will take time.
+  sources:
+    - ref: "REG-CH-01: national regulator risk monitor 2024"
+      type: regulator
+      url: "https://www.finma.ch/en/~/media/finma/dokumente/dokumentencenter/myfinma/finma-publikationen/risikomonitor/20241118-finma-risikomonitor-2024.pdf"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the lending-value note: supervision of the Lombard book is focused on concentrated and more illiquid collateral, and the stated concern is that pledged securities can fall by more than the haircuts applied and that haircuts may be too low."
+    - ref: "LU-FCL-2005 (CSSF consolidated text updated 15 July 2024)"
+      type: primary_law
+      url: "https://www.cssf.lu/wp-content/uploads/L_050805_fin_coll_upd_15072024.pdf"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: "Supports the enforcement note: the statutory enforcement menu appropriates listed instruments at market price and fund units at the last published net asset value provided it is not more than a year old, or redeems units at the fund's redemption price, so an asset priced by none of those routes has no quick exit."
+    - ref: "FIRM-01: practitioner guide chapter on margin loan and backleverage financings"
+      type: law_firm_briefing
+      url: "https://www.stblaw.com/docs/default-source/related-link-pdfs/global-legal-insights-fund-finance-2022_backleverage-financings--insights-into-the-margin-loan.pdf?sfvrsn=b1f56e21_2"
+      retrieved: 2026-09-21
+      reliability: C
+      verified: true
+      note: "Supports the valuation note: exchange-listed stock is marked to market, often daily, while private-company collateral is valued off the value the sponsor vehicle reports to its own investors and creditors, with heavily negotiated appraisal and sometimes dispute rights."
+    - ref: "BANK-LU-01: published Lombard loan agreement template of a Luxembourg bank"
+      type: bank_terms
+      url: "https://links.imagerelay.com/cdn/2958/ql/lombard-loan-contract-sqbe-en-01072023"
+      retrieved: 2026-09-21
+      reliability: B
+      verified: true
+      note: "Supports building this into the lending value rather than into a separate eligibility list: the limit is set on the nature of the assets and their risk profile, with volatility and liquidity named, and the lending value is market value less the bank's haircut calculated in good faith."
+    - ref: "[VERIFY] Gating, redemption suspension and the valuation of structured products for collateral purposes"
+      type: bank_terms
+      url: null
+      retrieved: null
+      reliability: B
+      verified: false
+      note: "[VERIFY] No opened source addresses what a lender may do when a fund suspends redemptions, or how a structured product is valued for collateral purposes. Those two points in the valuation note are practice, not sourced market position."
+  status: draft
+  reviewed_by: null
+  last_reviewed: null

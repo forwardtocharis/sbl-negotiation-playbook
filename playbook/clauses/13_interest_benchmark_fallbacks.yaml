@@ -1,0 +1,10 @@
+# Stub entry. Status is 'stub': only id, title, category and lender_objective
+# are populated. Positions, sources and jurisdiction notes are added in a later
+# work package. Nothing here is legal advice or a verified market position.
+id: interest_benchmark_fallbacks
+title: "Interest, benchmark rate and benchmark fallback provisions"
+category: credit
+lender_objective: "Keep the lender's return intact if the reference rate ceases to be published or ceases to be representative."
+status: stub
+reviewed_by: null
+last_reviewed: null

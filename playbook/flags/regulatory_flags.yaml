@@ -1,0 +1,633 @@
+# Regulatory and commercial flag definitions (build_plan.md §4, written in WP8).
+# Lender-side. Everything is `draft`: no entry has been promoted by a named human
+# reviewer. Nothing here is legal advice. A flag is a prompt to a named human, not
+# a conclusion: the tool raises it, a person decides it. `[VERIFY]` marks a
+# statement whose primary text was not opened.
+# Content lifted from docs/research/jurisdictions_research.md unless the source row
+# says otherwise. Source labels are neutral; a publisher's name appears only inside
+# a URL (build_plan.md §0 rule 2).
+
+- id: consumer_credit
+  name: Consumer credit regime
+  description: >
+    A facility to a natural person is presumptively inside a consumer credit regime unless an
+    exemption is made out on the facts, and the cost of getting that wrong is conduct exposure,
+    unenforceability arguments and remediation rather than collateral shortfall; the final
+    determination that a borrower is or is not a consumer stays with a human and is on the
+    not-automated register. In the United Kingdom the exemption logic since 1 April 2014 sits in
+    the Regulated Activities Order rather than in the Consumer Credit Act 1974, and the business
+    purpose route exempts credit exceeding GBP 25,000 where the borrower enters into the agreement
+    wholly or predominantly for the purposes of a business it carries on or intends to carry on,
+    with a prescribed declaration creating a presumption that is destroyed if the lender or anyone
+    acting for it knows or has reasonable cause to suspect otherwise. The high net worth route
+    exempts an individual borrower where the agreement is secured on land or is for credit
+    exceeding GBP 60,260 other than for residential renovation, the borrower signs a prescribed
+    declaration giving up the protections of a regulated agreement, and a compliant statement of
+    high net worth is made and given to the lender before execution, the regulator's thresholds
+    being net income of at least GBP 150,000 in the previous financial year or net assets of at
+    least GBP 500,000 throughout it, excluding the primary residence, insurance contract rights
+    and pension benefits; [VERIFY] whether any of those four figures has been amended since the
+    versions read on 2026-09-21, whether the 1974 Act's own high net worth exemption is likewise
+    omitted, and whether the unfair relationship powers continue to apply to an exempt agreement.
+    In Switzerland the Consumer Credit Act normally drops out twice over for this product, because
+    it does not apply to credit covered by deposited customary bank collateral or by sufficient
+    assets the consumer holds with the lender, which is precisely a portfolio pledged to the
+    lending bank, and it does not apply to credit below CHF 500 or above CHF 80,000, aggregating
+    consumer credits arranged in a coordinated way for the same consumer. In Luxembourg the
+    consumer credit chapter of the consumption code excludes credit below EUR 200 or above
+    EUR 75,000 and, more directly, excludes credit granted by an investment firm or credit
+    institution to let an investor carry out a transaction in the financial instruments listed in
+    the markets-in-financial-instruments directive where the lender is involved in that
+    transaction, which is the margin-lending carve-out and the cleanest basis for a
+    purpose-to-invest facility; [VERIFY] the consolidated text still cross-refers to the
+    pre-MiFID II directive, and the effect of the 2023 consumer credit directive once transposed
+    was not researched.
+  trigger_summary: >
+    Raised whenever the borrower is a natural person. Severity is high where no business-purpose
+    or high-net-worth declaration has been made, and medium where one has, because a declaration
+    shifts the evidential burden but does not settle the question. The rule escalates where there
+    is no declaration at all, because the lender is then relying on an exemption it cannot
+    evidence.
+  who_decides: senior lawyer + compliance
+  sources:
+    - ref: "UK-RAO-2001 art. 60C"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/uksi/2001/544/article/60C"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: >
+        Business-purpose exemption: credit exceeding GBP 25,000 and a wholly or predominantly
+        business purpose; the narrow green-deal route at GBP 25,000 or less requiring a wholly
+        business purpose; the prescribed declaration and the presumption defeated where the lender
+        knows or has reasonable cause to suspect otherwise.
+    - ref: "UK-RAO-2001 art. 60H"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/uksi/2001/544/article/60H"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: >
+        High net worth exemption: individual borrower; secured on land or credit exceeding
+        GBP 60,260 other than for residential renovation; borrower declaration forgoing the
+        protections; statement of high net worth complying with the regulator's rules, connected to
+        the agreement, copy given to the lender before the agreement is made.
+    - ref: "UK-CONC-APP-1.4 (regulator handbook)"
+      type: regulator
+      url: "https://www.handbook.fca.org.uk/handbook/CONC/App/1/4.html"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: >
+        Net income of at least GBP 150,000 in the previous financial year or net assets of at least
+        GBP 500,000 throughout it, excluding primary residence, insurance contract rights and
+        pension benefits; who may sign the statement; the required content and prominence of the
+        borrower's declaration, including the reference to the court's unfair relationship powers
+        and the recommendation to take independent legal advice.
+    - ref: "UK-CCA-1974 s.16B (omitted)"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/ukpga/1974/39/section/16B"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: >
+        Section omitted with effect from 1 April 2014 (26 July 2013 for specified purposes),
+        confirming that the exemption logic now lives in the Regulated Activities Order.
+    - ref: "CH-KKG-221.214.1 Arts 1, 2, 3, 7 (German official text)"
+      type: primary_law
+      url: "https://www.fedlex.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2002/593/20230901/de/pdf-a/fedlex-data-admin-ch-eli-cc-2002-593-20230901-de-pdf-a.pdf"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: >
+        Art. 3 consumer as a natural person acting outside a professional or commercial activity;
+        Art. 7(1)(a) exclusion for credit secured by a real estate charge; Art. 7(1)(b) exclusion
+        for credit covered by deposited customary bank collateral or sufficient assets the consumer
+        holds with the lender; Art. 7(1)(e) exclusion below CHF 500 or above CHF 80,000, with
+        aggregation of coordinated credits; Art. 7(2) power to adjust the figures.
+    - ref: "LU-CONSO-CODE Art. L.224-3 (consolidated version 31 December 2024)"
+      type: primary_law
+      url: "https://legilux.public.lu/eli/etat/leg/code/consommation/20241231"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: >
+        Art. L.224-3(1)(a) exclusion for credit secured on immovable property; (c) exclusion below
+        EUR 200 or above EUR 75,000, with the L.224-3(5) exception for unsecured credit above
+        EUR 75,000 to fund residential renovation; (h) exclusion for credit from an investment firm
+        or credit institution allowing an investor to carry out a transaction in the listed
+        financial instruments where the lender is involved in that transaction; (k) the pawn-type
+        exclusion.
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: mortgage_regulation
+  name: Mortgage and residential property regulation
+  description: >
+    Real estate in the collateral pool is out of scope for this playbook, and the flag is a hard
+    stop rather than a drafting note. The reason is that taking security over land moves the
+    transaction into an entirely different regulatory and documentary regime: in the United
+    Kingdom, lending to an individual or to trustees secured by a mortgage on land at least 40 per
+    cent of which is used as or in connection with a dwelling is a regulated mortgage contract,
+    which is a separate regulated activity with its own conduct rulebook, affordability and
+    disclosure requirements; in Switzerland credit secured directly or indirectly by a real estate
+    charge is carved out of the consumer credit exclusions and sits under its own regime; and in
+    Luxembourg credit secured by a mortgage or comparable security over immovable property is
+    excluded from the consumer credit chapter for the same structural reason. None of the clause
+    positions, lending values, margin mechanics or enforcement routes in this library were drafted
+    for land, and the financial collateral regimes the enforcement clauses rely on apply to
+    financial instruments and cash, not to real property. The correct output is therefore to stop
+    and route the deal to the mortgage product and its own playbook, not to negotiate a securities
+    facility with a real estate line in it.
+  trigger_summary: >
+    Raised whenever any collateral composition line has an asset class of real estate, whatever
+    its percentage, and raised at high severity with an escalation. The markup header says the
+    deal is out of scope for this playbook.
+  who_decides: senior lawyer + compliance
+  sources:
+    - ref: "UK-RAO-2001 art. 61"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/uksi/2001/544/article/61"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: >
+        Entering into a regulated mortgage contract as lender, and administering one, are specified
+        regulated activities; art. 61(3)(a) defines a regulated mortgage contract as credit provided
+        to an individual or to trustees, secured by a mortgage on land, where at least 40 per cent of
+        that land is used or intended to be used as or in connection with a dwelling; art. 61(3)(b)
+        defines administering as notifying the borrower of changes and collecting or recovering
+        payments due.
+    - ref: "CH-KKG-221.214.1 Art. 7(1)(a) (German official text)"
+      type: primary_law
+      url: "https://www.fedlex.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2002/593/20230901/de/pdf-a/fedlex-data-admin-ch-eli-cc-2002-593-20230901-de-pdf-a.pdf"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: >
+        Credit secured directly or indirectly by a real estate charge is excluded from the consumer
+        credit act, confirming that real-estate-secured lending is treated as a separate product.
+    - ref: "LU-CONSO-CODE Art. L.224-3(1)(a) (consolidated version 31 December 2024)"
+      type: primary_law
+      url: "https://legilux.public.lu/eli/etat/leg/code/consommation/20241231"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: >
+        Credit secured by a mortgage or comparable security over immovable property, or by a right
+        relating to immovable property, is excluded from the consumer credit chapter.
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: mifid_suitability
+  name: Investment suitability and appropriateness on leveraged portfolios
+  description: >
+    Where the bank both lends and advises, the conduct question is not whether the loan is
+    affordable but whether the leveraged position as a whole is suitable for the client, and the
+    lender-side risk is that a no-advice or non-reliance clause in the facility letter is
+    contradicted by what the relationship manager actually did. In the United Kingdom the
+    regulator's suitability rules require a personal recommendation to be suitable and in
+    accordance with the client's risk tolerance and ability to bear losses, require information on
+    the source and extent of regular income, assets including liquid assets, investments and real
+    property, and regular financial commitments, require information on holding period, risk
+    preferences, risk profile and the purpose of the investment, and expressly tell a firm to
+    consider the suitability of the overall transaction where an instrument is linked directly or
+    indirectly to any form of loan. In Switzerland the granting of loans to finance transactions
+    with financial instruments is itself a financial service, an appropriateness or suitability
+    review is required where investment advice or portfolio management is provided, the enquiry
+    must reach the client's financial situation and investment objectives as well as knowledge and
+    experience where advice takes the portfolio into account, and the firm must advise the client
+    against an instrument it thinks unsuitable. [VERIFY] the EU-side characterisation of such
+    lending as an ancillary service, and the EU-side suitability wording, could not be opened in
+    the source directive and are unsourced here; the UK points are sourced to the regulator's
+    handbook, which was read.
+  trigger_summary: >
+    Raised where the declared purpose of the facility is to acquire securities, because that is the
+    fact pattern in which the loan and the investment have to be assessed together rather than
+    separately. It tightens the floor on the no-advice and non-reliance clause and adds a purpose
+    representation.
+  who_decides: compliance
+  sources:
+    - ref: "UK-COBS-9A.2 (regulator handbook)"
+      type: regulator
+      url: "https://www.handbook.fca.org.uk/handbook/COBS/9A/2.html"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: >
+        Suitability of a personal recommendation including risk tolerance and ability to bear
+        losses; the financial situation information required; the investment objectives information
+        required; and the guidance that a firm should consider the suitability of the overall
+        transaction where the instrument is linked directly or indirectly to any form of loan,
+        mortgage or home reversion plan.
+    - ref: "CH-FINSA-950.1 Arts 3(c), 10-14 (official English translation)"
+      type: primary_law
+      url: "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2019/758/20240301/en/pdf-a/fedlex-data-admin-ch-eli-cc-2019-758-20240301-en-pdf-a.pdf"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: >
+        Art. 3(c)(5) granting of loans to finance transactions with financial instruments is a
+        financial service; Art. 10 appropriateness or suitability review where advice or portfolio
+        management is provided; Art. 12 enquiry into financial situation and investment objectives
+        where advice takes the portfolio into account; Art. 13 execution-only exemption subject to
+        notification; Art. 14 duty to advise the client against an unsuitable instrument.
+    - ref: "[VERIFY] EU-MIFID2-2014/65 Art. 25(2) and Annex I Section B(2)"
+      type: primary_law
+      url: "https://eur-lex.europa.eu/eli/dir/2014/65/oj/eng"
+      retrieved: null
+      reliability: A
+      verified: false
+      note: >
+        The fetch did not return usable article text and the summary only restated the question, so
+        it was not treated as read. Needed to source the ancillary-service characterisation of
+        lending for financial instrument transactions and the EU-side suitability wording. Confirm
+        before this leaves draft.
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: market_abuse
+  name: Market abuse, insider dealing and managerial disclosure
+  description: >
+    Where the borrower, the pledgor or a connected person discharges managerial responsibilities in
+    an issuer whose securities are in the collateral pool, both the taking of the security and any
+    enforcement sale become market conduct events rather than purely credit events. Notification
+    duties bite on the client: transactions on their own account in the issuer's shares or debt
+    instruments, or in linked derivatives, must be notified to the issuer and the competent
+    authority promptly and no later than three working days once the annual aggregate reaches the
+    monetary threshold, pledging and lending are expressly within the notifiable transactions, and
+    the carve-out for a pledge given in connection with depositing instruments in a custody account
+    falls away once that pledge is designated to secure a specific credit facility, so the timing of
+    the security documents drives the client's notification clock. A closed period of thirty
+    calendar days before an interim or year-end report prohibits the person from dealing on their
+    own account or for a third party, subject to limited exceptions. The prohibition is addressed to
+    the person's own dealing rather than in terms to the secured creditor's enforcement, but an
+    enforcement sale in a closed period, or while the client holds inside information, is a live
+    market-abuse and reputational problem for both sides, so the enforcement clause must preserve
+    the lender's discretion while routing a sale through compliance. [VERIFY] the exact retained-UK
+    monetary threshold figure and whether the regulator has exercised the permitted uplift.
+  trigger_summary: >
+    Raised where the intake records that the borrower, the pledgor or a connected person is a person
+    discharging managerial responsibilities of an issuer whose securities are pledged. It escalates
+    before term sheet, tightens the floor on the enforcement clause, and adds an insider
+    representation and a compliance sign-off condition precedent.
+  who_decides: senior lawyer + compliance
+  sources:
+    - ref: "UK-MAR-596/2014 Art. 19 (retained UK law)"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/eur/2014/596/article/19"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: >
+        Art. 19(1) notification by persons discharging managerial responsibilities and persons
+        closely associated with them, promptly and no later than three working days; 19(8)-(9) the
+        EUR 5,000 annual aggregate threshold with a permitted uplift to EUR 20,000; 19(7) pledging
+        and lending are notifiable, with the custody-account pledge carve-out falling away once the
+        pledge is designated to secure a specific credit facility; 19(11) the thirty calendar day
+        closed period before interim and year-end reports, with the 19(12) exceptions.
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: restricted_securities
+  name: Restricted, control or locked-up securities
+  description: >
+    A position that cannot be sold freely is not worth its screen price to a secured lender, and the
+    risk this flag carries is that the enforcement route assumed by the security agreement is not
+    actually open when it is needed. Restricted stock, control stock held by an affiliate of the
+    issuer, and stock subject to a lock-up, orderly-market or issuer-consent undertaking can each
+    impose a holding period before resale, a volume cap measured against outstanding shares or
+    recent trading volume, a manner-of-sale constraint requiring a broker or market-maker route
+    without solicitation, a current-public-information condition on the issuer, and a filing before
+    the sale. The practical consequences for the lender are a lower lending value, a longer expected
+    liquidation window, and the possibility that a sale needs the issuer's consent or a waiver from
+    a third party the lender has no contract with. Lender-side, treat the restriction as a
+    diligence item at conditions precedent rather than a matter to discover at enforcement, and keep
+    the enforcement clause wide enough to sell in tranches over time.
+  trigger_summary: >
+    Raised where any collateral composition line is marked as issuer-restricted, which covers
+    lock-ups, control stock and any position whose resale needs consent or is otherwise constrained.
+    It tightens the floor on the enforcement and liquidation clause and adds a condition precedent
+    to review the issuer consent or lock-up before drawdown.
+  who_decides: compliance, with head of credit on lending value
+  sources:
+    - ref: "US-RULE-144 (17 CFR 230.144), unofficial reproduction of the regulation text"
+      type: primary_law
+      url: "https://www.law.cornell.edu/cfr/text/17/230.144"
+      retrieved: 2026-09-21
+      reliability: C
+      verified: true
+      note: >
+        Read in full at this URL because the official code reader redirected to a block page.
+        Graded C because the publisher is a university reproduction of the regulation rather than
+        the official publisher. Supports: the definition of an affiliate as a person controlling,
+        controlled by or under common control with the issuer; the definition of restricted
+        securities as those acquired from the issuer in non-public transactions and the listed
+        exempt-offering categories; a six-month holding period for reporting issuers and one year
+        otherwise; and, for affiliate sales, the current public information condition, the volume
+        limitation measured against one per cent of outstanding shares or average weekly trading
+        volume, the manner-of-sale condition requiring a broker, market maker or riskless principal
+        route without solicitation, and the notice filing where sales exceed 5,000 shares or
+        USD 50,000 in three months.
+    - ref: "UK-MAR-596/2014 Art. 19 (retained UK law)"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/eur/2014/596/article/19"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: >
+        Relevant where the restriction arises from the holder's managerial position: pledging and
+        lending are notifiable transactions, and the closed period constrains dealing for thirty
+        calendar days before interim and year-end reports.
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: fcar_safe_harbour_uncertain
+  name: Financial Collateral Arrangements Regulations (FCARs) safe harbour uncertain
+  description: >
+    The flag id was corrected in WP9 from an earlier fca_ label, which read as a point about the
+    conduct regulator and was misleading: this is not a point about the conduct regulator at all,
+    but about the Financial Collateral Arrangements (No. 2) Regulations 2003, so the id now carries
+    fcar_ and the flag should be read as the FCARs safe harbour point. Hand-off notes written before
+    WP9 use the superseded label and describe this same flag. The substance is that regulation 3
+    requires both parties to a financial
+    collateral arrangement, whether security or title transfer, to be non-natural persons, a
+    non-natural person being any corporate body, unincorporated firm, partnership or body with legal
+    personality except an individual, so where the collateral provider is an individual the
+    statutory package is unavailable: no appropriation without a court order, no commercially
+    reasonable valuation framework for appropriation, no disapplication of the insolvency
+    restrictions on enforcement, and no statutory close-out netting protection. It says uncertain
+    rather than unavailable for three reasons that are all deal facts: the test is on the parties to
+    the collateral arrangement, so an individual borrower with a corporate or trustee-company
+    pledgor can still be inside the regime; a trust may have a corporate trustee, which is a
+    non-natural person; and even with two non-natural persons the arrangement still has to satisfy
+    possession or control, which the English courts read as requiring real dispossession of the
+    provider. What the lender does instead is rely on an express contractual power of sale, contract
+    out of the statutory restrictions on the power of sale, evidence the equitable duty to take
+    reasonable care to obtain a proper price with a documented valuation and sale process, and note
+    that on personal bankruptcy the secured creditor's enforcement rights are preserved, so what is
+    lost is the self-help package rather than the security itself.
+  trigger_summary: >
+    Raised where the effective collateral provider is a natural person and the collateral is
+    governed by English law. Severity is medium, and the flag text carries a [VERIFY] because the
+    availability of the safe harbour is fact-dependent and must be confirmed with counsel rather
+    than assumed either way. It also adds a drafting note to the security structure and control
+    clause telling the drafter not to rely on appropriation.
+  who_decides: senior lawyer
+  sources:
+    - ref: "UK-FCAR-2003 reg 3 (current)"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/uksi/2003/3226/regulation/3"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: >
+        Both parties to a security financial collateral arrangement and to a title transfer
+        financial collateral arrangement must be non-natural persons; a non-natural person excludes
+        an individual but includes bodies formed under foreign or international law.
+    - ref: "UK-FCAR-2003 regs 4, 8, 17, 18 (as made and current)"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/uksi/2003/3226/contents/made"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: >
+        The benefits that are lost where the scope test fails: the registration exemption, the
+        insolvency disapplications, appropriation without a court order, and the commercially
+        reasonable valuation duty that goes with it.
+    - ref: "UK-FCL-BRIEF-01: law-firm briefing on financial collateral possession and control (Nov 2012)"
+      type: law_firm_briefing
+      url: "https://www.cliffordchance.com/content/dam/cliffordchance/briefings/2012/11/financial-collateral-remains-a-gray-area.pdf"
+      retrieved: 2026-09-21
+      reliability: C
+      verified: true
+      note: >
+        Possession and control both require more than mere custody and turn on dispossession of the
+        collateral-provider; reports the two English decisions relied on, [2010] EWHC 1772 (Ch) and
+        [2012] EWHC 2997 (Ch).
+    - ref: "UK-IA-1986 s.285"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/ukpga/1986/45/section/285"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: >
+        Subsection (4) preserves the secured creditor's right to enforce its security notwithstanding
+        the restrictions on creditors' remedies after a bankruptcy order.
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: financial_assistance_corporate_benefit
+  name: Financial assistance and corporate benefit
+  description: >
+    Where a company provides security for someone else's borrowing, two separate questions arise
+    and both can unwind the security rather than merely embarrass the lender. The first is
+    financial assistance: under English company law it is unlawful for a public company, or a
+    subsidiary of one, to give financial assistance directly or indirectly for the purpose of an
+    acquisition of its own shares, or for the purpose of reducing or discharging a liability
+    incurred for such an acquisition, unless the company's principal purpose is not that assistance
+    or the assistance is an incidental part of some larger purpose, and in either case the
+    assistance is given in good faith in the interests of the company; the prohibition is directed
+    at public companies, so the analysis turns on the status of the entity in the structure, and
+    equivalent restrictions exist in other jurisdictions and must be checked locally. The second is
+    corporate benefit: a director must act in the way he considers, in good faith, would be most
+    likely to promote the success of the company for the benefit of its members as a whole, having
+    regard to the listed matters including the long-term consequences and the interests of
+    creditors where another rule requires it, so a board resolution granting third-party security
+    has to articulate the benefit to the granting company rather than to the group or the
+    shareholder. Lender-side, the mitigation is documentary and up front: constitutional documents
+    and board or shareholder resolutions as conditions precedent, an express corporate benefit
+    representation, and local counsel where the pledgor is incorporated outside England.
+  trigger_summary: >
+    Raised where the pledgor is not the borrower and the pledgor is a corporate entity. It sits
+    alongside the third-party security rule, which also tightens the floor on the capacity and
+    authority clause and adds an independent advice representation.
+  who_decides: senior lawyer + local counsel
+  sources:
+    - ref: "UK-CA-2006 s.678"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/ukpga/2006/46/section/678"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: >
+        Subsection (1) prohibits a public company, or a subsidiary of it, from giving financial
+        assistance directly or indirectly for the purpose of an acquisition of its shares before or
+        at the same time as the acquisition; subsection (3) covers assistance to reduce or discharge
+        a liability incurred for such an acquisition where the company is still public; subsections
+        (2) and (4) provide the principal-purpose and incidental-part-of-a-larger-purpose exception
+        together with the requirement that the assistance be given in good faith in the interests of
+        the company; the section applies to public companies, and is subject to the further
+        exceptions in ss.681 and 682.
+    - ref: "UK-CA-2006 s.172"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/ukpga/2006/46/section/172"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: >
+        Duty to act in the way the director considers, in good faith, would be most likely to
+        promote the success of the company for the benefit of its members as a whole, having regard
+        to the long-term consequences, employees, business relationships, community and environment,
+        reputation and fairness between members; subsection (2) for companies with other purposes;
+        subsection (3) subjecting the duty to any rule requiring directors to consider creditors'
+        interests.
+    - ref: "[VERIFY] CH/LU equivalents of the financial assistance and corporate benefit restrictions"
+      type: primary_law
+      url: null
+      retrieved: null
+      reliability: C
+      verified: false
+      note: >
+        Not researched in this work package. Upstream security and corporate benefit constraints in
+        Switzerland and Luxembourg are real and are routinely the reason a third-party corporate
+        pledge is restructured, but no primary text was opened, so the statement in the description
+        that equivalent restrictions exist elsewhere is unsourced and must be confirmed by local
+        counsel before this leaves draft.
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: bank_secrecy_data
+  name: Bank secrecy and cross-border data protection
+  description: >
+    On a Swiss booking, client information is protected by two overlapping duties, one criminal and
+    one data-protection, and the lender-side risk is that ordinary deal mechanics such as sharing
+    the portfolio with a foreign adviser or routing an enforcement sale through a foreign broker
+    breach them. Under the banking act it is a criminal offence, punishable by up to three years'
+    imprisonment or a monetary penalty and up to five years where the offender obtains a pecuniary
+    advantage, intentionally to disclose a secret entrusted to a person in their capacity as a body
+    member, employee, agent or liquidator of a bank or perceived in that capacity, to attempt to
+    induce such a breach, or for a recipient to pass on or exploit a secret disclosed that way;
+    negligent breach carries a fine, the duty survives the end of the relationship, and duties to
+    testify or inform an authority are reserved. Separately, personal data may be disclosed abroad
+    only where the destination has been found adequate or where one of the listed safeguards
+    applies, subject to exceptions including explicit consent, disclosure directly connected with a
+    contract with the data subject, and disclosure necessary to establish, exercise or enforce legal
+    rights before a foreign court or authority. Severity is properly low because this is a routine
+    and solvable issue, but the flag is not a no-op: the criminal duty is not cured by a
+    data-protection consent alone, so both have to be addressed in the facility and security
+    documents.
+  trigger_summary: >
+    Raised where the collateral is governed by Swiss law or the custodian is located in Switzerland.
+    In practice it should be worked wherever a non-Swiss custodian, guarantor, pledgor, counsel,
+    credit committee, servicing function, broker, court or arbitral tribunal will see client
+    information. It also adds a note to the confidentiality and bank secrecy clause.
+  who_decides: legal + compliance for the booking centre
+  sources:
+    - ref: "CH-BANKG-952.0 Art. 47 (German official text)"
+      type: primary_law
+      url: "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/51/117_121_129/20240101/de/pdf-a/fedlex-data-admin-ch-eli-cc-51-117_121_129-20240101-de-pdf-a.pdf"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: >
+        Art. 47(1) intentional disclosure, inducement, and onward disclosure or exploitation by a
+        recipient; 47(1bis) up to five years where a pecuniary advantage is obtained; 47(2)
+        negligence, fine up to CHF 250,000; 47(4) the duty survives the end of the employment or
+        professional relationship; 47(5) federal and cantonal duties to testify or inform an
+        authority are reserved. No English PDF was located at this identifier.
+    - ref: "CH-FADP-235.1 Arts 16, 17 (official English translation)"
+      type: primary_law
+      url: "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2022/491/20230901/en/pdf-a/fedlex-data-admin-ch-eli-cc-2022-491-20230901-en-pdf-a.pdf"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: >
+        Art. 16 disclosure abroad only on an adequacy finding or one of the listed safeguards,
+        including treaty provisions, contractual clauses notified in advance, specific guarantees,
+        approved standard clauses and approved binding corporate rules; Art. 17 the exceptions,
+        including explicit consent, disclosure directly connected with the conclusion or performance
+        of a contract with the data subject, and disclosure necessary to establish, exercise or
+        enforce legal rights before a court or competent foreign authority.
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: prudential_awareness
+  name: Prudential and capital treatment (awareness only)
+  description: >
+    This flag is informational and exists so that a reader of the markup remembers that the
+    collateral package has a capital dimension as well as a legal one, and that the two use
+    different eligibility tests. Under the capital rules an institution may recognise only listed
+    items as eligible financial collateral for credit risk mitigation, including cash on deposit
+    with the lending institution, qualifying government and corporate debt securities meeting
+    credit quality requirements, equities or convertible bonds included in a main index, gold, and
+    units in collective investment undertakings that have a daily public price quote and invest
+    only in eligible instruments. The point for a deal lawyer is that a position can be perfectly
+    good security and still attract no capital relief, so a concession on eligible collateral or on
+    concentration can have a cost that is invisible in the negotiation. [VERIFY] nothing in this
+    library computes a capital number, no institution's own approach, permissions, haircuts or
+    internal model has been considered, and no statement here should be read as a capital
+    conclusion.
+  trigger_summary: >
+    Not raised by any rule and not tied to any deal fact, so it never fires on a run. It is carried
+    as a standing awareness item and is referenced from the eligible collateral, concentration and
+    lender discretion clauses, which are the three places where a negotiated concession could quietly
+    change the capital position.
+  who_decides: not a deal-level decision; informational
+  sources:
+    - ref: "UK-CRR-575/2013 Art. 197 (retained UK law)"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/eur/2013/575/article/197"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: >
+        Eligibility of financial collateral under all approaches and methods: cash on deposit with
+        or cash-assimilated instruments held by the lending institution; debt securities of central
+        governments or central banks and of other entities meeting the stated credit quality steps;
+        equities or convertible bonds included in a main index; gold; qualifying securitisation
+        positions; and units in collective investment undertakings with a daily public price quote
+        that invest only in eligible instruments, with the same conditions applied to nested funds.
+  status: draft
+  reviewed_by: null
+  last_reviewed: null
+
+- id: emir_awareness
+  name: Derivatives overlay and EMIR obligations (awareness only)
+  description: >
+    This flag is informational and covers the case where the facility is wrapped with derivatives,
+    for example a hedge over a concentrated pledged holding or a currency hedge against a facility
+    and collateral currency mismatch, because those trades bring their own regulatory obligations
+    that the facility documents do not. For an over-the-counter derivative that is not cleared by a
+    central counterparty, both financial and non-financial counterparties must have procedures to
+    measure, monitor and mitigate operational and counterparty credit risk, including timely
+    confirmation by electronic means where available and formalised, robust and auditable processes
+    to reconcile portfolios and to identify and resolve disputes early; counterparties above the
+    relevant thresholds must mark outstanding contracts to market daily; and financial
+    counterparties must have procedures for the timely, accurate and appropriately segregated
+    exchange of collateral and hold appropriate capital for risks not covered by it. [VERIFY] the
+    intake in this demonstrator does not capture derivative overlays at all, the clearing
+    thresholds and the client-classification analysis have not been researched, and no jurisdiction
+    other than the retained UK regime was looked at.
+  trigger_summary: >
+    Not raised by any rule in the current rule set, because the intake holds no facts about
+    derivative overlays. It is carried in the library as a standing awareness item for a reader of
+    the markup and as a definition a later rule could reference.
+  who_decides: not a deal-level decision; informational
+  sources:
+    - ref: "UK-EMIR-648/2012 Art. 11 (retained UK law)"
+      type: primary_law
+      url: "https://www.legislation.gov.uk/eur/2012/648/article/11"
+      retrieved: 2026-09-21
+      reliability: A
+      verified: true
+      note: >
+        Risk-mitigation techniques for OTC derivative contracts not cleared by a central
+        counterparty, applying to financial and non-financial counterparties: timely confirmation
+        where available by electronic means; formalised, robust, resilient and auditable processes
+        to reconcile portfolios, manage the associated risk and identify and resolve disputes early;
+        daily mark-to-market valuation of outstanding contracts for the counterparties referred to
+        in Art. 10; timely, accurate and appropriately segregated exchange of collateral for
+        financial counterparties and for non-financial counterparties above the clearing thresholds;
+        and appropriate capital for risks not covered by collateral.
+  status: draft
+  reviewed_by: null
+  last_reviewed: null

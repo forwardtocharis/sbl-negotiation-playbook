@@ -1,0 +1,364 @@
+# Draft entry (WP3, drafting group D). Lender-side. Synthetic demonstrator.
+# Nothing here is legal advice.
+#
+# THE SHAPE OF THIS LADDER. It runs from full non-reliance plus an execution-only
+# acknowledgement, through acknowledgement carve-outs for a relationship that is
+# actually advised, and it is the only clause in this playbook where the lender's
+# own interest points AWAY from the widest drafting:
+#   preferred    - full non-reliance, three-limb sophisticated-investor
+#                  representation, execution-only acknowledgement
+#   acceptable   - same limbs, reframed as acknowledgements of fact, with a
+#                  conflict acknowledgement and consent where the Bank or an
+#                  affiliate also manages or advises on the portfolio, and an
+#                  express saving for conduct duties that cannot be excluded
+#   fallback     - an advised-relationship carve-out: the no-advice representation
+#                  is confined to the decision to borrow and to the facility terms,
+#                  and the Bank takes a documented suitability file instead
+#   unacceptable - anything that says the Bank recommended the leveraged position,
+#                  or that makes the Bank's enforcement rights turn on suitability
+# The reason the widest drafting is not always the safest: a non-reliance clause
+# that contradicts what the relationship manager actually did is worse than a
+# narrower one that matches it. The conduct regimes look at the arrangement, not at
+# the clause - the UK rules expressly require the suitability of the OVERALL
+# transaction to be considered where an instrument is linked directly or indirectly
+# to a loan, and Swiss law makes the granting of a loan to finance transactions in
+# financial instruments a financial service in its own right.
+#
+# [VERIFY] MiFID II PRIMARY TEXT WAS NOT OPENED for this playbook. The EU-side
+# characterisation of such lending as an ancillary service, and the EU-side
+# suitability wording, are unsourced. The UK points are sourced to the regulator's
+# handbook and the Swiss points to the official English translation of FinSA, both
+# of which were read (by the WP7 research agent).
+#
+# R10 INTERACTION. build_plan.md R10 raises this clause's floor to `acceptable`
+# where the declared purpose of the facility is to acquire securities. That is why
+# `default_floor` is `fallback`: an `acceptable` default would make R10 inert.
+id: no_advice_non_reliance
+title: "No advice, non-reliance and risk acknowledgement"
+category: parties_reps
+document: facility_letter
+risk_rating: high
+lender_objective: >
+  Record that the decision to borrow against the portfolio, and the choice of what to pledge, were
+  the Borrower's own, in wording that matches what the Bank's people actually did, so that leverage
+  does not become an advice or suitability exposure.
+counterparty_asks:
+  - Soften the sophisticated-investor representation to a knowledge qualifier, or delete the limb about having sufficient resources to bear loss of the entire amount.
+  - Carve out from non-reliance any statement the Bank actually made about the collateral or the facility.
+  - Where the Bank also manages or advises on the portfolio, impose a duty to warn of an impending margin deficiency.
+  - Delete the acknowledgement that the Bank gives no tax or legal advice, on the basis that the Bank's own people gave it.
+  - Resist the characterisation of the facility as a financial service attracting full investor-protection duties.
+  - Preserve the retail withdrawal right, or extend it, where the facility is entered into at a distance.
+positions:
+  preferred:
+    # observed: entry into the agreement on the grantor's own independent analysis and not in any way
+    # relying on any statement or representation by the bank as to the borrower, the loan, the credit
+    # documents, the collateral, its value or condition, or any other matter (EDGAR-PB-01-C); a
+    # three-limb sophisticated-investor representation - knowledge and experience of margin lending
+    # and the relevant instruments, access to and knowledge of appropriate analytical tools to
+    # evaluate the collateral and its effect on the overall portfolio, and sufficient financial
+    # resources and liquidity to bear all the risks including loss of the entire principal
+    # (EDGAR-PB-01-B); a published risk warning notice plus a separate risk disclosure for more
+    # volatile asset classes, with a representation that the client has read and accepted them,
+    # repeated at all times until termination (BANK-LU-01); a risk statement that losses may exceed
+    # the cash and other assets deposited, and a scope limitation that the firm gives no tax or legal
+    # advice (BANK-US-01); an exculpation for everything except wilful misconduct, gross negligence
+    # or fraud, and an acknowledgement that the secured party need not realise the collateral at all
+    # or in any particular manner or order (EDGAR-PL-02). No judgement number in this tier.
+    text: >
+      Each of the Borrower and the Pledgor represents and acknowledges that it enters into the facility
+      and the security documents on the basis of its own independent analysis and judgement and of
+      such independent advice as it has thought fit to obtain, and is not relying on any statement,
+      representation or assurance by the Bank as to the facility, the documents, the collateral, its
+      value, liquidity or condition, or any other matter. The Bank acts on an execution-only basis in
+      relation to the facility. The Bank gives no investment, tax, legal, accounting or regulatory
+      advice in connection with the facility, makes no recommendation to borrow, to borrow any
+      particular amount, to pledge any particular asset, or to acquire, retain or dispose of any
+      asset, and expresses no view on whether the facility or any resulting position is suitable or
+      appropriate for the Borrower or the Pledgor. Each of the Borrower and the Pledgor further
+      represents that it has the knowledge and experience necessary to evaluate a facility of this
+      kind and the instruments comprising the collateral; that it has access to, and the knowledge to
+      use, the analytical tools needed to evaluate the collateral and the effect of the facility on its
+      portfolio as a whole; and that it has the financial resources and liquidity to bear all the risks
+      of the facility, including the loss of the entire value of the collateral and liability for any
+      shortfall after realisation. Each acknowledges that it has received and read the Bank's risk
+      disclosures; that borrowing against a portfolio magnifies gains and losses and that losses may
+      exceed the amounts deposited; that a fall in value or a change in lending values may require
+      immediate repayment or the delivery of further collateral; that the Bank may realise collateral
+      at a time and on terms that are not of the Borrower's choosing; and that where the facility is in
+      a different currency from the collateral, the currency exposure is the Borrower's. These
+      representations are repeated on each drawing and on each day on which any amount is outstanding.
+    rationale: >
+      This clause is not there to win an argument after the event; it is there to record what actually
+      happened, which is that the client decided to borrow against its own portfolio. The
+      sophisticated-investor limbs are worth keeping in full because each does different work: the
+      knowledge limb answers "did you understand it", the analytical-tools limb answers "did you model
+      it against the whole portfolio", and the ability-to-bear-loss limb is the only one that answers
+      the question a regulator actually asks, which is whether the client could survive the downside.
+      Execution-only is stated affirmatively rather than by implication, because both of the conduct
+      regimes in scope treat an execution-only relationship differently from an advised one, and the
+      Bank should be saying which one it is in. Every limb here is observed in a filed or published
+      document from this side of the market.
+    conditions: []
+  acceptable:
+    # observed: where collateral sits in an account the bank or an affiliate manages on a
+    # discretionary basis, the guarantor acknowledges that the dual role of creditor and discretionary
+    # manager could give rise to a conflict of interest, and CONSENTS to it - a consent structure
+    # rather than a disclaimer structure (EDGAR-PB-01-A); marketing material stating it is not
+    # investment advice and is not based on the addressee's personal circumstances while the body of
+    # the same document recommends that the client obtain detailed advice that the borrowing matches
+    # their objectives (BANK-CH-01) - the tension this tier exists to manage; the industry position
+    # that where a client takes a loan in order to invest, that is a financial service and the
+    # investor-protection provisions apply in full (IND-CH-01).
+    text: >
+      The representations in the preferred position are given as acknowledgements of fact, and are
+      qualified as follows. Non-reliance does not extend to any written statement which the Bank has
+      expressly agreed in writing may be relied on. Where the Bank or any member of its group provides
+      investment advice or portfolio management in respect of any account in which collateral is held,
+      the Borrower and the Pledgor acknowledge that the Bank's dual role as lender and as adviser or
+      manager may give rise to a conflict of interest, and consent to the Bank acting in both
+      capacities; that acknowledgement and consent are given in addition to, and do not displace, the
+      Bank's duties in that other capacity. The sophisticated-investor limbs are given by reference to
+      the Borrower's and the Pledgor's actual knowledge and experience at the date of the facility
+      letter, and are repeated only on each drawing. Nothing in this clause limits or excludes any
+      duty, obligation or liability of the Bank under any applicable law or regulation which may not
+      be limited or excluded, and nothing in it is to be read as a statement by the Bank that it has
+      not provided a service which it has in fact provided.
+    rationale: >
+      This is where the Bank protects itself by conceding. A non-reliance clause that flatly denies
+      advice in a relationship where the Bank's own adviser discussed the portfolio is not a defence,
+      it is an exhibit, and it invites the argument that the Bank papered over what it did. The
+      consent structure is better drafting than a disclaimer for the same reason: it names the
+      conflict, records the client's agreement to it, and leaves the Bank's duties in its other
+      capacity where they belong. The saving for duties that cannot be excluded costs the Bank nothing
+      it would have kept anyway and stops an over-broad clause being read down as a whole. The one
+      thing that does not move here is the ability-to-bear-loss acknowledgement, because that is the
+      limb that maps onto the regulators' own question.
+    conditions: []
+  fallback:
+    # THE TRADE-OFF TIER. observed: the conflict acknowledgement and consent is the FILED answer where
+    # the bank also manages the account, but Swiss case law imposes a notification duty on a
+    # discretionary manager independently of the contract (EDGAR-PB-01-A; FIRM-03). The counterparty
+    # ask this tier answers is recorded in the pool: soften the sophisticated-investor representation
+    # or delete the loss-of-entire-principal limb (EDGAR-PB-01-B takes all three limbs flat), and
+    # carve out from non-reliance any statement the bank actually made (EDGAR-PB-01-C excludes
+    # reliance on any statement as to any matter). No source opened concedes either ask, so this tier
+    # goes beyond every document in the pool and is a proposal rather than an observed position.
+    # X days (suitability file before first drawing): no opened source states a period; institution's
+    #   own process. Observed adjacent number: a 14 calendar day withdrawal right for a retail client
+    #   on a distance contract where the facility is unused (BANK-LU-01).
+    text: >
+      Where the Bank or any member of its group provides investment advice or portfolio management to
+      the Borrower or the Pledgor in respect of the portfolio over which security is given, the
+      no-advice representation is limited to the decision to enter into the facility, the amount
+      borrowed and the terms of the facility documents, and does not extend to advice given on the
+      composition or management of the portfolio itself. The sophisticated-investor representation is
+      given as a statement of knowledge and experience relevant to holding a leveraged portfolio of the
+      relevant kind, and the acknowledgement that the Borrower can bear the loss of the entire amount
+      is replaced by an acknowledgement that losses may exceed the cash and other assets deposited and
+      that the Borrower remains liable for any shortfall after realisation. In consideration of those
+      changes, the Bank's records for the facility must include, before the first drawing, a
+      documented assessment of the suitability or appropriateness of the leveraged position as a whole
+      (the facility together with the portfolio it is secured on), completed and retained in accordance
+      with the applicable conduct rules and dated not more than X days before that drawing, and the
+      Borrower and the Pledgor undertake to provide the information the Bank requires for that
+      assessment and to notify the Bank of any material change in the information given. Nothing in
+      this clause affects the Bank's rights on a margin call or on an Event of Default, or imposes on
+      the Bank any duty to notify the Borrower or the Pledgor of an impending or actual collateral
+      shortfall beyond any duty the Bank owes in another capacity or under applicable law.
+    rationale: >
+      This tier concedes the two asks the Bank most often hears and buys something better in return.
+      It swaps a representation the Bank might not be able to rely on for a file the Bank can actually
+      produce: where the relationship is advised, a documented assessment of the leveraged position as
+      a whole is the answer to the conduct question, and a clause is not. The carve-out is drawn
+      narrowly and deliberately - the Bank still says the decision to borrow was the client's, and only
+      gives up the pretence that it said nothing about the portfolio. The last sentence is the part
+      not to trade away: whatever the Bank concedes on advice, the margin and default mechanics stay
+      unconditional, because a duty to warn built into this clause would convert every margin call into
+      a negotiation about whether the warning was adequate.
+    conditions:
+      - The Bank or a member of its group in fact provides advice or portfolio management on the pledged portfolio, so the carve-out matches the relationship.
+      - Compliance has confirmed the suitability or appropriateness assessment meets the applicable conduct rules in the booking jurisdiction and in the client's jurisdiction.
+      - The assessment covers the facility and the portfolio together rather than the investment alone.
+      - The declared purpose of the facility, and any purpose representation, are consistent with the assessment on file.
+      - The Borrower is not an individual in respect of whom a consumer or retail classification is unresolved.
+      - Any applicable withdrawal or cooling-off right has been identified and the facility has been documented accordingly.
+    approval: senior lawyer and compliance
+  unacceptable:
+    text: >
+      The Bank will not give, or allow the documents to imply, any representation or acknowledgement
+      that it has recommended the facility, approved the leveraged strategy, or assessed the facility
+      as suitable or appropriate save where a documented assessment has in fact been made and is on
+      file; will not delete the acknowledgement that losses may exceed the amounts deposited, or the
+      acknowledgement that the Borrower remains liable for any shortfall after realisation; will not
+      accept a contractual duty to warn of an impending or actual collateral shortfall, or to advise on
+      the portfolio, in an execution-only relationship; will not make the exercise of any right on a
+      margin call or on an Event of Default conditional on the suitability of the position, on the
+      adequacy of any warning, or on the Bank having given advice; will not accept non-reliance wording
+      which purports to exclude a duty or liability that applicable law does not permit to be excluded,
+      since a clause that overreaches is a clause that may be read down in full; and will not accept a
+      general carve-out from non-reliance for anything the Bank's people may have said, as distinct
+      from a specific written statement the Bank has agreed may be relied on.
+    rationale: >
+      The line here runs between describing the relationship accurately, which the Bank should always
+      do, and underwriting the client's investment decision, which it must never do. A contractual duty
+      to warn is the clearest example of crossing it: it sounds reasonable in the room, and in a falling
+      market it turns the Bank's right to call and to liquidate into an argument about whether the
+      client was told in time. Note the two limbs that point the other way, and say them out loud
+      because they show the position is not simply one-sided: the Bank will not claim it gave no advice
+      where it did, and it will not exclude what it cannot lawfully exclude. Both are refusals to
+      overreach, and both exist because an over-broad clause is the one most likely to fail when it is
+      finally needed.
+default_floor: fallback
+escalation_triggers:
+  # observed: all three sophisticated-investor limbs taken flat (EDGAR-PB-01-B); a 14 calendar day
+  # withdrawal right for a retail client on a distance contract where the facility is unused
+  # (BANK-LU-01). X is the institution's own process tolerance.
+  - Any request to delete the acknowledgement that losses may exceed the amounts deposited or that the Borrower remains liable for a shortfall.
+  - Any request for a contractual duty on the Bank to warn of an impending or actual collateral shortfall, or to advise on the portfolio.
+  - Any request to make a margin call, a liquidation or an acceleration conditional on suitability or on the adequacy of a warning.
+  - Any request for a general carve-out from non-reliance covering statements made by the Bank's staff, rather than a specific written statement the Bank has agreed may be relied on.
+  - Any deal where the declared purpose is to acquire securities and no documented suitability or appropriateness assessment of the leveraged position is on file, or where the assessment is older than X days.
+  - Any deal where the Bank or a member of its group advises or manages the pledged portfolio and the conflict acknowledgement and consent has been deleted.
+  - Any assertion by a counterparty that the facility is outside the conduct perimeter because it is "only lending".
+depends_on:
+  - purpose_restrictions
+  - capacity_authority
+  - margin_maintenance_cure
+  - facility_type
+regulatory_flags:
+  - mifid_suitability
+  - consumer_credit
+not_automated:
+  - Every suitability and appropriateness conclusion. The tool records the purpose, raises the flag and tightens the floor; a person in compliance decides whether the leveraged position is suitable.
+  - Whether the relationship is in fact execution-only, advisory or discretionary on the pledged portfolio. The clause must match the answer, and the answer is a fact about what people did, not a drafting choice.
+  - Whether a particular conversation between the relationship manager and the client amounted to a personal recommendation.
+  - The final determination that a borrower is or is not a consumer or a retail client, which drives the withdrawal right, the risk-disclosure package and the classification of the facility.
+  - Whether to decline the facility outright because the leveraged position is unsuitable, notwithstanding that the collateral supports it.
+jurisdiction_notes:
+  england_wales: >
+    The UK conduct rules do not ask whether the facility letter contains a non-reliance clause; they
+    ask what the Bank did. A personal recommendation must be suitable and in accordance with the
+    client's risk tolerance and ability to bear losses, the firm must obtain information on the source
+    and extent of regular income, assets including liquid assets, investments and real property and
+    regular financial commitments, and on holding period, risk preferences, risk profile and the
+    purpose of the investment, and the firm is expressly told to consider the suitability of the
+    overall transaction where an instrument is linked directly or indirectly to any form of loan or
+    mortgage (UK-COBS-9A.2). That last point is the one that matters for this clause: where the Bank
+    advises, the leverage and the investment are assessed together, so the no-advice wording has to be
+    consistent with the advice actually given and the fallback tier's documented assessment is the
+    real protection. [VERIFY] the effect of contractual non-reliance and basis-of-dealing wording
+    under English law, and any statutory control on it, was not sourced for this playbook; the clause
+    asserts nothing about whether such wording operates as an estoppel.
+  switzerland: >
+    Switzerland resolves the threshold question against the Bank and it is not negotiable: the
+    granting of loans to finance transactions with financial instruments is a financial service in its
+    own right (CH-FINSA-950.1 art. 3(c)(5)), and the industry's own risk booklet puts the same point
+    in plain terms, that conventional lending sits under general civil law but a loan taken in order to
+    invest is a financial service to which the investor-protection provisions apply in full
+    (IND-CH-01). An appropriateness or suitability review is required where investment advice or
+    portfolio management is provided, the enquiry must reach the client's financial situation and
+    investment objectives as well as knowledge and experience where advice takes the portfolio into
+    account, pure execution or transmission is exempt subject to notifying the client, and the firm
+    must advise the client against an instrument it thinks unsuitable (CH-FINSA-950.1 arts. 10, 12, 13
+    and 14). Two drafting consequences. First, the execution-only acknowledgement in the preferred tier
+    earns its place on a Swiss booking, because the exemption is expressly conditioned on the client
+    being told. Second, where the Bank acts as discretionary manager or adviser it may owe a duty to
+    notify the client of a margin deficiency independently of the contract (FIRM-03), so the
+    unacceptable tier's refusal of a contractual duty to warn must not be presented to a Swiss client
+    as a denial that any such duty can exist.
+  luxembourg: >
+    The Luxembourg approach observed in a published template is documentary rather than
+    representational: the facility points at a published investment and risk warning notice and a
+    separate risk disclosure for the more volatile asset classes, then takes a representation that the
+    client has read and accepted them and is aware of the risks, repeated at all times until
+    termination; and it carries a 14 calendar day withdrawal right for a retail client under a distance
+    contract where the facility has not been used (BANK-LU-01). Two practical points follow. The
+    incorporation-by-reference structure means the risk package has to be delivered and its delivery
+    evidenced, which is an operational control rather than a clause. And the withdrawal right has to be
+    identified at intake, because it is a feature of the client's classification and the channel, not
+    of the negotiation. Separately, Luxembourg's consumer credit regime excludes credit granted by a
+    credit institution or investment firm to let an investor carry out a transaction in the relevant
+    financial instruments (LU-CODE-CONSO art. L.224-3), which cuts in the Bank's favour on
+    classification but does nothing for the conduct question this clause is about.
+sources:
+  - ref: "EDGAR-PB-01"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1293153/000095012308001840/y49893exv99w7w05.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Composite exhibit, EDGAR accession 0000950123-08-001840, of three private-bank securities-lending documents given by individual and trust pledgors. Supports the preferred and acceptable tiers: sub-part C is the tightest non-reliance wording in the pool, the grantor entering on its own independent analysis and not relying on any statement or representation by the bank as to the borrower, the loan, the credit documents, the collateral, its value or condition or any other matter; sub-part B carries the three-limb sophisticated-investor representation (knowledge and experience of margin lending and the relevant instruments; access to and knowledge of appropriate analytical tools to evaluate the collateral and its effect on the overall portfolio; sufficient financial resources and liquidity to bear all the risks including loss of the entire principal); sub-part A supports the acceptable tier's conflict structure, acknowledging that the dual role of creditor and discretionary manager could give rise to a conflict of interest and consenting to it, which is a consent structure rather than a disclaimer."
+  - ref: "BANK-LU-01"
+    type: bank_terms
+    url: "https://links.imagerelay.com/cdn/2958/ql/lombard-loan-contract-sqbe-en-01072023"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published Lombard loan agreement template of a Luxembourg bank (CSSF-supervised). Supports the preferred tier and the Luxembourg note: it points at a published investment and risk warning notice and a separate risk disclosure for the more volatile asset classes, takes a representation that the client has read and accepted them and is aware of the risks, repeated at all times until termination, and carries a 14 calendar day withdrawal right for a retail client under a distance contract where the facility has not been used."
+  - ref: "BANK-CH-01"
+    type: bank_terms
+    url: "https://www.ubs.com/content/dam/assets/microsites/credit-suisse/static/doc/lombardkredit-factsheet-en.pdf"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published Lombard loan product factsheet of a Swiss bank; marketing material, and says so. Supports the acceptable tier's rationale rather than any drafting: the document carries a disclaimer that it is not investment advice and is not based on the addressee's personal circumstances, while the body recommends that the client obtain detailed advice that the borrowing matches their objectives. That tension between the disclaimer and the conduct is precisely the exposure this clause exists to manage."
+  - ref: "IND-CH-01"
+    type: bank_terms
+    url: "https://www.swissbanking.ch/_Resources/Persistent/e/1/8/d/e18dc86d8033b556db0c7db772e9b025042db1d5/SBA_Risks_Involved_in_Trading_Financial_Instruments_2023_EN.pdf"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Swiss banking industry association risk-disclosure booklet, 2023 English edition. Supports the Switzerland note and the preferred tier's risk acknowledgements: conventional lending sits under general civil law, but where a client takes a loan in order to invest in financial instruments the transaction is a financial service and the investor-protection provisions apply in full; and its credit-financed-investment block names the leverage effect with losses potentially exceeding the amount invested, margin requirements and liquidity squeezes, and currency risk where the loan is taken in a foreign currency."
+  - ref: "BANK-US-01"
+    type: bank_terms
+    url: "https://www.privatebank.citibank.com/we-offer/margin-lending"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published securities-backed and margin lending disclosures of a global private bank. Supports the preferred tier's two published limbs: a risk statement that the risk of loss in financing a transaction by depositing collateral is significant and that losses may exceed the cash and other assets deposited, and a scope limitation that the firm does not provide tax or legal advice."
+  - ref: "EDGAR-PL-02"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1658566/000110465916164555/a16-23883_1ex99d7.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Pledge and security agreement supporting a margin loan, EDGAR accession 0001104659-16-164555. Supports the lender-side complement in the preferred tier and the refusal of a duty to warn in the unacceptable tier: an exculpation for everything except wilful misconduct, gross negligence or fraud, and an acknowledgement that the secured party is under no duty to realise the collateral at all, or in any particular manner or order."
+  - ref: "FIRM-03"
+    type: law_firm_briefing
+    url: "https://www.mondaq.com/commoditiesderivativesstock-exchanges/985220/margin-calls-how-can-investors-protect-their-position"
+    retrieved: 2026-09-21
+    reliability: C
+    verified: true
+    note: "Swiss practitioner note on margin calls under Swiss law and standard Lombard pledge terms. Supports the Switzerland note's second drafting consequence: where the bank acts as discretionary manager or adviser it may owe a duty to notify the client of a margin deficiency independently of the contract, which is why the unacceptable tier's refusal of a contractual duty to warn is drafted as a refusal to create one rather than as a denial that one can exist."
+  - ref: "UK-COBS-9A.2 (regulator handbook)"
+    type: regulator
+    url: "https://www.handbook.fca.org.uk/handbook/COBS/9A/2.html"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "UK regulator's conduct of business handbook, suitability chapter. Supports the England and Wales note: a personal recommendation must be suitable and in accordance with the client's risk tolerance and ability to bear losses; the firm must obtain information on the source and extent of regular income, assets including liquid assets, investments and real property, and regular financial commitments; and on holding period, risk preferences, risk profile and the purpose of the investment; and guidance tells a firm to consider the suitability of the overall transaction where the instrument is linked directly or indirectly to any form of loan, mortgage or home reversion plan. Opened and read by the WP7 research agent (docs/research/jurisdictions_research.md, MiFID II / FinSA suitability on leverage); not opened by this drafting agent, and carried across with that provenance."
+  - ref: "CH-FINSA-950.1 Arts 3(c), 10, 12, 13, 14 (official English translation)"
+    type: primary_law
+    url: "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2019/758/20240301/en/pdf-a/fedlex-data-admin-ch-eli-cc-2019-758-20240301-en-pdf-a.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Swiss Financial Services Act, official English translation. Supports the Switzerland note: art. 3(c)(5) makes the granting of loans to finance transactions with financial instruments a financial service; art. 10 requires an appropriateness or suitability review where investment advice or portfolio management is provided; art. 12 requires enquiry into the client's financial situation and investment objectives as well as knowledge and experience where advice takes the portfolio into account; art. 13 exempts pure execution or transmission subject to notifying the client; art. 14 requires the firm to advise the client against an instrument it thinks unsuitable. Opened and read by the WP7 research agent; not opened by this drafting agent."
+  - ref: "LU-CODE-CONSO (consolidated 31 December 2024)"
+    type: primary_law
+    url: "https://legilux.public.lu/eli/etat/leg/code/consommation/20241231"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Luxembourg consumer code, consolidated version. Supports the last sentence of the Luxembourg note only: art. L.224-3 excludes from the consumer credit regime, among other things, credit granted by an investment firm or credit institution to let an investor carry out a transaction in the relevant financial instruments, and credit below EUR 200 or above EUR 75,000. Opened and read by the WP7 research agent; not opened by this drafting agent. It says nothing about the conduct or suitability question."
+  - ref: "[VERIFY] EU-MIFID2-2014/65 Art. 25(2) and Annex I Section B(2)"
+    type: primary_law
+    url: "https://eur-lex.europa.eu/eli/dir/2014/65/oj/eng"
+    retrieved: null
+    reliability: A
+    verified: false
+    note: "[VERIFY] Not opened. The WP7 research agent records that the fetch did not return usable article text and that the summary returned only restated the question, so it was not treated as read; this drafting agent did not attempt it again. It is needed to source the EU-side characterisation of lending for financial instrument transactions as an ancillary service and the EU-side suitability wording. Every EU-side statement in this entry is therefore confined to the header comment and marked [VERIFY]; the substantive jurisdiction notes rest on the UK handbook and on FinSA instead."
+status: draft
+reviewed_by: null
+last_reviewed: null

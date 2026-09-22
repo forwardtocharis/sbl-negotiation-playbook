@@ -1,0 +1,10 @@
+# Stub entry. Status is 'stub': only id, title, category and lender_objective
+# are populated. Positions, sources and jurisdiction notes are added in a later
+# work package. Nothing here is legal advice or a verified market position.
+id: transfer_assignment
+title: "Transfer and assignment"
+category: boilerplate
+lender_objective: "Keep the lender free to transfer the exposure while preventing the borrower from substituting a different obligor."
+status: stub
+reviewed_by: null
+last_reviewed: null

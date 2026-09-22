@@ -1,0 +1,39 @@
+# Valid intake. Mirrors the build_plan.md §2.3 example with deal_id D99.
+# Synthetic: no real party, portfolio or client fact.
+deal_id: D99
+description: Synthetic. Jersey discretionary trust, concentrated single stock, settlor is PDMR.
+borrower:
+  type: trust
+  domicile: JE
+  natural_person: false
+  declared_high_net_worth: null
+  business_purpose_declared: null
+pledgor:
+  same_as_borrower: true
+  type: null
+  domicile: null
+  natural_person: null
+  is_pdmr_of_pledged_issuer: true
+guarantor_present: false
+facility:
+  type: uncommitted_demand
+  purpose: general
+  amount: 5000000
+  currency: GBP
+  benchmark: SONIA
+  other_facilities_with_lender: false
+collateral:
+  governing_law: england_wales
+  custodian_location: GB
+  lender_is_custodian: true
+  currencies: [GBP, USD]
+  composition:
+    - asset_class: listed_equity
+      pct: 90
+      single_name_max_pct: 70
+      issuer_restricted: false
+    - asset_class: cash
+      pct: 10
+      single_name_max_pct: null
+      issuer_restricted: false
+counterparty_requests: {}

@@ -1,0 +1,359 @@
+# Draft entry (WP3, drafting group C). Lender-side. Synthetic demonstrator.
+# Nothing here is legal advice.
+#
+# Two things are being negotiated in this clause and they must not be confused:
+#   (1) the LEVELS - the Trigger Level at which a call arises and the tighter
+#       Restoration Level the cure must reach. Every document opened restores to
+#       the tighter level, not merely back inside the trigger.
+#   (2) the CURE LADDER - how long the Borrower gets:
+#         preferred    - no cure period. Due on demand; any time allowed is a
+#                        revocable indulgence, not a right.
+#         acceptable   - X business days after notice of the call, plus a written
+#                        statement within 1 business day of how the call will be
+#                        met, with a Hard Floor below which no period runs at all.
+#         fallback     - a longer period, but only against a written cure plan with
+#                        an identified funding source, running as a standstill that
+#                        collapses on a further shortfall or a failure of that source.
+#         unacceptable - a cure period that is a condition precedent to enforcement
+#                        in all cases, or that survives a Hard Floor breach.
+# The interaction with enforcement_liquidation is the part people get wrong, so it
+# is stated in the text of every tier: the cure clock and any enforcement notice
+# clock run CONSECUTIVELY, not cumulatively, and the immediate-realisation
+# carve-outs in enforcement_liquidation are not suspended by an open cure period.
+id: margin_maintenance_cure
+title: "Margin maintenance, margin call mechanics and cure period"
+category: collateral
+document: facility_letter
+risk_rating: high
+lender_objective: >
+  Convert a collateral shortfall into either cash or a closed position inside a period the Bank can
+  survive, and keep the length of that period in the Bank's gift rather than the Borrower's.
+counterparty_asks:
+  - A longer cure period, moving up the observed ladder from two business days towards five.
+  - An extended cure, or a standstill, where the money has to come from a parent, a capital call or a scheduled liquidity event.
+  - Cure by pledging additional securities rather than by paying cash or repaying.
+  - Restoration only to the Trigger Level rather than to the tighter Restoration Level.
+  - Written notice of the shortfall as a precondition to any liquidation, and deletion of the Bank's right not to call at all.
+  - Deletion of the anti-stacking rule, so that a second shortfall during an open cure period gets its own full period.
+positions:
+  preferred:
+    # observed levels: lending value 50% with a call when outstandings-to-collateral exceeds 75%,
+    # restoring to the 50% lending value and not merely back inside 75% (EDGAR-PB-01-B); collateral
+    # lending value to be at least 100% of all outstandings including contingent amounts, with
+    # immediate top-up (EDGAR-PB-01-A); top-up call below 130% of outstandings and realisation
+    # without any notice below 120% (BANK-LU-02); three named levels - call, reset and release -
+    # with the numbers moved into a confidential side letter (EDGAR-ML-01, EDGAR-ML-03,
+    # EDGAR-ML-04; FIRM-01).
+    # observed cure: no fixed period at all, notification on a best-endeavours basis only, amounts
+    # due immediately and without prior notice, deferral discretionary (BANK-LU-01); no entitlement
+    # to an extension of time (BANK-US-01); the bank not obliged to call at all, and circumstances
+    # in which it must liquidate without notice (EDGAR-PB-01-B).
+    text: >
+      A Collateral Shortfall arises whenever the Lending Value of the pledged assets is less than
+      X per cent of the aggregate of all amounts outstanding and all contingent and unmatured
+      liabilities of the Borrower to the Bank (the Trigger Level), as determined by the Bank at any
+      time. On a Collateral Shortfall the Borrower must immediately, on demand and without any prior
+      notice being required, either repay, or pledge further Eligible Collateral acceptable to the
+      Bank, or a combination of the two, in an amount sufficient to restore the Lending Value to
+      Y per cent of those amounts (the Restoration Level), calculated on the values determined by the
+      Bank on the day the demand is made. The Bank may notify the Borrower of a Collateral Shortfall
+      and may allow a period within which it is to be met, but is obliged to do neither; any period
+      the Bank allows is revocable by the Bank at any time, does not arise again on a subsequent
+      Collateral Shortfall, and is not a condition precedent to, and does not suspend, any right of
+      the Bank under the enforcement clause. A second Collateral Shortfall arising while an earlier
+      one is uncured does not extend any period then running.
+    rationale: >
+      The Bank is lending against a price it does not control, so the only protection it has is the
+      speed with which it can turn a fall in that price back into cash. The two-level structure is
+      what makes that work: a call that only restores the position to the Trigger Level puts the
+      Borrower straight back on the edge of the next call, so the Bank would be having the same
+      conversation every morning in a falling market. Every published private-bank document opened
+      for this playbook takes the no-fixed-period position, so this is the market opening rather than
+      an aggressive one. Keeping the call itself discretionary matters just as much: the Bank must
+      never be in the position where a failure to send a notice is the reason it cannot enforce.
+    conditions: []
+  acceptable:
+    # observed: 2 business days from delivery of the call, stretching to 3 on delivery of a specified
+    # certificate by 5 p.m. the next business day (EDGAR-ML-03); 2 scheduled trading days with an
+    # anti-stacking rule shortening a later shortfall to 1 business day (EDGAR-ML-04); 5 business
+    # days with a written statement of HOW the deficit will be met due within 1 business day of the
+    # call (EDGAR-PB-01-B); 3 business days on the separate "no longer satisfactory" limb
+    # (EDGAR-PB-01-B pledge); "a couple of business days", described as consistent across the market
+    # (FIRM-01); Swiss practice not more than two days (FIRM-03). X therefore sits in a 2-5 business
+    # day band; the 1 business day statement deadline is taken from the only source that states one.
+    # observed Hard Floor: a second, lower level at which realisation is immediate and without notice
+    # (BANK-LU-02: a 130% call level and a 120% realisation level).
+    text: >
+      On a Collateral Shortfall the Bank will notify the Borrower, and the Borrower must restore the
+      Lending Value to the Restoration Level by 5.00 p.m. on the day falling X business days after
+      the notice is given, by repayment or by pledging further Eligible Collateral acceptable to the
+      Bank or both. Within 1 business day of the notice the Borrower must deliver a written statement
+      of how it will meet the Collateral Shortfall. The cure period does not run, and the Bank may act
+      immediately, where the Lending Value has fallen below Z per cent of the amounts outstanding (the
+      Hard Floor), where an Event of Default has occurred and is continuing, or where the Bank
+      determines that the market value or the traded liquidity of the pledged assets is declining
+      rapidly. Where a further Collateral Shortfall arises while an earlier one is uncured, the time
+      to cure the further shortfall ends on the later of the cure time then running and 5.00 p.m. on
+      the first business day after notice of it. Restoration is measured on the values determined by
+      the Bank on the date of the notice. Expiry of the cure period is an Event of Default; any notice
+      required under the enforcement clause runs from that expiry and is not additional to the cure
+      period.
+    rationale: >
+      This tier concedes the clock and keeps everything the clock is for. A defined, short period is
+      easier to operate than a bare demand right, because the relationship manager, the credit officer
+      and the Borrower all know which day the position closes, and the Bank can evidence a fair process
+      if it is ever challenged on the sale. The written statement inside one business day is the
+      cheapest protection in the clause: it tells the Bank on day one whether the money exists, so a
+      cure that is never going to happen is identified before the period runs rather than after. The
+      Hard Floor is not really a concession at all - below it the collateral is no longer covering the
+      debt on any view, and a cure period at that point funds the Borrower's option at the Bank's
+      expense.
+    conditions: []
+  fallback:
+    # THE TRADE-OFF TIER. observed: an extended cure time where a capital call confirmation package is
+    # delivered before the ordinary cure time, running as a standstill for the capital call period
+    # (EDGAR-ML-02); cure by a permitted sale, treated as cured on delivery of eligible trade tickets
+    # before the cure time with proceeds swept on settlement, and the cure amount notionally deducted
+    # when testing whether a further shortfall has arisen (EDGAR-ML-01); commentary that in practice
+    # the cure cash comes from the fund parent rather than the borrower (FIRM-01). Against it: no
+    # private-bank document opened concedes an extended period at all (BANK-LU-01, BANK-US-01,
+    # EDGAR-PB-01-B). N additional business days is a judgement number; the collapse triggers are not
+    # negotiable.
+    text: >
+      Where, on or before the expiry of the cure period, the Borrower delivers a written cure plan
+      identifying the source of the funds, the steps required to release them and the date on which
+      they will be received, and the Bank is satisfied that the source is identified and committed,
+      the Bank may extend the cure period to the date falling X plus N business days after the original
+      notice. During any extension the Bank will not realise the pledged assets by reason only of the
+      Collateral Shortfall to which the plan relates. The extension terminates immediately and without
+      notice if: the Lending Value falls below the Hard Floor; a further Collateral Shortfall arises;
+      any step in the cure plan is not completed by the date given for it; an Event of Default occurs;
+      or the Bank determines that the market value or the traded liquidity of the pledged assets is
+      declining rapidly. A sale of pledged assets instructed by the Borrower counts as a cure only from
+      delivery of executed trade confirmations before the cure time, with the proceeds paid to the Bank
+      on settlement. An extension granted under this clause does not extend, and is not additional to,
+      any notice period under the enforcement clause, and does not affect the Bank's right to realise
+      without notice in the circumstances that clause preserves.
+    rationale: >
+      The honest case for this tier is that a cure plan with a real funding source is worth more to the
+      Bank than a liquidation into a falling market, and the institutional documents that concede an
+      extension all concede it in the same shape: a standstill bought with information, not with time.
+      What the Bank must not do is turn that into a free option, which is why the extension collapses on
+      any one of five events rather than running to its stated end. Said out loud to a counterparty, the
+      Bank will wait for money it can see and will not wait for money it is being told about. Note that
+      the Bank still declines to be cured by additional securities in this tier, because pledging more of
+      a portfolio that is already falling changes the size of the problem and not its direction.
+    conditions:
+      - Collateral is diversified within the concentration limit and is exchange-listed or daily-dealt.
+      - No line of the portfolio is issuer-restricted, locked up or subject to a trading suspension.
+      - The Bank or a member of its group is the Custodian, or an executed account control agreement is in place.
+      - The funding source named in the cure plan is identified, committed and independent of the pledged portfolio.
+      - The facility is not already in default for any other reason, and no earlier extension has been granted on the same shortfall.
+      - Credit has confirmed that the extension is priced into the lending values applied to this portfolio.
+    approval: head of credit
+  unacceptable:
+    text: >
+      The Bank will not agree that a margin call, a notice or the expiry of a cure period is a condition
+      precedent to enforcement in all cases; will not agree a cure period that continues to run after the
+      Lending Value has fallen below the Hard Floor, after an Event of Default, or through a rapid decline
+      in value or liquidity; will not accept restoration only to the Trigger Level; will not accept cure by
+      the pledge of additional securities of the same issuer, sector or currency as the position causing
+      the shortfall, or by unexecuted instructions or an undertaking to sell; will not give up the
+      anti-stacking rule so that each fresh shortfall carries a fresh full period; and will not accept a
+      cure period that runs cumulatively with, or that suspends, the notice period under the enforcement
+      clause.
+    rationale: >
+      Each of these turns a protection into a delay, and the delay always lands on the worst day. A cure
+      period that is a precondition to enforcement in all cases means a single failed notice costs the Bank
+      the position. Stacked cure periods are the subtler version of the same problem: in a market that falls
+      every day, a fresh full period on every fresh shortfall is an indefinite standstill granted by
+      arithmetic. Restoration to the Trigger Level is refused in every document opened for this playbook,
+      which is the shortest available answer if the point is pressed in the room.
+default_floor: fallback
+escalation_triggers:
+  # observed: the ladder runs 1 business day (anti-stacking, EDGAR-ML-04) - 2 business days
+  # (EDGAR-ML-03, EDGAR-ML-04) - 3 business days on a certificate (EDGAR-ML-03) - 5 business days in
+  # the private-banking document (EDGAR-PB-01-B). X is the institution's own tolerance and the point
+  # at which a request stops being a timing concession and becomes an unfunded standstill.
+  - Any request for a cure period longer than X business days, or for more than one extension on the same shortfall.
+  - Any request that a cure period continue to run below the Hard Floor, during a rapid decline, or after an Event of Default.
+  - Any request that notice of a margin call be a condition precedent to enforcement.
+  - Any request to restore only to the Trigger Level, or to measure restoration on a moving price rather than on the price on the notice date.
+  - Any request to cure by pledging additional securities rather than by cash or repayment.
+  - Any request to remove the anti-stacking rule.
+  - Any request that the cure period and the enforcement notice period run cumulatively.
+depends_on:
+  - eligible_collateral_lending_values
+  - concentration_limits
+  - lender_discretion_valuation
+  - enforcement_liquidation
+  - events_of_default
+  - facility_type
+regulatory_flags:
+  - consumer_credit
+  - restricted_securities
+  - prudential_awareness
+not_automated:
+  - Whether to grant forbearance on a live margin call, or to let an expired cure period stand without enforcing.
+  - Whether a written cure plan is credible, which is a judgement about a funding source and not a document check.
+  - Setting the Trigger Level, the Restoration Level, the Hard Floor and the number of business days. The sources give a band, not an answer.
+  - Whether a particular market move is a "rapid decline" that stops the cure clock.
+  - Whether to call at all on a relationship where the shortfall is small and the portfolio is recovering.
+jurisdiction_notes:
+  england_wales: >
+    The cure sequence is where an English enforcement is won or lost, because the enforcement remedy may
+    not be the statutory one. Where the collateral provider is an individual, the Financial Collateral
+    Arrangements (No. 2) Regulations 2003 do not apply at all: reg. 3 requires both parties to be
+    non-natural persons (LAW-EW-01). [VERIFY] The consequence usually drawn from that - that the Bank is
+    left enforcing under an express contractual power of sale, subject to the mortgagee's equitable duty
+    to take reasonable care to obtain a proper price - is stated in the WP7 research file
+    (docs/research/jurisdictions_research.md) and was not confirmed against the primary text by this
+    agent; build_plan.md and the WP3 brief both list it as a known gap. A documented call, a stated cure
+    period, a dated notice and a record of what
+    the Borrower said it would do are the evidence that the duty was discharged, which is why the
+    acceptable tier is easier to defend in England than the demand-only preferred tier even though the
+    preferred tier is commercially stronger. Note also that the Law of Property Act 1925 statutory power
+    of sale is cut down by s.103, which requires notice plus three months' default, or two months'
+    interest in arrear, or breach of another provision of the deed, so the security document should
+    contract out of s.103 and rely on the cure mechanics in this clause instead (LAW-EW-02).
+  switzerland: >
+    Swiss law puts its requirements into the call itself rather than into the length of the cure period.
+    A valid margin call must state the amount called and the deadline for posting it, the Bank must be
+    able to produce the calculation details and the parameters behind the call, and a Geneva appellate
+    decision is cited for the proposition that a bank failing those prerequisites exposes itself to
+    liability; practice allows no more than about two days to top up (FIRM-03). Where the Bank also
+    manages the portfolio it may owe an independent duty to notify the client of a margin deficiency
+    before acting (FIRM-03). The structural point is the interaction with enforcement: under the Federal
+    Intermediated Securities Act the pre-realisation notice cannot be waived by a collateral provider who
+    is not a qualified investor, and a private individual is not one (LAW-CH-01, arts. 5(d) and 32(1)).
+    On a Swiss booking to a private client the cure clock and the statutory notice therefore run one
+    after the other and both have to be built into the timetable, which makes a short and precisely
+    drafted cure period more valuable here than elsewhere.
+  luxembourg: >
+    The published Luxembourg documents are the two poles of this clause. One states no cure period at all
+    - notification on a best-endeavours basis only, at the bank's sole discretion, creating no client
+    right, with amounts due immediately and any deferral a discretionary favour (BANK-LU-01). The other is
+    the only bank-terms document opened with two numeric levels, calling for further cover once the
+    lendable exchange value falls below 130 per cent of outstandings and permitting realisation of part or
+    all of the pledge straight away and without any notice below 120 per cent (BANK-LU-02) - which is
+    exactly the Trigger Level and Hard Floor architecture used above, and a useful answer to a
+    counterparty who says the Hard Floor is invented. Keep the cure period in the facility letter and out
+    of the security agreement: enforcement without prior notice is the statutory default under the Law of
+    5 August 2005 only "unless otherwise provided for", so a cure period drafted into the security
+    document narrows the statutory enforcement power itself (LAW-LU-01, art. 11(1)).
+sources:
+  - ref: "EDGAR-PB-01"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1293153/000095012308001840/y49893exv99w7w05.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Composite exhibit, EDGAR accession 0000950123-08-001840, of three private-bank securities-lending documents given by individual and trust pledgors. The only filed source in the pool with unredacted levels and cure days. Supports: a 50 per cent lending value percentage with a call when the outstanding-to-collateral ratio exceeds 75 per cent and restoration back to the 50 per cent level rather than back inside 75 per cent; 5 business days to restore; a written statement of how the deficit will be met within 1 business day; a separate 3 business day limb where the bank determines collateral is no longer satisfactory; and the disclaimer that the bank need not call at all and may have to liquidate without notice."
+  - ref: "EDGAR-ML-03"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1333493/000119312521187800/d467983dex3.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Margin loan agreement over listed shares, EDGAR accession 0001193125-21-187800. Supports the shape of the acceptable tier: cash in the collateral accounts by 5 p.m. two business days after delivery of the call, stretching to three business days on delivery of a specified certificate; restoration to the maintenance level computed off the share value on the call date rather than a moving price; a separate lower release level for getting collateral back out."
+  - ref: "EDGAR-ML-04"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/2068577/000149315225028763/ex7.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Margin loan agreement over listed shares, EDGAR accession 0001493152-25-028763. Supports the anti-stacking rule relied on in the preferred and acceptable tiers: cure by 5 p.m. on the second scheduled trading day after the collateral call, and where a fresh shortfall arises while an earlier one is uncured the cure time for the new shortfall shortens to the later of the old cure time or 5 p.m. on the first business day after the new notice. Three named levels (call, reset, release), all percentages redacted."
+  - ref: "EDGAR-ML-01"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1370880/000119312520323316/d161224dex99e.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Margin loan agreement over listed shares, EDGAR accession 0001193125-20-323316. Supports the fallback tier's cure-by-sale mechanic: cure by a permitted sale is treated as effective on delivery of eligible trade tickets before the cure time, with proceeds swept on settlement, and the cure amount notionally deducted when testing whether a further shortfall has arisen. Also the drafting convention of defining the levels and the cure time by reference to a confidential side letter."
+  - ref: "EDGAR-ML-02"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1166388/000119312520167769/d942873dex996.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Series A margin loan agreement over listed shares, EDGAR accession 0001193125-20-167769. Supports the fallback tier directly: an extended cure time available where a capital call confirmation package is delivered before the ordinary cure time, with a standstill running for the capital call period. This is the only observed example of a cure extension bought with information about a committed funding source."
+  - ref: "BANK-LU-02"
+    type: bank_terms
+    url: "https://www.delen.bank/hubfs/dot-bank/assets/general_banking_conditions_2025.pdf?hsLang=en-lu"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published 2025 general banking conditions of a Luxembourg private bank. The only bank-terms document opened with two numeric cover levels: a call for further cover once the lendable exchange value of the pledged assets falls below 130 per cent of outstandings, with the client to agree a suitable arrangement within a period the bank sets, and realisation of part or all of the pledge straight away without any notice below 120 per cent. Supports both the two-level architecture and the Hard Floor."
+  - ref: "BANK-LU-01"
+    type: bank_terms
+    url: "https://links.imagerelay.com/cdn/2958/ql/lombard-loan-contract-sqbe-en-01072023"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published Lombard loan agreement template of a Luxembourg bank (CSSF-supervised). Supports the preferred tier: no cure period as a matter of drafting; notification that the lending value is about to become insufficient is on a best-endeavours basis only, is at the bank's sole discretion, creates no right in the client, and failure to send it does not prejudice the bank; amounts are due and payable immediately and without prior notice, and any deferral is discretionary."
+  - ref: "BANK-US-01"
+    type: bank_terms
+    url: "https://www.privatebank.citibank.com/we-offer/margin-lending"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published securities-backed / margin lending disclosures of a global private bank. Supports the preferred tier in one line: the client is not entitled to an extension of time on a margin call, and collateral may be liquidated without consent if the deadline is missed."
+  - ref: "BANK-CH-01"
+    type: bank_terms
+    url: "https://www.ubs.com/content/dam/assets/microsites/credit-suisse/static/doc/lombardkredit-factsheet-en.pdf"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published Lombard loan product factsheet of a Swiss bank; marketing material, and says so. Supports the client-facing description of the same event: if the securities fall in value and/or their loan-to-value ratios are adjusted the client must post more collateral or repay, and if that is not done on time the bank may restructure the portfolio or liquidate the pledged assets."
+  - ref: "FIRM-01"
+    type: law_firm_briefing
+    url: "https://www.stblaw.com/docs/default-source/related-link-pdfs/global-legal-insights-fund-finance-2022_backleverage-financings--insights-into-the-margin-loan.pdf?sfvrsn=b1f56e21_2"
+    retrieved: 2026-09-21
+    reliability: C
+    verified: true
+    note: "Law-firm chapter on margin loan and backleverage financings in a practitioner guide. Supports the market colour behind the acceptable tier: cures are required within a couple of business days and this is generally consistent across facilities; lenders are generally reluctant to accept additional pledged securities as a cure, preferring cash or repayment; in practice the cure cash comes from the fund parent rather than the borrower. Also the source of the Trigger-LTV and Reset-LTV description."
+  - ref: "FIRM-03"
+    type: law_firm_briefing
+    url: "https://www.mondaq.com/commoditiesderivativesstock-exchanges/985220/margin-calls-how-can-investors-protect-their-position"
+    retrieved: 2026-09-21
+    reliability: C
+    verified: true
+    note: "Swiss practitioner note on margin calls under Swiss law and standard Lombard pledge terms. Supports the Switzerland note: a valid call must state the amount called and the deadline; the bank must be able to produce the calculation details and parameters; Swiss practice allows typically not more than two days to top up; a discretionary manager or adviser may owe a duty to notify the client of a margin deficiency first; a Geneva appellate decision is cited for liability where those prerequisites fail."
+  - ref: "LAW-CH-01"
+    type: primary_law
+    url: "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2009/450/20230101/en/pdf-a/fedlex-data-admin-ch-eli-cc-2009-450-20230101-en-pdf-a.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Swiss Federal Intermediated Securities Act (SR 957.1), official English translation, read by the WP7 research agent. Supports the Switzerland note on one structural point only: art. 32(1) requires notice to the collateral provider before realisation and allows waiver only by a custodian or a qualified investor, and art. 5(d) defines qualified investor by a closed list that does not include a natural person. It says nothing about cure periods, which are contractual."
+  - ref: "LAW-EW-01"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/uksi/2003/3226/regulation/3"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Financial Collateral Arrangements (No. 2) Regulations 2003, reg. 3 (definitions), read by the WP7 research agent. Supports one point only: both parties to a security financial collateral arrangement must be non-natural persons, a non-natural person excluding an individual. It does NOT support the downstream statement about what the lender is left with when the regime does not apply, which is marked [VERIFY] in the England and Wales note."
+  - ref: "LAW-EW-02"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/ukpga/Geo5/15-16/20/section/103"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Law of Property Act 1925 s.103, read by the WP7 research agent. Supports the England and Wales note: the statutory power of sale conferred by s.101 may not be exercised until notice requiring payment has been served and three months' default has run, or two months' interest is in arrear, or another provision of the mortgage deed has been breached - hence the practice of contracting out and relying on express cure and enforcement drafting."
+  - ref: "LAW-LU-01"
+    type: primary_law
+    url: "https://www.cssf.lu/wp-content/uploads/L_050805_fin_coll_upd_15072024.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Luxembourg Law of 5 August 2005 on financial collateral arrangements, consolidated text published by the regulator (updated 15 July 2024); arts. 3-5, 11, 12, 13, 13-1, 18-20 and 22 were read by the sourcing agent. Supports the Luxembourg note's drafting warning only: art. 11(1) permits enforcement without prior notice but does so 'unless otherwise provided for', so a contractual cure period in the security agreement narrows the statutory power."
+  - ref: "REG-CH-02"
+    type: regulator
+    url: "https://www.finma.ch/en/~/media/finma/dokumente/dokumentencenter/myfinma/finma-publikationen/risikomonitor/20251117-finma-risikomonitor-2025.pdf?sc_lang=en"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Swiss regulator risk monitor 2025. Supports the rationale for a short cure period on a concentrated book: supervisory attention on single-stock lending, undiversified collateral, and correlated exposure where many banks lend against the same collateral - which is the case in which every lender's cure period expires on the same day."
+status: draft
+reviewed_by: null
+last_reviewed: null

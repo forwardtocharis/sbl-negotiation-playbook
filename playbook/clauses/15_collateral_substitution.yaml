@@ -1,0 +1,10 @@
+# Stub entry. Status is 'stub': only id, title, category and lender_objective
+# are populated. Positions, sources and jurisdiction notes are added in a later
+# work package. Nothing here is legal advice or a verified market position.
+id: collateral_substitution
+title: "Collateral substitution rights"
+category: collateral
+lender_objective: "Allow substitution without letting the borrower degrade the quality or liquidity of the collateral pool."
+status: stub
+reviewed_by: null
+last_reviewed: null

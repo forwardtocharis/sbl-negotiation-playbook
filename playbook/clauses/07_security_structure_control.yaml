@@ -1,0 +1,377 @@
+# Draft entry (WP3, drafting group C). Lender-side. Synthetic demonstrator.
+# Nothing here is legal advice.
+#
+# This clause answers two questions that get run together and should not be:
+#   (a) WHAT INTEREST does the Bank take - pledge, charge/mortgage, or title
+#       transfer? The answer is set by the booking jurisdiction, not by taste:
+#         England & Wales  - charge or mortgage over the securities account; a
+#                            common-law pledge is awkward over intangibles.
+#         Switzerland      - pledge over intermediated securities under FISA.
+#         Luxembourg       - pledge under the Law of 5 August 2005; title transfer
+#                            is PROHIBITED with a retail client (art. 13).
+#   (b) HOW IS CONTROL DELIVERED - the Bank is the Custodian, or a third-party
+#       custodian is bound by a control agreement. Everything in the ladder below
+#       is a variation on how much of (b) the Bank gives up.
+# The ladder is therefore about control, not about labels:
+#   preferred    - Bank is Custodian; full dominion; nothing moves without consent.
+#   acceptable   - third-party Custodian permitted, but only against an executed
+#                  control agreement as a CP; client trades until a blocking notice.
+#   fallback     - client's own Custodian, two-party pledge plus acknowledgement,
+#                  pre-agreed substitution parameters, blocking notice tied to a
+#                  trigger rather than to pure discretion.
+#   unacceptable - any structure whose perfection or enforcement depends on the
+#                  client's cooperation on the day.
+id: security_structure_control
+title: "Security structure: pledge, charge or title transfer, plus control and custody"
+category: collateral
+document: security_agreement
+risk_rating: high
+lender_objective: >
+  Take an interest that is effective against the Pledgor's insolvency officer and realisable without
+  the Pledgor's cooperation, and make control of the account a documented fact rather than a label.
+counterparty_asks:
+  - No rehypothecation, reuse, lending or onward pledging of the collateral by the Bank.
+  - Voting and corporate action rights to remain with the Pledgor until an event of default.
+  - Freedom to trade, substitute and withdraw within the portfolio without case-by-case consent from the Bank.
+  - Use of the client's existing third-party Custodian rather than moving the assets to the Bank.
+  - Deletion of the all-present-and-future formulation, so that the security attaches only to a listed, named portfolio.
+  - Release of collateral above a stated coverage level on request rather than at the Bank's determination.
+positions:
+  preferred:
+    # observed: first-priority security interest plus set-off, a custodian acceptable to the secured
+    # party, segregated cash and share collateral accounts with sub-accounts, a tripartite control
+    # agreement, financing statements filed, and re-registration of the shares into the custodian's
+    # name (EDGAR-PL-02); security interest, pledge, lien, charge, assignment, hypothecation and
+    # set-off over everything in named accounts, with FULL DOMINION AND CONTROL, no withdrawals
+    # permitted and release only of such excess as the bank decides, taking loanable values, currency
+    # risk and tax into account (EDGAR-PB-01-C); pledge by force of the general terms over everything
+    # entrusted to the bank, ipso jure, for all present and future debts, with the bank unable to be
+    # compelled to release and holding a retention right as well (BANK-LU-03); the pledge extended to
+    # all of the client's accounts including joint accounts (BANK-LU-01); pledgor covenants to defend
+    # the collateral against adverse claims, to permit no competing filing or lien, and to bear the
+    # costs of defending and enforcing the security (EDGAR-PL-01).
+    text: >
+      The Pledgor grants to the Bank a first-ranking and continuing security interest over each
+      Collateral Account, over all financial instruments and cash from time to time credited to it,
+      over all rights attaching to them and over all proceeds, present and future, taking the form the
+      Bank determines to be most effective under the law of the place where the Collateral Account is
+      maintained, and the Pledgor will execute any further document and give any further instruction
+      the Bank requires for that purpose. The Bank or a member of its group is the Custodian. No
+      financial instrument or cash may be withdrawn, transferred, sold, substituted or otherwise dealt
+      with, and no instruction to the Custodian is effective, without the Bank's prior consent, which
+      the Bank may withhold; the Bank may release only such assets as it determines to be in excess of
+      its requirements, taking lending values, currency exposure, tax and any other risk into account.
+      The Pledgor will create no other security interest over, and will permit no filing, registration
+      or notice in respect of, any Collateral Account or any asset credited to it, will defend the
+      collateral against any adverse claim, and will bear the Bank's costs of perfecting, defending and
+      enforcing the security. Voting and other rights attaching to the collateral are exercisable by
+      the Pledgor only until the Bank gives notice, after which they are exercisable by the Bank or its
+      nominee under an irrevocable power of attorney given by the Pledgor. The Bank reserves the right
+      to use, transfer or dispose of the collateral to the extent permitted by the applicable law and
+      any authorisation given by the Pledgor.
+    rationale: >
+      What makes this product lendable is not the security document, it is that the Bank is holding the
+      assets and can stop them moving. Where the Bank is the Custodian the structure is at its cheapest
+      and its fastest in all three jurisdictions in this playbook: the pledge agreement alone perfects in
+      Luxembourg, an agreement with the custodian alone does it in Switzerland, and in England the
+      possession-or-control question answers itself. Full dominion with releases in the Bank's gift is
+      also the observed private-bank position rather than an aggressive one. The reason to open here and
+      not one tier down is that every concession in this clause is a concession about who can move an
+      asset on the morning of a default, and that is the one question the Bank cannot afford to have
+      argued about on the day.
+    conditions: []
+  acceptable:
+    # observed: express agreement by the secured party NOT to rehypothecate, use, lend, pledge or sell
+    # the collateral shares except as the documents allow or with consent, and voting left with the
+    # pledgor until an event of default with an irrevocable proxy flipping it on default
+    # (EDGAR-PL-02) - both of these are conceded in the filed institutional documents. Third-party
+    # custody answered by control agreements rather than by refusal: a secured custodian securities
+    # account control agreement plus a deposit account control agreement with a depositary agent that
+    # is not the lender, with the security stated to be valid, perfected and first-priority in the
+    # accounts, the financial assets credited to them, the security entitlements and the cash
+    # (EDGAR-PL-03). Perfection built as a CP chain rather than as an undertaking (EDGAR-PL-02).
+    text: >
+      The security is a pledge or charge and not a transfer of title. The collateral may be held by a
+      Custodian other than the Bank only where, as a condition precedent, the Bank has received an
+      executed control agreement between the Pledgor, the Custodian and the Bank under which the
+      Custodian agrees to act on the Bank's instructions in relation to the Collateral Account without
+      any further consent or cooperation from the Pledgor, and subordinates or waives its own liens,
+      rights of retention, rights of use and rights of set-off over the Collateral Account. The Pledgor
+      may give instructions in respect of the Collateral Account, and may sell and reinvest within it,
+      until the Bank gives a blocking notice to the Custodian; no asset may leave the Collateral Account
+      and no cash may be withdrawn from it without the Bank's consent, other than proceeds reinvested in
+      Eligible Collateral within the applicable limits. The Bank will not use, lend, re-pledge or
+      otherwise dispose of the collateral before an Event of Default except as the security documents
+      permit or as the Pledgor has authorised in writing. Voting and corporate action rights remain with
+      the Pledgor until an Event of Default, after which they vest in the Bank under an irrevocable power
+      of attorney. The Bank may give a blocking notice at any time after an Event of Default or a
+      Collateral Shortfall, and will confirm the release of the notice in writing once the cause has been
+      remedied.
+    rationale: >
+      Two of the three things conceded here are conceded in the filed institutional documents as well, so
+      the Bank is not moving off market: no reuse before default, and voting left with the client until
+      default. Neither costs the Bank anything it actually needs, and the irrevocable power of attorney
+      means the voting concession reverses exactly when it would start to matter. The real concession is
+      third-party custody, and the answer to it is documentary rather than positional: a control agreement
+      that switches the Custodian's obedience from the client to the Bank, and that deals with the
+      Custodian's own liens, delivers the same practical control as being the Custodian. Making that
+      agreement a condition precedent rather than a post-closing undertaking is the whole point: an
+      unexecuted control agreement is not a slower version of control, it is no control at all.
+    conditions:
+      - The Custodian is a regulated institution in a jurisdiction where local counsel has confirmed the perfection route.
+      - The executed control agreement, and any acknowledgement required by local law, are conditions precedent to first drawing.
+      - Statements and valuations are delivered by the Custodian direct to the Bank.
+  fallback:
+    # THE TRADE-OFF TIER. observed: a two-party pledge agreement notified to the custodian, under which
+    # the custodian will act on the pledgee's instructions without any further agreement of the
+    # provider, is an accepted perfection route in Luxembourg (LAW-LU-01, art. 5(2)(a)(ii)), as is
+    # earmarking in the custodian's books (art. 5(2)(a)(iv)); and a right of substitution, a right to
+    # withdraw excess collateral, a right to collect proceeds until further notice and a reserved right
+    # of the provider to give instructions do not prejudice the collateral having been provided
+    # (LAW-LU-01, art. 2(3)). Against it: the English case law requires real dispossession of the
+    # provider, so the same drafting does not travel (FIRM-04); and the private-bank documents refuse
+    # uncontrolled withdrawals and substitutions outright (EDGAR-PB-01-A, EDGAR-PB-01-C).
+    # observed numbers: none. No source opened states a substitution threshold or a deadline for a
+    # custodian acknowledgement, so X and Y below are the institution's own operational tolerance.
+    text: >
+      Where the Pledgor's Custodian will not enter into a tripartite control agreement, the Bank may
+      accept a pledge or charge notified to the Custodian together with the Custodian's written
+      acknowledgement, to be delivered within X business days of the notice, confirming that it holds
+      the Collateral Account subject to the Bank's security, that it will act on the Bank's instructions
+      in relation to the Collateral Account without any further consent from the Pledgor, and that it
+      subordinates its own liens, rights of retention and rights of set-off, in each case only where
+      local counsel has confirmed in writing that this constitutes an effective and enforceable security
+      interest under the law of the place where the Collateral Account is maintained. The Pledgor may
+      substitute Eligible Collateral without the Bank's prior consent up to an aggregate of Y per cent of
+      the Lending Value in any calendar month, provided that after the substitution the portfolio remains
+      within the eligible collateral and concentration limits and the Lending Value is not reduced, and
+      the Bank may withdraw that permission at any time. The Bank will give a blocking notice only on an
+      Event of Default or a Collateral Shortfall. The security remains a security interest over all
+      present and future assets credited to the Collateral Account, and the Bank's rights on enforcement
+      are not conditional on any act, consent or cooperation of the Pledgor or of the Custodian beyond
+      the acknowledgement given.
+    rationale: >
+      This tier exists because the client's existing custody relationship is often the real obstacle to
+      the trade, and refusing it outright loses business the Bank could safely write. What is conceded is
+      the form of the custodian's agreement and the friction of case-by-case substitution consents; what
+      is not conceded is the substance, which is that on a default the Bank instructs and the Custodian
+      obeys. The local counsel confirmation is doing the load-bearing work, because whether this structure
+      is worth anything is a question of the law of the account's location and nothing else: in Luxembourg
+      a notified two-party pledge plus acknowledgement is an express statutory route, and the client's
+      retained trading rights do not undermine the pledge; in England the courts have required real
+      dispossession of the provider, so the same paper may not deliver control. The honest way to put this
+      to a counterparty is that the Bank is flexible about the mechanism and not about the outcome.
+    conditions:
+      - Local counsel in the place the Collateral Account is maintained has confirmed the structure in writing.
+      - The Custodian is a regulated institution and is not an affiliate of the Borrower or the Pledgor.
+      - The Custodian's acknowledgement is received before first drawing, and its liens are subordinated or waived.
+      - The portfolio is exchange-listed or daily-dealt and is within the concentration limit.
+      - Daily position and valuation reporting is received direct from the Custodian.
+      - No line of the portfolio is issuer-restricted, locked up or subject to a transfer restriction.
+    approval: senior lawyer
+  unacceptable:
+    text: >
+      The Bank will not take a structure whose perfection, or whose enforcement, depends on an act,
+      consent, instruction or cooperation of the Pledgor, the Borrower or any affiliate of theirs at the
+      time of enforcement; will not accept a Custodian that reserves the right to require the Pledgor's
+      consent before acting on the Bank's instructions, or that will not subordinate or waive its own
+      liens, rights of retention, rights of use and rights of set-off; will not proceed where no route to
+      an effective security interest under the law of the place the Collateral Account is maintained has
+      been identified and confirmed; will not accept a negative pledge, an undertaking not to dispose, or
+      a letter of comfort in place of a security interest; will not accept a transfer of title for
+      security purposes with a client whose classification makes that structure prohibited or voidable in
+      the booking jurisdiction; will not accept release of collateral on the Pledgor's calculation of
+      excess rather than the Bank's; and will not limit the security to a named, static list of holdings
+      in a portfolio the client continues to trade.
+    rationale: >
+      Every item on this list is a way of ending up with a document that reads like security and behaves
+      like an unsecured loan on the only day it matters. A custodian that needs the client's consent
+      before acting gives the client a veto over enforcement; a structure that has not been confirmed
+      under the law of the account's location is an assumption, not an interest; and a static list over a
+      traded portfolio starts drifting out of date the week after signing. The title transfer point is not
+      a negotiating position at all - in Luxembourg a transfer of title for security purposes with a
+      retail client is prohibited on pain of nullity, so agreeing to it would produce a structure that is
+      void rather than merely weak.
+default_floor: fallback
+escalation_triggers:
+  # observed numbers: none. No source opened publishes a substitution threshold, an acknowledgement
+  # deadline or a coverage level for releases; X and Y are the institution's own tolerance.
+  - Any request that the Bank rely on a security interest over a Collateral Account in a jurisdiction where the perfection route has not been confirmed by local counsel.
+  - Any request that the Custodian retain the right to seek the Pledgor's consent before acting on the Bank's instructions.
+  - Any request that the Custodian keep its own lien, right of retention, right of use or right of set-off ahead of, or equal with, the Bank's security.
+  - Any request for a transfer of title for security purposes where the Pledgor is, or may be, a retail-classified or natural-person client.
+  - Any request for substitution or withdrawal rights beyond Y per cent of the Lending Value in a month, or for release on the Pledgor's own calculation of excess.
+  - Any request to limit the security to named holdings, or to exclude future assets, proceeds or joint accounts.
+  - Any request that the Bank give up the irrevocable power of attorney or the right to vote after an Event of Default.
+depends_on:
+  - conditions_precedent
+  - eligible_collateral_lending_values
+  - enforcement_liquidation
+  - governing_law_jurisdiction
+  - collateral_substitution
+  - cross_collateral_set_off
+regulatory_flags:
+  - fcar_safe_harbour_uncertain
+  - restricted_securities
+  - bank_secrecy_data
+not_automated:
+  - Whether a particular custodian's standard control agreement actually delivers control under the law of the account's location. The tool prints the question; local counsel answers it.
+  - Whether to accept a client's existing custody relationship at all, which is a relationship decision as much as a credit one.
+  - The classification of the client that determines whether title transfer is available in the booking jurisdiction.
+  - Whether to register a charge protectively for a corporate chargor where reliance on the financial collateral regime is doubtful.
+  - Setting the substitution threshold and the acknowledgement deadline. No opened source publishes either.
+jurisdiction_notes:
+  england_wales: >
+    Two English points change the drafting rather than decorate it. First, form: a true common-law pledge
+    depends on delivery of possession of a tangible thing, so English custody security is drafted as a
+    mortgage or fixed charge over the securities account and its contents, with a floating charge fallback;
+    the financial collateral regulations treat pledge, mortgage, fixed charge, floating charge and lien
+    alike as security interests, so the label is not what decides whether the regime applies (LAW-EW-01;
+    the point that a true common-law pledge is awkward over intangible custody assets, and that English
+    custody security is therefore drafted as mortgage or charge language, is practice commentary recorded
+    in FIRM-04 rather than statute).
+    Second, scope: the regulations require BOTH parties to be non-natural persons, so where the collateral
+    provider is an individual - the ordinary private-wealth case, and the classic third-party spouse or
+    family pledgor - the arrangement is not a financial collateral arrangement (LAW-EW-01). [VERIFY] The
+    consequence usually drawn from that, namely that the registration exemption, the insolvency
+    disapplications and appropriation are all unavailable on those facts, comes from the WP7 research file
+    (docs/research/jurisdictions_research.md) and was not confirmed against the primary text by this agent;
+    the WP3 brief lists it as a known gap. Even with two non-natural persons,
+    possession or control has to be real: the English decisions in this area have required actual
+    dispossession of the provider, so a lender holding as a bare nominee with no more dominion than a
+    custodian does not have control (FIRM-04). Practical consequences: draft an express power of sale and
+    do not rely on appropriation; make the account control agreement deliver dispossession in substance;
+    and for a corporate chargor decide the Companies Act registration question deliberately and record the
+    decision, because relying on the exemption in reg. 4 is a bet on the arrangement qualifying at all
+    (LAW-EW-03).
+  switzerland: >
+    Security over intermediated securities is governed exclusively by the Federal Intermediated Securities
+    Act, which supplies three routes and no register: credit of the securities to the Bank's own securities
+    account (art. 24); an irrevocable control agreement between the account holder and the Custodian under
+    which the Custodian must carry out the Bank's instructions without any further consent or cooperation
+    from the account holder, capable of covering specific securities, the whole account or a proportion of
+    it (art. 25); or, where the Bank is itself the Custodian, a simple agreement with the Custodian,
+    effective against third parties on conclusion (art. 26) (LAW-CH-01). Two traps to close in the
+    documents. The Custodian has its own statutory right of retention and foreclosure over securities
+    credited to the account for debts arising from the custody or from financing their acquisition (art.
+    21), so where a third party holds, its ranking must be dealt with expressly; and a right of use in
+    favour of the Custodian requires the account holder's authorisation which, unless the account holder is
+    a qualified investor, must be in writing and may NOT be included in general terms and conditions (art.
+    22) - directly relevant to a private individual client. Cash balances are claims against the bank, sit
+    outside that Act, and are pledged under the Civil Code provisions on the pledge of claims, which
+    require a written pledge agreement. Practitioner sources describe the same two working structures: a
+    pledge with an account control agreement, or a security transfer of legal title by crediting the
+    secured party's account (FIRM-05).
+  luxembourg: >
+    Luxembourg is the most collateral-taker-friendly of the three on structure, and the one with a hard
+    statutory prohibition in it. The Law of 5 August 2005 allows an all-present-and-future pledge without
+    specific designation of the collateral (art. 4), which is what a revolving Lombard portfolio needs, and
+    expressly provides that a right of substitution, a right to withdraw excess collateral, a right to
+    collect proceeds until further notice and a reserved right of the provider to give instructions do not
+    prejudice the collateral having been provided (art. 2(3)) - so the client can keep trading the
+    portfolio without undermining the pledge, which English law does not allow as freely. Possession is
+    defined functionally: where the Bank is the Custodian, concluding the pledge agreement is enough;
+    otherwise a tripartite agreement, or a two-party agreement notified to the Custodian under which it
+    acts on the Bank's instructions without further agreement of the provider, or booking to the Bank's
+    account, or earmarking in the Custodian's books (art. 5(2)(a)), with routes other than the first
+    treated as a waiver of the Custodian's own ranking unless otherwise agreed. There are no registration
+    formalities (art. 26). The prohibition: a credit institution or investment firm providing investment
+    services may not conclude a transfer of title for security purposes with a retail client, on pain of
+    nullity, and must in any event document its consideration of the use of title transfer (art. 13 and
+    art. 13-1). For a retail-classified Luxembourg client the structural choice is therefore pledge, and
+    the point is not negotiable (LAW-LU-01).
+sources:
+  - ref: "EDGAR-PL-02"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1658566/000110465916164555/a16-23883_1ex99d7.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Pledge and security agreement supporting a margin loan, EDGAR accession 0001104659-16-164555; the fullest control build in the pool. Supports the preferred tier's control architecture (first-priority security interest plus set-off, a custodian acceptable to the secured party, segregated cash and share collateral accounts with sub-accounts, a tripartite control agreement, financing statements, re-registration into the custodian's name) and the two concessions in the acceptable tier (an express undertaking by the secured party not to rehypothecate, use, lend, pledge or sell except as permitted or consented to; and voting left with the pledgor until an event of default, with an irrevocable proxy flipping it on default)."
+  - ref: "EDGAR-PL-03"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1120193/000114036124012544/ef20022496_ex7-15.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Pledge and security agreement together with a secured custodian securities account control agreement and a deposit account control agreement, EDGAR accession 0001140361-24-012544. Supports the acceptable tier: where the custodian is a depositary agent that is not the lender, the answer is control agreements over both the securities account and the deposit account, with the security expressed as a valid, perfected, first-priority interest in the accounts, in the financial assets credited to them, in the security entitlements and in the cash."
+  - ref: "EDGAR-PL-01"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1723128/000089843224000401/exh99-5.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Pledge and security agreement supporting a margin loan, EDGAR accession 0000898432-24-000401. Supports the pledgor covenants in the preferred tier: defend the collateral against adverse claims, never allow a financing statement naming anyone else as secured party, create no lien other than the lender's and permitted liens, and bear the costs of defending and enforcing the security interest. Also contains the lender-side beneficial-ownership cap and a power of attorney."
+  - ref: "EDGAR-PB-01"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1293153/000095012308001840/y49893exv99w7w05.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Composite exhibit, EDGAR accession 0000950123-08-001840, of three private-bank securities-lending documents given by individual and trust pledgors. Supports the preferred tier's full-dominion position: the bank takes a security interest, pledge, lien, charge, assignment, hypothecation and right of set-off over everything in named accounts, asserts full dominion and control with no withdrawals permitted, releases only such excess as it decides taking loanable values, currency risk and tax into account, and states that the agreement creates a valid and perfected first fixed charge and first-priority security interest."
+  - ref: "BANK-LU-03"
+    type: bank_terms
+    url: "https://assetsgarantibbva.com/assets/pdf/en/other/Luxembourg_Branch.pdf"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published general terms and conditions of a bank's Luxembourg branch. Supports the preferred tier's scope: by force of the general terms and the Law of 5 August 2005, everything entrusted by the client to the bank is pledged ipso jure for whatever the client owes now or in future, the bank cannot be compelled to release it, and the bank also holds a right of retention over the pledged collateral."
+  - ref: "BANK-LU-01"
+    type: bank_terms
+    url: "https://links.imagerelay.com/cdn/2958/ql/lombard-loan-contract-sqbe-en-01072023"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published Lombard loan agreement template of a Luxembourg bank (CSSF-supervised). Supports the preferred tier's reach: the retail Lombard facility is pointed at the general deed of pledge in the bank's general terms, and the pledge covers the assets in all of the client's accounts, including joint accounts of which the client is one holder."
+  - ref: "EDGAR-EN-01"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1530238/000110465919067794/tv533539_sc13da.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Schedule 13D/A, EDGAR accession 0001104659-19-067794, annexing an English-law amendment notice under a security deed over listed shares held through a custodian by a corporate holder. The only English-law securities security document in the pool; expressly framed against the financial collateral regulations, with releases conditioned on an excess-financial-collateral determination and on no event of default subsisting. Supports the England and Wales note and the preferred tier's release mechanic."
+  - ref: "LAW-EW-01"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/uksi/2003/3226/regulation/3"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Financial Collateral Arrangements (No. 2) Regulations 2003, reg. 3 (definitions), read by the WP7 research agent. Supports the England and Wales note on three points: security interest is defined to include pledge, mortgage, fixed charge, floating charge and lien; collateral counts as in the taker's possession where credited to an account in its name with the provider's rights limited to substituting collateral of equal or greater value or withdrawing excess; and both parties to a security or title transfer arrangement must be non-natural persons, a non-natural person excluding an individual. It does NOT support the statement of what is lost when the regime does not apply, which is marked [VERIFY] in that note."
+  - ref: "LAW-EW-03"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/uksi/2003/3226/regulation/4"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Financial Collateral Arrangements (No. 2) Regulations 2003, reg. 4, read by the WP7 research agent. Supports the England and Wales note's registration point: reg. 4(4) disapplies the Companies Act 2006 charge registration duty and the voidness consequence for a security financial collateral arrangement and any charge created or arising under one - which is why a failure of the arrangement to qualify also revives a registration duty whose time limit has by then expired."
+  - ref: "LAW-CH-01"
+    type: primary_law
+    url: "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2009/450/20230101/en/pdf-a/fedlex-data-admin-ch-eli-cc-2009-450-20230101-en-pdf-a.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Swiss Federal Intermediated Securities Act (SR 957.1), official English translation, read by the WP7 research agent. Supports the Switzerland note: art. 24 credit to the acquirer's account; art. 25 irrevocable control agreement covering specific securities, a whole account or a proportion of it; art. 26 agreement with the custodian where the taker is the custodian, effective on conclusion; art. 21 the custodian's own right of retention and foreclosure; art. 22 right-of-use authorisation to be in writing and not in general terms and conditions unless the account holder is a qualified investor."
+  - ref: "LAW-LU-01"
+    type: primary_law
+    url: "https://www.cssf.lu/wp-content/uploads/L_050805_fin_coll_upd_15072024.pdf"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Luxembourg Law of 5 August 2005 on financial collateral arrangements, consolidated text published by the regulator (updated 15 July 2024); arts. 3-5, 11, 12, 13, 13-1, 18-20 and 22 were read by the sourcing agent. Supports the Luxembourg note and the fallback tier: art. 4 all-present-and-future pledge without specific designation; art. 2(3) substitution, excess-withdrawal, proceeds-collection and instruction rights do not prejudice provision; art. 5(2)(a) the four possession routes for book-entry instruments and the custodian ranking waiver; art. 13 and art. 13-1 on transfer of title for security purposes, prohibited with a retail client on pain of nullity; art. 26 no registration formalities."
+  - ref: "FIRM-04"
+    type: law_firm_briefing
+    url: "https://www.cliffordchance.com/content/dam/cliffordchance/briefings/2012/11/financial-collateral-remains-a-gray-area.pdf"
+    retrieved: 2026-09-21
+    reliability: C
+    verified: true
+    note: "Law-firm briefing (November 2012) on possession and control under the English financial collateral regulations, read by the WP7 research agent. Supports the England and Wales note: possession and control require more than mere custody, and the English decisions of 2010 and 2012 on this point turn on real dispossession of the collateral provider; the briefing also records a clause labelled as a general lien over intangible custody assets being analysed as a charge."
+  - ref: "FIRM-05"
+    type: law_firm_briefing
+    url: "https://www.baerkarrer.ch/userdata/lending-and-taking-security-in-switzerland-overview.pdf"
+    retrieved: 2026-09-21
+    reliability: C
+    verified: true
+    note: "Practitioner overview of lending and taking security in Switzerland (law stated 1 May 2025), read by the WP7 research agent. Supports the Switzerland note's description of working practice: the two routes are a pledge with an account control agreement under which the intermediary irrevocably agrees to follow the secured party's instructions, or a security transfer of legal title by crediting the secured party's account."
+status: draft
+reviewed_by: null
+last_reviewed: null

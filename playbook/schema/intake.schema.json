@@ -1,0 +1,447 @@
+{
+  "$defs": {
+    "AssetClass": {
+      "enum": [
+        "cash",
+        "listed_equity",
+        "listed_bond",
+        "fund_daily",
+        "fund_gated",
+        "structured_product",
+        "unlisted",
+        "restricted_securities",
+        "real_estate"
+      ],
+      "title": "AssetClass",
+      "type": "string"
+    },
+    "Benchmark": {
+      "enum": [
+        "SONIA",
+        "SARON",
+        "EURIBOR",
+        "fixed",
+        "other"
+      ],
+      "title": "Benchmark",
+      "type": "string"
+    },
+    "Borrower": {
+      "additionalProperties": false,
+      "properties": {
+        "business_purpose_declared": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Business Purpose Declared"
+        },
+        "declared_high_net_worth": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Individuals only; null where not applicable",
+          "title": "Declared High Net Worth"
+        },
+        "domicile": {
+          "description": "ISO 3166-1 alpha-2",
+          "pattern": "^[A-Z]{2}$",
+          "title": "Domicile",
+          "type": "string"
+        },
+        "natural_person": {
+          "title": "Natural Person",
+          "type": "boolean"
+        },
+        "type": {
+          "$ref": "#/$defs/BorrowerType"
+        }
+      },
+      "required": [
+        "type",
+        "domicile",
+        "natural_person"
+      ],
+      "title": "Borrower",
+      "type": "object"
+    },
+    "BorrowerType": {
+      "enum": [
+        "individual",
+        "corporate",
+        "trust",
+        "partnership",
+        "fund"
+      ],
+      "title": "BorrowerType",
+      "type": "string"
+    },
+    "Collateral": {
+      "additionalProperties": false,
+      "properties": {
+        "composition": {
+          "items": {
+            "$ref": "#/$defs/CompositionItem"
+          },
+          "minItems": 1,
+          "title": "Composition",
+          "type": "array"
+        },
+        "currencies": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Currencies",
+          "type": "array"
+        },
+        "custodian_location": {
+          "pattern": "^[A-Z]{2}$",
+          "title": "Custodian Location",
+          "type": "string"
+        },
+        "governing_law": {
+          "$ref": "#/$defs/GoverningLaw"
+        },
+        "lender_is_custodian": {
+          "title": "Lender Is Custodian",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "governing_law",
+        "custodian_location",
+        "lender_is_custodian",
+        "currencies",
+        "composition"
+      ],
+      "title": "Collateral",
+      "type": "object"
+    },
+    "CompositionItem": {
+      "additionalProperties": false,
+      "description": "One asset-class line of the collateral, as a percentage of lending value.",
+      "properties": {
+        "asset_class": {
+          "$ref": "#/$defs/AssetClass"
+        },
+        "issuer_restricted": {
+          "default": false,
+          "description": "Lock-ups, control stock, and the like",
+          "title": "Issuer Restricted",
+          "type": "boolean"
+        },
+        "pct": {
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Pct",
+          "type": "number"
+        },
+        "single_name_max_pct": {
+          "anyOf": [
+            {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Largest single issuer exposure within this class",
+          "title": "Single Name Max Pct"
+        }
+      },
+      "required": [
+        "asset_class",
+        "pct"
+      ],
+      "title": "CompositionItem",
+      "type": "object"
+    },
+    "CounterpartyRequest": {
+      "additionalProperties": false,
+      "description": "An optional counterparty ask against a clause: a tier, free text, or both.",
+      "properties": {
+        "text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Text"
+        },
+        "tier": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Tier"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "CounterpartyRequest",
+      "type": "object"
+    },
+    "Derived": {
+      "additionalProperties": false,
+      "description": "Facts computed from the intake, for use by rules as ``derived.*``.",
+      "properties": {
+        "any_issuer_restricted": {
+          "description": "True if any composition line is marked issuer_restricted (lock-ups, control stock and the like)",
+          "title": "Any Issuer Restricted",
+          "type": "boolean"
+        },
+        "any_natural_person_pledgor": {
+          "description": "True if the effective collateral provider is a natural person",
+          "title": "Any Natural Person Pledgor",
+          "type": "boolean"
+        },
+        "currency_mismatch": {
+          "description": "True if any collateral currency differs from the facility currency",
+          "title": "Currency Mismatch",
+          "type": "boolean"
+        },
+        "has_illiquid_collateral": {
+          "description": "True if any composition line with pct > 0 is fund_gated, unlisted or structured_product",
+          "title": "Has Illiquid Collateral",
+          "type": "boolean"
+        },
+        "has_real_estate": {
+          "description": "True if any composition line is asset_class real_estate with pct > 0",
+          "title": "Has Real Estate",
+          "type": "boolean"
+        },
+        "max_single_name_pct": {
+          "description": "Largest single_name_max_pct across composition lines; 0 if none given",
+          "title": "Max Single Name Pct",
+          "type": "number"
+        },
+        "third_party_security": {
+          "description": "True if the pledgor is not the borrower",
+          "title": "Third Party Security",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "max_single_name_pct",
+        "has_real_estate",
+        "currency_mismatch",
+        "third_party_security",
+        "any_natural_person_pledgor",
+        "any_issuer_restricted",
+        "has_illiquid_collateral"
+      ],
+      "title": "Derived",
+      "type": "object"
+    },
+    "Facility": {
+      "additionalProperties": false,
+      "properties": {
+        "amount": {
+          "exclusiveMinimum": 0,
+          "title": "Amount",
+          "type": "number"
+        },
+        "benchmark": {
+          "$ref": "#/$defs/Benchmark"
+        },
+        "currency": {
+          "description": "ISO 4217",
+          "pattern": "^[A-Z]{3}$",
+          "title": "Currency",
+          "type": "string"
+        },
+        "other_facilities_with_lender": {
+          "default": false,
+          "title": "Other Facilities With Lender",
+          "type": "boolean"
+        },
+        "purpose": {
+          "$ref": "#/$defs/Purpose"
+        },
+        "type": {
+          "$ref": "#/$defs/FacilityType"
+        }
+      },
+      "required": [
+        "type",
+        "purpose",
+        "amount",
+        "currency",
+        "benchmark"
+      ],
+      "title": "Facility",
+      "type": "object"
+    },
+    "FacilityType": {
+      "enum": [
+        "uncommitted_demand",
+        "committed_term"
+      ],
+      "title": "FacilityType",
+      "type": "string"
+    },
+    "GoverningLaw": {
+      "enum": [
+        "england_wales",
+        "switzerland",
+        "luxembourg",
+        "other"
+      ],
+      "title": "GoverningLaw",
+      "type": "string"
+    },
+    "Pledgor": {
+      "additionalProperties": false,
+      "description": "The collateral provider. Where ``same_as_borrower``, the other fields are null.",
+      "properties": {
+        "domicile": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Z]{2}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Domicile"
+        },
+        "is_pdmr_of_pledged_issuer": {
+          "default": false,
+          "title": "Is Pdmr Of Pledged Issuer",
+          "type": "boolean"
+        },
+        "natural_person": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Natural Person"
+        },
+        "same_as_borrower": {
+          "title": "Same As Borrower",
+          "type": "boolean"
+        },
+        "type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/BorrowerType"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "same_as_borrower"
+      ],
+      "title": "Pledgor",
+      "type": "object"
+    },
+    "Purpose": {
+      "enum": [
+        "general",
+        "acquire_securities",
+        "real_estate",
+        "business"
+      ],
+      "title": "Purpose",
+      "type": "string"
+    },
+    "Tier": {
+      "description": "The four-tier position ladder, lender side.",
+      "enum": [
+        "preferred",
+        "acceptable",
+        "fallback",
+        "unacceptable"
+      ],
+      "title": "Tier",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "A deal (``deals/*.yaml``). Synthetic only.",
+  "properties": {
+    "borrower": {
+      "$ref": "#/$defs/Borrower"
+    },
+    "collateral": {
+      "$ref": "#/$defs/Collateral"
+    },
+    "counterparty_requests": {
+      "additionalProperties": {
+        "$ref": "#/$defs/CounterpartyRequest"
+      },
+      "title": "Counterparty Requests",
+      "type": "object"
+    },
+    "deal_id": {
+      "pattern": "^[A-Za-z0-9_]+$",
+      "title": "Deal Id",
+      "type": "string"
+    },
+    "derived": {
+      "$ref": "#/$defs/Derived",
+      "description": "Computed facts the rules may reference as ``derived.*``.\n\nDefinitions (fixed in WP1, relied on by WP5):\n\n* ``max_single_name_pct`` — maximum of the non-null ``single_name_max_pct``\n  values across composition lines; ``0.0`` when none is given.\n* ``has_real_estate`` — any composition line has ``asset_class: real_estate``\n  **and** ``pct > 0``. (Changed in WP5: a real-estate line at zero percent\n  is not real-estate collateral, and R09 is a hard stop.)\n* ``currency_mismatch`` — any collateral currency differs from the facility\n  currency (so a GBP facility against [GBP, USD] collateral is a mismatch).\n* ``third_party_security`` — ``pledgor.same_as_borrower`` is false.\n* ``any_natural_person_pledgor`` — the effective collateral provider is a\n  natural person: the borrower where the pledgor is the borrower, otherwise\n  the third-party pledgor.\n* ``any_issuer_restricted`` — any composition line is ``issuer_restricted``.\n  (Added in WP5 for rule R08; percentage is not considered, because a\n  restriction on any pledged line constrains enforcement.)\n* ``has_illiquid_collateral`` — any composition line with ``pct > 0`` is\n  ``fund_gated``, ``unlisted`` or ``structured_product``. (Added in WP5 for\n  rule R15.)",
+      "readOnly": true
+    },
+    "description": {
+      "minLength": 1,
+      "title": "Description",
+      "type": "string"
+    },
+    "facility": {
+      "$ref": "#/$defs/Facility"
+    },
+    "guarantor_present": {
+      "default": false,
+      "title": "Guarantor Present",
+      "type": "boolean"
+    },
+    "pledgor": {
+      "$ref": "#/$defs/Pledgor"
+    }
+  },
+  "required": [
+    "deal_id",
+    "description",
+    "borrower",
+    "pledgor",
+    "facility",
+    "collateral",
+    "derived"
+  ],
+  "title": "Intake",
+  "type": "object"
+}

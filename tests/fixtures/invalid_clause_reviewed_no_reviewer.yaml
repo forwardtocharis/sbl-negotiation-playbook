@@ -1,0 +1,35 @@
+# INVALID (6): status 'reviewed' with a null reviewed_by. The schema permits the
+# value 'reviewed' (Stuart sets it) but a review must be attributable to a person.
+id: fixture_reviewed_no_reviewer
+title: "Fixture: reviewed clause with no named reviewer"
+category: collateral
+document: facility_letter
+risk_rating: low
+lender_objective: Deliberately invalid fixture for the schema tests.
+positions:
+  preferred:
+    text: "[DRAFT PLACEHOLDER] Opening position placeholder."
+    rationale: Placeholder rationale for the schema tests.
+  acceptable:
+    text: "[DRAFT PLACEHOLDER] Routine concession placeholder."
+    rationale: Placeholder rationale for the schema tests.
+  fallback:
+    text: "[DRAFT PLACEHOLDER] Conditional concession placeholder."
+    rationale: Placeholder rationale for the schema tests.
+    conditions: []
+    approval: senior lawyer
+  unacceptable:
+    text: "[DRAFT PLACEHOLDER] Walk-away line placeholder."
+    rationale: Placeholder rationale for the schema tests.
+default_floor: fallback
+sources:
+  - ref: "Fixture placeholder source"
+    type: textbook
+    url: null
+    retrieved: null
+    reliability: C
+    verified: false
+    note: "[VERIFY] Placeholder for schema testing only."
+status: reviewed
+reviewed_by: null
+last_reviewed: 2026-09-21

@@ -1,0 +1,10 @@
+# Stub entry. Status is 'stub': only id, title, category and lender_objective
+# are populated. Positions, sources and jurisdiction notes are added in a later
+# work package. Nothing here is legal advice or a verified market position.
+id: tax_gross_up
+title: "Tax gross-up and withholding"
+category: boilerplate
+lender_objective: "Ensure the lender receives the agreed return net of any withholding imposed on payments."
+status: stub
+reviewed_by: null
+last_reviewed: null

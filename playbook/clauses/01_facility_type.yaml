@@ -1,0 +1,278 @@
+# Draft entry (WP3, drafting group A). Lender-side. Synthetic demonstrator.
+# Nothing here is legal advice.
+#
+# This is clause 1 because it decides what the rest of the library is worth
+# (build_plan.md s.3: "Demand vs term drives everything in enforcement"). The
+# ladder is a single structural trade:
+#   preferred    - uncommitted, repayable on demand, no cause needed
+#   acceptable   - still uncommitted and on demand, but X days' notice before a
+#                  cancellation FOR CONVENIENCE; every real-world trigger carved out
+#   fallback     - committed term, with the demand right rebought as a closed list
+#                  of lender termination and mandatory prepayment events
+#   unacceptable - a commitment that survives the collateral deteriorating
+#
+# Why demand drives enforcement. On a demand facility the Bank does not have to
+# prove anything to stop lending or to make the debt due: it asks for repayment,
+# repayment does not come, and the security becomes enforceable. On a committed
+# term facility every one of those steps has to be earned out of a defined event,
+# proved on the facts, and survived in argument - which is exactly the delay a
+# Lombard book cannot afford, because the collateral is moving while the argument
+# runs. That is why conceding this clause is not a drafting concession; it
+# re-prices the whole facility, and it is why default_floor here is 'acceptable'.
+id: facility_type
+title: "Facility type: uncommitted and repayable on demand versus committed term"
+category: credit
+document: facility_letter
+risk_rating: high
+lender_objective: >
+  Keep the facility uncommitted and repayable on demand, so the Bank can stop lending and call the
+  loan on its own view of the collateral without first having to prove a default.
+counterparty_asks:
+  - Convert the uncommitted demand line into a committed term facility with a stated maturity and no demand right, in exchange for a negotiated list of mandatory prepayment events.
+  - A minimum notice period before the Bank may cancel or reduce the Limit or demand repayment for convenience.
+  - A commitment that survives movement in the collateral between signing and the funding date.
+  - Make the Bank's right to reduce or cancel the Limit exercisable only on an event of default.
+  - Automatic renewal or rollover of the line unless the Bank gives notice that it will not renew.
+  - Confirmation that the Bank will not demand repayment while the Borrower is within the margin requirement.
+positions:
+  preferred:
+    # observed: an authorisation to run a debit balance up to a Limit, granted at the bank's sole
+    # discretion for an indefinite period, with no commitment language anywhere (BANK-LU-01); the
+    # bank may demand repayment of a demand facility at any time, for any reason or no reason
+    # (BANK-US-01); a continuing pledge supporting whatever credit arrangements exist from time to
+    # time (EDGAR-PB-01-A). No judgement number in this tier: the position is "no term, no notice".
+    text: >
+      The facility is uncommitted. The Bank is not obliged to make any advance, and each utilisation
+      is a separate decision of the Bank whether or not the conditions precedent are satisfied and
+      whether or not the Limit is undrawn. The facility has no fixed term. The Bank may at any time,
+      in its discretion and without giving a reason, reduce, suspend or cancel the Limit and may
+      demand immediate repayment of all principal, interest, fees and other amounts outstanding,
+      whether or not any Event of Default has occurred and whether or not the Borrower is in
+      compliance with the margin requirement. A demand is effective when made, and the Bank is not
+      required to give any notice beyond the demand itself. No failure or delay by the Bank in
+      demanding repayment or in cancelling the Limit operates as a waiver of the right to do so, and
+      no course of dealing converts the facility into a committed one.
+    rationale: >
+      The demand right is what the Bank has instead of covenants, and it is the reason this product
+      can be priced and sized the way it is. If the Bank has to prove an event of default before it
+      can stop, it is arguing about materiality while the collateral is moving, and the argument
+      costs more than the margin it was protecting. Every published private-bank document opened for
+      this playbook takes this position, so it is the market opening rather than an aggressive one.
+      What the Borrower buys with it is price, size and speed of execution, which is the whole appeal
+      of borrowing against a portfolio instead of against a covenant package.
+    conditions: []
+  acceptable:
+    # observed: a published Lombard template runs for an indefinite period with either side able to
+    # terminate on 90 days' notice, while the bank keeps immediate termination on any listed event of
+    # default (BANK-LU-01). Every other published document opened concedes no notice at all
+    # (BANK-US-01, EDGAR-PB-01-A). X days is therefore a judgement number anchored on one
+    # observation of 90 days; the carve-outs are not negotiable, the number is.
+    text: >
+      The facility is uncommitted and all amounts outstanding are repayable on demand. Where the Bank
+      cancels or reduces the Limit for convenience, meaning otherwise than in the circumstances
+      described below, it will give the Borrower not less than X days' prior notice, during which the
+      Borrower may not draw further amounts. That notice period does not apply, and the Bank may
+      cancel, reduce or demand with immediate effect, where: an Event of Default has occurred; a
+      margin shortfall is outstanding and uncured; the collateral has ceased to satisfy the eligible
+      collateral or concentration requirements; the cancellation, reduction or demand is required by
+      or results from any law, regulation or requirement of a regulator, exchange or clearing system;
+      or the Bank determines that the circumstances on which the Limit was granted have materially
+      changed. Nothing in this clause obliges the Bank to make any advance at any time.
+    rationale: >
+      This concession is a queue, not a brake. The Bank almost never leaves a Lombard line for
+      convenience: it leaves because something has happened, and everything that actually happens is
+      carved out, so the notice period bites only in the case where the Bank was in no hurry anyway.
+      It is also the published position of a real Luxembourg template, which makes it an easy thing to
+      say yes to and a useful thing to have said yes to when the harder clauses come up. The sentence
+      to use in the room is that the Bank will not walk away from a client without warning, but it
+      will not stand still while the portfolio falls.
+    conditions: []
+  fallback:
+    # THE STRUCTURAL TIER. observed: institutional margin loans are the counter-model - stated
+    # maturity, committed advances on named funding dates, no demand feature, everything a demand
+    # right would do rebuilt as an exhaustive negotiated list of mandatory prepayment events and
+    # events of default (EDGAR-ML-03, EDGAR-ML-04). A published Swiss factsheet offers a fixed
+    # advance which may be fixed for up to 24 months with a stated minimum size, against the same
+    # pledge as the current-account line (BANK-CH-01). Commentary records that collateral moves
+    # between signing and funding, so a facility committed on day one can be in margin call on the
+    # funding date (FIRM-01).
+    # observed: term length - up to 24 months for a fixed advance (BANK-CH-01); the filed term
+    # facilities state a maturity but the pool does not record the tenor. X months is a judgement
+    # number.
+    # observed: trading-suspension threshold - suspension "beyond a set number of trading days" is a
+    # named mandatory prepayment event but no source opened publishes the number (FIRM-01,
+    # EDGAR-ML-04). X trading days is a judgement number.
+    text: >
+      The Bank commits to make advances up to the Limit until the date falling X months after the
+      date of the facility letter, subject to the conditions precedent being satisfied on each
+      funding date and to the lending value of the collateral, immediately after the advance, being
+      not less than the amount then outstanding. The Bank may cancel any undrawn commitment and
+      declare all amounts outstanding immediately due and payable on any of the following: a margin
+      shortfall that is not cured within the cure period; any Event of Default; the insolvency, or
+      the death or incapacity, of the Borrower or of any Pledgor; the illegality of, or any
+      regulatory requirement affecting, the Bank's performance; any material misrepresentation; any
+      breach of the eligible collateral or concentration requirements; the insolvency of, delisting
+      of, or a suspension of trading of more than X trading days in, any pledged security; a change
+      of control of the Borrower; or a fall in the price of any pledged security below the level
+      stated in the facility letter. The Bank is not obliged to advance while a margin call is
+      outstanding or while any of the above is continuing, and the commitment does not renew or roll
+      over except by a further decision of the Bank. Prepayment is subject to the breakage provisions
+      of the facility letter.
+    rationale: >
+      Term can be conceded, but only by buying the demand right back in pieces, and the list has to
+      reach both of the things the demand right reaches automatically: the collateral getting worse
+      and the Borrower getting worse. If it does, the Bank has traded flexibility for documentation
+      rather than for risk. The honest line to the counterparty is that a term facility is available
+      and that everything the demand right was doing silently will now be written down, and the
+      written version is usually less comfortable to read than the demand right it replaces. Because
+      this tier changes the product rather than a term of it, the default floor for this clause is
+      set at acceptable: moving to committed term should always be an escalation and never a deal
+      lawyer's decision.
+    conditions:
+      - Collateral is exchange-listed or daily-dealt and within the concentration limit at signing and on each funding date.
+      - The Bank or a member of its group is the Custodian, or an executed account control agreement is in place.
+      - Credit has priced the commitment, including breakage and the cost of the undrawn line.
+      - Where the Borrower is an individual, any declaration and statement on which the facility's regulatory treatment depends is in place before signing.
+      - The mandatory prepayment list has been read against the events of default clause so that nothing is lost in the gap between them.
+      - The lending values applied have been reduced to reflect that the Bank cannot exit the commitment at will.
+    approval: credit committee
+  unacceptable:
+    text: >
+      The Bank will not agree a committed facility with no collateral-linked mandatory prepayment
+      right; will not commit to advance on a funding date irrespective of the lending value of the
+      collateral on that date; will not accept a demand right exercisable only after an Event of
+      Default or only after a cure period has run; will not agree an evergreen or automatically
+      renewing commitment that the Bank cannot decline to renew; will not agree that it may not
+      demand repayment or cancel the Limit while the Borrower is within the margin requirement; and
+      will not accept a notice period for cancellation that continues to run where an Event of
+      Default, an uncured margin shortfall, an illegality or a regulatory requirement has occurred.
+    rationale: >
+      Each of these turns a secured, exit-at-will facility into an unsecured-style commitment that
+      happens to have a portfolio attached to it. The whole premise of the product is that the Bank's
+      exposure is to assets it can value daily and leave quickly; a commitment that survives those
+      assets deteriorating is a commitment to lend against something else entirely. The funding-date
+      point is not theoretical either: the commentary in the source pool records that collateral moves
+      between signing and funding, so a facility committed on day one can already be in margin call
+      by the time it is drawn, and the Bank would be funding into a shortfall it is contractually
+      barred from refusing.
+default_floor: acceptable
+escalation_triggers:
+  # observed: 90 days' termination for convenience in one published template (BANK-LU-01); no notice
+  # period in any other published document opened. X is the institution's own tolerance.
+  - Any request to convert the facility from uncommitted demand to committed term.
+  - Any request for a notice period longer than X days before the Bank may cancel or reduce the Limit.
+  - Any request that a notice period apply where an Event of Default, an uncured margin shortfall, an illegality or a regulatory requirement has occurred.
+  - Any request that the demand right be exercisable only on an Event of Default, or be subject to a cure period.
+  - Any request for automatic renewal, rollover or an evergreen commitment.
+  - Any request that the Bank commit to advance without re-testing the lending value on the funding date.
+depends_on:
+  - conditions_precedent
+  - events_of_default
+  - margin_maintenance_cure
+  - enforcement_liquidation
+  - prepayment_breakage
+regulatory_flags:
+  - consumer_credit
+  - prudential_awareness
+not_automated:
+  - Whether to exercise the demand right on a live facility, as against forbearing while the relationship is discussed. The clause fixes who decides; it does not decide.
+  - Whether to offer committed term at all for relationship reasons, and what that costs in lending value, price and commitment fee.
+  - Whether repeated forbearance has made an uncommitted line committed in substance. That is a course-of-dealing judgement, and no rule in this library can make it.
+  - Setting the notice period and the term length. Only one opened source states either figure, and both are the institution's risk appetite.
+jurisdiction_notes:
+  england_wales: >
+    The demand feature is at its most sensitive where the Borrower is an individual, because it is the
+    regulated-credit perimeter rather than the contract that decides what "repayable on demand" is
+    actually worth. The high-net-worth exemption route requires a prescribed declaration by the
+    borrower giving up the protections of a regulated agreement together with a compliant statement of
+    income or assets delivered to the lender before the agreement is made, with a credit threshold of
+    GBP 60,260 where the agreement is not secured on land (LAW-UK-02). The sequencing is the practical
+    point for this clause: the facility type and the declaration are settled together at signing,
+    because a declaration signed afterwards does not cure the agreement.
+  switzerland: >
+    A published Swiss factsheet offers two shapes under the same pledge: a current-account line with
+    no fixed term and flexible drawing, and a fixed advance which may be fixed for a period of up to
+    24 months with a stated minimum size, with the same collateral pool also able to support
+    derivative exposure, letters of credit and guarantees (BANK-CH-01). That matters in negotiation,
+    because a Swiss-booked client asking for "certainty of term" can often be answered with a fixed
+    advance drawn under an uncommitted line rather than with a committed facility, which is a much
+    cheaper concession than the fallback tier. Separately, Swiss practitioner commentary records that
+    a bank's contractual discretions must be exercised in good faith and not abusively (FIRM-03), so
+    an abrupt demand made for no articulable reason is a worse place to be in Switzerland than the
+    contract alone suggests.
+  luxembourg: >
+    The published Luxembourg template is the closest thing in the source pool to the acceptable tier
+    written out: an authorisation to run a debit balance up to a Limit, granted at the bank's sole
+    discretion for an indefinite period, with either party able to terminate on 90 days' notice and
+    the bank able to terminate with immediate effect on any listed event of default (BANK-LU-01). The
+    same document also records a 14 calendar day withdrawal right for a retail client on a distance
+    contract where the facility is unused, which is a consumer-protection feature of the booking
+    centre rather than a negotiated term and should be checked with the booking centre before the
+    facility letter is issued.
+sources:
+  - ref: "BANK-LU-01"
+    type: bank_terms
+    url: "https://links.imagerelay.com/cdn/2958/ql/lombard-loan-contract-sqbe-en-01072023"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published Lombard loan agreement template of a Luxembourg bank (CSSF-supervised). Supports the preferred and acceptable tiers and the Luxembourg note: the facility is an authorisation to run a debit balance up to a Limit granted at the bank's sole discretion for an indefinite period, with no commitment language; either side may terminate on 90 days' notice; the bank may terminate with immediate effect on any listed event of default; a 14 calendar day withdrawal right applies to a retail client on a distance contract where the facility is unused."
+  - ref: "BANK-US-01"
+    type: bank_terms
+    url: "https://www.privatebank.citibank.com/we-offer/margin-lending"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published securities-backed / margin lending disclosures of a global private bank. Supports the preferred tier in its plainest form: the bank may demand repayment of a demand facility at any time, for any reason or no reason, and no advance notice is required."
+  - ref: "BANK-CH-01"
+    type: bank_terms
+    url: "https://www.ubs.com/content/dam/assets/microsites/credit-suisse/static/doc/lombardkredit-factsheet-en.pdf"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Published Lombard loan product factsheet of a Swiss bank; marketing material, and says so. Supports the Switzerland note: two facility forms under one pledge, a current-account line with no fixed term and a fixed advance which can be fixed for up to 24 months with a stated minimum size, the same collateral pool also supporting derivative exposure, letters of credit and guarantees."
+  - ref: "EDGAR-ML-03"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1333493/000119312521187800/d467983dex3.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Margin loan agreement over listed shares, EDGAR accession 0001193125-21-187800. Supports the fallback tier as the institutional counter-model: a term facility with a maturity date, committed advances on named funding dates, no demand feature, and an exhaustive negotiated list of mandatory prepayment events and events of default doing the work a demand right would otherwise do."
+  - ref: "EDGAR-ML-04"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/2068577/000149315225028763/ex7.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Margin loan agreement over listed shares, EDGAR accession 0001493152-25-028763, the most recent filed agreement in the pool. Supports the fallback tier: the same term structure, with structural triggers including beneficial-ownership and change-of-control thresholds and a lock-up over the pledged stock."
+  - ref: "EDGAR-PB-01"
+    type: filed_agreement
+    url: "https://www.sec.gov/Archives/edgar/data/1293153/000095012308001840/y49893exv99w7w05.htm"
+    retrieved: 2026-09-21
+    reliability: B
+    verified: true
+    note: "Composite exhibit, EDGAR accession 0000950123-08-001840, of three private-bank securities-lending documents given by individual and trust pledgors. Supports the preferred tier's open-ended shape: sub-part A is a continuing guarantee and pledge supporting whatever credit arrangements exist from time to time, revocable by the guarantor only on seven days' written notice, with revocation not affecting anything already incurred or already committed."
+  - ref: "FIRM-01"
+    type: law_firm_briefing
+    url: "https://www.stblaw.com/docs/default-source/related-link-pdfs/global-legal-insights-fund-finance-2022_backleverage-financings--insights-into-the-margin-loan.pdf?sfvrsn=b1f56e21_2"
+    retrieved: 2026-09-21
+    reliability: C
+    verified: true
+    note: "Law-firm chapter on margin loan and backleverage financings in a practitioner guide. Supports the unacceptable tier's funding-date point: committed margin financing is possible, but collateral value moves between signing and funding, so a facility committed on day one can be in margin call on the funding date, which is why refinancing rather than acquisition funding is the more common use."
+  - ref: "FIRM-03"
+    type: law_firm_briefing
+    url: "https://www.mondaq.com/commoditiesderivativesstock-exchanges/985220/margin-calls-how-can-investors-protect-their-position"
+    retrieved: 2026-09-21
+    reliability: C
+    verified: true
+    note: "Swiss practitioner note on margin calls under Swiss law and standard Lombard pledge terms. Supports the Switzerland note only to this extent: a bank's contractual discretions must be exercised in good faith and not abusively. The note says nothing about demand facilities as such."
+  - ref: "LAW-UK-02"
+    type: primary_law
+    url: "https://www.legislation.gov.uk/uksi/2001/544/article/60H"
+    retrieved: 2026-09-21
+    reliability: A
+    verified: true
+    note: "Regulated Activities Order 2001, art. 60H (exempt agreements, high net worth borrowers). Supports the England and Wales note: the exemption depends on an individual borrower, a prescribed declaration forgoing the protections of a regulated credit agreement, a compliant statement of high net worth given to the lender before the agreement is made, and credit exceeding GBP 60,260 where the agreement is not secured on land."
+status: draft
+reviewed_by: null
+last_reviewed: null

@@ -1,0 +1,10 @@
+# Stub entry. Status is 'stub': only id, title, category and lender_objective
+# are populated. Positions, sources and jurisdiction notes are added in a later
+# work package. Nothing here is legal advice or a verified market position.
+id: confidentiality_bank_secrecy
+title: "Confidentiality, bank secrecy and permitted disclosure"
+category: boilerplate
+lender_objective: "Permit the disclosures the lender needs for enforcement, transfer and regulation without breaching secrecy duties."
+status: stub
+reviewed_by: null
+last_reviewed: null

@@ -1,0 +1,7 @@
+# INVALID (5): no status field. Every library entry must carry one.
+id: fixture_missing_status
+title: "Fixture: clause with no status field"
+category: collateral
+lender_objective: Deliberately invalid fixture for the schema tests.
+reviewed_by: null
+last_reviewed: null

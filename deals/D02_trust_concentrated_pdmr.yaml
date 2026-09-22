@@ -1,0 +1,47 @@
+# Golden deal D02 (build_plan.md §5). Entirely synthetic: Aldergrove Trust is a
+# fictional name and no real trust, settlor, issuer or portfolio is described.
+#
+# Shape: the escalation-heavy run. A trust borrower, a single stock at 70% of
+# the portfolio, and a collateral provider who is a PDMR of the pledged issuer.
+deal_id: D02
+description: >-
+  Synthetic. Aldergrove Trust, a Jersey discretionary trust, borrowing against a
+  portfolio concentrated in one listed holding at 70 per cent, where the trust
+  is a person discharging managerial responsibilities in relation to the pledged
+  issuer. English law security, lender custody, sterling uncommitted demand
+  facility. Fictional party; not a real deal.
+borrower:
+  type: trust
+  domicile: JE
+  natural_person: false
+  declared_high_net_worth: null
+  business_purpose_declared: null
+pledgor:
+  same_as_borrower: true
+  type: null
+  domicile: null
+  natural_person: null
+  is_pdmr_of_pledged_issuer: true
+guarantor_present: false
+facility:
+  type: uncommitted_demand
+  purpose: general
+  amount: 12000000
+  currency: GBP
+  benchmark: SONIA
+  other_facilities_with_lender: false
+collateral:
+  governing_law: england_wales
+  custodian_location: GB
+  lender_is_custodian: true
+  currencies: [GBP]
+  composition:
+    - asset_class: listed_equity
+      pct: 90
+      single_name_max_pct: 70
+      issuer_restricted: false
+    - asset_class: cash
+      pct: 10
+      single_name_max_pct: null
+      issuer_restricted: false
+counterparty_requests: {}

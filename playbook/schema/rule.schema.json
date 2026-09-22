@@ -1,0 +1,588 @@
+{
+  "$defs": {
+    "AllCondition": {
+      "additionalProperties": false,
+      "properties": {
+        "all": {
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/AllCondition"
+              },
+              {
+                "$ref": "#/$defs/AnyCondition"
+              },
+              {
+                "$ref": "#/$defs/NotCondition"
+              },
+              {
+                "$ref": "#/$defs/LeafCondition"
+              }
+            ]
+          },
+          "minItems": 1,
+          "title": "All",
+          "type": "array"
+        }
+      },
+      "required": [
+        "all"
+      ],
+      "title": "AllCondition",
+      "type": "object"
+    },
+    "AnyCondition": {
+      "additionalProperties": false,
+      "properties": {
+        "any": {
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/AllCondition"
+              },
+              {
+                "$ref": "#/$defs/AnyCondition"
+              },
+              {
+                "$ref": "#/$defs/NotCondition"
+              },
+              {
+                "$ref": "#/$defs/LeafCondition"
+              }
+            ]
+          },
+          "minItems": 1,
+          "title": "Any",
+          "type": "array"
+        }
+      },
+      "required": [
+        "any"
+      ],
+      "title": "AnyCondition",
+      "type": "object"
+    },
+    "ConditionOp": {
+      "description": "Leaf condition operators (build_plan.md §2.4).",
+      "enum": [
+        "eq",
+        "neq",
+        "in",
+        "not_in",
+        "gt",
+        "gte",
+        "lt",
+        "lte",
+        "contains",
+        "is_null"
+      ],
+      "title": "ConditionOp",
+      "type": "string"
+    },
+    "EscalateAction": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "const": "escalate",
+          "title": "Action",
+          "type": "string"
+        },
+        "clause": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Clause"
+        },
+        "reason": {
+          "minLength": 1,
+          "title": "Reason",
+          "type": "string"
+        },
+        "to": {
+          "minLength": 1,
+          "title": "To",
+          "type": "string"
+        }
+      },
+      "required": [
+        "action",
+        "to",
+        "reason"
+      ],
+      "title": "EscalateAction",
+      "type": "object"
+    },
+    "FlagAction": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "const": "flag",
+          "title": "Action",
+          "type": "string"
+        },
+        "flag": {
+          "minLength": 1,
+          "title": "Flag",
+          "type": "string"
+        },
+        "message": {
+          "minLength": 1,
+          "title": "Message",
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        }
+      },
+      "required": [
+        "action",
+        "flag",
+        "severity",
+        "message"
+      ],
+      "title": "FlagAction",
+      "type": "object"
+    },
+    "LeafCondition": {
+      "additionalProperties": false,
+      "description": "``{field, op, value}``. ``field`` is a dotted path into the Intake.",
+      "properties": {
+        "field": {
+          "minLength": 1,
+          "title": "Field",
+          "type": "string"
+        },
+        "op": {
+          "$ref": "#/$defs/ConditionOp"
+        },
+        "value": {
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "field",
+        "op"
+      ],
+      "title": "LeafCondition",
+      "type": "object"
+    },
+    "NotCondition": {
+      "additionalProperties": false,
+      "properties": {
+        "not": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/AllCondition"
+            },
+            {
+              "$ref": "#/$defs/AnyCondition"
+            },
+            {
+              "$ref": "#/$defs/NotCondition"
+            },
+            {
+              "$ref": "#/$defs/LeafCondition"
+            }
+          ],
+          "title": "Not"
+        }
+      },
+      "required": [
+        "not"
+      ],
+      "title": "NotCondition",
+      "type": "object"
+    },
+    "NoteAction": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "const": "note",
+          "title": "Action",
+          "type": "string"
+        },
+        "clause": {
+          "minLength": 1,
+          "title": "Clause",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "action",
+        "clause",
+        "text"
+      ],
+      "title": "NoteAction",
+      "type": "object"
+    },
+    "Reliability": {
+      "description": "A primary law/regulator; B filed agreement/bank terms; C commentary.",
+      "enum": [
+        "A",
+        "B",
+        "C"
+      ],
+      "title": "Reliability",
+      "type": "string"
+    },
+    "RequireCpAction": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "const": "require_cp",
+          "title": "Action",
+          "type": "string"
+        },
+        "clause": {
+          "minLength": 1,
+          "title": "Clause",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "action",
+        "clause",
+        "text"
+      ],
+      "title": "RequireCpAction",
+      "type": "object"
+    },
+    "RequireRepAction": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "const": "require_rep",
+          "title": "Action",
+          "type": "string"
+        },
+        "clause": {
+          "minLength": 1,
+          "title": "Clause",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "action",
+        "clause",
+        "text"
+      ],
+      "title": "RequireRepAction",
+      "type": "object"
+    },
+    "SetFloorAction": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "const": "set_floor",
+          "title": "Action",
+          "type": "string"
+        },
+        "clause": {
+          "minLength": 1,
+          "title": "Clause",
+          "type": "string"
+        },
+        "tier": {
+          "$ref": "#/$defs/Tier"
+        }
+      },
+      "required": [
+        "action",
+        "clause",
+        "tier"
+      ],
+      "title": "SetFloorAction",
+      "type": "object"
+    },
+    "SetOpeningAction": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "const": "set_opening",
+          "title": "Action",
+          "type": "string"
+        },
+        "clause": {
+          "minLength": 1,
+          "title": "Clause",
+          "type": "string"
+        },
+        "tier": {
+          "$ref": "#/$defs/Tier"
+        }
+      },
+      "required": [
+        "action",
+        "clause",
+        "tier"
+      ],
+      "title": "SetOpeningAction",
+      "type": "object"
+    },
+    "Severity": {
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "Source": {
+      "additionalProperties": false,
+      "description": "A source reference. No invented law: ``verified`` is honest, not decorative.",
+      "properties": {
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "What this source supports",
+          "title": "Note"
+        },
+        "ref": {
+          "description": "Short label for the source",
+          "minLength": 1,
+          "title": "Ref",
+          "type": "string"
+        },
+        "reliability": {
+          "$ref": "#/$defs/Reliability"
+        },
+        "retrieved": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Date the source was actually opened",
+          "title": "Retrieved"
+        },
+        "type": {
+          "$ref": "#/$defs/SourceType"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "URL if there is one. Never fabricate; leave null instead.",
+          "title": "Url"
+        },
+        "verified": {
+          "default": false,
+          "description": "True only if the writer opened the source and checked the statement",
+          "title": "Verified",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "ref",
+        "type",
+        "reliability"
+      ],
+      "title": "Source",
+      "type": "object"
+    },
+    "SourceType": {
+      "enum": [
+        "primary_law",
+        "regulator",
+        "filed_agreement",
+        "bank_terms",
+        "law_firm_briefing",
+        "textbook"
+      ],
+      "title": "SourceType",
+      "type": "string"
+    },
+    "Status": {
+      "description": "Review status. Agents may write ``stub`` or ``draft`` only.",
+      "enum": [
+        "stub",
+        "draft",
+        "reviewed"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "Tier": {
+      "description": "The four-tier position ladder, lender side.",
+      "enum": [
+        "preferred",
+        "acceptable",
+        "fallback",
+        "unacceptable"
+      ],
+      "title": "Tier",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "One rule (``playbook/rules/rules.yaml``).",
+  "properties": {
+    "id": {
+      "pattern": "^[A-Za-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "last_reviewed": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Last Reviewed"
+    },
+    "priority": {
+      "default": 100,
+      "description": "Lower runs first; affects log ordering only",
+      "title": "Priority",
+      "type": "integer"
+    },
+    "rationale": {
+      "minLength": 1,
+      "title": "Rationale",
+      "type": "string"
+    },
+    "reviewed_by": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reviewed By"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/Source"
+      },
+      "title": "Sources",
+      "type": "array"
+    },
+    "status": {
+      "$ref": "#/$defs/Status"
+    },
+    "then": {
+      "items": {
+        "discriminator": {
+          "mapping": {
+            "escalate": "#/$defs/EscalateAction",
+            "flag": "#/$defs/FlagAction",
+            "note": "#/$defs/NoteAction",
+            "require_cp": "#/$defs/RequireCpAction",
+            "require_rep": "#/$defs/RequireRepAction",
+            "set_floor": "#/$defs/SetFloorAction",
+            "set_opening": "#/$defs/SetOpeningAction"
+          },
+          "propertyName": "action"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/$defs/FlagAction"
+          },
+          {
+            "$ref": "#/$defs/EscalateAction"
+          },
+          {
+            "$ref": "#/$defs/SetFloorAction"
+          },
+          {
+            "$ref": "#/$defs/SetOpeningAction"
+          },
+          {
+            "$ref": "#/$defs/RequireCpAction"
+          },
+          {
+            "$ref": "#/$defs/RequireRepAction"
+          },
+          {
+            "$ref": "#/$defs/NoteAction"
+          }
+        ]
+      },
+      "minItems": 1,
+      "title": "Then",
+      "type": "array"
+    },
+    "title": {
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    },
+    "when": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/AllCondition"
+        },
+        {
+          "$ref": "#/$defs/AnyCondition"
+        },
+        {
+          "$ref": "#/$defs/NotCondition"
+        },
+        {
+          "$ref": "#/$defs/LeafCondition"
+        }
+      ],
+      "title": "When"
+    }
+  },
+  "required": [
+    "status",
+    "id",
+    "title",
+    "when",
+    "then",
+    "rationale"
+  ],
+  "title": "Rule",
+  "type": "object"
+}

@@ -1,0 +1,44 @@
+# Golden deal D04 (build_plan.md §5). Entirely synthetic: Borrower D and the
+# spouse pledgor are fictional and no real person or custodian is described.
+#
+# Shape: the third-party security run. An individual borrower in Luxembourg
+# with no high-net-worth or business-purpose declaration on file, whose spouse
+# provides the collateral, held at a third-party Luxembourg custodian.
+deal_id: D04
+description: >-
+  Synthetic. Borrower D, a Luxembourg-resident individual, with no
+  high-net-worth or business-purpose declaration on file, borrowing against
+  daily-dealing fund interests pledged by their spouse and held at a
+  third-party custodian in Luxembourg under Luxembourg law security. Fictional
+  parties; not a real deal.
+borrower:
+  type: individual
+  domicile: LU
+  natural_person: true
+  declared_high_net_worth: null
+  business_purpose_declared: null
+pledgor:
+  same_as_borrower: false
+  type: individual
+  domicile: LU
+  natural_person: true
+  is_pdmr_of_pledged_issuer: false
+guarantor_present: false
+facility:
+  type: uncommitted_demand
+  purpose: general
+  amount: 3000000
+  currency: EUR
+  benchmark: EURIBOR
+  other_facilities_with_lender: false
+collateral:
+  governing_law: luxembourg
+  custodian_location: LU
+  lender_is_custodian: false
+  currencies: [EUR]
+  composition:
+    - asset_class: fund_daily
+      pct: 100
+      single_name_max_pct: null
+      issuer_restricted: false
+counterparty_requests: {}
